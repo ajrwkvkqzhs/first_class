@@ -3,9 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFEFE">
+    <link rel="stylesheet" href="../font/default/css/notosanskr.css">
+    <link rel="stylesheet" href="../CSS/default.css">
     <title>쿠팡 로그인</title>
+    <style>
+        :root {
+            --blue: #0088FF;
+            --disabled-blue: #CCE6FF;
+            --white: #FEFEFE;
+            --black: #000000;
+            --border: #D6C9BE;
+            --placeholder: #D8CFC7;
+            --brown: #512314;
+            --error: #A64327;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 1.6rem;
+            color: var(--black);
+            background-color: #f0f0f0;
+        }
+
+        #wrap {
+            width: 100%;
+            max-width: 390px;
+            min-height: 100dvh;
+            margin: 0 auto;
+            background-color: var(--white);
+        }
+
+        /* Figma 시안의 iPhone 상태 표시줄 - 화면 비교용 */
+        .status_bar {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            height: 62px;
+            padding: 21px 39px 0 48px;
+            font-size: 1.6rem;
+            line-height: 24px;
+            font-weight: 700;
+        }
+
+        .dynamic_island {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            width: 126px;
+            height: 37px;
+            border-radius: 25px;
+            background-color: #000;
+            transform: translateX(-50%);
+        }
+
+        .status_icons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding-top: 4px;
+        }
+
+        .status_icons svg {
+            width: auto;
+            height: 14px;
+        }
+
+        header {
+            position: relative;
+            height: 157px;
+        }
+
+        .back_btn {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+        }
+
+        .back_btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .brand_logo {
+            position: absolute;
+            top: 56px;
+            left: 50%;
+            display: block;
+            width: 180px;
+            height: 41px;
+            transform: translateX(-50%);
+        }
+
+        .brand_logo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        main {
+            padding: 3px 20px 60px;
+        }
+
+        .login_title {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.6rem;
+            line-height: 22px;
+            font-weight: 700;
+        }
+
+        .field + .field {
+            margin-top: 7px;
+        }
+
+        .input_box {
+            position: relative;
+        }
+
+        .input_box input {
+            display: block;
+            width: 100%;
+            height: 50px;
+            padding: 0 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            background-color: var(--white);
+            color: #171717;
+            font-family: inherit;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        .input_box input::placeholder {
+            color: var(--placeholder);
+            font-weight: 500;
+            opacity: 1;
+        }
+
+        .id_field .input_box input {
+            border-color: var(--brown);
+        }
+
+        #wrap.ready .id_field .input_box input,
+        .id_field.is_error .input_box input {
+            border-color: var(--border);
+        }
+
+        .input_box input:focus {
+            border-color: var(--brown) !important;
+        }
+
+        .password_field input {
+            padding-right: 55px;
+        }
+
+        .password_toggle {
+            position: absolute;
+            top: 50%;
+            right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            transform: translateY(-50%);
+        }
+
+        .password_toggle svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: #B5A9A3;
+            stroke-width: 2.3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .error_message {
+            display: none;
+            margin-top: 8px;
+            color: var(--error);
+            font-size: 1.3rem;
+            line-height: 19px;
+            font-weight: 700;
+        }
+
+        .field.is_error .error_message {
+            display: block;
+        }
+
+        .login_option {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 14px;
+        }
+
+        .login_option label {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            min-height: 26px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 1.4rem;
+        }
+
+        .login_option input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        .check_visual {
+            position: relative;
+            display: inline-block;
+            flex: 0 0 26px;
+            width: 26px;
+            height: 26px;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            background-color: var(--white);
+        }
+
+        .check_visual::after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            width: 10px;
+            height: 7px;
+            border-left: 3px solid #E7E0DB;
+            border-bottom: 3px solid #E7E0DB;
+            transform: rotate(-45deg);
+        }
+
+        .login_option input:checked + .check_visual {
+            border-color: var(--blue);
+            background-color: var(--blue);
+        }
+
+        .login_option input:checked + .check_visual::after {
+            border-color: #fff;
+        }
+
+        .login_option input:focus-visible + .check_visual {
+            outline: 2px solid #111;
+            outline-offset: 3px;
+        }
+
+        .login_btn {
+            display: block;
+            width: 100%;
+            height: 50px;
+            margin-top: 22px;
+            border-radius: 26px;
+            color: var(--white);
+            background-color: var(--blue);
+            font-family: inherit;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .login_btn:disabled {
+            background-color: var(--disabled-blue);
+            cursor: default;
+        }
+
+        .account_links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 17px;
+            font-size: 1.3rem;
+            line-height: 20px;
+            font-weight: 500;
+        }
+
+        .account_links a + a::before {
+            content: "|";
+            display: inline-block;
+            margin: 0 6px;
+            color: #898989;
+        }
+
+        .sns_login {
+            max-width: 288px;
+            margin: 106px auto 0;
+            text-align: center;
+        }
+
+        .sns_heading {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #777;
+            font-size: 1.2rem;
+            line-height: 13px;
+            white-space: nowrap;
+        }
+
+        .sns_heading::before,
+        .sns_heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #ECECEC;
+        }
+
+        .sns_list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 33px;
+        }
+
+        .sns_btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            flex: 0 0 48px;
+            border-radius: 50%;
+            font-family: inherit;
+            color: #fff;
+        }
+
+        .sns_btn.kakao {
+            background-color: #FFDE30;
+        }
+
+        .sns_btn.kakao svg {
+            width: 34px;
+            height: 34px;
+            fill: #392523;
+        }
+
+        .sns_btn.naver {
+            background-color: #03C75A;
+            font-family: Arial, sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+        }
+
+        .sns_btn.samsung {
+            background-color: #0045D9;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .sns_btn.apple {
+            background-color: #050505;
+        }
+
+        .sns_btn.apple svg {
+            width: 29px;
+            height: 29px;
+            fill: #fff;
+        }
+
+        @media (max-width: 360px) {
+            .login_option {
+                gap: 22px;
+            }
+
+            .login_option label {
+                gap: 9px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="wrap">
+        <!-- 모바일 앱 시안의 상태바를 웹에서 재현한 장식 요소 -->
+        <div class="status_bar" aria-hidden="true">
+            <span>9:40</span>
+            <span class="dynamic_island"></span>
+            <span class="status_icons">
+                <svg viewBox="0 0 18 14" aria-hidden="true"><rect x="1" y="9" width="3" height="5" rx="1" fill="black"/><rect x="5.5" y="7" width="3" height="7" rx="1" fill="black"/><rect x="10" y="4" width="3" height="10" rx="1" fill="black"/><rect x="14.5" y="1" width="3" height="13" rx="1" fill="black"/></svg>
+                <svg viewBox="0 0 18 14" aria-hidden="true"><path d="M1 4.2C5.2.1 12.8.1 17 4.2M4 7.5c3-2.7 7-2.7 10 0M7 10.7c1.1-1.1 2.9-1.1 4 0" stroke="black" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="9" cy="12" r="1" fill="black"/></svg>
+                <svg viewBox="0 0 27 14" aria-hidden="true"><rect x="1" y="1" width="23" height="12" rx="3" fill="black"/><rect x="25" y="4.5" width="2" height="5" rx="1" fill="black"/></svg>
+            </span>
+        </div>
 
+        <header>
+            <button type="button" class="back_btn" aria-label="뒤로 가기">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5 7 12l8.5 8.5" fill="none" stroke="#512314" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h1 class="brand_logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Coupang_logo.svg" alt="coupang" width="180" height="41">
+            </h1>
+        </header>
+
+        <main>
+            <form class="login_form" novalidate>
+                <label class="login_title" for="user_id">로그인</label>
+
+                <div class="field id_field">
+                    <div class="input_box">
+                        <input type="text" id="user_id" name="user_id" placeholder="아이디(이메일)을 입력해 주세요." autocomplete="username">
+                    </div>
+                    <p class="error_message" id="id_error" role="alert">잘못된 형식입니다. 다시 입력해 주세요.</p>
+                </div>
+
+                <div class="field password_field">
+                    <div class="input_box">
+                        <input type="password" id="user_password" name="user_password" placeholder="비밀번호를 입력해 주세요" autocomplete="current-password">
+                        <button type="button" class="password_toggle" aria-label="비밀번호 보기" aria-pressed="false">
+                            <svg viewBox="0 0 26 26" aria-hidden="true">
+                                <path d="M3 13s3.7-5.7 10-5.7S23 13 23 13s-3.7 5.7-10 5.7S3 13 3 13Z"/>
+                                <circle cx="13" cy="13" r="3.2"/>
+                                <path class="eye_line" d="M5 21 21 5"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="error_message" id="password_error" role="alert">잘못된 형식입니다. 다시 입력해 주세요.</p>
+                </div>
+
+                <div class="login_option">
+                    <label>
+                        <input type="checkbox" name="auto_login" checked>
+                        <span class="check_visual" aria-hidden="true"></span>
+                        <span>자동로그인</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="save_id">
+                        <span class="check_visual" aria-hidden="true"></span>
+                        <span>아이디저장</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="login_btn" disabled>로그인</button>
+            </form>
+
+            <nav class="account_links" aria-label="계정 관련 메뉴">
+                <a href="#" data-demo="아이디 찾기">아이디 찾기</a>
+                <a href="#" data-demo="비밀번호 재설정">비밀번호 재설정</a>
+                <a href="#" data-demo="회원가입">회원가입</a>
+            </nav>
+
+            <section class="sns_login" aria-label="SNS 로그인">
+                <h2 class="sns_heading">SNS로 간단하게 로그인</h2>
+                <div class="sns_list">
+                    <a href="#" class="sns_btn kakao" aria-label="카카오 로그인" data-demo="카카오 로그인">
+                        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 7.5c-11.7 0-19.8 7-19.8 15.3 0 5.5 3.6 9.7 9.8 12l-1.5 7.4 8.8-5.1c1.3.2 2.7.3 4.1.3 11.7 0 19.8-6.9 19.8-14.6S35.7 7.5 24 7.5Z"/></svg>
+                    </a>
+                    <a href="#" class="sns_btn naver" aria-label="네이버 로그인" data-demo="네이버 로그인">N</a>
+                    <a href="#" class="sns_btn samsung" aria-label="삼성카드 로그인" data-demo="삼성카드 로그인"><span>삼성<br>카드</span></a>
+                    <a href="#" class="sns_btn apple" aria-label="애플 로그인" data-demo="애플 로그인">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const loginForm = document.querySelector(".login_form");
+        const userId = document.querySelector("#user_id");
+        const userPassword = document.querySelector("#user_password");
+        const loginButton = document.querySelector(".login_btn");
+        const passwordButton = document.querySelector(".password_toggle");
+        const page = document.querySelector("#wrap");
+
+        function updateLoginState() {
+            const hasId = userId.value.trim() !== "";
+            const hasPassword = userPassword.value !== "";
+
+            loginButton.disabled = !(hasId && hasPassword);
+            page.classList.toggle("ready", hasId && hasPassword);
+
+            if (hasId) {
+                document.querySelector(".id_field").classList.remove("is_error");
+            }
+            if (hasPassword) {
+                document.querySelector(".password_field").classList.remove("is_error");
+            }
+        }
+
+        userId.addEventListener("input", updateLoginState);
+        userPassword.addEventListener("input", updateLoginState);
+
+        passwordButton.addEventListener("click", () => {
+            const isHidden = userPassword.type === "password";
+            userPassword.type = isHidden ? "text" : "password";
+            passwordButton.setAttribute("aria-pressed", String(isHidden));
+            passwordButton.setAttribute("aria-label", isHidden ? "비밀번호 숨기기" : "비밀번호 보기");
+        });
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const idValid = /^[A-Za-z0-9._@-]{2,}$/.test(userId.value.trim());
+            const passwordValid = userPassword.value.length >= 8;
+
+            document.querySelector(".id_field").classList.toggle("is_error", !idValid);
+            document.querySelector(".password_field").classList.toggle("is_error", !passwordValid);
+
+            if (idValid && passwordValid) {
+                alert("화면 구현용 데모입니다. 실제 로그인 기능은 연결되지 않았습니다.");
+            }
+        });
+
+        document.querySelector(".back_btn").addEventListener("click", () => {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = "../index.html";
+            }
+        });
+
+        document.querySelectorAll("[data-demo]").forEach((link) => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                alert(link.dataset.demo + " 기능은 추후 구현 예정입니다.");
+            });
+        });
+
+        updateLoginState();
+    </script>
 </body>
 </html>
