@@ -199,35 +199,15 @@ fieldset {
 }
 
 .check_visual {
-    position: relative;
     display: inline-block;
     flex: 0 0 26px;
     width: 26px;
     height: 26px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    background-color: var(--white);
-}
-
-.check_visual::after {
-    content: "";
-    position: absolute;
-    left: 7px;
-    top: 5px;
-    width: 10px;
-    height: 7px;
-    border-left: 3px solid #E7E0DB;
-    border-bottom: 3px solid #E7E0DB;
-    transform: rotate(-45deg);
+    background: url("img/checkbox_inactive.svg") no-repeat center / contain;
 }
 
 .login_option input:checked + .check_visual {
-    border-color: var(--blue);
-    background-color: var(--blue);
-}
-
-.login_option input:checked + .check_visual::after {
-    border-color: #fff;
+    background-image: url("img/checkbox_active.svg");
 }
 
 .login_option input:focus-visible + .check_visual {
