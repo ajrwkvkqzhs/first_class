@@ -10,9 +10,10 @@
  */
 
 @import url("./notosanskr.css");
+@import url("./notosanskr-variable.css");
 
 :root {
-    --font-coupang: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    --font-coupang: "Apple SD Gothic Neo", "Noto Sans KR Variable", "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 
 body {
