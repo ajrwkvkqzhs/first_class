@@ -29,42 +29,6 @@ body {
 }
 
 /* Figma 시안의 iPhone 상태 표시줄 - 화면 비교용 */
-.status_bar {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    height: 62px;
-    padding: 20px 39px 0 48px;
-    font-size: 1.6rem;
-    line-height: 24px;
-    font-weight: 700;
-}
-
-.dynamic_island {
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    width: 126px;
-    height: 37px;
-    border-radius: 25px;
-    background-color: #000;
-    transform: translateX(-50%);
-}
-
-.status_icons {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding-top: 4px;
-}
-
-.status_icons img {
-    display: block;
-    width: 73px;
-    height: 14px;
-}
-
 header {
     position: relative;
     height: 157px;
