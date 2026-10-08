@@ -1,0 +1,13 @@
+/* Noto Sans KR Variable - 사용자가 제공한 가변 폰트 파일용 설정
+   font/NotoSansKR-VariableFont_wght.woff2
+   font/NotoSansKR-VariableFont_wght.ttf
+   굵기: 100~900
+*/
+@font-face {
+    font-family: 'Noto Sans KR Variable';
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('../../NotoSansKR-VariableFont_wght.woff2') format('woff2'),
+         url('../../NotoSansKR-VariableFont_wght.ttf') format('truetype');
+}
