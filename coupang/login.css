@@ -138,17 +138,8 @@ fieldset {
     opacity: 1;
 }
 
-.id_field .input_box input {
-    border-color: var(--input-focus);
-}
-
-#wrap.ready .id_field .input_box input,
-.id_field.is_error .input_box input {
-    border-color: var(--border);
-}
-
 .input_box input:focus {
-    border-color: var(--input-focus) !important;
+    border-color: var(--input-focus);
 }
 
 .password_field input {
