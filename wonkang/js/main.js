@@ -13,6 +13,17 @@ if(toggle&&mobile){
  });
  mobile.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{mobile.hidden=true;toggle.setAttribute("aria-expanded","false")}));
 }
+/* GNB is a design mockup: click animation only, never navigate/scroll. */
+document.querySelectorAll(".gnb-button").forEach(button=>{
+ let feedbackTimer;
+ button.addEventListener("click",()=>{
+  window.clearTimeout(feedbackTimer);
+  button.classList.remove("is-clicked");
+  void button.offsetWidth; // Re-run the short pressed animation on repeated clicks.
+  button.classList.add("is-clicked");
+  feedbackTimer=window.setTimeout(()=>button.classList.remove("is-clicked"),360);
+ });
+});
 /* 1. Company: section stays in place while normal scrolling progressively
    opens the next card. Clicking a heading is the accessible fallback. */
 const company=[...document.querySelectorAll(".company-item")];
