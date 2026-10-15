@@ -104,7 +104,7 @@
     const panels=[...frame.querySelectorAll(".company-body")];
     const chrome=frame.getBoundingClientRect().height-panels.reduce((sum,panel)=>sum+panel.getBoundingClientRect().height,0);
     const mobilePanel=innerWidth<=600;
-    const panelHeight=Math.min(mobilePanel?440:350,innerHeight-pinTop-28-chrome);
+    const panelHeight=Math.min(mobilePanel?440:480,innerHeight-pinTop-28-chrome);
     const minimumPanel=mobilePanel?Math.max(360,...company.map(item=>item.querySelector('.company-copy').getBoundingClientRect().height+120)):260;
     const enabled=wide.matches&&!reduce.matches&&panelHeight>=minimumPanel;
     if(enabled){
@@ -142,7 +142,7 @@
   wide.addEventListener("change",configureCompany);
 
   // Entry motion does not alter the alternating layout or the four-card product grid.
-  const revealTargets=[...document.querySelectorAll(".process-step,.product-card,.manifesto")];
+  const revealTargets=[...document.querySelectorAll(".process-step,.product-card,.manifesto,.certificate-grid")];
   if("IntersectionObserver" in window) {
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
       if(!entry.isIntersecting) return;
@@ -178,29 +178,26 @@
     counters.forEach(counter=>counterObserver.observe(counter));
   }
 
-  // Keep the reference's horizontal A4 accordion. Links open the official detail.
+  // Real documents fan out as a group, with the selected paper in front.
   const certificates=[...document.querySelectorAll(".cert-button")];
   const certRail=document.getElementById("certAccordion");
   function bringCertificateIntoView(chosen) {
     if(!certRail||certRail.scrollWidth<=certRail.clientWidth) return;
-    const left=chosen.getBoundingClientRect().left-certRail.getBoundingClientRect().left+certRail.scrollLeft;
+    const left=chosen.offsetLeft-16;
     certRail.scrollTo({left,behavior:reduce.matches?"instant":"smooth"});
   }
   function activateCertificate(chosen) {
-    certificates.forEach(panel=>{
+    const selectedIndex=certificates.indexOf(chosen);
+    certificates.forEach((panel,index)=>{
       const selected=panel===chosen;
       panel.classList.toggle("active",selected);
-      if(selected) panel.setAttribute("aria-current","true");
-      else panel.removeAttribute("aria-current");
-      panel.querySelector(".cert-detail")?.setAttribute("aria-hidden",String(!selected));
+      panel.style.setProperty("--cert-nudge",chosen?(index<selectedIndex?-18:index>selectedIndex?18:0)+"px":"0px");
     });
-    if(reduce.matches) bringCertificateIntoView(chosen);
   }
   certificates.forEach((panel,index)=>{
     panel.addEventListener("pointerenter",event=>{if(event.pointerType!=="touch")activateCertificate(panel);});
-    panel.addEventListener("focus",()=>activateCertificate(panel));
+    panel.addEventListener("focus",()=>{activateCertificate(panel);bringCertificateIntoView(panel);});
     panel.addEventListener("pointerdown",()=>activateCertificate(panel));
-    panel.addEventListener("transitionend",event=>{if(event.propertyName.startsWith("flex")&&panel.classList.contains("active"))bringCertificateIntoView(panel);});
     panel.addEventListener("keydown",event=>{
       if(event.key!=="ArrowRight"&&event.key!=="ArrowLeft")return;
       event.preventDefault();
@@ -208,7 +205,8 @@
       certificates[next].focus({preventScroll:true});
     });
   });
-  if(certificates.length) activateCertificate(certificates[0]);
+  certRail?.addEventListener("pointerleave",()=>{if(!certRail.contains(document.activeElement))activateCertificate(null);});
+  certRail?.addEventListener("focusout",event=>{if(!certRail.contains(event.relatedTarget))activateCertificate(null);});
 
   const sections=["company","numbers","products","factory","certification","partners"].map(id=>document.getElementById(id)).filter(Boolean);
   const hero=document.querySelector(".hero");
@@ -252,7 +250,7 @@
 
   document.querySelectorAll(".partner").forEach(partner=>{
     const name=partner.querySelector("img")?.alt.replace(/ 로고$/,"");
-    if(name){partner.title=name;partner.tabIndex=0;partner.setAttribute("aria-label",name);}
+    if(name){partner.tabIndex=0;partner.setAttribute("aria-label",name);}
   });
   document.querySelectorAll("img").forEach(image=>{
     function failed(){
