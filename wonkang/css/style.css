@@ -16,3 +16,79 @@
 @media(max-width:1100px){.container{width:calc(100% - 72px)}.header-content{width:calc(100% - 60px)}.nav{gap:26px}.wordmark{font-size:22px}.tools a{padding:12px}.metrics-layout{gap:35px}.metrics-grid{gap:18px}.partners{gap:14px}.company-copy{padding:48px 9%}.section{padding:100px 0}}
 @media(max-width:760px){.container{width:calc(100% - 36px)}.header-content{min-height:70px;width:calc(100% - 36px)}.nav,.tools{display:none}.menu-toggle{display:block}.mobile-links{display:block;position:absolute;background:var(--black);width:100%;top:70px;padding:18px}.mobile-links[hidden]{display:none}.mobile-links a{display:block;border-bottom:1px solid #fff3;padding:13px 0}.hero{min-height:700px;height:90svh}.hero-photo{left:0}.hero h1{font-size:clamp(43px,9vw,70px)}.hero p{font-size:15px}.hero-bottom{width:calc(100% - 36px)}.hero-bottom>span{display:none}.section{padding:74px 0}.section-heading{display:block;margin-bottom:33px}.section-title{font-size:36px}.section-heading p:last-child{margin-top:14px}.company-toggle{height:65px;padding:0 16px;gap:12px}.company-toggle .name{font-size:14px}.company-body,.company-item.is-open .company-body{display:flex;flex-direction:column}.company-copy{padding:30px 24px}.company-copy h3{font-size:32px}.company-photo{height:255px}.company-wide{height:260px}.company-wide figcaption{top:25%}.company-wide figcaption strong{font-size:32px}.manifesto{padding-top:66px}.manifesto h3{font-size:30px}.metrics-layout{display:block}.metrics-grid{margin-top:35px;gap:12px}.metric strong{font-size:40px}.metric span{font-size:10px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-photo{height:205px}.product-photo img{padding:10px}.product-info{padding:14px}.product-info h3{font-size:18px}.product-info p{font-size:11px}.product-link{font-size:10px}.process-step,.process-step:nth-child(even){display:flex;flex-direction:column;margin-bottom:50px;gap:15px;align-items:stretch}.process-text h3{font-size:38px;margin:10px 0}.process-text p{font-size:14px}.certificate-grid{height:430px;overflow-x:auto}.cert-button{flex:0 0 30px}.cert-button.active{flex:0 0 250px}.cert-detail{min-width:230px;padding:22px}.cert-detail h3{font-size:24px}.certificate-art{width:145px;height:165px;border-width:6px}.certificate-art strong{font-size:27px}.cert-note{flex-direction:column;gap:15px;font-size:11px}.partners{grid-template-columns:repeat(5,1fr);gap:5px}.partner{padding:4px}.partner span{font-size:7px}.contact-layout{min-height:0;display:block;padding:70px 0}.contact h2{font-size:37px}.contact-cta{width:100%;margin-top:28px}.footer-top,.footer-bottom{display:block}.footer-links{flex-wrap:wrap;gap:17px;margin-top:30px}.footer-bottom div:last-child{text-align:left;margin-top:20px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* ==================================================
+   2026-10-15: Figma/reference interaction corrections
+   ================================================== */
+
+/* Sticky scroll narrative: wheel-driven active company card.
+   No scroll-wheel interception; native page scrolling remains intact. */
+main{overflow:clip}
+.company-scroll{position:relative;height:calc(820px + 215vh)}
+.company-scroll .company-frame{position:sticky;top:105px;box-shadow:0 22px 55px rgba(22,21,25,.08)}
+.company .company-item .company-body{display:grid;min-height:0;max-height:0;overflow:hidden;visibility:hidden;opacity:0;transform:translateY(-32px);transition:max-height .75s cubic-bezier(.22,.72,.17,1),opacity .5s ease,transform .75s cubic-bezier(.22,.72,.17,1),visibility 0s linear .65s;will-change:max-height,opacity,transform}
+.company .company-item.is-open .company-body{display:grid;min-height:0;max-height:480px;visibility:visible;opacity:1;transform:translateY(0);transition:max-height .75s cubic-bezier(.22,.72,.17,1),opacity .6s ease,transform .75s cubic-bezier(.22,.72,.17,1),visibility 0s}
+.company .company-body .company-copy,.company .company-body .company-photo{min-height:440px}
+.company .company-toggle{transition:background-color .3s ease,color .3s ease}
+.company-scroll .company-item.is-open .company-toggle .name{letter-spacing:-.02em}
+
+/* Two separate hover actions: inquiry CTA vs category catalog page. */
+.product-card{cursor:default}
+.product-photo{isolation:isolate}
+.product-photo .product-actions{position:absolute;inset:0;z-index:3;display:flex;align-items:flex-end;justify-content:center;gap:9px;padding:18px;background:linear-gradient(180deg,transparent 25%,rgba(22,21,25,.76));opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .35s ease,transform .35s ease}
+.product-card:hover .product-actions,.product-card:focus-within .product-actions{opacity:1;transform:translateY(0);pointer-events:auto}
+.product-action{flex:1;min-width:0;display:flex;justify-content:space-between;align-items:center;gap:4px;padding:15px 13px;white-space:nowrap;font-size:13px;font-weight:800;letter-spacing:-.025em;box-shadow:0 10px 20px #0002;transition:background-color .2s ease,transform .2s ease}
+.product-action:hover{transform:translateY(-3px)}
+.product-action-primary{background:var(--red);color:#fff}
+.product-action-primary:hover{background:var(--red2)}
+.product-action-secondary{background:#fff;color:var(--black)}
+.product-action-secondary:hover{background:#e9e9e9}
+.product-hint{display:block;padding-top:16px;border-top:1px solid #d8d8da;font-size:12px;color:#777}
+
+/* Horizontal certificate panel expansion activated by hover/focus or tap. */
+.cert-button{transition:flex .58s cubic-bezier(.23,.72,.2,1),background-color .3s ease}
+.cert-button:not(.active):hover,.cert-button:focus-visible{background:#d9d7d8}
+.cert-button.active{flex:6.2}
+
+/* Dedicated product catalog page follows the same brand/design language. */
+.catalog-hero{padding:205px 0 110px;background:var(--black);color:#fff}
+.catalog-hero .eyebrow{margin-bottom:20px}
+.catalog-hero h1{font-size:clamp(52px,5vw,84px);letter-spacing:-.075em;margin-bottom:22px}
+.catalog-hero p:last-child{font-size:17px;line-height:1.8;color:#d6d5d9}
+.catalog-local-nav{display:flex;flex-wrap:wrap;gap:10px;margin:45px 0 0}
+.catalog-local-nav a{padding:14px 21px;border:1px solid #ffffff4d;font-size:13px;font-weight:700}
+.catalog-local-nav a:hover{background:var(--red);border-color:var(--red)}
+.catalog-content{padding:100px 0}
+.catalog-detail{scroll-margin-top:110px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:9%;padding:65px 0;border-bottom:1px solid var(--edge)}
+.catalog-detail:first-child{padding-top:0}
+.catalog-photo{background:linear-gradient(145deg,#f1f1f1,#c9cbce);aspect-ratio:1.35;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.catalog-photo img{width:100%;height:100%;object-fit:contain;padding:30px}
+.catalog-photo.image-failed:after{content:"WONKANG PRODUCT";font-size:24px;font-weight:900;letter-spacing:.06em;color:#999}
+.catalog-copy>span{color:var(--red);font-size:12px;font-weight:800;letter-spacing:.13em}
+.catalog-copy h2{font-size:clamp(34px,3.4vw,53px);letter-spacing:-.06em;margin:18px 0}
+.catalog-copy p{font-size:16px;line-height:1.85;color:#6c6c72;margin-bottom:20px}
+.catalog-spec{padding:20px 0;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);font-size:14px;line-height:1.8;color:#616167}
+.catalog-copy .catalog-inquiry{display:inline-flex;margin-top:25px;padding:17px 25px;background:var(--red);color:white;font-size:14px;font-weight:750;gap:40px}
+.catalog-notice{padding:18px 22px;background:#f8f8f8;border-left:3px solid var(--red);font-size:13px;line-height:1.8;color:#6b6b70;margin-top:50px}
+
+@media (max-width:1100px), (max-height:880px){
+ /* Avoid a sticky card taller than the available viewport. */
+ .company-scroll{height:auto}
+ .company-scroll .company-frame{position:static}
+}
+@media(max-width:760px){
+ .company .company-body .company-copy{min-height:0}
+ .company .company-body .company-photo{min-height:240px}
+ .company .company-item.is-open .company-body{max-height:900px}
+ .product-photo .product-actions{opacity:1;transform:none;pointer-events:auto;align-items:flex-end;padding:8px;background:linear-gradient(180deg,transparent 20%,rgba(22,21,25,.45))}
+ .product-action{font-size:10px;padding:10px 7px;gap:2px}
+ .product-hint{display:none}
+ .catalog-hero{padding:150px 0 70px}
+ .catalog-detail{display:flex;flex-direction:column;align-items:stretch;gap:25px;padding:45px 0}
+ .catalog-photo{aspect-ratio:1.45}
+ .catalog-content{padding:60px 0}
+}
+@media(prefers-reduced-motion:reduce){
+ .company .company-item .company-body,.company .company-item.is-open .company-body,.product-photo .product-actions,.cert-button{transition:none!important;transform:none!important}
+}
