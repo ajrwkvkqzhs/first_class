@@ -32,16 +32,23 @@
                             <img src="img/wonkang_hero2_mo.png" alt="hero" class="mo">
                         </div>
 
-                        <!-- <div class="swiper-slide">Slide 3</div> -->
-                    </div>
-                    <!-- 히어로 슬라이더 컨트롤 -->
-                    <div class="swiper-controls" aria-label="히어로 슬라이더 컨트롤">
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-scrollbar"></div>
-                        <div class="swiper-navigation">
-                            <div class="swiper-button-prev" aria-label="이전 슬라이드"></div>
-                            <div class="swiper-button-next" aria-label="다음 슬라이드"></div>
+                        <div class="swiper-slide">
+                            <img src="img/wonkang_hero.jpg" alt="원강금속 산업용 주조 솔루션" class="pc">
+                            <img src="img/wonkang_hero.jpg" alt="원강금속 산업용 주조 솔루션" class="mo">
                         </div>
+                    </div>
+                    <!-- Figma 히어로 하단 바: 썸네일 페이지네이션 / 솔루션 CTA / 진행선 -->
+                    <div class="swiper-controls">
+                        <div class="swiper-pagination" aria-label="히어로 슬라이드 선택"></div>
+                        <div class="hero-solution">
+                            <span class="hero-solution-label">• SOLUTION</span>
+                            <p class="hero-solution-description">
+                                축적된 주조 기술과 정밀한 생산 역량을 바탕으로,<br class="hero-solution-break">
+                                다양한 산업 환경과 고객의 요구에 대응하는 신뢰할 수 있는 금속 부품 솔루션을 제공합니다.
+                            </p>
+                            <a class="hero-solution-link" href="http://www.wonkangmetal.co.kr/" target="_blank" rel="noopener noreferrer">자세히 보기</a>
+                        </div>
+                        <div class="swiper-scrollbar" aria-label="슬라이드 진행 위치"></div>
                     </div>
                 </div>
             </div>
@@ -49,33 +56,41 @@
         <footer>&copy;</footer>
     </div>
     <script>
-        // 현재 HTML에 있는 2개의 슬라이드와 순서를 동일하게 유지합니다.
-        const heroThumbnails = [
-            'img/wonkang_hero_pc.png',
-            'img/wonkang_hero2_pc.jpg'
+        // 페이지네이션 항목은 위의 swiper-slide 3개와 같은 순서로 유지합니다.
+        const heroPaginationItems = [
+            {
+                image: 'img/wonkang_hero_pc.png',
+                title: '금속의 가치를 만드는 정밀 주조 기술'
+            },
+            {
+                image: 'img/wonkang_hero2_pc.jpg',
+                title: '첨단 기술로 완성하는 정밀 품질 관리'
+            },
+            {
+                image: 'img/wonkang_hero.jpg',
+                title: '산업의 미래를 연결하는 주조 솔루션'
+            }
         ];
 
         const swiper = new Swiper('.hero-sec > .swiper', {
             direction: 'horizontal',
             loop: true,
-
+            keyboard: { enabled: true },
             pagination: {
                 el: '.hero-sec .swiper-pagination',
                 clickable: true,
-                renderBullet: function (index, className) {
+                renderBullet(index, className) {
+                    const item = heroPaginationItems[index];
                     const number = String(index + 1).padStart(2, '0');
-                    return `<span class="${className}" aria-label="${index + 1}번째 슬라이드로 이동">
-                        <img src="${heroThumbnails[index]}" alt="" loading="lazy">
+                    return `<button class="${className}" type="button" aria-label="${item.title} 슬라이드로 이동">
+                        <img class="hero-thumb" src="${item.image}" alt="" loading="lazy">
+                        <span class="hero-thumb-title">${item.title}</span>
                         <span class="hero-pagination-index">${number}</span>
-                    </span>`;
+                    </button>`;
                 }
             },
-
-            navigation: {
-                nextEl: '.hero-sec .swiper-button-next',
-                prevEl: '.hero-sec .swiper-button-prev'
-            },
-
+            // Figma에서는 별도의 화살표 버튼이 보이지 않아 표시하지 않습니다.
+            // 상단의 얇은 선을 스크롤바로 사용하고 드래그는 유지합니다.
             scrollbar: {
                 el: '.hero-sec .swiper-scrollbar',
                 draggable: true,
