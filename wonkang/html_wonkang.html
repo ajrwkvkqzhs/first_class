@@ -34,40 +34,53 @@
 
                         <!-- <div class="swiper-slide">Slide 3</div> -->
                     </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-
-                    <!-- If we need scrollbar -->
-                    <div class="swiper-scrollbar"></div>
+                    <!-- 히어로 슬라이더 컨트롤 -->
+                    <div class="swiper-controls" aria-label="히어로 슬라이더 컨트롤">
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-scrollbar"></div>
+                        <div class="swiper-navigation">
+                            <div class="swiper-button-prev" aria-label="이전 슬라이드"></div>
+                            <div class="swiper-button-next" aria-label="다음 슬라이드"></div>
+                        </div>
+                    </div>
                 </div>
             
         </main>
         <footer>&copy;</footer>
     </div>
     <script>
-        const swiper = new Swiper('.hero-sec >.swiper', {
-            // Optional parameters
+        // 현재 HTML에 있는 2개의 슬라이드와 순서를 동일하게 유지합니다.
+        const heroThumbnails = [
+            'img/wonkang_hero_pc.png',
+            'img/wonkang_hero2_pc.jpg'
+        ];
+
+        const swiper = new Swiper('.hero-sec > .swiper', {
             direction: 'horizontal',
             loop: true,
 
-            // If we need pagination
             pagination: {
                 el: '.hero-sec .swiper-pagination',
+                clickable: true,
+                renderBullet: function (index, className) {
+                    const number = String(index + 1).padStart(2, '0');
+                    return `<span class="${className}" aria-label="${index + 1}번째 슬라이드로 이동">
+                        <img src="${heroThumbnails[index]}" alt="" loading="lazy">
+                        <span class="hero-pagination-index">${number}</span>
+                    </span>`;
+                }
             },
 
-            // Navigation arrows
             navigation: {
                 nextEl: '.hero-sec .swiper-button-next',
-                prevEl: '.hero-sec .swiper-button-prev',
+                prevEl: '.hero-sec .swiper-button-prev'
             },
 
-            // And if we need scrollbar
             scrollbar: {
                 el: '.hero-sec .swiper-scrollbar',
+                draggable: true,
+                snapOnRelease: true,
+                hide: false
             }
         });
     </script>
