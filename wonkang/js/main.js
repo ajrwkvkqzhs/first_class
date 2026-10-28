@@ -85,22 +85,14 @@ function flashNavButton(button) {
     window.setTimeout(() => button.classList.remove('nav-pressed'), 220);
 }
 
-// 데스크톱: 메뉴 글자 위에 마우스가 올라오면 전체 하위 메뉴 표시.
-siteNav.addEventListener('mouseenter', () => {
+// 데스크톱: 히어로 위 내비게이션 영역에 호버하면 배경과 로고를 바꾸고
+// 메가 메뉴를 펼칩니다. 하위 메뉴로 마우스를 이동해도 닫히지 않습니다.
+siteHeader.addEventListener('mouseenter', () => {
     if (!compactNavigation.matches) setMegaMenuOpen(true);
 });
 
-// 헤더 전체를 벗어나면 하위 메뉴 닫기.
-// 하위 메뉴로 커서를 옮기는 동안에는 열린 상태가 유지됩니다.
+// 내비게이션 영역을 완전히 벗어날 때 원래의 투명 상태로 복귀합니다.
 siteHeader.addEventListener('mouseleave', () => {
-    if (!compactNavigation.matches) setMegaMenuOpen(false);
-});
-
-// 로고 또는 언어 선택으로 이동하면 메뉴를 닫습니다.
-siteHeader.querySelector('.site-logo').addEventListener('mouseenter', () => {
-    if (!compactNavigation.matches) setMegaMenuOpen(false);
-});
-siteHeader.querySelector('.site-header-right').addEventListener('mouseenter', () => {
     if (!compactNavigation.matches) setMegaMenuOpen(false);
 });
 
