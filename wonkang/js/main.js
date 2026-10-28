@@ -126,8 +126,13 @@ function buildNumberReels() {
         visual.setAttribute('aria-hidden', 'true');
 
         // 값의 의미를 보존하고 음성 안내에서 변화하는 자릿수를 반복 낭독하지 않도록 합니다.
-        value.setAttribute('aria-label', finalText);
         value.textContent = '';
+
+        // 실제 값은 스크린리더 전용 텍스트에 유지하고 숫자 릴은 장식으로 처리합니다.
+        const accessibleValue = document.createElement('span');
+        accessibleValue.className = 'sr-only';
+        accessibleValue.textContent = finalText;
+        value.appendChild(accessibleValue);
 
         let digitIndex = 0;
 
