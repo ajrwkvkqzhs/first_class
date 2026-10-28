@@ -433,7 +433,7 @@ html { scroll-behavior: smooth; }
 
 /* 2. 회사 실적 — 이미지 전폭, 제목과 숫자 가운데 정렬 */
 .company-achievements{position:relative;min-height:656px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;background:#222 url('../img/wonkang_hero2_pc.jpg') center/cover no-repeat;background-image:url('../img/reference_factory.webp'),url('../img/wonkang_hero2_pc.jpg');background-position:center,center;background-size:cover,cover;background-repeat:no-repeat,no-repeat;isolation:isolate}
-.company-achievements::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:-1}
+.company-achievements::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.20);z-index:-1}
 .company-achievements__content{width:min(100% - 56px,1100px);padding:80px 0 25px}
 .company-achievements h2{font-size:clamp(23px,2.1vw,31px);font-weight:720;letter-spacing:-.03em}
 .company-achievements__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin:88px 0 0}
@@ -443,8 +443,8 @@ html { scroll-behavior: smooth; }
 /* 3. 대표 제품 — 4개의 컬럼을 하나의 끊기지 않은 섹션으로 */
 .product-showcase{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;min-height:602px;background:#222}
 .product-panel{position:relative;min-width:0;min-height:602px;display:flex;align-items:flex-start;color:white;overflow:hidden;isolation:isolate;background:#222 center/cover no-repeat}
-.product-panel::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.58);z-index:-1;transition:background .3s}
-.product-panel:hover::before,.product-panel:focus-within::before{background:rgba(0,0,0,.7)}
+.product-panel::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.30);z-index:-1;transition:background .3s}
+.product-panel:hover::before,.product-panel:focus-within::before{background:rgba(0,0,0,.48)}
 .product-panel--machinery{background-image:url('../img/reference_machinery.webp'),url('https://static.wixstatic.com/media/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png');background-color:#333}
 .product-panel--valve{background-image:url('../img/reference_valve.webp'),url('https://www.walkson.com/uploads/image/20210420/10/globel-valve2.jpg')}
 .product-panel--high-pressure{background-image:url('../img/reference_high_pressure.webp'),url('https://rainbow.ae/images/gallery/pumps-1617094961.jpg')}
