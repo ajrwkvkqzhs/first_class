@@ -432,7 +432,7 @@ html { scroll-behavior: smooth; }
 .steel-service__image{display:block;width:100%;height:auto;aspect-ratio:2.52;object-fit:cover;border-radius:7px}
 
 /* 2. 회사 실적 — 이미지 전폭, 제목과 숫자 가운데 정렬 */
-.company-achievements{position:relative;min-height:656px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;background:#222 url('../img/wonkang_hero2_pc.jpg') center/cover no-repeat;isolation:isolate}
+.company-achievements{position:relative;min-height:656px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;background:#222 url('../img/wonkang_hero2_pc.jpg') center/cover no-repeat;background-image:url('../img/reference_factory.webp'),url('../img/wonkang_hero2_pc.jpg');background-position:center,center;background-size:cover,cover;background-repeat:no-repeat,no-repeat;isolation:isolate}
 .company-achievements::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:-1}
 .company-achievements__content{width:min(100% - 56px,1100px);padding:80px 0 25px}
 .company-achievements h2{font-size:clamp(23px,2.1vw,31px);font-weight:720;letter-spacing:-.03em}
@@ -445,10 +445,10 @@ html { scroll-behavior: smooth; }
 .product-panel{position:relative;min-width:0;min-height:602px;display:flex;align-items:flex-start;color:white;overflow:hidden;isolation:isolate;background:#222 center/cover no-repeat}
 .product-panel::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.58);z-index:-1;transition:background .3s}
 .product-panel:hover::before,.product-panel:focus-within::before{background:rgba(0,0,0,.7)}
-.product-panel--machinery{background-image:url('https://static.wixstatic.com/media/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png');background-color:#333}
-.product-panel--valve{background-image:url('https://www.walkson.com/uploads/image/20210420/10/globel-valve2.jpg')}
-.product-panel--high-pressure{background-image:url('https://rainbow.ae/images/gallery/pumps-1617094961.jpg')}
-.product-panel--general{background-image:url('https://www.rivcut.com/images/news/industrial-pump-valve-machining-capacity-1.png')}
+.product-panel--machinery{background-image:url('../img/reference_machinery.webp'),url('https://static.wixstatic.com/media/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png');background-color:#333}
+.product-panel--valve{background-image:url('../img/reference_valve.webp'),url('https://www.walkson.com/uploads/image/20210420/10/globel-valve2.jpg')}
+.product-panel--high-pressure{background-image:url('../img/reference_high_pressure.webp'),url('https://rainbow.ae/images/gallery/pumps-1617094961.jpg')}
+.product-panel--general{background-image:url('../img/reference_general.webp'),url('https://www.rivcut.com/images/news/industrial-pump-valve-machining-capacity-1.png')}
 .product-panel__content{width:100%;padding:0 clamp(24px,3.65vw,55px);margin-top:clamp(170px,16vw,245px)}
 .product-panel h2{font-size:clamp(19px,1.8vw,26px);line-height:1.25;font-weight:740;word-break:keep-all}
 .product-panel p{font-size:clamp(11px,.95vw,13px);line-height:1.6;min-height:3.2em;margin-top:8px;word-break:keep-all}
