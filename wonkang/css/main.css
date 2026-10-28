@@ -381,20 +381,31 @@ body {
 }
 
 /* =========================================
-   Navigation: screenshot-based, expanded mega menu
+   Navigation: transparent over hero / white on hover
    ========================================= */
 html {
     scroll-behavior: smooth;
 }
 
-/* The reference places the full navigation above the hero, not over it. */
+/* The GNB overlaps the hero in the normal state; opening it never pushes the hero. */
 .site-header {
-    position: relative;
+    position: absolute;
     z-index: 100;
+    top: 0;
+    right: 0;
+    left: 0;
     width: 100%;
+    color: var(--text-inverse);
+    background-color: transparent;
+    font-family: 'Pretendard Variable', sans-serif;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+/* Hover: the entire header becomes a light mega-menu surface. */
+.site-header.mega-open {
     color: var(--text-primary);
     background-color: var(--background-default);
-    font-family: 'Pretendard Variable', sans-serif;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .07);
 }
 
 .site-header__top {
@@ -413,10 +424,30 @@ html {
     line-height: 0;
 }
 
-.site-logo img {
+.site-logo__media {
+    position: relative;
     display: block;
     width: clamp(205px, 15.92vw, 326px);
+}
+
+.site-logo img {
+    display: block;
+    width: 100%;
     height: auto;
+}
+
+.site-logo__dark {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+}
+
+.site-header.mega-open .site-logo__light {
+    opacity: 0;
+}
+
+.site-header.mega-open .site-logo__dark {
+    opacity: 1;
 }
 
 .site-nav {
@@ -432,7 +463,7 @@ html {
 .site-nav__item {
     width: 100%;
     padding-block: 16px;
-    color: var(--text-primary);
+    color: inherit;
     text-align: center;
     font-size: clamp(16px, .98vw, 20px);
     font-weight: 700;
@@ -457,7 +488,7 @@ html {
 
 .site-lang {
     padding: 12px;
-    color: var(--text-primary);
+    color: inherit;
     font-size: clamp(14px, .88vw, 18px);
     font-weight: 700;
     line-height: 1;
@@ -519,7 +550,7 @@ html {
 }
 
 @media (max-width: 1300px) and (min-width: 851px) {
-    .site-logo img {
+    .site-logo__media {
         width: clamp(190px, 16vw, 230px);
     }
 
@@ -554,7 +585,7 @@ html {
         padding-inline: 22px;
     }
 
-    .site-logo img {
+    .site-logo__media {
         width: clamp(170px, 37vw, 245px);
     }
 
@@ -580,7 +611,7 @@ html {
         display: block;
         width: 100%;
         height: 2px;
-        background: var(--text-primary);
+        background: currentColor;
     }
 
     .site-nav {
