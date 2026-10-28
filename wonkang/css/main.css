@@ -818,22 +818,6 @@ body {
     background: #fff;
 }
 
-.card-stack__progress {
-    position: sticky;
-    z-index: 19;
-    bottom: 0;
-    width: 100%;
-    height: 4px;
-    margin-top: -4px;
-    background: rgba(15, 22, 35, .15);
-}
-
-.card-stack__progress-bar {
-    width: 0;
-    height: 100%;
-    background: var(--primary-default);
-}
-
 @media (max-width: 760px) {
     .steel-service {
         min-height: 100dvh;
