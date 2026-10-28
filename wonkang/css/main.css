@@ -404,26 +404,77 @@ body {
 }
 
 
-/* 1차 구현: 기존 히어로와 독립된 헤더/회사소개 섹션 */
-html{scroll-behavior:smooth}
-.site-header{position:fixed;z-index:100;top:0;left:0;right:0;height:90px;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:0 clamp(22px,4.2vw,80px);color:#fff;transition:background .25s}
-.site-header.is-scrolled,.site-header.menu-open{background:rgba(22,21,25,.97)}
-.site-logo{display:inline-flex;flex-shrink:0}.site-logo img{display:block;width:clamp(135px,11vw,210px);height:auto}
-.site-nav{display:flex;align-items:center;gap:clamp(20px,2.8vw,54px)}
-.site-nav button{font:600 16px 'Pretendard Variable',sans-serif;padding:15px 0;border:0;background:none;color:inherit;cursor:pointer;white-space:nowrap}
+
+/* 첨부된 Figma 화면: 3개 강종 소개 → 실적 → 4개 제품 카드 */
+html { scroll-behavior: smooth; }
+.site-header { position:fixed;z-index:100;top:0;left:0;right:0;height:90px;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:0 clamp(22px,4.2vw,80px);color:#fff;transition:background .25s; }
+.site-header.is-scrolled,.site-header.menu-open { background:rgba(22,21,25,.97); }
+.site-logo {display:inline-flex;flex-shrink:0}
+.site-logo img {display:block;width:clamp(135px,11vw,210px);height:auto}
+.site-nav {display:flex;align-items:center;gap:clamp(20px,2.8vw,54px)}
+.site-nav button {font:600 16px 'Pretendard Variable',sans-serif;padding:15px 0;border:0;background:none;color:inherit;cursor:pointer;white-space:nowrap}
 .site-nav button:hover,.site-nav button.nav-pressed{color:#ff9ca9}
-.site-header-right{display:flex;align-items:center;gap:20px;font-size:14px;font-weight:600}
-.menu-toggle{border:0;width:30px;display:flex;flex-direction:column;gap:6px;background:none;padding:0;cursor:pointer}
-.menu-toggle span{width:100%;height:2px;background:#fff}
-.about-sec{background:var(--background-default);padding:clamp(100px,10vw,185px) clamp(24px,6vw,116px) clamp(120px,12vw,220px);color:var(--text-primary)}
-.section-heading{max-width:1300px;margin:0 auto 72px}.section-eyebrow{display:block;color:var(--primary-default);font-size:15px;letter-spacing:.12em;font-weight:800;margin-bottom:25px}
-.section-heading h2{font-size:clamp(38px,4.5vw,82px);line-height:1.22;letter-spacing:-.045em;font-weight:750;word-break:keep-all}
-.section-heading p{font-size:clamp(16px,1.2vw,21px);line-height:1.7;color:var(--text-muted);margin-top:25px;word-break:keep-all}
-.about-cards{max-width:1300px;margin:0 auto;display:grid;gap:22px}
-.about-card{min-height:350px;border-radius:20px;padding:clamp(30px,4vw,68px);background:var(--surface-default);display:flex;flex-direction:column;justify-content:space-between;position:sticky;top:110px;box-shadow:0 12px 36px rgba(22,21,25,.07);overflow:hidden}
-.about-card:nth-child(2){top:132px;background:#292a30;color:#fff}.about-card:nth-child(3){top:154px;background:var(--primary-default);color:#fff}
-.about-card-no{font-size:14px;font-weight:800;letter-spacing:.08em;opacity:.7}.about-card h3{font-size:clamp(30px,3vw,54px);letter-spacing:-.035em;margin-bottom:14px}
-.about-card p{font-size:clamp(15px,1.2vw,20px);line-height:1.55;max-width:680px}.about-card-mark{position:absolute;right:48px;bottom:48px;font-size:34px}
-@media(max-width:1100px){.site-nav{gap:15px}.site-nav button{font-size:13px}.site-header{height:76px}}
-@media(max-width:760px){.site-header{padding:0 20px;height:66px}.site-nav{display:none;position:absolute;top:66px;left:0;right:0;padding:20px;background:#161519;flex-direction:column;align-items:stretch}.menu-open .site-nav{display:flex}.site-nav button{font-size:16px;text-align:left}.site-header-right{font-size:12px}.about-sec{padding:85px 20px 100px}.section-heading{margin-bottom:40px}.about-card{min-height:260px;top:80px;border-radius:12px;padding:28px}.about-card:nth-child(2){top:94px}.about-card:nth-child(3){top:108px}.about-card-mark{right:25px;bottom:25px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-header{transition:none}}
+.site-header-right {display:flex;align-items:center;gap:20px;font-size:14px;font-weight:600}
+.menu-toggle {border:0;width:30px;display:flex;flex-direction:column;gap:6px;background:none;padding:0;cursor:pointer}
+.menu-toggle span {width:100%;height:2px;background:#fff}
+
+/* 1. 주강, 합금강, 스테인리스강 — 수평으로 끊기지 않는 3행 */
+.steel-service{min-height:263px;display:flex;align-items:center;box-sizing:border-box}
+.steel-service--casting{background:#fff;color:#161519}
+.steel-service--alloy{background:#dde1e5;color:#161519}
+.steel-service--stainless{background:#0c347f;color:#fff}
+.steel-service__inner{width:min(100% - 64px,1000px);margin-inline:auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(35px,5.5vw,72px);padding-block:30px}
+.steel-service__text{min-width:0}
+.steel-service__label{display:inline-block;padding:4px 9px;border-radius:20px;background:#e4e6ea;color:#51545a;font-size:11px;line-height:1.1;font-weight:650}
+.steel-service--stainless .steel-service__label{background:#fff;color:#19233d}
+.steel-service__text h2{font-size:clamp(30px,3.15vw,42px);font-weight:740;line-height:1.18;letter-spacing:-.037em;margin:12px 0 16px}
+.steel-service__text p{font-size:clamp(12px,1vw,14px);line-height:1.45;word-break:keep-all}
+.steel-service__image{display:block;width:100%;height:auto;aspect-ratio:2.52;object-fit:cover;border-radius:7px}
+
+/* 2. 회사 실적 — 이미지 전폭, 제목과 숫자 가운데 정렬 */
+.company-achievements{position:relative;min-height:656px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;background:#222 url('../img/wonkang_hero2_pc.jpg') center/cover no-repeat;isolation:isolate}
+.company-achievements::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:-1}
+.company-achievements__content{width:min(100% - 56px,1100px);padding:80px 0 25px}
+.company-achievements h2{font-size:clamp(23px,2.1vw,31px);font-weight:720;letter-spacing:-.03em}
+.company-achievements__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin:88px 0 0}
+.company-achievements__stats dt{font-size:clamp(35px,3.1vw,49px);font-weight:700;line-height:1.15}
+.company-achievements__stats dd{font-size:13px;margin-top:6px;opacity:.76}
+
+/* 3. 대표 제품 — 4개의 컬럼을 하나의 끊기지 않은 섹션으로 */
+.product-showcase{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;min-height:602px;background:#222}
+.product-panel{position:relative;min-width:0;min-height:602px;display:flex;align-items:flex-start;color:white;overflow:hidden;isolation:isolate;background:#222 center/cover no-repeat}
+.product-panel::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.58);z-index:-1;transition:background .3s}
+.product-panel:hover::before,.product-panel:focus-within::before{background:rgba(0,0,0,.7)}
+.product-panel--machinery{background-image:url('https://static.wixstatic.com/media/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png');background-color:#333}
+.product-panel--valve{background-image:url('https://www.walkson.com/uploads/image/20210420/10/globel-valve2.jpg')}
+.product-panel--high-pressure{background-image:url('https://rainbow.ae/images/gallery/pumps-1617094961.jpg')}
+.product-panel--general{background-image:url('https://www.rivcut.com/images/news/industrial-pump-valve-machining-capacity-1.png')}
+.product-panel__content{width:100%;padding:0 clamp(24px,3.65vw,55px);margin-top:clamp(170px,16vw,245px)}
+.product-panel h2{font-size:clamp(19px,1.8vw,26px);line-height:1.25;font-weight:740;word-break:keep-all}
+.product-panel p{font-size:clamp(11px,.95vw,13px);line-height:1.6;min-height:3.2em;margin-top:8px;word-break:keep-all}
+.product-panel__detail{display:inline-flex;align-items:center;gap:12px;margin-top:34px;background:transparent;border:0;padding:0;color:#fff;font:600 12px 'Pretendard Variable',sans-serif;cursor:pointer}
+.product-panel__detail span{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#e9edef;color:#4e5964;font-size:14px}
+.product-panel__actions{display:flex;align-items:center;gap:5px;margin-top:22px;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s,transform .25s}
+.product-panel:hover .product-panel__actions,.product-panel:focus-within .product-panel__actions{opacity:1;transform:none;pointer-events:auto}
+.product-panel__actions button{color:#fff;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.14);padding:9px 10px;font:500 11px 'Pretendard Variable',sans-serif;cursor:pointer}
+.product-panel button.is-clicked{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:1100px){.site-nav{gap:15px}.site-nav button{font-size:13px}.site-header{height:76px}.product-panel__content{padding-inline:22px}}
+@media(max-width:760px){
+  .site-header{padding:0 20px;height:66px}
+  .site-nav{display:none;position:absolute;top:66px;left:0;right:0;padding:20px;background:#161519;flex-direction:column;align-items:stretch}
+  .menu-open .site-nav{display:flex}.site-nav button{font-size:16px;text-align:left}
+  .site-header-right{font-size:12px}
+  .steel-service{min-height:0}
+  .steel-service__inner{width:min(100% - 40px,520px);grid-template-columns:1fr;gap:25px;padding-block:58px}
+  .steel-service__text h2{font-size:34px}.steel-service__text p{font-size:13px}
+  .steel-service__image{max-height:240px}
+  .steel-service--alloy .steel-service__image{order:2}
+  .company-achievements{min-height:500px}.company-achievements__stats{margin-top:68px;gap:10px}
+  .company-achievements__stats dt{font-size:clamp(23px,6vw,38px)}.company-achievements__stats dd{font-size:11px}
+  .product-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .product-panel{min-height:450px}
+  .product-panel__content{margin-top:150px;padding-inline:20px}
+  .product-panel__actions{opacity:1;transform:none;pointer-events:auto;flex-wrap:wrap}
+}
+@media(max-width:420px){.product-showcase{grid-template-columns:1fr}.product-panel{min-height:430px}.product-panel__content{margin-top:160px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-header,.product-panel::before,.product-panel__actions{transition:none}}
