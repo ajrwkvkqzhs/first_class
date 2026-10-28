@@ -7,32 +7,60 @@
     <link rel="stylesheet" href="../font/default/css/pretendardvariable.css">
     <link rel="stylesheet" href="../CSS/default.css">
     <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="css/main.css?v=20261028-cardstack2">
+    <link rel="stylesheet" href="css/main.css?v=20261028-meganav1">
     <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-    <script src="js/main.js?v=20261028-cardstack2" defer></script>
+    <script src="js/main.js?v=20261028-meganav1" defer></script>
 </head>
 <body>
     <div id="wrap">
-        <header class="site-header">
-            <a class="site-logo" href="#top" aria-label="원강금속 메인으로">
-                <img src="img/logo_w.png" alt="원강금속">
-            </a>
+        <!-- Figma 원강금속 GNB: 상단 3개 카테고리 + 3열 메가 메뉴 -->
+        <header class="site-header mega-open" id="site-header">
+            <div class="site-header__top">
+                <a class="site-logo" href="#top" aria-label="원강금속 메인으로">
+                    <img src="img/logo_nav.svg" alt="WONKANG 원강금속" width="326" height="48">
+                </a>
 
-            <nav class="site-nav" id="main-navigation" aria-label="주 메뉴">
-                <button type="button">회사소개</button>
-                <button type="button">제품소개</button>
-                <button type="button">생산설비</button>
-                <button type="button">품질인증</button>
-                <button type="button">고객지원</button>
-            </nav>
+                <nav class="site-nav" id="main-navigation" aria-label="주 메뉴">
+                    <button type="button" class="site-nav__item" aria-expanded="true" aria-controls="mega-navigation">회사소개</button>
+                    <button type="button" class="site-nav__item" aria-expanded="true" aria-controls="mega-navigation">공장</button>
+                    <button type="button" class="site-nav__item" aria-expanded="true" aria-controls="mega-navigation">제품소개</button>
+                </nav>
 
-            <div class="site-header-right">
-                <span class="site-lang">KOR <span aria-hidden="true">⌄</span></span>
-                <button class="menu-toggle" type="button" aria-label="전체 메뉴" aria-controls="main-navigation" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="site-header-right">
+                    <button type="button" class="site-lang" aria-label="현재 언어: 한국어">ko</button>
+                    <button class="menu-toggle" type="button" aria-label="전체 메뉴 접기" aria-controls="mega-navigation" aria-expanded="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mega-menu" id="mega-navigation">
+                <div class="mega-menu__inner">
+                    <ul class="mega-menu__column" aria-label="회사소개 하위 메뉴">
+                        <li><button type="button">회사개요</button></li>
+                        <li><button type="button">연혁</button></li>
+                        <li><button type="button">글로벌 네트워크</button></li>
+                        <li><button type="button">회사 소식</button></li>
+                        <li><button type="button">오시는 길</button></li>
+                    </ul>
+
+                    <ul class="mega-menu__column" aria-label="공장 하위 메뉴">
+                        <li><button type="button">생산거점</button></li>
+                        <li><button type="button">생산공정</button></li>
+                        <li><button type="button">핵심기술</button></li>
+                        <li><button type="button">생산설비</button></li>
+                        <li><button type="button">인증서 현황</button></li>
+                    </ul>
+
+                    <ul class="mega-menu__column" aria-label="제품소개 하위 메뉴">
+                        <li><button type="button">일반 펌프부품</button></li>
+                        <li><button type="button">고압 펌프부품</button></li>
+                        <li><button type="button">밸브부품</button></li>
+                        <li><button type="button">산업기계부품</button></li>
+                    </ul>
+                </div>
             </div>
         </header>
 
