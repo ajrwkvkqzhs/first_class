@@ -501,7 +501,7 @@ html {
     gap: clamp(36px, 5.21vw, 100px);
     width: min(calc(100% - 48px), 79.17vw, 1520px);
     margin-inline: auto;
-    padding-block: clamp(30px, 4.17vw, 80px);
+    padding-block: clamp(28px, 3.02vw, 58px);
 }
 
 .steel-service__text {
