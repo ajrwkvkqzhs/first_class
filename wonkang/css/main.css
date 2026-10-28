@@ -1,9 +1,24 @@
-@font-face {
-    font-family: 'PretendardVariable';
-    src: url('../../font/PretendardVariable.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
+/* Figma Variables — Primitives */
+:root {
+    --brand-red-500: #E60021;
+    --brand-red-700: #B7001B;
+    --brand-neutral-950: #161519;
+    --brand-neutral-500: #626773;
+    --brand-neutral-200: #DDE1E5;
+    --neutral-50: #F7F8FA;
+    --neutral-0: #FFFFFF;
+
+    /* Figma Variables — Semantic */
+    --primary-default: var(--brand-red-500);
+    --primary-hover: var(--brand-red-700);
+    --secondary-default: var(--brand-neutral-950);
+    --background-default: var(--neutral-50);
+    --surface-default: var(--neutral-0);
+    --text-primary: var(--brand-neutral-950);
+    --text-muted: var(--brand-neutral-500);
+    --text-inverse: var(--neutral-0);
+    --border-default: var(--brand-neutral-200);
+    --accent-default: var(--brand-red-700);
 }
 
 /* Figma 히어로 카피/컨트롤 폰트 */
@@ -31,7 +46,7 @@
 
 body {
     background-color: #fff;
-    font-family: 'PretendardVariable', sans-serif;
+    font-family: 'Pretendard Variable', sans-serif;
 
 }
 
