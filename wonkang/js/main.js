@@ -43,13 +43,19 @@ if (typeof Swiper !== 'undefined') {
 
 // 원본 이미지가 저장소에 없으면 임시 대체 이미지를 표시합니다.
 document.querySelectorAll('img[data-fallback]').forEach(img => {
-    img.addEventListener('error', () => {
+    const loadFallback = () => {
         const fallback = img.dataset.fallback;
-        if (fallback && img.src !== fallback) {
-            img.removeAttribute('data-fallback');
-            img.src = fallback;
-        }
-    }, { once: true });
+        if (!fallback) return;
+        img.removeAttribute('data-fallback');
+        img.src = fallback;
+    };
+
+    // 로컬 파일이 이미 오류 처리된 경우에도 대체 이미지를 적용합니다.
+    if (img.complete && img.naturalWidth === 0) {
+        loadFallback();
+    } else {
+        img.addEventListener('error', loadFallback, { once: true });
+    }
 });
 
 // GNB는 디자인 시연용으로 클릭 효과만 표시합니다.
