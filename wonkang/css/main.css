@@ -469,6 +469,12 @@ html {
 }
 
 
+/* CSS overflow-x: clip prevents an intermediate scroll container that breaks sticky. */
+html,
+body {
+    overflow-x: clip;
+}
+
 /* =========================================
    Business card deck — 3 scroll-driven frames
    ========================================= */
