@@ -143,7 +143,6 @@ const supportsObservation = 'IntersectionObserver' in window;
 const cardStack = document.querySelector('.card-stack');
 const steelCards = cardStack ? Array.from(cardStack.querySelectorAll('.steel-service')) : [];
 const cardNavButtons = cardStack ? Array.from(cardStack.querySelectorAll('.card-stack__nav')) : [];
-const cardProgressBar = cardStack?.querySelector('.card-stack__progress-bar');
 let cardFramePending = false;
 
 function updateCardNavigation() {
@@ -152,9 +151,6 @@ function updateCardNavigation() {
 
     const sectionTop = window.scrollY + cardStack.getBoundingClientRect().top;
     const sectionHeight = cardStack.offsetHeight;
-    const span = Math.max(sectionHeight - window.innerHeight, 1);
-    const travelled = Math.max(0, Math.min(window.scrollY - sectionTop, span));
-    const fraction = travelled / span;
     const activeIndex = Math.min(steelCards.length - 1, Math.max(0, Math.floor(
         (window.scrollY - sectionTop + window.innerHeight * .35) /
         Math.max(sectionHeight / steelCards.length, 1)
@@ -167,7 +163,6 @@ function updateCardNavigation() {
         else button.removeAttribute('aria-current');
     });
 
-    if (cardProgressBar) cardProgressBar.style.width = (fraction * 100).toFixed(2) + '%';
 }
 
 function requestCardNavigationUpdate() {
