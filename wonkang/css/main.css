@@ -402,3 +402,28 @@ body {
         font-size: 11px;
     }
 }
+
+
+/* 1차 구현: 기존 히어로와 독립된 헤더/회사소개 섹션 */
+html{scroll-behavior:smooth}
+.site-header{position:fixed;z-index:100;top:0;left:0;right:0;height:90px;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:0 clamp(22px,4.2vw,80px);color:#fff;transition:background .25s}
+.site-header.is-scrolled,.site-header.menu-open{background:rgba(22,21,25,.97)}
+.site-logo{display:inline-flex;flex-shrink:0}.site-logo img{display:block;width:clamp(135px,11vw,210px);height:auto}
+.site-nav{display:flex;align-items:center;gap:clamp(20px,2.8vw,54px)}
+.site-nav button{font:600 16px 'Pretendard Variable',sans-serif;padding:15px 0;border:0;background:none;color:inherit;cursor:pointer;white-space:nowrap}
+.site-nav button:hover,.site-nav button.nav-pressed{color:#ff9ca9}
+.site-header-right{display:flex;align-items:center;gap:20px;font-size:14px;font-weight:600}
+.menu-toggle{border:0;width:30px;display:flex;flex-direction:column;gap:6px;background:none;padding:0;cursor:pointer}
+.menu-toggle span{width:100%;height:2px;background:#fff}
+.about-sec{background:var(--background-default);padding:clamp(100px,10vw,185px) clamp(24px,6vw,116px) clamp(120px,12vw,220px);color:var(--text-primary)}
+.section-heading{max-width:1300px;margin:0 auto 72px}.section-eyebrow{display:block;color:var(--primary-default);font-size:15px;letter-spacing:.12em;font-weight:800;margin-bottom:25px}
+.section-heading h2{font-size:clamp(38px,4.5vw,82px);line-height:1.22;letter-spacing:-.045em;font-weight:750;word-break:keep-all}
+.section-heading p{font-size:clamp(16px,1.2vw,21px);line-height:1.7;color:var(--text-muted);margin-top:25px;word-break:keep-all}
+.about-cards{max-width:1300px;margin:0 auto;display:grid;gap:22px}
+.about-card{min-height:350px;border-radius:20px;padding:clamp(30px,4vw,68px);background:var(--surface-default);display:flex;flex-direction:column;justify-content:space-between;position:sticky;top:110px;box-shadow:0 12px 36px rgba(22,21,25,.07);overflow:hidden}
+.about-card:nth-child(2){top:132px;background:#292a30;color:#fff}.about-card:nth-child(3){top:154px;background:var(--primary-default);color:#fff}
+.about-card-no{font-size:14px;font-weight:800;letter-spacing:.08em;opacity:.7}.about-card h3{font-size:clamp(30px,3vw,54px);letter-spacing:-.035em;margin-bottom:14px}
+.about-card p{font-size:clamp(15px,1.2vw,20px);line-height:1.55;max-width:680px}.about-card-mark{position:absolute;right:48px;bottom:48px;font-size:34px}
+@media(max-width:1100px){.site-nav{gap:15px}.site-nav button{font-size:13px}.site-header{height:76px}}
+@media(max-width:760px){.site-header{padding:0 20px;height:66px}.site-nav{display:none;position:absolute;top:66px;left:0;right:0;padding:20px;background:#161519;flex-direction:column;align-items:stretch}.menu-open .site-nav{display:flex}.site-nav button{font-size:16px;text-align:left}.site-header-right{font-size:12px}.about-sec{padding:85px 20px 100px}.section-heading{margin-bottom:40px}.about-card{min-height:260px;top:80px;border-radius:12px;padding:28px}.about-card:nth-child(2){top:94px}.about-card:nth-child(3){top:108px}.about-card-mark{right:25px;bottom:25px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-header{transition:none}}
