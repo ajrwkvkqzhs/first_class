@@ -475,69 +475,67 @@ body {
     overflow-x: clip;
 }
 
+
 /* =========================================
-   Business card deck — 3 scroll-driven frames
+   Business card stack — native sticky scrolling
+   JS is not required to make the cards overlap.
    ========================================= */
 .steel-services.card-stack {
     position: relative;
+    isolation: isolate;
     background: var(--background-default);
 }
 
-.steel-services.card-stack--active {
-    height: 300vh;
-    height: 300dvh;
-}
-
-.card-stack__sticky {
-    position: relative;
+/* Never add overflow: hidden/auto to these ancestors: sticky needs the page scroll. */
+.card-stack__sticky,
+.card-stack__deck {
+    position: static;
+    display: block;
     width: 100%;
     height: auto;
     overflow: visible;
-    isolation: isolate;
-}
-
-.card-stack--active .card-stack__sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-}
-
-.card-stack__deck {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
 }
 
 .steel-service {
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1 0 auto;
-    min-height: clamp(263px, 20.84vw, 400px);
-    background: #fff;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(35px, 5vw, 90px);
+    overflow: hidden;
+    border-radius: clamp(18px, 2.1vw, 36px) clamp(18px, 2.1vw, 36px) 0 0;
+    box-shadow: 0 -14px 42px rgba(10, 23, 45, .17);
     color: var(--text-primary);
+    background: #fff;
+}
+
+.steel-service--casting {
+    z-index: 1;
+    background-color: #fff;
 }
 
 .steel-service--alloy {
-    background: var(--brand-neutral-200);
+    z-index: 2;
+    background-color: var(--brand-neutral-200);
 }
 
 .steel-service--stainless {
-    background: #0c347f;
+    z-index: 3;
     color: #fff;
+    background-color: #0c347f;
 }
 
 .steel-service__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
-    gap: clamp(36px, 5.2vw, 100px);
-    width: min(calc(100% - 48px), 79.17vw, 1520px);
+    gap: clamp(35px, 5.2vw, 100px);
+    width: min(100%, 1520px);
     margin-inline: auto;
-    padding-block: clamp(28px, 3.02vw, 58px);
 }
 
 .steel-service__text {
@@ -548,16 +546,16 @@ body {
     display: inline-block;
     padding: 5px 10px;
     border-radius: 20px;
-    background: #e4e6ea;
     color: #51545a;
+    background: #e4e6ea;
     font-size: clamp(11px, .84vw, 16px);
     line-height: 1.15;
     font-weight: 650;
 }
 
 .steel-service--stainless .steel-service__label {
-    background: #fff;
     color: #19233d;
+    background: #fff;
 }
 
 .steel-service__text h2 {
@@ -569,7 +567,7 @@ body {
 }
 
 .steel-service__text p {
-    font-size: clamp(12px, 1vw, 19px);
+    font-size: clamp(13px, 1vw, 19px);
     line-height: 1.5;
     word-break: keep-all;
 }
@@ -583,67 +581,27 @@ body {
     border-radius: clamp(7px, .52vw, 10px);
 }
 
-/* Only JavaScript-enabled desktop uses the pinned card slider.
-   Without JavaScript the three service frames remain readable in a column. */
-.card-stack--active .card-stack__deck {
-    display: grid;
-    place-items: center;
-    height: 100%;
-    padding: clamp(26px, 4vw, 76px) clamp(24px, 4.2vw, 80px);
-}
-
-.card-stack--active .steel-service {
-    position: absolute;
-    inset: clamp(26px, 4vw, 76px) clamp(24px, 4.2vw, 80px);
-    flex: none;
-    min-height: 0;
-    overflow: hidden;
-    border-radius: clamp(16px, 1.6vw, 30px);
-    box-shadow: 0 25px 80px rgba(15, 28, 45, .2);
-    transform: translate3d(0, var(--stack-y, 110%), 0)
-               scale(var(--stack-scale, 1));
-    transform-origin: center center;
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-.card-stack--active .steel-service:first-child {
-    --stack-y: 0%;
-}
-
-.card-stack--active .steel-service__inner {
-    width: min(calc(100% - 80px), 1520px);
-    gap: clamp(40px, 5vw, 100px);
-}
-
+/* Buttons remain visible throughout the card section using bottom-sticky. */
 .card-stack__navigation {
-    display: none;
-    position: absolute;
-    z-index: 10;
-    right: clamp(24px, 5vw, 100px);
-    bottom: clamp(32px, 6vw, 90px);
+    position: sticky;
+    z-index: 20;
+    bottom: 35px;
     display: flex;
-    align-items: center;
+    justify-content: center;
     gap: 10px;
+    width: max-content;
+    margin: -87px clamp(28px, 5vw, 100px) 25px auto;
     padding: 9px 13px;
     border-radius: 100px;
-    background: rgba(0, 0, 0, .54);
+    background: rgba(0, 0, 0, .62);
     color: #fff;
-}
-
-.card-stack--active .card-stack__navigation {
-    display: flex;
-}
-
-.card-stack--active .card-stack__progress {
-    display: block;
 }
 
 .card-stack__nav {
     width: 39px;
     height: 39px;
     border-radius: 50%;
-    color: rgba(255, 255, 255, .65);
+    color: rgba(255, 255, 255, .7);
     font-size: 13px;
     font-weight: 700;
     transition: color .2s, background-color .2s;
@@ -652,77 +610,36 @@ body {
 .card-stack__nav.is-current,
 .card-stack__nav:hover,
 .card-stack__nav:focus-visible {
-    background: #fff;
     color: var(--text-primary);
+    background: #fff;
 }
 
 .card-stack__progress {
-    display: none;
-    position: absolute;
-    z-index: 10;
+    position: sticky;
+    z-index: 19;
     bottom: 0;
-    left: 0;
     width: 100%;
     height: 4px;
-    background: rgba(13, 20, 33, .16);
+    margin-top: -4px;
+    background: rgba(15, 22, 35, .15);
 }
 
 .card-stack__progress-bar {
     width: 0;
     height: 100%;
     background: var(--primary-default);
-    transition: width .08s linear;
 }
 
-@media (max-width: 1100px) {
-    .card-stack--active .steel-service {
-        inset: 50px 26px;
-    }
-
-    .steel-service__text h2 {
-        font-size: clamp(32px, 4vw, 48px);
-    }
-
-    .steel-service__image {
-        aspect-ratio: 1.7;
+@media (max-width: 760px) {
+    .steel-service {
+        min-height: 100dvh;
+        padding: 76px 20px 40px;
     }
 }
 
-@media (max-width: 760px), (prefers-reduced-motion: reduce) {
-    .steel-services.card-stack {
-        height: auto;
-    }
-
-    .card-stack__sticky {
-        position: static;
-        height: auto;
-        overflow: visible;
-    }
-
-    .card-stack__deck,
-    .card-stack--active .card-stack__deck {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        padding: 0;
-    }
-
-    .steel-service,
-    .card-stack--active .steel-service {
-        position: relative;
-        inset: auto;
-        flex: none;
-        width: 100%;
-        min-height: 0;
-        border-radius: 0;
-        box-shadow: none;
-        transform: none !important;
-        will-change: auto;
-    }
-
-    .card-stack__navigation,
-    .card-stack__progress {
-        display: none;
+@media (prefers-reduced-motion: reduce) {
+    .card-stack__nav {
+        transition: none;
     }
 }
 
