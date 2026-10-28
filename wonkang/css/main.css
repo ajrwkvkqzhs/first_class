@@ -21,33 +21,10 @@
     --accent-default: var(--brand-red-700);
 }
 
-/* Figma 히어로 카피/컨트롤 폰트 */
-@font-face {
-    font-family: 'Noto Sans KR';
-    src: url('../../font/NotoSansKR-Regular.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Noto Sans KR';
-    src: url('../../font/NotoSansKR-Medium.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 500 600;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Noto Sans KR';
-    src: url('../../font/NotoSansKR-Bold.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 700 900;
-    font-display: swap;
-}
 
 body {
     background-color: #fff;
     font-family: 'Pretendard Variable', sans-serif;
-
 }
 
 .mo {
@@ -88,7 +65,7 @@ body {
 .hero-sec .hero-title {
     margin: 0;
     color: #fff;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', sans-serif;
     font-size: clamp(40px, 3.75vw, 72px);
     font-weight: 700;
     line-height: 1.43;
@@ -124,7 +101,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     background: transparent;
     color: #fff;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', sans-serif;
 }
 
 /* Reset Swiper's absolute pagination placement */
@@ -403,78 +380,506 @@ body {
     }
 }
 
-
-
-/* 첨부된 Figma 화면: 3개 강종 소개 → 실적 → 4개 제품 카드 */
-html { scroll-behavior: smooth; }
-.site-header { position:fixed;z-index:100;top:0;left:0;right:0;height:90px;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:0 clamp(22px,4.2vw,80px);color:#fff;transition:background .25s; }
-.site-header.is-scrolled,.site-header.menu-open { background:rgba(22,21,25,.97); }
-.site-logo {display:inline-flex;flex-shrink:0}
-.site-logo img {display:block;width:clamp(135px,11vw,210px);height:auto}
-.site-nav {display:flex;align-items:center;gap:clamp(20px,2.8vw,54px)}
-.site-nav button {font:600 16px 'Pretendard Variable',sans-serif;padding:15px 0;border:0;background:none;color:inherit;cursor:pointer;white-space:nowrap}
-.site-nav button:hover,.site-nav button.nav-pressed{color:#ff9ca9}
-.site-header-right {display:flex;align-items:center;gap:20px;font-size:14px;font-weight:600}
-.menu-toggle {border:0;width:30px;display:flex;flex-direction:column;gap:6px;background:none;padding:0;cursor:pointer}
-.menu-toggle span {width:100%;height:2px;background:#fff}
-
-/* 1. 주강, 합금강, 스테인리스강 — 수평으로 끊기지 않는 3행 */
-.steel-service{min-height:263px;display:flex;align-items:center;box-sizing:border-box}
-.steel-service--casting{background:#fff;color:#161519}
-.steel-service--alloy{background:#dde1e5;color:#161519}
-.steel-service--stainless{background:#0c347f;color:#fff}
-.steel-service__inner{width:min(100% - 64px,1000px);margin-inline:auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(35px,5.5vw,72px);padding-block:30px}
-.steel-service__text{min-width:0}
-.steel-service__label{display:inline-block;padding:4px 9px;border-radius:20px;background:#e4e6ea;color:#51545a;font-size:11px;line-height:1.1;font-weight:650}
-.steel-service--stainless .steel-service__label{background:#fff;color:#19233d}
-.steel-service__text h2{font-size:clamp(30px,3.15vw,42px);font-weight:740;line-height:1.18;letter-spacing:-.037em;margin:12px 0 16px}
-.steel-service__text p{font-size:clamp(12px,1vw,14px);line-height:1.45;word-break:keep-all}
-.steel-service__image{display:block;width:100%;height:auto;aspect-ratio:2.52;object-fit:cover;border-radius:7px}
-
-/* 2. 회사 실적 — 이미지 전폭, 제목과 숫자 가운데 정렬 */
-.company-achievements{position:relative;min-height:656px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;background:#222 url('../img/wonkang_hero2_pc.jpg') center/cover no-repeat;background-image:url('../img/reference_factory.webp'),url('../img/wonkang_hero2_pc.jpg');background-position:center,center;background-size:cover,cover;background-repeat:no-repeat,no-repeat;isolation:isolate}
-.company-achievements::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.20);z-index:-1}
-.company-achievements__content{width:min(100% - 56px,1100px);padding:80px 0 25px}
-.company-achievements h2{font-size:clamp(23px,2.1vw,31px);font-weight:720;letter-spacing:-.03em}
-.company-achievements__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin:88px 0 0}
-.company-achievements__stats dt{font-size:clamp(35px,3.1vw,49px);font-weight:700;line-height:1.15}
-.company-achievements__stats dd{font-size:13px;margin-top:6px;opacity:.76}
-
-/* 3. 대표 제품 — 4개의 컬럼을 하나의 끊기지 않은 섹션으로 */
-.product-showcase{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;min-height:602px;background:#222}
-.product-panel{position:relative;min-width:0;min-height:602px;display:flex;align-items:flex-start;color:white;overflow:hidden;isolation:isolate;background:#222 center/cover no-repeat}
-.product-panel::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.30);z-index:-1;transition:background .3s}
-.product-panel:hover::before,.product-panel:focus-within::before{background:rgba(0,0,0,.48)}
-.product-panel--machinery{background-image:url('../img/reference_machinery.webp'),url('https://static.wixstatic.com/media/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png');background-color:#333}
-.product-panel--valve{background-image:url('../img/reference_valve.webp'),url('https://www.walkson.com/uploads/image/20210420/10/globel-valve2.jpg')}
-.product-panel--high-pressure{background-image:url('../img/reference_high_pressure.webp'),url('https://rainbow.ae/images/gallery/pumps-1617094961.jpg')}
-.product-panel--general{background-image:url('../img/reference_general.webp'),url('https://www.rivcut.com/images/news/industrial-pump-valve-machining-capacity-1.png')}
-.product-panel__content{width:100%;padding:0 clamp(24px,3.65vw,55px);margin-top:clamp(170px,16vw,245px)}
-.product-panel h2{font-size:clamp(19px,1.8vw,26px);line-height:1.25;font-weight:740;word-break:keep-all}
-.product-panel p{font-size:clamp(11px,.95vw,13px);line-height:1.6;min-height:3.2em;margin-top:8px;word-break:keep-all}
-.product-panel__detail{display:inline-flex;align-items:center;gap:12px;margin-top:34px;background:transparent;border:0;padding:0;color:#fff;font:600 12px 'Pretendard Variable',sans-serif;cursor:pointer}
-.product-panel__detail span{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#e9edef;color:#4e5964;font-size:14px}
-.product-panel__actions{display:flex;align-items:center;gap:5px;margin-top:22px;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s,transform .25s}
-.product-panel:hover .product-panel__actions,.product-panel:focus-within .product-panel__actions{opacity:1;transform:none;pointer-events:auto}
-.product-panel__actions button{color:#fff;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.14);padding:9px 10px;font:500 11px 'Pretendard Variable',sans-serif;cursor:pointer}
-.product-panel button.is-clicked{outline:2px solid #fff;outline-offset:3px}
-@media(max-width:1100px){.site-nav{gap:15px}.site-nav button{font-size:13px}.site-header{height:76px}.product-panel__content{padding-inline:22px}}
-@media(max-width:760px){
-  .site-header{padding:0 20px;height:66px}
-  .site-nav{display:none;position:absolute;top:66px;left:0;right:0;padding:20px;background:#161519;flex-direction:column;align-items:stretch}
-  .menu-open .site-nav{display:flex}.site-nav button{font-size:16px;text-align:left}
-  .site-header-right{font-size:12px}
-  .steel-service{min-height:0}
-  .steel-service__inner{width:min(100% - 40px,520px);grid-template-columns:1fr;gap:25px;padding-block:58px}
-  .steel-service__text h2{font-size:34px}.steel-service__text p{font-size:13px}
-  .steel-service__image{max-height:240px}
-  .steel-service--alloy .steel-service__image{order:2}
-  .company-achievements{min-height:500px}.company-achievements__stats{margin-top:68px;gap:10px}
-  .company-achievements__stats dt{font-size:clamp(23px,6vw,38px)}.company-achievements__stats dd{font-size:11px}
-  .product-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .product-panel{min-height:450px}
-  .product-panel__content{margin-top:150px;padding-inline:20px}
-  .product-panel__actions{opacity:1;transform:none;pointer-events:auto;flex-wrap:wrap}
+/* =========================================
+   Global header / GNB
+   ========================================= */
+html {
+    scroll-behavior: smooth;
 }
-@media(max-width:420px){.product-showcase{grid-template-columns:1fr}.product-panel{min-height:430px}.product-panel__content{margin-top:160px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-header,.product-panel::before,.product-panel__actions{transition:none}}
+
+.site-header {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    height: 90px;
+    padding: 0 clamp(24px, 4.17vw, 80px);
+    color: var(--text-inverse);
+    transition: background-color .25s;
+}
+
+.site-header.is-scrolled,
+.site-header.menu-open {
+    background-color: rgba(22, 21, 25, .97);
+}
+
+.site-logo {
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.site-logo img {
+    display: block;
+    width: clamp(135px, 11vw, 210px);
+    height: auto;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2.8vw, 54px);
+}
+
+.site-nav button {
+    padding: 15px 0;
+    background: none;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.site-nav button:hover,
+.site-nav button.nav-pressed {
+    color: #ff9ca9;
+}
+
+.site-header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.site-lang {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 30px;
+    height: 30px;
+    background: none;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+}
+
+/* =========================================
+   Business sections
+   Original reference: 1260 px preview
+   Scaling target: 1920 px desktop (x 1.524)
+   ========================================= */
+.steel-service {
+    display: flex;
+    align-items: center;
+    min-height: clamp(263px, 20.84vw, 400px);
+}
+
+.steel-service--casting {
+    background: #fff;
+    color: var(--text-primary);
+}
+
+.steel-service--alloy {
+    background: var(--brand-neutral-200);
+    color: var(--text-primary);
+}
+
+.steel-service--stainless {
+    background: #0c347f;
+    color: #fff;
+}
+
+.steel-service__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(36px, 5.21vw, 100px);
+    width: min(calc(100% - 48px), 79.17vw, 1520px);
+    margin-inline: auto;
+    padding-block: clamp(30px, 4.17vw, 80px);
+}
+
+.steel-service__text {
+    min-width: 0;
+}
+
+.steel-service__label {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #e4e6ea;
+    color: #51545a;
+    font-size: clamp(11px, .84vw, 16px);
+    line-height: 1.15;
+    font-weight: 650;
+}
+
+.steel-service--stainless .steel-service__label {
+    background: #fff;
+    color: #19233d;
+}
+
+.steel-service__text h2 {
+    margin: 12px 0 16px;
+    font-size: clamp(36px, 3.125vw, 60px);
+    font-weight: 740;
+    line-height: 1.18;
+    letter-spacing: -.037em;
+}
+
+.steel-service__text p {
+    font-size: clamp(12px, 1vw, 19px);
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+.steel-service__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2.5;
+    height: auto;
+    object-fit: cover;
+    border-radius: clamp(7px, .52vw, 10px);
+}
+
+/* =========================================
+   Company achievements
+   ========================================= */
+.company-achievements {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(656px, 52.08vw, 1000px);
+    background-color: #222;
+    background-image: url('../img/reference_factory.webp'), url('../img/wonkang_hero2_pc.jpg');
+    background-position: center, center;
+    background-size: cover, cover;
+    background-repeat: no-repeat, no-repeat;
+    color: #fff;
+    text-align: center;
+}
+
+.company-achievements::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: rgba(0, 0, 0, .2);
+    content: '';
+}
+
+.company-achievements__content {
+    width: min(calc(100% - 60px), 78vw, 1500px);
+    padding: clamp(70px, 6vw, 115px) 0 35px;
+}
+
+.company-achievements h2 {
+    font-size: clamp(27px, 2.1vw, 41px);
+    font-weight: 720;
+    letter-spacing: -.03em;
+}
+
+.company-achievements__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 56px);
+    margin: clamp(88px, 7.3vw, 140px) 0 0;
+}
+
+.company-achievements__stats > div {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.company-achievements__stats dt {
+    margin-top: 6px;
+    font-size: clamp(13px, 1vw, 19px);
+    opacity: .76;
+}
+
+.company-achievements__stats dd {
+    font-size: clamp(43px, 3.85vw, 74px);
+    font-weight: 700;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+/* =========================================
+   Products - four continuous columns
+   ========================================= */
+.product-showcase {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    min-height: clamp(602px, 47.92vw, 920px);
+    background: #222;
+}
+
+.product-panel {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-start;
+    min-width: 0;
+    min-height: clamp(602px, 47.92vw, 920px);
+    overflow: hidden;
+    background-color: #222;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.product-panel::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
+    content: '';
+    transition: background-color .3s;
+}
+
+.product-panel:hover::before,
+.product-panel:focus-within::before {
+    background: rgba(0, 0, 0, .48);
+}
+
+.product-panel--machinery {
+    background-image: url('../img/reference_machinery.webp'),
+        url('https://static.wixstatic.com/media/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b53f29_5b4dce1d307e40d6b4fcb864b372fc73~mv2.png');
+}
+
+.product-panel--valve {
+    background-image: url('../img/reference_valve.webp'),
+        url('https://www.walkson.com/uploads/image/20210420/10/globel-valve2.jpg');
+}
+
+.product-panel--high-pressure {
+    background-image: url('../img/reference_high_pressure.webp'),
+        url('https://rainbow.ae/images/gallery/pumps-1617094961.jpg');
+}
+
+.product-panel--general {
+    background-image: url('../img/reference_general.webp'),
+        url('https://www.rivcut.com/images/news/industrial-pump-valve-machining-capacity-1.png');
+}
+
+.product-panel__content {
+    width: 100%;
+    margin-top: clamp(205px, 16.15vw, 310px);
+    padding-inline: clamp(24px, 3.65vw, 70px);
+}
+
+.product-panel h2 {
+    font-size: clamp(21px, 1.7vw, 33px);
+    font-weight: 740;
+    line-height: 1.25;
+    word-break: keep-all;
+}
+
+.product-panel p {
+    min-height: 3.2em;
+    margin-top: 9px;
+    font-size: clamp(12px, .96vw, 18px);
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.product-panel__detail {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: clamp(34px, 2.6vw, 50px);
+    background: transparent;
+    color: #fff;
+    font-size: clamp(12px, .94vw, 18px);
+    font-weight: 600;
+}
+
+.product-panel__detail span {
+    display: grid;
+    place-items: center;
+    width: clamp(27px, 2.1vw, 40px);
+    height: clamp(27px, 2.1vw, 40px);
+    border-radius: 50%;
+    background: #e9edef;
+    color: #4e5964;
+}
+
+.product-panel__actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 22px;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity .25s, transform .25s;
+}
+
+.product-panel:hover .product-panel__actions,
+.product-panel:focus-within .product-panel__actions {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.product-panel__actions button {
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .14);
+    color: #fff;
+    font-size: clamp(11px, .73vw, 14px);
+    font-weight: 500;
+}
+
+.product-panel button.is-clicked {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   Responsive layouts
+   ========================================= */
+@media (max-width: 1100px) {
+    .site-header {
+        height: 76px;
+    }
+
+    .site-nav {
+        gap: 15px;
+    }
+
+    .site-nav button {
+        font-size: 13px;
+    }
+
+    .product-panel__content {
+        padding-inline: 22px;
+    }
+}
+
+@media (max-width: 760px) {
+    .site-header {
+        height: 66px;
+        padding: 0 20px;
+    }
+
+    .site-nav {
+        position: absolute;
+        top: 66px;
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        background: #161519;
+    }
+
+    .site-header.menu-open .site-nav {
+        display: flex;
+    }
+
+    .site-nav button {
+        text-align: left;
+        font-size: 16px;
+    }
+
+    .site-lang {
+        font-size: 12px;
+    }
+
+    .steel-service__inner {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: min(calc(100% - 40px), 520px);
+        padding-block: 58px;
+    }
+
+    .steel-service__text h2 {
+        font-size: 34px;
+    }
+
+    .steel-service__text p {
+        font-size: 13px;
+    }
+
+    .steel-service__image {
+        max-height: 240px;
+    }
+
+    .steel-service--alloy .steel-service__image {
+        order: 2;
+    }
+
+    .company-achievements {
+        min-height: 500px;
+    }
+
+    .company-achievements__stats {
+        gap: 10px;
+        margin-top: 68px;
+    }
+
+    .company-achievements__stats dd {
+        font-size: clamp(23px, 6vw, 38px);
+    }
+
+    .company-achievements__stats dt {
+        font-size: 11px;
+    }
+
+    .product-showcase {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-panel {
+        min-height: 450px;
+    }
+
+    .product-panel__content {
+        margin-top: 150px;
+        padding-inline: 20px;
+    }
+
+    .product-panel__actions {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 420px) {
+    .product-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .product-panel {
+        min-height: 430px;
+    }
+
+    .product-panel__content {
+        margin-top: 160px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .site-header,
+    .product-panel::before,
+    .product-panel__actions {
+        transition: none;
+    }
+}
