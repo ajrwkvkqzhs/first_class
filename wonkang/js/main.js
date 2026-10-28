@@ -58,11 +58,13 @@ document.querySelectorAll('img[data-fallback]').forEach(img => {
     }
 });
 
-// GNB: 제공받은 Figma 화면처럼 3열 메가 메뉴를 표시합니다.
-// 메인/하위 메뉴는 시안 확인용이며 다른 페이지로 이동하지 않습니다.
+// GNB: 기본 상태는 닫힘, 데스크톱은 주 메뉴 호버/키보드 포커스 중 열림.
+// 모바일에서는 메뉴 버튼으로 열고 닫습니다. 하위 메뉴는 시안 확인용입니다.
 const siteHeader = document.querySelector('.site-header');
-const siteNavButtons = Array.from(siteHeader.querySelectorAll('.site-nav__item'));
-const submenuButtons = Array.from(siteHeader.querySelectorAll('.mega-menu__column button'));
+const siteNav = siteHeader.querySelector('.site-nav');
+const siteNavButtons = Array.from(siteNav.querySelectorAll('.site-nav__item'));
+const megaMenu = siteHeader.querySelector('.mega-menu');
+const submenuButtons = Array.from(megaMenu.querySelectorAll('button'));
 const menuButton = siteHeader.querySelector('.menu-toggle');
 const siteLangButton = siteHeader.querySelector('.site-lang');
 const compactNavigation = window.matchMedia('(max-width: 850px)');
@@ -83,48 +85,59 @@ function flashNavButton(button) {
     window.setTimeout(() => button.classList.remove('nav-pressed'), 220);
 }
 
+// 데스크톱: 메뉴 글자 위에 마우스가 올라오면 전체 하위 메뉴 표시.
+siteNav.addEventListener('mouseenter', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(true);
+});
+
+// 헤더 전체를 벗어나면 하위 메뉴 닫기.
+// 하위 메뉴로 커서를 옮기는 동안에는 열린 상태가 유지됩니다.
+siteHeader.addEventListener('mouseleave', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(false);
+});
+
+// 로고 또는 언어 선택으로 이동하면 메뉴를 닫습니다.
+siteHeader.querySelector('.site-logo').addEventListener('mouseenter', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(false);
+});
+siteHeader.querySelector('.site-header-right').addEventListener('mouseenter', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(false);
+});
+
+// 클릭은 페이지 전환 없이 피드백만 표시합니다.
 siteNavButtons.forEach(button => {
     button.addEventListener('click', () => {
         flashNavButton(button);
-        setMegaMenuOpen(!siteHeader.classList.contains('mega-open'));
+        if (compactNavigation.matches) setMegaMenuOpen(true);
     });
 });
-
 submenuButtons.forEach(button => {
     button.addEventListener('click', () => flashNavButton(button));
 });
-
 siteLangButton.addEventListener('click', () => flashNavButton(siteLangButton));
+
+// 키보드 조작 시에도 열린 메뉴에 접근할 수 있도록 처리합니다.
+siteHeader.addEventListener('focusin', event => {
+    if (compactNavigation.matches) return;
+    if (siteNav.contains(event.target) || megaMenu.contains(event.target)) {
+        setMegaMenuOpen(true);
+    }
+});
+siteHeader.addEventListener('focusout', event => {
+    if (compactNavigation.matches) return;
+    const next = event.relatedTarget;
+    if (!next || (!siteNav.contains(next) && !megaMenu.contains(next))) {
+        setMegaMenuOpen(false);
+    }
+});
 
 menuButton.addEventListener('click', () => {
     setMegaMenuOpen(!siteHeader.classList.contains('mega-open'));
 });
 
-siteHeader.addEventListener('mouseenter', () => {
-    if (!compactNavigation.matches) setMegaMenuOpen(true);
-});
-
-siteHeader.addEventListener('mouseleave', () => {
-    if (!compactNavigation.matches) setMegaMenuOpen(false);
-});
-
-siteHeader.addEventListener('focusin', () => {
-    if (!compactNavigation.matches) setMegaMenuOpen(true);
-});
-
-siteHeader.addEventListener('focusout', event => {
-    if (!compactNavigation.matches && !siteHeader.contains(event.relatedTarget)) {
-        setMegaMenuOpen(false);
-    }
-});
-
-function syncNavigationBreakpoint() {
-    // 데스크톱은 시안에 표시된 메가 메뉴를 최초에 펼쳐 둡니다.
-    setMegaMenuOpen(!compactNavigation.matches);
-}
-
-compactNavigation.addEventListener('change', syncNavigationBreakpoint);
-syncNavigationBreakpoint();
+// 화면 크기가 바뀌어도 처음부터 메뉴를 펼쳐 놓지 않습니다.
+compactNavigation.addEventListener('change', () => setMegaMenuOpen(false));
+setMegaMenuOpen(false);
 
 // 대표 제품의 상세 페이지가 구현되기 전까지 클릭 효과만 표시합니다.
 document.querySelectorAll('.product-panel button').forEach(button => {
