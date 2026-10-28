@@ -87,27 +87,95 @@ document.addEventListener('scroll', () => {
     siteHeader.classList.toggle('is-scrolled', window.scrollY > 30);
 }, { passive: true });
 
-// 스크롤 카드: Figma의 Steel Casting → Alloy Steel → Stainless Steel 프레임
-// 레이아웃을 바꾸는 휠 이벤트 대신 CSS sticky로 자연스러운 카드 겹침을 구현합니다.
+// Figma에서 분리한 세 개의 사업 프레임을 하나의 세로 카드 슬라이더로 구현합니다.
+// 스크롤한 양에 따라 다음 카드가 아래에서 올라와 이전 카드를 덮습니다.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const supportsObservation = 'IntersectionObserver' in window;
-const steelCards = document.querySelectorAll('.steel-services .steel-service');
+const cardStack = document.querySelector('.card-stack');
+const steelCards = cardStack ? Array.from(cardStack.querySelectorAll('.steel-service')) : [];
+const cardNavButtons = cardStack ? Array.from(cardStack.querySelectorAll('.card-stack__nav')) : [];
+const cardProgressBar = cardStack?.querySelector('.card-stack__progress-bar');
+const cardMotionQuery = window.matchMedia('(min-width: 761px) and (prefers-reduced-motion: no-preference)');
+let cardFramePending = false;
 
-if (!reducedMotion && supportsObservation && steelCards.length) {
-    document.documentElement.classList.add('scroll-effects-enabled');
+function drawCardStack() {
+    cardFramePending = false;
 
-    const cardObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -5% 0px'
+    if (!cardStack || !cardMotionQuery.matches || steelCards.length < 2) return;
+
+    const scrollDistance = Math.max(cardStack.offsetHeight - window.innerHeight, 1);
+    const scrolled = Math.max(0, Math.min(-cardStack.getBoundingClientRect().top, scrollDistance));
+    const progress = scrolled / scrollDistance * (steelCards.length - 1);
+    const activeIndex = Math.round(progress);
+
+    steelCards.forEach((card, index) => {
+        const distance = index - progress;
+        const offsetY = Math.max(0, Math.min(distance, 1)) * 115;
+        const scale = 1 - Math.min(Math.max(-distance, 0) * .055, .11);
+
+        card.style.setProperty('--stack-y', offsetY.toFixed(3) + '%');
+        card.style.setProperty('--stack-scale', scale.toFixed(4));
+        card.style.zIndex = String(index + 1);
+        card.classList.toggle('is-current', index === activeIndex);
     });
 
-    steelCards.forEach(card => cardObserver.observe(card));
+    cardNavButtons.forEach((button, index) => {
+        const current = index === activeIndex;
+        button.classList.toggle('is-current', current);
+        if (current) button.setAttribute('aria-current', 'true');
+        else button.removeAttribute('aria-current');
+    });
+
+    if (cardProgressBar) {
+        cardProgressBar.style.width =
+            (scrolled / scrollDistance * 100).toFixed(2) + '%';
+    }
+}
+
+function scheduleCardDraw() {
+    if (cardFramePending) return;
+    cardFramePending = true;
+    window.requestAnimationFrame(drawCardStack);
+}
+
+function configureCardStack() {
+    if (!cardStack) return;
+
+    const enabled = cardMotionQuery.matches && steelCards.length > 1;
+    cardStack.classList.toggle('card-stack--active', enabled);
+
+    if (!enabled) {
+        steelCards.forEach(card => {
+            card.style.removeProperty('--stack-y');
+            card.style.removeProperty('--stack-scale');
+            card.style.removeProperty('z-index');
+        });
+        return;
+    }
+
+    scheduleCardDraw();
+}
+
+if (cardStack) {
+    cardNavButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!cardMotionQuery.matches) return;
+
+            const index = Number(button.dataset.cardIndex);
+            const distance = Math.max(cardStack.offsetHeight - window.innerHeight, 0);
+            const top = window.scrollY + cardStack.getBoundingClientRect().top;
+
+            window.scrollTo({
+                top: top + distance * index / (steelCards.length - 1),
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    window.addEventListener('scroll', scheduleCardDraw, { passive: true });
+    window.addEventListener('resize', configureCardStack, { passive: true });
+    cardMotionQuery.addEventListener('change', configureCardStack);
+    configureCardStack();
 }
 
 // 실적 숫자: 섹션에 진입하면 위로 드러나고 각 자리 숫자가
