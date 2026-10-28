@@ -87,95 +87,62 @@ document.addEventListener('scroll', () => {
     siteHeader.classList.toggle('is-scrolled', window.scrollY > 30);
 }, { passive: true });
 
-// Figma에서 분리한 세 개의 사업 프레임을 하나의 세로 카드 슬라이더로 구현합니다.
-// 스크롤한 양에 따라 다음 카드가 아래에서 올라와 이전 카드를 덮습니다.
+// 카드 겹침은 CSS position: sticky가 담당합니다.
+// JavaScript는 현재 카드 표시, 진행률, 번호 버튼 이동만 처리합니다.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const supportsObservation = 'IntersectionObserver' in window;
 const cardStack = document.querySelector('.card-stack');
 const steelCards = cardStack ? Array.from(cardStack.querySelectorAll('.steel-service')) : [];
 const cardNavButtons = cardStack ? Array.from(cardStack.querySelectorAll('.card-stack__nav')) : [];
 const cardProgressBar = cardStack?.querySelector('.card-stack__progress-bar');
-const cardMotionQuery = window.matchMedia('(min-width: 761px) and (prefers-reduced-motion: no-preference)');
 let cardFramePending = false;
 
-function drawCardStack() {
+function updateCardNavigation() {
     cardFramePending = false;
+    if (!cardStack || steelCards.length === 0) return;
 
-    if (!cardStack || !cardMotionQuery.matches || steelCards.length < 2) return;
-
-    const scrollDistance = Math.max(cardStack.offsetHeight - window.innerHeight, 1);
-    const scrolled = Math.max(0, Math.min(-cardStack.getBoundingClientRect().top, scrollDistance));
-    const progress = scrolled / scrollDistance * (steelCards.length - 1);
-    const activeIndex = Math.round(progress);
-
-    steelCards.forEach((card, index) => {
-        const distance = index - progress;
-        const offsetY = Math.max(0, Math.min(distance, 1)) * 115;
-        const scale = 1 - Math.min(Math.max(-distance, 0) * .055, .11);
-
-        card.style.setProperty('--stack-y', offsetY.toFixed(3) + '%');
-        card.style.setProperty('--stack-scale', scale.toFixed(4));
-        card.style.zIndex = String(index + 1);
-        card.classList.toggle('is-current', index === activeIndex);
-    });
+    const sectionTop = window.scrollY + cardStack.getBoundingClientRect().top;
+    const sectionHeight = cardStack.offsetHeight;
+    const span = Math.max(sectionHeight - window.innerHeight, 1);
+    const travelled = Math.max(0, Math.min(window.scrollY - sectionTop, span));
+    const fraction = travelled / span;
+    const activeIndex = Math.min(steelCards.length - 1, Math.max(0, Math.floor(
+        (window.scrollY - sectionTop + window.innerHeight * .35) /
+        Math.max(sectionHeight / steelCards.length, 1)
+    )));
 
     cardNavButtons.forEach((button, index) => {
-        const current = index === activeIndex;
-        button.classList.toggle('is-current', current);
-        if (current) button.setAttribute('aria-current', 'true');
+        const active = index === activeIndex;
+        button.classList.toggle('is-current', active);
+        if (active) button.setAttribute('aria-current', 'true');
         else button.removeAttribute('aria-current');
     });
 
-    if (cardProgressBar) {
-        cardProgressBar.style.width =
-            (scrolled / scrollDistance * 100).toFixed(2) + '%';
-    }
+    if (cardProgressBar) cardProgressBar.style.width = (fraction * 100).toFixed(2) + '%';
 }
 
-function scheduleCardDraw() {
+function requestCardNavigationUpdate() {
     if (cardFramePending) return;
     cardFramePending = true;
-    window.requestAnimationFrame(drawCardStack);
+    window.requestAnimationFrame(updateCardNavigation);
 }
 
-function configureCardStack() {
-    if (!cardStack) return;
-
-    const enabled = cardMotionQuery.matches && steelCards.length > 1;
-    cardStack.classList.toggle('card-stack--active', enabled);
-
-    if (!enabled) {
-        steelCards.forEach(card => {
-            card.style.removeProperty('--stack-y');
-            card.style.removeProperty('--stack-scale');
-            card.style.removeProperty('z-index');
-        });
-        return;
-    }
-
-    scheduleCardDraw();
-}
-
-if (cardStack) {
+if (cardStack && steelCards.length) {
     cardNavButtons.forEach(button => {
         button.addEventListener('click', () => {
-            if (!cardMotionQuery.matches) return;
-
             const index = Number(button.dataset.cardIndex);
-            const distance = Math.max(cardStack.offsetHeight - window.innerHeight, 0);
-            const top = window.scrollY + cardStack.getBoundingClientRect().top;
-
+            const sectionTop = window.scrollY + cardStack.getBoundingClientRect().top;
+            const cardHeight = cardStack.offsetHeight / steelCards.length;
             window.scrollTo({
-                top: top + distance * index / (steelCards.length - 1),
-                behavior: 'smooth'
+                top: sectionTop + cardHeight * index,
+                behavior: reducedMotion ? 'auto' : 'smooth'
             });
         });
     });
 
-    window.addEventListener('scroll', scheduleCardDraw, { passive: true });
-    window.addEventListener('resize', configureCardStack, { passive: true });
-    cardMotionQuery.addEventListener('change', configureCardStack);
-    configureCardStack();
+    window.addEventListener('scroll', requestCardNavigationUpdate, { passive: true });
+    window.addEventListener('resize', requestCardNavigationUpdate, { passive: true });
+    requestCardNavigationUpdate();
 }
 
 // 실적 숫자: 섹션에 진입하면 위로 드러나고 각 자리 숫자가
