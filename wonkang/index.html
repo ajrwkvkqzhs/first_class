@@ -3,19 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>원강금속리뉴얼포트폴리오</title>
+    <title>원강금속 | 리뉴얼 포트폴리오</title>
+    <link rel="stylesheet" href="../font/default/css/pretendardvariable.css">
     <link rel="stylesheet" href="../CSS/default.css">
     <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="../npm/swiper/swiper-bundle.min.js"></script>
-
-    
+    <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <div id="wrap">
-        <h3>제목공간</h3>
+        <header class="site-header">
+            <a class="site-logo" href="#top" aria-label="원강금속 메인으로">
+                <img src="img/logo_w.png" alt="원강금속">
+            </a>
+
+            <nav class="site-nav" id="main-navigation" aria-label="주 메뉴">
+                <button type="button">회사소개</button>
+                <button type="button">제품소개</button>
+                <button type="button">생산설비</button>
+                <button type="button">품질인증</button>
+                <button type="button">고객지원</button>
+            </nav>
+
+            <div class="site-header-right">
+                <span class="site-lang">KOR <span aria-hidden="true">⌄</span></span>
+                <button class="menu-toggle" type="button" aria-label="전체 메뉴" aria-controls="main-navigation" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
         <main>
-            <div class="hero-sec">
+            <section class="hero-sec" id="top">
                 <!-- Slider main container -->
                 <div class="swiper">
                     <!-- Additional required wrapper -->
@@ -54,53 +76,133 @@
                         <div class="swiper-scrollbar" aria-label="슬라이드 진행 위치"></div>
                     </div>
                 </div>
-            </div>
-        </main>
-        <footer>&copy;</footer>
-    </div>
-    <script>
-        // 페이지네이션 항목은 위의 swiper-slide 3개와 같은 순서로 유지합니다.
-        const heroPaginationItems = [
-            {
-                image: 'img/wonkang_hero_pc.png',
-                title: '금속의 가치를 만드는 정밀 주조 기술'
-            },
-            {
-                image: 'img/wonkang_hero2_pc.jpg',
-                title: '첨단 기술로 완성하는 정밀 품질 관리'
-            },
-            {
-                image: 'img/wonkang_hero.jpg',
-                title: '산업의 미래를 연결하는 주조 솔루션'
-            }
-        ];
+            </section>
 
-        const swiper = new Swiper('.hero-sec > .swiper', {
-            direction: 'horizontal',
-            loop: true,
-            keyboard: { enabled: true },
-            pagination: {
-                el: '.hero-sec .swiper-pagination',
-                clickable: true,
-                renderBullet(index, className) {
-                    const item = heroPaginationItems[index];
-                    const number = String(index + 1).padStart(2, '0');
-                    return `<button class="${className}" type="button" aria-label="${item.title} 슬라이드로 이동">
-                        <img class="hero-thumb" src="${item.image}" alt="" loading="lazy">
-                        <span class="hero-thumb-title">${item.title}</span>
-                        <span class="hero-pagination-index">${number}</span>
-                    </button>`;
-                }
-            },
-            // Figma에서는 별도의 화살표 버튼이 보이지 않아 표시하지 않습니다.
-            // 상단의 얇은 선을 스크롤바로 사용하고 드래그는 유지합니다.
-            scrollbar: {
-                el: '.hero-sec .swiper-scrollbar',
-                draggable: true,
-                snapOnRelease: true,
-                hide: false
-            }
-        });
-    </script>
+            <!-- 주조 사업 영역: 3개 프레임을 모두 유지 -->
+            <section class="steel-services" aria-label="주요 사업 분야">
+                <article class="steel-service steel-service--casting">
+                    <div class="steel-service__inner">
+                        <div class="steel-service__text">
+                            <span class="steel-service__label">주조사업</span>
+                            <h2>Steel Casting</h2>
+                            <p>
+                                견고한 품질로 산업의 기반을 만드는 주강 주조 기술<br>
+                                정밀한 생산 공정으로 완성하는 산업용 금속 제품
+                            </p>
+                        </div>
+                        <img class="steel-service__image" src="img/reference_casting.webp" data-fallback="https://www.amsspecialtysteel.com/uploads/photos/slides/46/stock-6.jpg" alt="고온의 쇳물을 주조하는 현장" loading="lazy">
+                    </div>
+                </article>
+
+                <article class="steel-service steel-service--alloy">
+                    <div class="steel-service__inner">
+                        <img class="steel-service__image" src="img/reference_alloy.webp" data-fallback="https://www.rivcut.com/images/news/industrial-pump-valve-machining-capacity-1.png" alt="정밀하게 가공한 산업용 합금강 부품" loading="lazy">
+                        <div class="steel-service__text">
+                            <span class="steel-service__label">특수합금강</span>
+                            <h2>Alloy Steel</h2>
+                            <p>
+                                높은 강도와 내구성이 요구되는 환경을 위한 특수합금강<br>
+                                소재의 안정적인 주조 솔루션
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="steel-service steel-service--stainless">
+                    <div class="steel-service__inner">
+                        <div class="steel-service__text">
+                            <span class="steel-service__label">스테인리스 주강</span>
+                            <h2>Stainless Steel</h2>
+                            <p>
+                                내식성과 내구성을 갖춘 스테인리스 주강<br>
+                                다양한 산업 분야를 위한 금속 소재와 부품
+                            </p>
+                        </div>
+                        <img class="steel-service__image" src="img/reference_stainless.webp" data-fallback="https://imagedelivery.net/M39jKcOLpHNql-N08QXzJg/9b289e7d-1a83-41d7-1497-2b1fd5190900/public" alt="정밀하게 가공한 스테인리스 부품" loading="lazy">
+                    </div>
+                </article>
+            </section>
+
+            <!-- 기업 실적 영역 -->
+            <section class="company-achievements" aria-labelledby="achievements-title">
+                <div class="company-achievements__content">
+                    <h2 id="achievements-title">축적된 기술로 만드는</h2>
+                    <dl class="company-achievements__stats">
+                        <div>
+                            <dt>설립연도</dt>
+                            <dd>1988</dd>
+                        </div>
+                        <div>
+                            <dt>연간 매출액</dt>
+                            <dd>359.9억</dd>
+                        </div>
+                        <div>
+                            <dt>수출 중량</dt>
+                            <dd>1,000t</dd>
+                        </div>
+                    </dl>
+                </div>
+            </section>
+
+            <!-- 대표 제품: 4개 카드를 하나의 섹션으로 유지 -->
+            <section class="product-showcase" aria-label="대표 제품">
+                <article class="product-panel product-panel--machinery">
+                    <div class="product-panel__content">
+                        <h2>산업기계부품</h2>
+                        <p>최신 설비와 고도의 기술력이 집약된<br>산업기계부품을 생산합니다.</p>
+                        <button class="product-panel__detail" type="button" aria-label="산업기계부품 자세히 보기">
+                            자세히 보기 <span aria-hidden="true">➜</span>
+                        </button>
+                        <div class="product-panel__actions">
+                            <button type="button">고객 문의</button>
+                            <button type="button">카탈로그</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-panel product-panel--valve">
+                    <div class="product-panel__content">
+                        <h2>밸브부품</h2>
+                        <p>철저한 고객 중심 경영으로 초대형 고급<br>선주재 수요 고객의 가치를 높여 갑니다.</p>
+                        <button class="product-panel__detail" type="button" aria-label="밸브부품 자세히 보기">
+                            자세히 보기 <span aria-hidden="true">➜</span>
+                        </button>
+                        <div class="product-panel__actions">
+                            <button type="button">고객 문의</button>
+                            <button type="button">카탈로그</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-panel product-panel--high-pressure">
+                    <div class="product-panel__content">
+                        <h2>고압펌프부품</h2>
+                        <p>국내 최초 CASK 완제품을 미국 수출에<br>성공하여 글로벌 시장을 공략합니다.</p>
+                        <button class="product-panel__detail" type="button" aria-label="고압펌프부품 자세히 보기">
+                            자세히 보기 <span aria-hidden="true">➜</span>
+                        </button>
+                        <div class="product-panel__actions">
+                            <button type="button">고객 문의</button>
+                            <button type="button">카탈로그</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-panel product-panel--general">
+                    <div class="product-panel__content">
+                        <h2>일반펌프부품</h2>
+                        <p>특수강을 활용한 다양한 제품 서비스를<br>제공합니다.</p>
+                        <button class="product-panel__detail" type="button" aria-label="일반펌프부품 자세히 보기">
+                            자세히 보기 <span aria-hidden="true">➜</span>
+                        </button>
+                        <div class="product-panel__actions">
+                            <button type="button">고객 문의</button>
+                            <button type="button">카탈로그</button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
