@@ -883,3 +883,155 @@ html {
         transition: none;
     }
 }
+
+
+/* =========================================
+   Card stack and animated metrics
+   ========================================= */
+
+/* 각 Figma 프레임이 스크롤에 따라 다음 카드에 덮이는 세로 카드 스택 */
+.steel-services.card-stack {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+}
+
+.card-stack > .steel-service {
+    position: sticky;
+    z-index: 1;
+    top: 90px;
+    box-shadow: 0 -10px 30px rgba(13, 28, 51, .10);
+}
+
+.card-stack > .steel-service:nth-child(2) {
+    z-index: 2;
+}
+
+.card-stack > .steel-service:nth-child(3) {
+    z-index: 3;
+}
+
+/* JS 동작 전에는 원본 콘텐츠를 그대로 표시합니다. */
+.scroll-effects-enabled .steel-service__inner {
+    transition:
+        opacity .75s ease,
+        transform .9s cubic-bezier(.18, .7, .2, 1);
+}
+
+.scroll-effects-enabled .steel-service:not(.is-visible) .steel-service__inner {
+    opacity: 0;
+    transform: translateY(64px);
+}
+
+.scroll-effects-enabled .steel-service.is-visible .steel-service__inner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 실적 섹션 진입 전에는 제목과 숫자를 가리고, 진입 시 순서대로 드러냅니다. */
+.achievements--animated .company-achievements__content > h2,
+.achievements--animated .company-achievements__stats > div {
+    opacity: 0;
+    transform: translateY(46px);
+    transition:
+        opacity .8s ease,
+        transform .85s cubic-bezier(.18, .7, .2, 1);
+}
+
+.achievements--animated.achievements--visible .company-achievements__content > h2,
+.achievements--animated.achievements--visible .company-achievements__stats > div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.achievements--animated .company-achievements__stats > div:nth-child(1) {
+    transition-delay: 150ms;
+}
+
+.achievements--animated .company-achievements__stats > div:nth-child(2) {
+    transition-delay: 300ms;
+}
+
+.achievements--animated .company-achievements__stats > div:nth-child(3) {
+    transition-delay: 450ms;
+}
+
+/* 카운터는 소수점, 천 단위 쉼표, 억/t 단위를 그대로 유지합니다. */
+.stat-value {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+}
+
+.stat-roller {
+    display: inline-flex;
+    align-items: flex-end;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.stat-digit {
+    display: inline-block;
+    position: relative;
+    width: .63em;
+    height: 1em;
+    overflow: hidden;
+    line-height: 1;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.stat-digit__strip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+.stat-digit__step {
+    display: block;
+    flex: 0 0 1em;
+    width: 100%;
+    height: 1em;
+    line-height: 1;
+}
+
+.stat-static {
+    display: inline-block;
+    line-height: 1;
+}
+
+@media (max-width: 1100px) {
+    .card-stack > .steel-service {
+        top: 76px;
+    }
+}
+
+@media (max-width: 760px) {
+    /* 모바일은 세로로 긴 카드가 화면을 가리지 않도록 일반 스크롤로 전환 */
+    .card-stack > .steel-service {
+        position: relative;
+        top: auto;
+        box-shadow: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-stack > .steel-service {
+        position: relative;
+        top: auto;
+    }
+
+    .scroll-effects-enabled .steel-service__inner,
+    .achievements--animated .company-achievements__content > h2,
+    .achievements--animated .company-achievements__stats > div {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .stat-digit__strip {
+        transition: none !important;
+    }
+}
