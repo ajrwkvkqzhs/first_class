@@ -1,10 +1,19 @@
-
+:root {
+    --blue: #0088FF;
+    --disabled-blue: #CCE6FF;
+    --white: #FEFEFE;
+    --black: #000000;
+    --border: #D6C9BE;
+    --placeholder: #D8CFC7;
+    --input-focus: #512314;
+    --error: #A64327;
+}
 html {
     font-size: 62.5%;
 }
 
 body {
-    font-family: "Pretendard Variable", sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     font-size: 1.6rem;
     color: var(--black);
     background-color: #f0f0f0;
