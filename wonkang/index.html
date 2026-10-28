@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원강금속리뉴얼포트폴리오</title>
+    <link rel="stylesheet" href="../CSS/default.css">
+    <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="../npm/swiper/swiper-bundle.min.js"></script>
+
+    
+</head>
+<body>
+    <div id="wrap">
+        <h3>제목공간</h3>
+        <main>
+            <div class="hero-sec">
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <img src="img/wonkang_hero_pc.png" alt="원강금속 금속 주조 공정" class="pc">
+                            <img src="img/wonkang_hero_mobile.jpg" alt="원강금속 금속 주조 공정" class="mo">
+                            <!-- Figma: 히어로 / Frame 22 / 메인 카피 -->
+                            <div class="hero-copy">
+                                <h1 class="hero-title">공정 수직 계열화로 완성된<br>원스톱 생산 솔루션</h1>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="img/wonkang_hero2_pc.jpg" alt="원강금속 정밀 품질 관리" class="pc">
+                            <img src="img/wonkang_hero2_mo.png" alt="원강금속 정밀 품질 관리" class="mo">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="img/wonkang_hero.jpg" alt="원강금속 산업용 주조 솔루션" class="pc">
+                            <img src="img/wonkang_hero.jpg" alt="원강금속 산업용 주조 솔루션" class="mo">
+                        </div>
+                    </div>
+                    <!-- Figma: 히어로 하단 / 썸네일 3개 + 구분선 + SOLUTION CTA -->
+                    <div class="swiper-controls">
+                        <div class="swiper-pagination" aria-label="히어로 슬라이드 선택"></div>
+                        <div class="hero-solution">
+                            <span class="hero-solution-label">• SOLUTION</span>
+                            <p class="hero-solution-description">
+                                축적된 주조 기술과 정밀한 생산 역량을 바탕으로,<br class="hero-solution-break">
+                                다양한 산업 환경과 고객의 요구에 대응하는 신뢰할 수 있는 금속 부품 솔루션을 제공합니다.
+                            </p>
+                            <a class="hero-solution-link" href="http://www.wonkangmetal.co.kr/" target="_blank" rel="noopener noreferrer">자세히 보기</a>
+                        </div>
+                        <div class="swiper-scrollbar" aria-label="슬라이드 진행 위치"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>&copy;</footer>
+    </div>
+    <script>
+        // 페이지네이션 항목은 위의 swiper-slide 3개와 같은 순서로 유지합니다.
+        const heroPaginationItems = [
+            {
+                image: 'img/wonkang_hero_pc.png',
+                title: '금속의 가치를 만드는 정밀 주조 기술'
+            },
+            {
+                image: 'img/wonkang_hero2_pc.jpg',
+                title: '첨단 기술로 완성하는 정밀 품질 관리'
+            },
+            {
+                image: 'img/wonkang_hero.jpg',
+                title: '산업의 미래를 연결하는 주조 솔루션'
+            }
+        ];
+
+        const swiper = new Swiper('.hero-sec > .swiper', {
+            direction: 'horizontal',
+            loop: true,
+            keyboard: { enabled: true },
+            pagination: {
+                el: '.hero-sec .swiper-pagination',
+                clickable: true,
+                renderBullet(index, className) {
+                    const item = heroPaginationItems[index];
+                    const number = String(index + 1).padStart(2, '0');
+                    return `<button class="${className}" type="button" aria-label="${item.title} 슬라이드로 이동">
+                        <img class="hero-thumb" src="${item.image}" alt="" loading="lazy">
+                        <span class="hero-thumb-title">${item.title}</span>
+                        <span class="hero-pagination-index">${number}</span>
+                    </button>`;
+                }
+            },
+            // Figma에서는 별도의 화살표 버튼이 보이지 않아 표시하지 않습니다.
+            // 상단의 얇은 선을 스크롤바로 사용하고 드래그는 유지합니다.
+            scrollbar: {
+                el: '.hero-sec .swiper-scrollbar',
+                draggable: true,
+                snapOnRelease: true,
+                hide: false
+            }
+        });
+    </script>
+</body>
+</html>
