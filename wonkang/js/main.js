@@ -58,34 +58,78 @@ document.querySelectorAll('img[data-fallback]').forEach(img => {
     }
 });
 
-// GNB는 디자인 시연용으로 클릭 효과만 표시합니다.
-document.querySelectorAll('.site-nav button').forEach(button => {
+// GNB: 제공받은 Figma 화면처럼 3열 메가 메뉴를 표시합니다.
+// 메인/하위 메뉴는 시안 확인용이며 다른 페이지로 이동하지 않습니다.
+const siteHeader = document.querySelector('.site-header');
+const siteNavButtons = Array.from(siteHeader.querySelectorAll('.site-nav__item'));
+const submenuButtons = Array.from(siteHeader.querySelectorAll('.mega-menu__column button'));
+const menuButton = siteHeader.querySelector('.menu-toggle');
+const siteLangButton = siteHeader.querySelector('.site-lang');
+const compactNavigation = window.matchMedia('(max-width: 850px)');
+
+function setMegaMenuOpen(open) {
+    siteHeader.classList.toggle('mega-open', open);
+
+    siteNavButtons.forEach(button => {
+        button.setAttribute('aria-expanded', String(open));
+    });
+
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? '전체 메뉴 접기' : '전체 메뉴 펼치기');
+}
+
+function flashNavButton(button) {
+    button.classList.add('nav-pressed');
+    window.setTimeout(() => button.classList.remove('nav-pressed'), 220);
+}
+
+siteNavButtons.forEach(button => {
     button.addEventListener('click', () => {
-        button.classList.add('nav-pressed');
-        window.setTimeout(() => button.classList.remove('nav-pressed'), 220);
+        flashNavButton(button);
+        setMegaMenuOpen(!siteHeader.classList.contains('mega-open'));
     });
 });
+
+submenuButtons.forEach(button => {
+    button.addEventListener('click', () => flashNavButton(button));
+});
+
+siteLangButton.addEventListener('click', () => flashNavButton(siteLangButton));
+
+menuButton.addEventListener('click', () => {
+    setMegaMenuOpen(!siteHeader.classList.contains('mega-open'));
+});
+
+siteHeader.addEventListener('mouseenter', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(true);
+});
+
+siteHeader.addEventListener('mouseleave', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(false);
+});
+
+siteHeader.addEventListener('focusin', () => {
+    if (!compactNavigation.matches) setMegaMenuOpen(true);
+});
+
+siteHeader.addEventListener('focusout', event => {
+    if (!compactNavigation.matches && !siteHeader.contains(event.relatedTarget)) {
+        setMegaMenuOpen(false);
+    }
+});
+
+function syncNavigationBreakpoint() {
+    // 데스크톱은 시안에 표시된 메가 메뉴를 최초에 펼쳐 둡니다.
+    setMegaMenuOpen(!compactNavigation.matches);
+}
+
+compactNavigation.addEventListener('change', syncNavigationBreakpoint);
+syncNavigationBreakpoint();
 
 // 대표 제품의 상세 페이지가 구현되기 전까지 클릭 효과만 표시합니다.
 document.querySelectorAll('.product-panel button').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.add('is-clicked');
-        window.setTimeout(() => button.classList.remove('is-clicked'), 240);
-    });
+    button.addEventListener('click', () => flashNavButton(button));
 });
-
-const siteHeader = document.querySelector('.site-header');
-const menuButton = document.querySelector('.menu-toggle');
-
-menuButton.addEventListener('click', () => {
-    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!isOpen));
-    siteHeader.classList.toggle('menu-open', !isOpen);
-});
-
-document.addEventListener('scroll', () => {
-    siteHeader.classList.toggle('is-scrolled', window.scrollY > 30);
-}, { passive: true });
 
 // 카드 겹침은 CSS position: sticky가 담당합니다.
 // JavaScript는 현재 카드 표시, 진행률, 번호 버튼 이동만 처리합니다.
