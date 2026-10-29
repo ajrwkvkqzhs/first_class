@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>원강금속 | UI 개선판</title>
+        <meta
+            name="description"
+            content="주강, 특수합금강, 스테인리스 주강의 정밀 주조부터 가공과 품질 관리까지. 원강금속의 기술과 제품을 소개합니다."
+        />
+        <link rel="stylesheet" href="../font/default/css/notosanskr.css" />
+        <link rel="stylesheet" href="../CSS/default.css" />
+        <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="css/main.css?v=20261029-ui-baseline" />
+        <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
+        <script src="js/main.js?v=20261029-ui-baseline" defer></script>
+    </head>
+    <body>
+        <a class="skip-link" href="#main-content">본문 바로가기</a>
+        <div id="wrap">
+            <!-- 헤더: 주 메뉴와 하위 메뉴를 같은 그룹과 열에 배치합니다. -->
+            <header class="site-header" id="site-header">
+                <div class="site-header__inner">
+                    <a class="site-logo" href="#top" aria-label="원강금속 메인으로">
+                        <span class="site-logo__media">
+                            <img
+                                class="site-logo__light"
+                                src="../wonkang/img/figma/logo-white.png"
+                                width="300"
+                                height="39"
+                                alt="WONKANG 원강금속"
+                            />
+                            <img
+                                class="site-logo__dark"
+                                src="../wonkang/img/logo_black.png"
+                                alt=""
+                                aria-hidden="true"
+                            />
+                        </span>
+                    </a>
+                    <div class="site-header-right">
+                        <span class="site-lang" aria-label="현재 언어: 한국어">ko</span>
+                        <button
+                            class="menu-toggle"
+                            type="button"
+                            aria-label="전체 메뉴 펼치기"
+                            aria-controls="main-navigation"
+                            aria-expanded="false"
+                        >
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                    <nav class="site-nav" id="main-navigation" aria-label="주 메뉴">
+                        <ul class="site-nav__list">
+                            <li class="site-nav__group">
+                                <button
+                                    class="site-nav__item"
+                                    id="nav-company"
+                                    type="button"
+                                    aria-expanded="false"
+                                    aria-controls="submenu-company"
+                                >
+                                    회사소개
+                                </button>
+                                <ul class="site-nav__submenu" id="submenu-company" aria-labelledby="nav-company">
+                                    <li><a href="#company">회사개요</a></li>
+                                    <li><a href="#achievements-title">주요 실적</a></li>
+                                    <li><a href="#partners">비즈니스 파트너</a></li>
+                                    <li><a href="#certifications">주요 성과·인증</a></li>
+                                    <li><a href="#contact">오시는 길</a></li>
+                                </ul>
+                            </li>
+                            <li class="site-nav__group">
+                                <button
+                                    class="site-nav__item"
+                                    id="nav-factory"
+                                    type="button"
+                                    aria-expanded="false"
+                                    aria-controls="submenu-factory"
+                                >
+                                    공장
+                                </button>
+                                <ul class="site-nav__submenu" id="submenu-factory" aria-labelledby="nav-factory">
+                                    <li><a href="factory/locations.html">생산거점</a></li>
+                                    <li><a href="#factory">생산공정</a></li>
+                                    <li><a href="#process-quality">핵심기술</a></li>
+                                    <li><a href="#process-machining">생산설비</a></li>
+                                    <li><a href="#certifications">인증서 현황</a></li>
+                                </ul>
+                            </li>
+                            <li class="site-nav__group">
+                                <button
+                                    class="site-nav__item"
+                                    id="nav-products"
+                                    type="button"
+                                    aria-expanded="false"
+                                    aria-controls="submenu-products"
+                                >
+                                    제품소개
+                                </button>
+                                <ul class="site-nav__submenu" id="submenu-products" aria-labelledby="nav-products">
+                                    <li><a href="#product-general">일반 펌프부품</a></li>
+                                    <li><a href="#product-pressure">고압 펌프부품</a></li>
+                                    <li><a href="#product-valve">밸브부품</a></li>
+                                    <li><a href="#product-machinery">산업기계부품</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <main id="main-content" tabindex="-1">
+                <section class="hero-sec" id="top" aria-label="원강금속 생산 솔루션">
+                    <div class="swiper" role="region" aria-roledescription="캐러셀" aria-label="원강금속 주요 기술">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img
+                                    src="../wonkang/img/figma/hero-casting.png"
+                                    alt="금속을 녹여 주입하는 주조 현장"
+                                    width="1920"
+                                    height="1529"
+                                    fetchpriority="high"
+                                />
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="../wonkang/img/figma/hero-thumb-quality.png" alt="정밀 품질 관리 현장" />
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="../wonkang/img/figma/hero-thumb-solution.png" alt="산업용 주조 부품 솔루션" />
+                            </div>
+                        </div>
+                        <div class="hero-copy">
+                            <h1 class="hero-title">공정 수직 계열화로 완성된<br />원스톱 생산 솔루션</h1>
+                        </div>
+                        <!-- 피그마 20:91: 썸네일 3개와 SOLUTION -->
+                        <div class="swiper-controls">
+                            <div class="swiper-pagination" aria-label="히어로 슬라이드 선택"></div>
+                            <div class="hero-solution">
+                                <span class="hero-solution-label">• SOLUTION</span>
+                                <p class="hero-solution-description">
+                                    축적된 주조 기술과 정밀한 생산 역량을 바탕으로,<br class="hero-solution-break" />
+                                    다양한 산업 환경과 고객의 요구에 대응하는 신뢰할 수 있는 금속 부품 솔루션을
+                                    제공합니다.
+                                </p>
+                                <a class="hero-solution-link" href="#company">자세히 보기</a>
+                            </div>
+                            <div class="swiper-scrollbar" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3개 사업 프레임: 스크롤에 따라 다음 카드가 아래에서 겹쳐집니다. -->
+                <section id="company" class="steel-services card-stack" aria-label="주요 사업 분야">
+                    <h2 class="sr-only">주요 사업 분야</h2>
+                    <p class="sr-only">
+                        스크롤하거나 번호 버튼으로 주조사업, 특수합금강, 스테인리스 주강 카드를 확인할 수 있습니다.
+                    </p>
+                    <div class="card-stack__deck">
+                        <article class="steel-service steel-service--casting">
+                            <div class="steel-service__inner">
+                                <div class="steel-service__text">
+                                    <span class="steel-service__label">주조사업</span>
+                                    <h3 class="steel-service__title">Steel Casting</h3>
+                                    <p>
+                                        견고한 품질로 산업의 기반을 만드는 주강 주조 기술<br />
+                                        정밀한 생산 공정으로 완성하는 산업용 금속 제품
+                                    </p>
+                                </div>
+                                <img
+                                    class="steel-service__image"
+                                    src="../wonkang/img/figma/service-casting.png"
+                                    alt="고온의 쇳물을 주조하는 현장"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </article>
+
+                        <article class="steel-service steel-service--alloy">
+                            <div class="steel-service__inner">
+                                <img
+                                    class="steel-service__image"
+                                    src="../wonkang/img/figma/service-alloy.png"
+                                    alt="정밀하게 가공한 산업용 합금강 부품"
+                                    loading="lazy"
+                                />
+                                <div class="steel-service__text">
+                                    <span class="steel-service__label">특수합금강</span>
+                                    <h3 class="steel-service__title">Alloy Steel</h3>
+                                    <p>
+                                        높은 강도와 내구성이 요구되는 환경을 위한 특수합금강<br />
+                                        소재의 안정적인 주조 솔루션
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="steel-service steel-service--stainless">
+                            <div class="steel-service__inner">
+                                <div class="steel-service__text">
+                                    <span class="steel-service__label">스테인리스 주강</span>
+                                    <h3 class="steel-service__title">Stainless Steel</h3>
+                                    <p>
+                                        내식성과 내구성을 갖춘 스테인리스 주강<br />
+                                        다양한 산업 분야를 위한 금속 소재와 부품
+                                    </p>
+                                </div>
+                                <img
+                                    class="steel-service__image"
+                                    src="../wonkang/img/figma/service-stainless.png"
+                                    alt="정밀하게 가공한 스테인리스 부품"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </article>
+                    </div>
+                    <nav class="card-stack__navigation" aria-label="사업 카드 선택">
+                        <button
+                            class="card-stack__nav is-current"
+                            type="button"
+                            data-card-index="0"
+                            aria-current="true"
+                            aria-label="주조사업 카드로 이동"
+                        >
+                            01
+                        </button>
+                        <button
+                            class="card-stack__nav"
+                            type="button"
+                            data-card-index="1"
+                            aria-label="특수합금강 카드로 이동"
+                        >
+                            02
+                        </button>
+                        <button
+                            class="card-stack__nav"
+                            type="button"
+                            data-card-index="2"
+                            aria-label="스테인리스 주강 카드로 이동"
+                        >
+                            03
+                        </button>
+                    </nav>
+                </section>
+
+                <!-- 기업 실적 영역 -->
+                <section id="achievements" class="company-achievements" aria-labelledby="achievements-title">
+                    <div class="company-achievements__content">
+                        <h2 id="achievements-title">축적된 기술로 만드는</h2>
+                        <dl class="company-achievements__stats">
+                            <div>
+                                <dt>설립연도</dt>
+                                <dd class="stat-value" data-value="1988">1988</dd>
+                            </div>
+                            <div>
+                                <dt>연간 매출액</dt>
+                                <dd class="stat-value" data-value="359.9억">359.9억</dd>
+                            </div>
+                            <div>
+                                <dt>수출 중량</dt>
+                                <dd class="stat-value" data-value="1,000t">1,000t</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </section>
+
+                <!-- 피그마 188:673: 4분할 제품 안내 -->
+                <section class="product-showcase" id="products" aria-labelledby="products-title">
+                    <h2 class="sr-only" id="products-title">대표 제품</h2>
+                    <article
+                        class="product-panel product-panel--machinery"
+                        id="product-machinery"
+                        tabindex="0"
+                        aria-label="산업기계부품 제품 안내"
+                    >
+                        <img
+                            class="product-panel__image"
+                            src="../wonkang/img/figma/product-machinery.png"
+                            alt="산업기계부품"
+                            loading="lazy"
+                        />
+                        <div class="product-panel__content">
+                            <h3 class="product-panel__title">산업기계부품</h3>
+                            <p>
+                                <span>최신 설비와 고도의 기술력이 장인정신과</span
+                                ><span>만나 최고의 품질을 실현합니다.</span>
+                            </p>
+                            <div class="product-panel__reveal">
+                                <button
+                                    class="product-panel__detail"
+                                    type="button"
+                                    data-product="machinery"
+                                    aria-haspopup="dialog"
+                                    aria-label="산업기계부품 자세히 보기"
+                                >
+                                    자세히 보기
+                                    <span class="detail-icon" aria-hidden="true"
+                                        ><img src="../wonkang/img/figma/detail-circle.svg" alt="" /><img
+                                            class="detail-arrow"
+                                            src="../wonkang/img/figma/detail-arrow.svg"
+                                            alt=""
+                                    /></span>
+                                </button>
+                                <div class="product-panel__actions">
+                                    <a
+                                        href="mailto:jmlee@wonkangmetal.com?subject=%EC%82%B0%EC%97%85%EA%B8%B0%EA%B3%84%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98"
+                                        >고객 문의<img
+                                            src="../wonkang/img/figma/contact-icon.png"
+                                            width="32"
+                                            height="29"
+                                            alt=""
+                                    /></a>
+                                    <button
+                                        type="button"
+                                        data-info="catalog"
+                                        aria-haspopup="dialog"
+                                        aria-label="산업기계부품 카탈로그 요청"
+                                    >
+                                        카탈로그<img
+                                            src="../wonkang/img/figma/catalog-icon.png"
+                                            width="27"
+                                            height="32"
+                                            alt=""
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article
+                        class="product-panel product-panel--valve"
+                        id="product-valve"
+                        tabindex="0"
+                        aria-label="밸브부품 제품 안내"
+                    >
+                        <img
+                            class="product-panel__image"
+                            src="../wonkang/img/figma/product-valve.png"
+                            alt="밸브부품"
+                            loading="lazy"
+                        />
+                        <div class="product-panel__content">
+                            <h3 class="product-panel__title">밸브부품</h3>
+                            <p>
+                                <span>철저한 고객 중심 경영으로 초대형 고급</span
+                                ><span>단조재 수요 고객의 가치를 높여 갑니다.</span>
+                            </p>
+                            <div class="product-panel__reveal">
+                                <button
+                                    class="product-panel__detail"
+                                    type="button"
+                                    data-product="valve"
+                                    aria-haspopup="dialog"
+                                    aria-label="밸브부품 자세히 보기"
+                                >
+                                    자세히 보기
+                                    <span class="detail-icon" aria-hidden="true"
+                                        ><img src="../wonkang/img/figma/detail-circle.svg" alt="" /><img
+                                            class="detail-arrow"
+                                            src="../wonkang/img/figma/detail-arrow.svg"
+                                            alt=""
+                                    /></span>
+                                </button>
+                                <div class="product-panel__actions">
+                                    <a
+                                        href="mailto:jmlee@wonkangmetal.com?subject=%EB%B0%B8%EB%B8%8C%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98"
+                                        >고객 문의<img
+                                            src="../wonkang/img/figma/contact-icon.png"
+                                            width="32"
+                                            height="29"
+                                            alt=""
+                                    /></a>
+                                    <button
+                                        type="button"
+                                        data-info="catalog"
+                                        aria-haspopup="dialog"
+                                        aria-label="밸브부품 카탈로그 요청"
+                                    >
+                                        카탈로그<img
+                                            src="../wonkang/img/figma/catalog-icon.png"
+                                            width="27"
+                                            height="32"
+                                            alt=""
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article
+                        class="product-panel product-panel--pressure"
+                        id="product-pressure"
+                        tabindex="0"
+                        aria-label="고압펌프부품 제품 안내"
+                    >
+                        <img
+                            class="product-panel__image"
+                            src="../wonkang/img/figma/product-pressure.png"
+                            alt="고압펌프부품"
+                            loading="lazy"
+                        />
+                        <div class="product-panel__content">
+                            <h3 class="product-panel__title">고압펌프부품</h3>
+                            <p>
+                                <span>국내 최초 CASK 완제품을 미국 수출에</span
+                                ><span>성공하여 글로벌 시장을 공략합니다.</span>
+                            </p>
+                            <div class="product-panel__reveal">
+                                <button
+                                    class="product-panel__detail"
+                                    type="button"
+                                    data-product="pressure"
+                                    aria-haspopup="dialog"
+                                    aria-label="고압펌프부품 자세히 보기"
+                                >
+                                    자세히 보기
+                                    <span class="detail-icon" aria-hidden="true"
+                                        ><img src="../wonkang/img/figma/detail-circle.svg" alt="" /><img
+                                            class="detail-arrow"
+                                            src="../wonkang/img/figma/detail-arrow.svg"
+                                            alt=""
+                                    /></span>
+                                </button>
+                                <div class="product-panel__actions">
+                                    <a
+                                        href="mailto:jmlee@wonkangmetal.com?subject=%EA%B3%A0%EC%95%95%ED%8E%8C%ED%94%84%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98"
+                                        >고객 문의<img
+                                            src="../wonkang/img/figma/contact-icon.png"
+                                            width="32"
+                                            height="29"
+                                            alt=""
+                                    /></a>
+                                    <button
+                                        type="button"
+                                        data-info="catalog"
+                                        aria-haspopup="dialog"
+                                        aria-label="고압펌프부품 카탈로그 요청"
+                                    >
+                                        카탈로그<img
+                                            src="../wonkang/img/figma/catalog-icon.png"
+                                            width="27"
+                                            height="32"
+                                            alt=""
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article
+                        class="product-panel product-panel--general"
+                        id="product-general"
+                        tabindex="0"
+                        aria-label="일반펌프부품 제품 안내"
+                    >
+                        <img
+                            class="product-panel__image"
+                            src="../wonkang/img/figma/product-general.png"
+                            alt="일반펌프부품"
+                            loading="lazy"
+                        />
+                        <div class="product-panel__content">
+                            <h3 class="product-panel__title">일반펌프부품</h3>
+                            <p><span>특수강을 활용한 다양한 제품 서비스를</span><span>제공합니다.</span></p>
+                            <div class="product-panel__reveal">
+                                <button
+                                    class="product-panel__detail"
+                                    type="button"
+                                    data-product="general"
+                                    aria-haspopup="dialog"
+                                    aria-label="일반펌프부품 자세히 보기"
+                                >
+                                    자세히 보기
+                                    <span class="detail-icon" aria-hidden="true"
+                                        ><img src="../wonkang/img/figma/detail-circle.svg" alt="" /><img
+                                            class="detail-arrow"
+                                            src="../wonkang/img/figma/detail-arrow.svg"
+                                            alt=""
+                                    /></span>
+                                </button>
+                                <div class="product-panel__actions">
+                                    <a
+                                        href="mailto:jmlee@wonkangmetal.com?subject=%EC%9D%BC%EB%B0%98%ED%8E%8C%ED%94%84%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98"
+                                        >고객 문의<img
+                                            src="../wonkang/img/figma/contact-icon.png"
+                                            width="32"
+                                            height="29"
+                                            alt=""
+                                    /></a>
+                                    <button
+                                        type="button"
+                                        data-info="catalog"
+                                        aria-haspopup="dialog"
+                                        aria-label="일반펌프부품 카탈로그 요청"
+                                    >
+                                        카탈로그<img
+                                            src="../wonkang/img/figma/catalog-icon.png"
+                                            width="27"
+                                            height="32"
+                                            alt=""
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 일정한 세로 간격과 좌우 교차 배치, 스크롤하면 아래에서 위로 등장 -->
+                <section class="process-gallery" id="factory" aria-labelledby="process-title">
+                    <h2 id="process-title">Life to Metal.<br />Value to Technology.</h2>
+                    <div class="process-gallery__items">
+                        <figure class="process-item process-item--casting" id="process-casting">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-casting.png"
+                                    alt="고온의 용탕을 주입하는 주조 공정"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>STEEL CASTING</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--pattern" id="process-pattern">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-pattern.png"
+                                    alt="용해로와 주조 생산 현장"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>PATTERN MAKING</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--housing" id="process-housing">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-housing.png"
+                                    alt="정밀하게 주조된 하우징 부품"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>MOLTEN METAL REFINING</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--stainless" id="process-stainless">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-stainless.png"
+                                    alt="산업용 스테인리스 주조 부품"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>STAINLESS CASTING</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--machining" id="process-machining">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-machining.png"
+                                    alt="대형 정밀 가공 설비"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>PRECISION MACHINING</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--scanning" id="process-scanning">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-scanning.png"
+                                    alt="CNC 정밀 가공 설비"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>3D SCANNING</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--quality" id="process-quality">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-quality.png"
+                                    alt="3차원 측정 장비를 활용한 품질 검사"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>QUALITY CONTROL</figcaption>
+                        </figure>
+                        <figure class="process-item process-item--impeller" id="process-impeller">
+                            <div class="process-item__media">
+                                <img
+                                    src="../wonkang/img/figma/process-impeller.png"
+                                    alt="정밀 주조로 완성한 금속 임펠러"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption>WONKANG METAL</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <!-- 피그마 85:53: 특허증을 펼친 인증서 아코디언 -->
+                <section class="certifications" id="certifications" aria-labelledby="certifications-title">
+                    <h2 id="certifications-title">
+                        원강금속 주요 성과 • 인증 이력<br />기술로 증명한 신뢰의 기록입니다.
+                    </h2>
+                    <p class="sr-only" id="certificate-help">
+                        인증서를 선택해 펼치고, 다시 누르면 확대합니다. 방향키와 Home, End 키로도 선택할 수 있습니다.
+                    </p>
+                    <div
+                        class="certificate-list"
+                        role="group"
+                        aria-label="품질·특허·선급 인증서"
+                        aria-describedby="certificate-help"
+                    >
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="iso9001"
+                            aria-pressed="false"
+                            aria-label="ISO 9001 품질경영 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="ISO 9001 품질경영 — 선택 후 다시 누르면 확대"
+                        >
+                            <img
+                                src="../wonkang/img/figma/certificate-iso9001.png"
+                                alt="ISO 9001 품질경영 인증서"
+                                loading="lazy"
+                            />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="iso14001"
+                            aria-pressed="false"
+                            aria-label="ISO 14001 환경경영 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="ISO 14001 환경경영 — 선택 후 다시 누르면 확대"
+                        >
+                            <img
+                                src="../wonkang/img/figma/certificate-iso14001.png"
+                                alt="ISO 14001 환경경영 인증서"
+                                loading="lazy"
+                            />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="jis"
+                            aria-pressed="false"
+                            aria-label="JIS 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="JIS — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-jis.png" alt="JIS 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="ims"
+                            aria-pressed="false"
+                            aria-label="IMS 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="IMS — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-ims.png" alt="IMS 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="norsok"
+                            aria-pressed="false"
+                            aria-label="NORSOK 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="NORSOK — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-norsok.png" alt="NORSOK 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card is-active"
+                            data-certificate="patent"
+                            aria-pressed="true"
+                            aria-label="특허증 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="특허증 — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-patent.png" alt="특허증 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="abs"
+                            aria-pressed="false"
+                            aria-label="ABS 선급 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="ABS 선급 — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-abs.png" alt="ABS 선급 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="lr"
+                            aria-pressed="false"
+                            aria-label="LR 선급 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="LR 선급 — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-lr.png" alt="LR 선급 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="dnv"
+                            aria-pressed="false"
+                            aria-label="DNV 선급 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="DNV 선급 — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-dnv.png" alt="DNV 선급 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="bv"
+                            aria-pressed="false"
+                            aria-label="BV 선급 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="BV 선급 — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-bv.png" alt="BV 선급 인증서" loading="lazy" />
+                        </button>
+                        <button
+                            type="button"
+                            class="certificate-card"
+                            data-certificate="kr"
+                            aria-pressed="false"
+                            aria-label="KR 선급 인증서 선택 및 확대"
+                            aria-haspopup="dialog"
+                            title="KR 선급 — 선택 후 다시 누르면 확대"
+                        >
+                            <img src="../wonkang/img/figma/certificate-kr.png" alt="KR 선급 인증서" loading="lazy" />
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 피그마 184:55: 4열 3행 파트너 로고 -->
+                <section class="partners" id="partners" aria-labelledby="partners-title">
+                    <p class="partners__eyebrow">Partners</p>
+                    <h2 id="partners-title">
+                        원강금속은 기술과 신뢰를 바탕으로<br />세계의 파트너들과 함께 성장합니다.
+                    </h2>
+                    <ul class="partner-list">
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-torishima.png"
+                                alt="TORISHIMA"
+                                width="352"
+                                height="76"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-goulds.png"
+                                alt="GOULDS PUMPS"
+                                width="252"
+                                height="114"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-fukui.png"
+                                alt="FUKUI"
+                                width="184"
+                                height="121"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-hyosung.png"
+                                alt="HYOSUNG GOODSPRINGS"
+                                width="264"
+                                height="68"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-kubota.png"
+                                alt="Kubota"
+                                width="251"
+                                height="59"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-kobelco.png"
+                                alt="KOBELCO"
+                                width="240"
+                                height="58"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-hp-valves.png"
+                                alt="HP VALVES"
+                                width="246"
+                                height="113"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-ksb.png"
+                                alt="KSB"
+                                width="230"
+                                height="105"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-dmw.png"
+                                alt="DMW CORPORATION"
+                                width="292"
+                                height="56"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-flowserve.png"
+                                alt="FLOWSERVE"
+                                width="253"
+                                height="96"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-hyundai.png"
+                                alt="HYUNDAI HEAVY INDUSTRIES TURBOMACHINERY"
+                                width="287"
+                                height="32"
+                                loading="lazy"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src="../wonkang/img/figma/partner-mitsubishi.png"
+                                alt="MITSUBISHI HEAVY INDUSTRIES"
+                                width="282"
+                                height="56"
+                                loading="lazy"
+                            />
+                        </li>
+                    </ul>
+                </section>
+            </main>
+            <!-- 피그마 187:583: 곡선 배경과 원강금속 푸터 -->
+            <footer class="site-footer" id="contact" aria-label="사업장 및 연락처">
+                <div class="footer-panel">
+                    <a class="footer-brand" id="footer-brand" href="#top" aria-label="원강금속 맨 위로"
+                        ><img
+                            src="../wonkang/img/figma/footer-logo.png"
+                            alt="WONKANG 원강금속"
+                            width="258"
+                            height="34"
+                            loading="lazy"
+                    /></a>
+                    <a class="back-to-top" href="#top" aria-label="맨 위로 이동"
+                        ><img src="../wonkang/img/figma/top-arrow.svg" alt="" /><span>TOP</span></a
+                    >
+                    <div class="footer-main">
+                        <div class="footer-contacts">
+                            <div>
+                                <h2>본사</h2>
+                                <address>
+                                    <span>주소 : 충남 홍성군 갈산면 내포로 1607-56</span
+                                    ><span>전화 : <a href="tel:0416308000">041-630-8000</a></span
+                                    ><span>팩스 : 041-630-8099</span>
+                                </address>
+                            </div>
+                            <div>
+                                <h2>영업소</h2>
+                                <address>
+                                    <span>주소 : 인천 연수구 송도과학로56 송도BT센터 1613호</span
+                                    ><span>전화 : <a href="tel:0328111653">032-811-1653~5</a></span
+                                    ><span>팩스 : 032-811-1659</span>
+                                </address>
+                            </div>
+                            <div class="footer-email">
+                                <h2>메일</h2>
+                                <a href="mailto:jmlee@wonkangmetal.com">jmlee@wonkangmetal.com</a>
+                            </div>
+                        </div>
+                        <nav class="footer-navigation" aria-label="푸터 메뉴">
+                            <div>
+                                <h2>COMPANY</h2>
+                                <ul>
+                                    <li><a href="#company">회사개요</a></li>
+                                    <li><a href="company/ci.html">CI 소개</a></li>
+                                    <li><a href="#partners">비즈니스 파트너</a></li>
+                                    <li><a href="#contact">찾아오시는 길</a></li>
+                                    <li><a href="#achievements">주요 실적</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>FACTORY</h2>
+                                <ul>
+                                    <li><a href="#factory">생산공정</a></li>
+                                    <li><a href="#process-machining">생산설비</a></li>
+                                    <li><a href="#process-quality">핵심기술</a></li>
+                                    <li><a href="#certifications">인증서 현황</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>PRODUCT</h2>
+                                <ul>
+                                    <li><a href="#product-general">일반 펌프부품</a></li>
+                                    <li><a href="#product-pressure">고압 펌프부품</a></li>
+                                    <li><a href="#product-valve">밸브부품</a></li>
+                                    <li><a href="#product-machinery">산업기계부품</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>CUSTOMER</h2>
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="mailto:jmlee@wonkangmetal.com?subject=%EA%B2%AC%EC%A0%81%20%EB%AC%B8%EC%9D%98"
+                                            >견적문의</a
+                                        >
+                                    </li>
+                                    <li><a href="#contact">컨택트</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="footer-legal">
+                        <div>
+                            <button type="button" data-info="privacy" aria-haspopup="dialog">개인정보 취급방침</button
+                            ><button type="button" data-info="email" aria-haspopup="dialog">이메일 무단수집거부</button>
+                        </div>
+                        <p>Copyright(c) 2025 by (주)원강금속 All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+            <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="dialog-title">
+                <div class="detail-dialog__header">
+                    <h2 id="dialog-title"></h2>
+                    <button type="button" class="dialog-close" aria-label="닫기">×</button>
+                </div>
+                <div class="detail-dialog__body" id="dialog-body"></div>
+            </dialog>
+        </div>
+    </body>
+</html>

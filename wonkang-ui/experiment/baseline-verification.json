@@ -1,0 +1,33 @@
+{
+  "status": "prepared-awaiting-user-approval",
+  "purpose": "Route, asset, source integrity and unchanged-baseline verification only; no design harness executed.",
+  "base": "http://127.0.0.1:4173/",
+  "sourceHashesMatch": true,
+  "rootLinksAdjacent": true,
+  "results": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "differentPixels": 0,
+      "referenceCapture": "baseline/1920.webp",
+      "errors": [],
+      "failedResources": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "differentPixels": 0,
+      "referenceCapture": "baseline/1440.webp",
+      "errors": [],
+      "failedResources": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "differentPixels": 0,
+      "referenceCapture": "baseline/390.webp",
+      "errors": [],
+      "failedResources": []
+    }
+  ]
+}

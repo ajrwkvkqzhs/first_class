@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared-awaiting-user-approval",
+  "preparedDate": "2026-10-29",
+  "controlRoute": "/wonkang/",
+  "experimentRoute": "/wonkang-ui/",
+  "baselineCommit": "83acc9041110a8a0f6c7b443312623b48441aa92",
+  "designCommandsExecuted": [],
+  "harness": {
+    "name": "Impeccable",
+    "repository": "https://github.com/pbakaus/impeccable",
+    "sourceRevision": "5e745ace7e151feb2a93d360d0281fe39448b857",
+    "skillVersion": "4.8.0",
+    "engineVersion": "0.1.18",
+    "windowsX64Sha256": "8f61e96b0c97001546a824d79b44f46b423b560f3eb1a0cc44a8695a1b395d9f",
+    "installedSkill": "$HOME/.agents/skills/impeccable",
+    "implicitInvocation": false,
+    "automaticHooksInstalled": false,
+    "healthProbe": "impeccable-engine 0.1.18"
+  },
+  "sharedReadOnlyAssets": [
+    "../wonkang/img/",
+    "../CSS/default.css",
+    "../font/",
+    "../npm/swiper/"
+  ],
+  "controlSourceSha256": {
+    "wonkang/index.html": "d295551b929811535907d0e4d6d9741c9e331b0a18097dd6f51895ec0d147e08",
+    "wonkang/css/main.css": "d06b5364195680de053b558c770b55cef81ccb330887abbfa0310b506f06ae48",
+    "wonkang/js/main.js": "8cc27a0296ef494450bade2fa5a8baec197d92861a1856817dba643ccaaf4d87",
+    "wonkang/company/ci.html": "7118b2407b7a88549ab05ae850a14afd08c62b2d18a381017a377992a0c20603",
+    "wonkang/factory/locations.html": "814011e12df3f42ead6fcbef55e29adcd0a86817f8cafe2fb8d634c5286a1f3e"
+  },
+  "preparedSourceSha256": {
+    "index.html": "cc912f27f9ca637b7838f8116ce0efb5d9d963a0b94574b7317f4a611b0a01de",
+    "css/main.css": "738a770cf996815f3d0e90d35375e898b1ac5c7717f701970871df3cfd40fe00",
+    "js/main.js": "9aa89f4505abb890a78ab1e6b27ad27dc527d88413e7a9dcc03cb9351a482f10",
+    "company/ci.html": "7118b2407b7a88549ab05ae850a14afd08c62b2d18a381017a377992a0c20603",
+    "factory/locations.html": "814011e12df3f42ead6fcbef55e29adcd0a86817f8cafe2fb8d634c5286a1f3e"
+  },
+  "hashNormalization": "utf8-lf"
+}
