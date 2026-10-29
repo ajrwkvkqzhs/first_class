@@ -53,7 +53,7 @@ async function scrollTo(page, top) {
                 viewport: { width, height },
                 hasTouch: width <= 850,
                 isMobile: width <= 850,
-                reducedMotion: width === 1440 ? 'no-preference' : 'reduce',
+                reducedMotion: width === 320 ? 'reduce' : 'no-preference',
             });
             const errors = [];
             page.on('pageerror', (error) => errors.push(error.message));
@@ -65,6 +65,19 @@ async function scrollTo(page, top) {
             await expectHeader(page, false);
             await scrollTo(page, 1600);
             await expectHeader(page, false);
+            const stickyCards = await page
+                .locator('.steel-service')
+                .first()
+                .evaluate((el) => getComputedStyle(el).position === 'sticky');
+            if (stickyCards) {
+                assert.equal(
+                    await page.evaluate(
+                        () => !!document.elementFromPoint(innerWidth / 2, 2)?.closest('.steel-service')
+                    ),
+                    true,
+                    'a pinned card must cover the top edge without a leftover header gap'
+                );
+            }
             await scrollTo(page, 1536);
             await expectHeader(page, true);
             await scrollTo(page, 1540);
@@ -131,6 +144,7 @@ async function scrollTo(page, top) {
                 keyboardReveals: true,
                 activeMenuStaysVisible: true,
                 returnsTransparentAtTop: true,
+                cardTopEdgeCovered: stickyCards ? true : null,
                 errors,
             });
             await page.close();

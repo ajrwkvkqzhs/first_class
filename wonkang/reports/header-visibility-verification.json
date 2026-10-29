@@ -11,6 +11,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": true,
       "errors": []
     },
     {
@@ -23,6 +24,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": true,
       "errors": []
     },
     {
@@ -35,6 +37,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": true,
       "errors": []
     },
     {
@@ -47,6 +50,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": null,
       "errors": []
     },
     {
@@ -59,6 +63,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": true,
       "errors": []
     },
     {
@@ -71,6 +76,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": true,
       "errors": []
     },
     {
@@ -83,6 +89,7 @@
       "keyboardReveals": true,
       "activeMenuStaysVisible": true,
       "returnsTransparentAtTop": true,
+      "cardTopEdgeCovered": null,
       "errors": []
     }
   ]

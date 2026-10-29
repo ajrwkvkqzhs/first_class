@@ -363,11 +363,11 @@ figure,
 }
 .steel-service {
     position: sticky;
-    top: var(--header-height);
+    top: 0;
     display: flex;
     align-items: center;
-    min-height: calc(100svh - var(--header-height));
-    padding: 60px 20px 100px;
+    min-height: 100svh;
+    padding: calc(60px + var(--header-height)) 20px 100px;
     border-radius: clamp(20px, 2vw, 36px) clamp(20px, 2vw, 36px) 0 0;
     box-shadow: 0 -14px 42px #0a172d2b;
     background: #fff;
@@ -1424,8 +1424,8 @@ body.dialog-open {
     }
     .steel-service,
     .steel-service--casting {
-        min-height: calc(100svh - var(--header-height));
-        padding: 64px 20px 112px;
+        min-height: 100svh;
+        padding: calc(64px + var(--header-height)) 20px 112px;
     }
     .card-stack__navigation {
         bottom: 20px;
@@ -1683,7 +1683,7 @@ body.dialog-open {
         position: relative;
         top: auto;
         min-height: 0;
-        padding-block: 48px 100px;
+        padding-block: calc(48px + var(--header-height)) 100px;
     }
 }
 @media (prefers-reduced-motion: reduce) {

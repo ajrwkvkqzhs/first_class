@@ -57,10 +57,7 @@ let cardFramePending = false;
 
 function cardScrollPosition(index) {
     const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
-    const headerHeight = document.querySelector('.site-logo').offsetHeight;
-    return (
-        sectionTop + steelCards.slice(0, index).reduce((height, card) => height + card.offsetHeight, 0) - headerHeight
-    );
+    return sectionTop + steelCards.slice(0, index).reduce((height, card) => height + card.offsetHeight, 0);
 }
 
 function updateCardNavigation() {
