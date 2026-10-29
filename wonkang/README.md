@@ -8,9 +8,11 @@
 - [검증 결과](reports/verification.json)
 - [스크롤 카드·CTA 호버·사진 등장 인터랙션 수정 결과](reports/interactions-20261029.md)
 - [HTML 구조 평가·메뉴 정렬 수정 결과](reports/html-review-20261029.md)
-- [반응형 오류 수정·선택이 필요한 항목](reports/responsive-fixes-20261029.md)
+- [반응형 오류 수정·보류 항목](reports/responsive-fixes-20261029.md)
 
 저장소 루트를 정적 서버로 실행한 뒤 `/wonkang/`을 열면 됩니다. GitHub Pages에서도 동일한 상대 경로를 사용합니다. 문의 버튼은 메일 앱·전화 앱을 열며, 카탈로그와 개인정보 취급방침 원문은 자료 제공 후 연결할 수 있습니다.
+
+CI 소개(`company/ci.html`)와 생산거점(`factory/locations.html`)은 사용자 요청에 따라 임시 경로만 연결했습니다. 준비 중 안내와 메인 복귀 링크만 있으며, 상세 콘텐츠와 기능은 현재 제작 범위에서 제외합니다.
 
 ## 브라우저 검증 재실행
 
