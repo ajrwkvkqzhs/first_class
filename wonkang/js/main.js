@@ -1,193 +1,203 @@
-// 원강금속 리뉴얼: 슬라이더와 프로토타입 인터랙션
+// 원강금속 메인: 기존 Swiper와 숫자 릴을 유지하고 실제 콘텐츠로 연결합니다.
+'use strict';
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const supportsObservation = 'IntersectionObserver' in window;
 const heroPaginationItems = [
-    {
-        image: 'img/wonkang_hero_pc.png',
-        title: '금속의 가치를 만드는 정밀 주조 기술'
-    },
-    {
-        image: 'img/wonkang_hero2_pc.jpg',
-        title: '첨단 기술로 완성하는 정밀 품질 관리'
-    },
-    {
-        image: 'img/wonkang_hero.jpg',
-        title: '산업의 미래를 연결하는 주조 솔루션'
-    }
+    { image: 'img/figma/hero-thumb-casting.png', title: '금속의 가치를 만드는 정밀 주조 기술' },
+    { image: 'img/figma/hero-thumb-quality.png', title: '첨단 기술로 완성하는 정밀 품질 관리' },
+    { image: 'img/figma/hero-thumb-solution.png', title: '산업의 미래를 연결하는 주조 솔루션' }
 ];
 
 if (typeof Swiper !== 'undefined') {
     new Swiper('.hero-sec > .swiper', {
         direction: 'horizontal',
         loop: true,
-        keyboard: { enabled: true },
+        speed: reducedMotion ? 0 : 500,
+        keyboard: { enabled: true, onlyInViewport: true },
+        a11y: {
+            enabled: true,
+            prevSlideMessage: '이전 슬라이드',
+            nextSlideMessage: '다음 슬라이드',
+            paginationBulletMessage: '{{index}}번 슬라이드로 이동',
+            slideLabelMessage: '전체 {{slidesLength}}개 중 {{index}}번 슬라이드'
+        },
         pagination: {
             el: '.hero-sec .swiper-pagination',
             clickable: true,
             renderBullet(index, className) {
                 const item = heroPaginationItems[index];
-                const number = String(index + 1).padStart(2, '0');
-                return `<button class="${className}" type="button" aria-label="${item.title} 슬라이드로 이동">
-                    <img class="hero-thumb" src="${item.image}" alt="" loading="lazy">
-                    <span class="hero-thumb-title">${item.title}</span>
-                    <span class="hero-pagination-index">${number}</span>
-                </button>`;
+                return '<button class="' + className + '" type="button" aria-label="' + item.title + ' 슬라이드로 이동">' +
+                    '<img class="hero-thumb" src="' + item.image + '" alt="">' +
+                    '<span class="hero-thumb-title">' + item.title + '</span>' +
+                    '<span class="hero-pagination-index">' + String(index + 1).padStart(2, '0') + '</span></button>';
             }
         },
-        scrollbar: {
-            el: '.hero-sec .swiper-scrollbar',
-            draggable: true,
-            snapOnRelease: true,
-            hide: false
-        }
+        scrollbar: { el: '.hero-sec .swiper-scrollbar', draggable: true, snapOnRelease: true, hide: false }
     });
 }
 
-// 원본 이미지가 저장소에 없으면 임시 대체 이미지를 표시합니다.
-document.querySelectorAll('img[data-fallback]').forEach(img => {
-    const loadFallback = () => {
-        const fallback = img.dataset.fallback;
-        if (!fallback) return;
-        img.removeAttribute('data-fallback');
-        img.src = fallback;
-    };
-
-    // 로컬 파일이 이미 오류 처리된 경우에도 대체 이미지를 적용합니다.
-    if (img.complete && img.naturalWidth === 0) {
-        loadFallback();
-    } else {
-        img.addEventListener('error', loadFallback, { once: true });
-    }
-});
-
-// GNB: 기본 상태는 닫힘, 데스크톱은 주 메뉴 호버/키보드 포커스 중 열림.
-// 모바일에서는 메뉴 버튼으로 열고 닫습니다. 하위 메뉴는 시안 확인용입니다.
+// 마우스, 키보드, 모바일 메뉴에서 같은 열림 상태를 사용합니다.
 const siteHeader = document.querySelector('.site-header');
 const siteNav = siteHeader.querySelector('.site-nav');
-const siteNavButtons = Array.from(siteNav.querySelectorAll('.site-nav__item'));
+const siteNavButtons = [...siteNav.querySelectorAll('.site-nav__item')];
 const megaMenu = siteHeader.querySelector('.mega-menu');
-const submenuButtons = Array.from(megaMenu.querySelectorAll('button'));
 const menuButton = siteHeader.querySelector('.menu-toggle');
-const siteLangButton = siteHeader.querySelector('.site-lang');
 const compactNavigation = window.matchMedia('(max-width: 850px)');
+let suppressFocusOpen = false;
 
 function setMegaMenuOpen(open) {
     siteHeader.classList.toggle('mega-open', open);
-
-    siteNavButtons.forEach(button => {
-        button.setAttribute('aria-expanded', String(open));
-    });
-
+    siteNavButtons.forEach(button => button.setAttribute('aria-expanded', String(open)));
     menuButton.setAttribute('aria-expanded', String(open));
     menuButton.setAttribute('aria-label', open ? '전체 메뉴 접기' : '전체 메뉴 펼치기');
+    megaMenu.inert = !open;
 }
 
-function flashNavButton(button) {
-    button.classList.add('nav-pressed');
-    window.setTimeout(() => button.classList.remove('nav-pressed'), 220);
-}
-
-// 데스크톱: 히어로 위 내비게이션 영역에 호버하면 배경과 로고를 바꾸고
-// 메가 메뉴를 펼칩니다. 하위 메뉴로 마우스를 이동해도 닫히지 않습니다.
-siteHeader.addEventListener('mouseenter', () => {
+siteNav.addEventListener('mouseenter', () => {
     if (!compactNavigation.matches) setMegaMenuOpen(true);
 });
-
-// 내비게이션 영역을 완전히 벗어날 때 원래의 투명 상태로 복귀합니다.
 siteHeader.addEventListener('mouseleave', () => {
-    if (!compactNavigation.matches) setMegaMenuOpen(false);
+    if (!compactNavigation.matches && !siteHeader.contains(document.activeElement)) setMegaMenuOpen(false);
 });
-
-// 클릭은 페이지 전환 없이 피드백만 표시합니다.
-siteNavButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        flashNavButton(button);
-        if (compactNavigation.matches) setMegaMenuOpen(true);
-    });
-});
-submenuButtons.forEach(button => {
-    button.addEventListener('click', () => flashNavButton(button));
-});
-siteLangButton.addEventListener('click', () => flashNavButton(siteLangButton));
-
-// 키보드 조작 시에도 열린 메뉴에 접근할 수 있도록 처리합니다.
+siteNavButtons.forEach(button => button.addEventListener('click', () => setMegaMenuOpen(!siteHeader.classList.contains('mega-open'))));
+menuButton.addEventListener('click', () => setMegaMenuOpen(!siteHeader.classList.contains('mega-open')));
 siteHeader.addEventListener('focusin', event => {
-    if (compactNavigation.matches) return;
-    if (siteNav.contains(event.target) || megaMenu.contains(event.target)) {
-        setMegaMenuOpen(true);
-    }
+    if (!compactNavigation.matches && !suppressFocusOpen && (siteNav.contains(event.target) || megaMenu.contains(event.target))) setMegaMenuOpen(true);
 });
 siteHeader.addEventListener('focusout', event => {
-    if (compactNavigation.matches) return;
-    const next = event.relatedTarget;
-    if (!next || (!siteNav.contains(next) && !megaMenu.contains(next))) {
-        setMegaMenuOpen(false);
+    if (!siteHeader.contains(event.relatedTarget)) setMegaMenuOpen(false);
+});
+megaMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    setMegaMenuOpen(false);
+    const target = document.querySelector(link.hash);
+    if (target) {
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
     }
+}));
+document.addEventListener('click', event => {
+    if (!siteHeader.contains(event.target)) setMegaMenuOpen(false);
 });
-
-menuButton.addEventListener('click', () => {
-    setMegaMenuOpen(!siteHeader.classList.contains('mega-open'));
+document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !siteHeader.classList.contains('mega-open')) return;
+    setMegaMenuOpen(false);
+    suppressFocusOpen = true;
+    (compactNavigation.matches ? menuButton : siteNavButtons[0]).focus();
+    suppressFocusOpen = false;
 });
-
-// 화면 크기가 바뀌어도 처음부터 메뉴를 펼쳐 놓지 않습니다.
 compactNavigation.addEventListener('change', () => setMegaMenuOpen(false));
 setMegaMenuOpen(false);
 
-// 대표 제품의 상세 페이지가 구현되기 전까지 클릭 효과만 표시합니다.
-document.querySelectorAll('.product-panel button').forEach(button => {
-    button.addEventListener('click', () => flashNavButton(button));
+// 브라우저 기본 dialog: 포커스 제한, Escape, 배경 클릭, 닫은 뒤 포커스 복귀.
+const detailDialog = document.querySelector('#detail-dialog');
+const dialogTitle = document.querySelector('#dialog-title');
+const dialogBody = document.querySelector('#dialog-body');
+let dialogTrigger = null;
+
+function showDetail(title, content, trigger, certificate = false) {
+    dialogTrigger = trigger;
+    dialogTitle.textContent = title;
+    dialogBody.replaceChildren(...content);
+    detailDialog.classList.toggle('detail-dialog--certificate', certificate);
+    detailDialog.showModal();
+    detailDialog.scrollTop = 0;
+    document.body.classList.add('dialog-open');
+    detailDialog.querySelector('.dialog-close').focus();
+}
+
+function paragraph(text) {
+    const element = document.createElement('p');
+    element.textContent = text;
+    return element;
+}
+
+function contactLinks(subject) {
+    const links = document.createElement('div');
+    links.className = 'dialog-contact';
+    const email = document.createElement('a');
+    email.href = 'mailto:jmlee@wonkangmetal.com?subject=' + encodeURIComponent(subject);
+    email.textContent = '이메일로 문의';
+    const phone = document.createElement('a');
+    phone.href = 'tel:0328111653';
+    phone.textContent = '영업소 전화 연결';
+    links.append(email, phone);
+    return links;
+}
+
+document.querySelector('.dialog-close').addEventListener('click', () => detailDialog.close());
+detailDialog.addEventListener('click', event => {
+    const rect = detailDialog.getBoundingClientRect();
+    if (event.target === detailDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) detailDialog.close();
+});
+detailDialog.addEventListener('close', () => {
+    document.body.classList.remove('dialog-open');
+    if (dialogTrigger && document.contains(dialogTrigger)) dialogTrigger.focus({ preventScroll: true });
 });
 
-// 카드 겹침은 CSS position: sticky가 담당합니다.
-// JavaScript는 현재 카드 표시, 진행률, 번호 버튼 이동만 처리합니다.
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const supportsObservation = 'IntersectionObserver' in window;
-const cardStack = document.querySelector('.card-stack');
-const steelCards = cardStack ? Array.from(cardStack.querySelectorAll('.steel-service')) : [];
-const cardNavButtons = cardStack ? Array.from(cardStack.querySelectorAll('.card-stack__nav')) : [];
-let cardFramePending = false;
-
-function updateCardNavigation() {
-    cardFramePending = false;
-    if (!cardStack || steelCards.length === 0) return;
-
-    const sectionTop = window.scrollY + cardStack.getBoundingClientRect().top;
-    const sectionHeight = cardStack.offsetHeight;
-    const activeIndex = Math.min(steelCards.length - 1, Math.max(0, Math.floor(
-        (window.scrollY - sectionTop + window.innerHeight * .35) /
-        Math.max(sectionHeight / steelCards.length, 1)
-    )));
-
-    cardNavButtons.forEach((button, index) => {
-        const active = index === activeIndex;
-        button.classList.toggle('is-current', active);
-        if (active) button.setAttribute('aria-current', 'true');
-        else button.removeAttribute('aria-current');
+document.querySelectorAll('[data-product]').forEach(button => {
+    button.addEventListener('click', () => {
+        const panel = button.closest('.product-panel');
+        const title = panel.querySelector('h2').textContent;
+        const image = panel.querySelector('.product-panel__image').cloneNode();
+        image.removeAttribute('class');
+        image.loading = 'eager';
+        showDetail(title, [image, paragraph(panel.querySelector('p').innerText), paragraph('도면, 재질, 규격, 수량 등 문의 내용을 이메일로 보내 주시거나 영업소로 연락해 주세요.'), contactLinks(title + ' 문의')], button);
     });
+});
 
-}
+const information = {
+    catalog: ['카탈로그 요청', '카탈로그 파일은 현재 제공되지 않았습니다. 필요한 제품명을 적어 원강금속 영업소에 요청해 주세요.'],
+    privacy: ['개인정보 취급방침', '개인정보 취급방침 원문은 원강금속에 문의해 주세요.'],
+    email: ['이메일 무단수집거부', '이 페이지에 게시된 이메일 주소의 무단 수집을 거부합니다.']
+};
+document.querySelectorAll('[data-info]').forEach(button => {
+    button.addEventListener('click', () => {
+        const [title, description] = information[button.dataset.info];
+        showDetail(title, [paragraph(description), contactLinks(title + ' 문의')], button);
+    });
+});
 
-function requestCardNavigationUpdate() {
-    if (cardFramePending) return;
-    cardFramePending = true;
-    window.requestAnimationFrame(updateCardNavigation);
-}
+// 인증서: 원본의 펼침 배치를 유지하고 클릭·방향키·확대를 지원합니다.
+const certificateList = document.querySelector('.certificate-list');
+const certificates = [...certificateList.querySelectorAll('.certificate-card')];
+const certificateMobile = window.matchMedia('(max-width: 600px)');
 
-if (cardStack && steelCards.length) {
-    cardNavButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const index = Number(button.dataset.cardIndex);
-            const sectionTop = window.scrollY + cardStack.getBoundingClientRect().top;
-            const cardHeight = cardStack.offsetHeight / steelCards.length;
-            window.scrollTo({
-                top: sectionTop + cardHeight * index,
-                behavior: reducedMotion ? 'auto' : 'smooth'
-            });
+function selectCertificate(card, scroll = true) {
+    certificates.forEach(item => {
+        item.classList.toggle('is-active', item === card);
+        item.setAttribute('aria-pressed', String(item === card));
+    });
+    if (scroll && certificateMobile.matches) {
+        certificateList.scrollTo({
+            left: card.offsetLeft - certificateList.offsetLeft - (certificateList.clientWidth - card.clientWidth) / 2,
+            behavior: reducedMotion ? 'instant' : 'smooth'
         });
-    });
-
-    window.addEventListener('scroll', requestCardNavigationUpdate, { passive: true });
-    window.addEventListener('resize', requestCardNavigationUpdate, { passive: true });
-    requestCardNavigationUpdate();
+    }
 }
+
+certificates.forEach((card, index) => {
+    card.addEventListener('click', () => {
+        if (!card.classList.contains('is-active')) {
+            selectCertificate(card);
+            return;
+        }
+        const image = card.querySelector('img').cloneNode();
+        image.loading = 'eager';
+        showDetail(image.alt, [image], card, true);
+    });
+    card.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % certificates.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index + certificates.length - 1) % certificates.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = certificates.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        selectCertificate(certificates[next]);
+        certificates[next].focus({ preventScroll: true });
+    });
+});
 
 // 실적 숫자: 섹션에 진입하면 위로 드러나고 각 자리 숫자가
 // 0~9를 여러 번 지나간 뒤 Figma에 표시된 최종 값에 정지합니다.
