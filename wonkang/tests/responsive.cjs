@@ -75,6 +75,10 @@ const url = process.env.WONKANG_URL || 'http://127.0.0.1:4173/wonkang/';
     await resize.goto(url, { waitUntil: 'networkidle' });
     for (const width of [1440, 850, 600, 320, 601, 851, 1440]) {
         await resize.setViewportSize({ width, height: 568 });
+        // Wait for CSS media changes and their focus updates before operating the next menu.
+        await resize.evaluate(
+            () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+        );
         if (width <= 850) {
             const toggle = resize.locator('.menu-toggle');
             if ((await toggle.getAttribute('aria-expanded')) === 'true') await toggle.click();

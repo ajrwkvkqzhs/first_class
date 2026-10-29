@@ -22,6 +22,8 @@
 
 [반응형 검증 기록](responsive-verification.json)
 
+GitHub Pages 배포 후에도 같은 창 크기·연속 크기 변경·팝업 닫기 검사를 통과했습니다. [공개 사이트 검증 기록](responsive-live-verification.json)에서 확인할 수 있습니다.
+
 ## 사용자 선택 필요
 
 ### CI 소개·생산거점의 전용 내용 없음
