@@ -57,7 +57,10 @@ let cardFramePending = false;
 
 function cardScrollPosition(index) {
     const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
-    return sectionTop + steelCards.slice(0, index).reduce((height, card) => height + card.offsetHeight, 0);
+    const headerHeight = document.querySelector('.site-logo').offsetHeight;
+    return (
+        sectionTop + steelCards.slice(0, index).reduce((height, card) => height + card.offsetHeight, 0) - headerHeight
+    );
 }
 
 function updateCardNavigation() {
@@ -121,6 +124,10 @@ function initializeNavigation() {
     const narrow = window.matchMedia('(max-width: 600px)');
     let activeButton = buttons[0];
 
+    function updateHeaderAppearance() {
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+    }
+
     function setGroupOpen(index, open) {
         groups[index].classList.toggle('is-expanded', open);
         buttons[index].setAttribute('aria-expanded', String(open));
@@ -174,6 +181,7 @@ function initializeNavigation() {
     });
 
     toggle.addEventListener('click', () => setMenuOpen(!header.classList.contains('mega-open')));
+    header.querySelector('.site-logo').addEventListener('click', () => setMenuOpen(false));
 
     navigation.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
@@ -198,6 +206,8 @@ function initializeNavigation() {
 
     compact.addEventListener('change', () => setMenuOpen(false));
     narrow.addEventListener('change', () => setMenuOpen(false));
+    window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
+    updateHeaderAppearance();
     setMenuOpen(false);
 }
 

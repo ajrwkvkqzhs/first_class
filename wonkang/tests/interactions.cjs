@@ -20,9 +20,9 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
             await page
                 .locator('.steel-service')
                 .first()
-                .evaluate((el) => el.getBoundingClientRect().top)
+                .evaluate((el) => el.getBoundingClientRect().top - document.querySelector('.site-logo').offsetHeight)
         ) < 1,
-        'first card must pin to the viewport'
+        'first card must pin below the fixed header'
     );
     await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sectionTop + 1350);
     await page.waitForTimeout(100);

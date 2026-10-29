@@ -23,9 +23,11 @@
     --text-inverse: #fff;
     --border-default: var(--brand-neutral-200);
     --brand-blue: #08337d;
+    --header-height: 80px;
 }
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
 }
 html,
 body {
@@ -60,9 +62,9 @@ figure,
     clip-path: none;
 }
 
-/* 25:4 — 80px 투명 헤더와 3개 메뉴 */
+/* 25:4 — 히어로 위에서는 투명하고 스크롤 후에도 남는 고정 헤더 */
 .site-header {
-    position: absolute;
+    position: fixed;
     z-index: 100;
     inset: 0 0 auto;
     color: #fff;
@@ -70,6 +72,7 @@ figure,
         background-color 0.2s,
         color 0.2s;
 }
+.site-header.is-scrolled,
 .site-header.mega-open {
     background: var(--background-default);
     color: var(--text-primary);
@@ -87,7 +90,7 @@ figure,
     grid-row: 1;
     display: inline-flex;
     align-items: center;
-    height: 80px;
+    height: var(--header-height);
     min-width: 0;
 }
 .site-logo__media {
@@ -105,9 +108,11 @@ figure,
     inset: 0;
     opacity: 0;
 }
+.is-scrolled .site-logo__light,
 .mega-open .site-logo__light {
     opacity: 0;
 }
+.is-scrolled .site-logo__dark,
 .mega-open .site-logo__dark {
     opacity: 1;
 }
@@ -130,7 +135,7 @@ figure,
 .site-nav__item {
     display: block;
     width: 100%;
-    height: 80px;
+    height: var(--header-height);
     padding-inline: 8px;
     font-size: 20px;
     font-weight: 500;
@@ -165,7 +170,7 @@ figure,
     grid-row: 1;
     display: flex;
     align-items: center;
-    height: 80px;
+    height: var(--header-height);
 }
 .site-lang {
     font-size: 18px;
@@ -351,10 +356,10 @@ figure,
 }
 .steel-service {
     position: sticky;
-    top: 0;
+    top: var(--header-height);
     display: flex;
     align-items: center;
-    min-height: 100svh;
+    min-height: calc(100svh - var(--header-height));
     padding: 60px 20px 100px;
     border-radius: clamp(20px, 2vw, 36px) clamp(20px, 2vw, 36px) 0 0;
     box-shadow: 0 -14px 42px #0a172d2b;
@@ -1253,20 +1258,19 @@ body.dialog-open {
     }
 }
 @media (max-width: 850px) {
+    :root {
+        --header-height: 76px;
+    }
     .site-header__inner {
         grid-template-columns: minmax(0, 1fr) auto;
         column-gap: 16px;
         padding-inline: 22px;
-    }
-    .site-logo {
-        height: 76px;
     }
     .site-logo__media {
         width: clamp(170px, 31vw, 240px);
     }
     .site-header-right {
         grid-column: 2;
-        height: 76px;
         gap: 20px;
     }
     .site-lang {
@@ -1292,7 +1296,7 @@ body.dialog-open {
         grid-row: 2;
         display: none;
         width: 100%;
-        max-height: calc(100dvh - 76px);
+        max-height: calc(100dvh - var(--header-height));
     }
     .mega-open .site-nav {
         display: block;
@@ -1413,7 +1417,7 @@ body.dialog-open {
     }
     .steel-service,
     .steel-service--casting {
-        min-height: 100svh;
+        min-height: calc(100svh - var(--header-height));
         padding: 64px 20px 112px;
     }
     .card-stack__navigation {
@@ -1670,6 +1674,7 @@ body.dialog-open {
 @media (max-height: 600px) {
     .steel-service {
         position: relative;
+        top: auto;
         min-height: 0;
         padding-block: 48px 100px;
     }
@@ -1695,5 +1700,6 @@ body.dialog-open {
     }
     .steel-service {
         position: relative;
+        top: auto;
     }
 }
