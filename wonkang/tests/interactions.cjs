@@ -17,54 +17,56 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         step: (el.offsetHeight - el.querySelector('.card-stack__deck').offsetHeight) / 2,
         enabled: el.classList.contains('is-enhanced'),
     }));
-    assert.equal(sequence.enabled, true, 'desktop enables the scroll-driven story sequence');
+    assert.equal(sequence.enabled, true, 'desktop enables the scroll-driven service sequence');
     const sample = () => page.locator('.steel-service').evaluateAll((cards) =>
-        cards.map((card) => {
-            const text = card.querySelector('.steel-service__text');
-            const image = card.querySelector('.steel-service__image');
-            return {
-                textOpacity: Number(getComputedStyle(text).opacity),
-                imageOpacity: Number(getComputedStyle(image).opacity),
-                textY: new DOMMatrix(getComputedStyle(text).transform).m42,
-                imageY: new DOMMatrix(getComputedStyle(image).transform).m42,
-                visible: getComputedStyle(card).visibility === 'visible',
-            };
-        })
+        cards.map((card) => ({
+            visible: getComputedStyle(card).visibility === 'visible',
+            background: getComputedStyle(card).backgroundColor,
+            opacity: Number(getComputedStyle(card).opacity),
+            y: new DOMMatrix(getComputedStyle(card).transform).m42,
+            ariaHidden: card.getAttribute('aria-hidden'),
+        }))
     );
-    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top);
-    await page.waitForFunction(() => document.querySelector('.steel-service--casting')?.classList.contains('is-visible'));
-    const initial = await sample();
-    assert.ok(initial[0].textOpacity > 0.99 && !initial[1].visible, 'first content occupies the initial scene');
+    const goToPhase = async (phase) => {
+        await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * phase);
+        await page.waitForTimeout(100);
+        return sample();
+    };
+    const first = await goToPhase(0);
+    assert.ok(first[0].visible && !first[1].visible && first[0].y === 0, 'first scene starts visible');
 
-    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.25);
-    await page.waitForTimeout(100);
-    const early = await sample();
-    assert.ok(early[0].textOpacity > 0.99, 'previous content remains readable longer');
-    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.64);
-    await page.waitForTimeout(100);
-    const between = await sample();
-    assert.ok(
-        between[0].textOpacity < 0.015 && between[1].imageOpacity < 0.015,
-        'a clear scroll gap separates outgoing and incoming content'
-    );
-    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.75);
-    await page.waitForTimeout(100);
-    const late = await sample();
-    assert.ok(late[0].textOpacity < early[0].textOpacity, 'outgoing text fades during upward scroll');
-    assert.ok(late[1].imageOpacity > early[1].imageOpacity, 'incoming image appears while scrolling');
-    assert.ok(late[0].textY < 0 && late[0].imageY < 0, 'outgoing text and photo move upward');
-    assert.ok(late[1].textY > 0 && late[1].imageY > 0, 'incoming text and photo rise from below');
+    const holding = await goToPhase(0.1);
+    assert.ok(holding[0].visible && !holding[1].visible, 'first scene stays before the transition');
+
+    const midway = await goToPhase(0.5);
+    assert.ok(midway[0].visible && midway[1].visible, 'incoming scene layers over outgoing scene');
+    assert.ok(midway[1].y > 0 && midway[1].y < 900, 'incoming scene rises from below');
+    assert.equal(midway[0].y, 0, 'outgoing scene remains behind rather than fading upward');
+    assert.equal(midway[0].opacity, 1, 'outgoing scene is not faded');
+    assert.equal(midway[1].opacity, 1, 'incoming scene is not faded');
+    assert.notEqual(midway[1].background, 'rgba(0, 0, 0, 0)', 'incoming scene has opaque backing');
+
+    const second = await goToPhase(1);
+    assert.ok(!second[0].visible && second[1].visible && !second[2].visible, 'second scene fully covers first');
+    assert.equal(second[1].y, 0, 'new scene settles at its original position');
+
+    const thirdIncoming = await goToPhase(1.5);
+    assert.ok(thirdIncoming[1].visible && thirdIncoming[2].visible && thirdIncoming[2].y > 0, 'third scene overlays second');
+
+    const back = await goToPhase(0.5);
+    assert.ok(back[0].visible && back[1].visible && back[1].y > 0, 'scrolling upward reveals the previous scene');
+
     const navigation = await page.locator('.card-stack__navigation').boundingBox();
-    assert.ok(navigation.y >= 0 && navigation.y + navigation.height <= 900, 'number controls stay visible');
+    assert.ok(navigation.y >= 0 && navigation.y + navigation.height <= 900, 'scene controls stay visible');
     await page.locator('[data-card-index="2"]').click();
     await page.waitForFunction(() =>
         document.querySelector('[data-card-index="2"]')?.getAttribute('aria-current') === 'true' &&
-        Number(getComputedStyle(document.querySelector('.steel-service--stainless .steel-service__text')).opacity) > 0.99
+        document.querySelector('.steel-service--stainless')?.getAttribute('aria-hidden') === 'false'
     );
     await page.locator('[data-card-index="0"]').click();
     await page.waitForFunction(() =>
         document.querySelector('[data-card-index="0"]')?.getAttribute('aria-current') === 'true' &&
-        Number(getComputedStyle(document.querySelector('.steel-service--casting .steel-service__text')).opacity) > 0.99
+        document.querySelector('.steel-service--casting')?.getAttribute('aria-hidden') === 'false'
     );
 
     await page.locator('#products').evaluate((el) => scrollTo({ top: el.offsetTop - 80, behavior: 'instant' }));
@@ -191,8 +193,8 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         date: '2026-10-29',
         url: baseUrl,
         checks: [
-            'service text and images rise and exit with scroll progress',
-            'service scenes have a distinct scroll interval between exit and entry',
+            'service scenes overlay from below with an opaque background, without fading',
+            'scroll direction reverses the overlay to reveal the preceding scene',
             'service number controls jump forward and backward',
             'all 4 CTA panels reveal 3 controls on hover',
             'CTA controls hide on mouseleave and reveal with keyboard focus',

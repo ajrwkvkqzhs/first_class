@@ -351,7 +351,7 @@ figure,
     background: #ffffffa6;
 }
 
-/* 사업 분야: 고정된 화면에서 텍스트와 사진만 수직으로 교체합니다. */
+/* 사업 분야: 장면 전체가 아래에서 진입해 기존 글자와 사진을 덮는 스크롤 연출. */
 .card-stack {
     position: relative;
     isolation: isolate;
@@ -388,22 +388,17 @@ figure,
     inset: 0;
     height: 100%;
     min-height: 0;
+    background: var(--background-default);
     visibility: hidden;
     pointer-events: none;
+    transform: translate3d(0, var(--sequence-panel-y, 100%), 0);
+    will-change: transform;
 }
+.card-stack.is-enhanced .steel-service:nth-child(1) { z-index: 1; }
+.card-stack.is-enhanced .steel-service:nth-child(2) { z-index: 2; }
+.card-stack.is-enhanced .steel-service:nth-child(3) { z-index: 3; }
 .card-stack.is-enhanced .steel-service.is-visible {
     visibility: visible;
-}
-.card-stack.is-enhanced .steel-service__text,
-.card-stack.is-enhanced .steel-service__image {
-    opacity: var(--sequence-opacity, 1);
-    will-change: transform, opacity;
-}
-.card-stack.is-enhanced .steel-service__text {
-    transform: translate3d(0, var(--sequence-text-y, 0px), 0);
-}
-.card-stack.is-enhanced .steel-service__image {
-    transform: translate3d(0, var(--sequence-image-y, 0px), 0);
 }
 .card-stack__navigation {
     position: sticky;

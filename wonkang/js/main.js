@@ -49,7 +49,8 @@ if (typeof Swiper !== 'undefined') {
     });
 }
 
-// 사업 콘텐츠는 한 화면에 고정하고, 스크롤 진행량에 맞춰 아래→위로 교체합니다.
+// 사업 콘텐츠를 하나의 무대에 배치하고, 새 장면이 아래에서 올라와 이전 장면을 덮습니다.
+// 카드 경계나 페이드아웃 없이 동일한 배경에서 자연스럽게 이어집니다.
 const cardStack = document.querySelector('.card-stack');
 const cardDeck = cardStack.querySelector('.card-stack__deck');
 const steelCards = [...cardDeck.querySelectorAll('.steel-service')];
@@ -75,32 +76,26 @@ function updateCardNavigation() {
     if (enhanced) {
         const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
         const step = Math.max(1, (cardStack.offsetHeight - cardDeck.offsetHeight) / Math.max(1, steelCards.length - 1));
-        // 마지막 내용은 섹션이 자연스럽게 화면 밖으로 나갈 때까지 유지합니다.
-        const phase = Math.max(-1, Math.min(steelCards.length - 1, (window.scrollY - sectionTop) / step));
-        activeIndex = Math.max(0, Math.min(steelCards.length - 1, Math.round(phase)));
+        const phase = Math.max(0, Math.min(steelCards.length - 1, (window.scrollY - sectionTop) / step));
+        const base = Math.floor(phase);
+        const portion = phase - base;
+        // 먼저 내용을 충분히 보여 준 뒤 새로운 장면이 아래에서 올라옵니다.
+        const progress = Math.max(0, Math.min(1, (portion - 0.18) / 0.64));
+        const eased = progress * progress * (3 - 2 * progress);
+        activeIndex = Math.min(steelCards.length - 1, base + (progress >= 0.5 ? 1 : 0));
         steelCards.forEach((card, index) => {
-            const delta = phase - index;
-            // 각 장면이 잠시 머물고, 이전 장면이 완전히 사라진 다음
-            // 다음 장면이 진입하게 하여 두 콘텐츠 사이에 스크롤 여백을 만듭니다.
-            const clamp01 = (value) => Math.max(0, Math.min(1, value));
-            const opacity = delta < 0
-                ? clamp01((delta + 0.30) / 0.30)
-                : 1 - clamp01((delta - 0.26) / 0.31);
-            const offset = Math.max(-1, Math.min(1, -delta));
-            const visible = opacity > 0.015;
-            card.style.setProperty('--sequence-opacity', opacity.toFixed(4));
-            card.style.setProperty('--sequence-text-y', (offset * window.innerHeight * 0.68).toFixed(1) + 'px');
-            card.style.setProperty('--sequence-image-y', (offset * window.innerHeight * 0.78).toFixed(1) + 'px');
+            const current = index === base;
+            const incoming = index === base + 1 && progress > 0;
+            const visible = current || incoming;
+            card.style.setProperty('--sequence-panel-y', incoming ? ((1 - eased) * 100).toFixed(3) + '%' : '0%');
             card.classList.toggle('is-visible', visible);
-            card.inert = !visible;
-            card.setAttribute('aria-hidden', String(!visible));
+            card.inert = index !== activeIndex;
+            card.setAttribute('aria-hidden', String(index !== activeIndex));
         });
     } else {
         steelCards.forEach((card, index) => {
             card.classList.remove('is-visible');
-            card.style.removeProperty('--sequence-opacity');
-            card.style.removeProperty('--sequence-text-y');
-            card.style.removeProperty('--sequence-image-y');
+            card.style.removeProperty('--sequence-panel-y');
             card.inert = false;
             card.removeAttribute('aria-hidden');
             if (window.scrollY + window.innerHeight * 0.45 >= cardScrollPosition(index)) activeIndex = index;
