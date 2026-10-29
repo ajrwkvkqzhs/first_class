@@ -49,23 +49,60 @@ if (typeof Swiper !== 'undefined') {
     });
 }
 
-// 카드의 겹침은 CSS sticky가 담당하고, 번호 버튼과 현재 카드만 JS로 연결합니다.
+// 사업 콘텐츠는 한 화면에 고정하고, 스크롤 진행량에 맞춰 아래→위로 교체합니다.
 const cardStack = document.querySelector('.card-stack');
-const steelCards = [...cardStack.querySelectorAll('.steel-service')];
+const cardDeck = cardStack.querySelector('.card-stack__deck');
+const steelCards = [...cardDeck.querySelectorAll('.steel-service')];
 const cardNavButtons = [...cardStack.querySelectorAll('.card-stack__nav')];
+const sequenceMotion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 601px)');
 let cardFramePending = false;
 
 function cardScrollPosition(index) {
     const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
-    return sectionTop + steelCards.slice(0, index).reduce((height, card) => height + card.offsetHeight, 0);
+    if (!cardStack.classList.contains('is-enhanced')) {
+        return steelCards[index].getBoundingClientRect().top + window.scrollY - 16;
+    }
+    const travel = cardStack.offsetHeight - cardDeck.offsetHeight;
+    return sectionTop + (travel * index) / Math.max(1, steelCards.length - 1);
 }
 
 function updateCardNavigation() {
     cardFramePending = false;
+    const enhanced = sequenceMotion.matches;
+    cardStack.classList.toggle('is-enhanced', enhanced);
     let activeIndex = 0;
-    steelCards.forEach((card, index) => {
-        if (window.scrollY + window.innerHeight * 0.4 >= cardScrollPosition(index)) activeIndex = index;
-    });
+
+    if (enhanced) {
+        const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
+        const step = Math.max(1, (cardStack.offsetHeight - cardDeck.offsetHeight) / Math.max(1, steelCards.length - 1));
+        // 마지막 내용은 섹션이 자연스럽게 화면 밖으로 나갈 때까지 유지합니다.
+        const phase = Math.max(-1, Math.min(steelCards.length - 1, (window.scrollY - sectionTop) / step));
+        activeIndex = Math.max(0, Math.min(steelCards.length - 1, Math.round(phase)));
+        steelCards.forEach((card, index) => {
+            const delta = phase - index;
+            const distance = Math.min(1, Math.abs(delta));
+            const opacity = Math.pow(1 - distance, 1.35);
+            const offset = Math.max(-1, Math.min(1, -delta));
+            const visible = opacity > 0.015;
+            card.style.setProperty('--sequence-opacity', opacity.toFixed(4));
+            card.style.setProperty('--sequence-text-y', (offset * window.innerHeight * 0.68).toFixed(1) + 'px');
+            card.style.setProperty('--sequence-image-y', (offset * window.innerHeight * 0.78).toFixed(1) + 'px');
+            card.classList.toggle('is-visible', visible);
+            card.inert = !visible;
+            card.setAttribute('aria-hidden', String(!visible));
+        });
+    } else {
+        steelCards.forEach((card, index) => {
+            card.classList.remove('is-visible');
+            card.style.removeProperty('--sequence-opacity');
+            card.style.removeProperty('--sequence-text-y');
+            card.style.removeProperty('--sequence-image-y');
+            card.inert = false;
+            card.removeAttribute('aria-hidden');
+            if (window.scrollY + window.innerHeight * 0.45 >= cardScrollPosition(index)) activeIndex = index;
+        });
+    }
+
     cardNavButtons.forEach((button, index) => {
         const active = index === activeIndex;
         button.classList.toggle('is-current', active);
@@ -87,7 +124,8 @@ cardNavButtons.forEach((button, index) => {
 });
 window.addEventListener('scroll', requestCardNavigationUpdate, { passive: true });
 window.addEventListener('resize', requestCardNavigationUpdate, { passive: true });
-requestCardNavigationUpdate();
+sequenceMotion.addEventListener('change', requestCardNavigationUpdate);
+updateCardNavigation();
 
 // 사용자 요청: 같은 간격의 좌우 사진이 뷰포트에 들어올 때 아래에서 위로 등장합니다.
 // JS가 없거나 모션 감소를 선택한 경우에는 원래 콘텐츠를 그대로 보여 줍니다.

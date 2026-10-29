@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="../font/default/css/notosanskr.css" />
         <link rel="stylesheet" href="../CSS/default.css" />
         <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="css/main.css?v=20261029-card-edge" />
+        <link rel="stylesheet" href="css/main.css?v=20261029-service-flow" />
         <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-        <script src="js/main.js?v=20261029-card-edge" defer></script>
+        <script src="js/main.js?v=20261029-service-flow" defer></script>
     </head>
     <body>
         <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -147,11 +147,11 @@
                     </div>
                 </section>
 
-                <!-- 3개 사업 프레임: 스크롤에 따라 다음 카드가 아래에서 겹쳐집니다. -->
+                <!-- 사업 분야: 스크롤에 따라 기존 내용이 위로 퇴장하고 다음 내용이 아래에서 등장합니다. -->
                 <section id="company" class="steel-services card-stack" aria-label="주요 사업 분야">
                     <h2 class="sr-only">주요 사업 분야</h2>
                     <p class="sr-only">
-                        스크롤하거나 번호 버튼으로 주조사업, 특수합금강, 스테인리스 주강 카드를 확인할 수 있습니다.
+                        스크롤하거나 번호 버튼으로 주조사업, 특수합금강, 스테인리스 주강을 차례로 확인할 수 있습니다.
                     </p>
                     <div class="card-stack__deck">
                         <article class="steel-service steel-service--casting">
@@ -210,34 +210,34 @@
                                 />
                             </div>
                         </article>
+                        <nav class="card-stack__navigation" aria-label="사업 분야 선택">
+                            <button
+                                class="card-stack__nav is-current"
+                                type="button"
+                                data-card-index="0"
+                                aria-current="true"
+                                aria-label="주조사업 영역으로 이동"
+                            >
+                                01
+                            </button>
+                            <button
+                                class="card-stack__nav"
+                                type="button"
+                                data-card-index="1"
+                                aria-label="특수합금강 영역으로 이동"
+                            >
+                                02
+                            </button>
+                            <button
+                                class="card-stack__nav"
+                                type="button"
+                                data-card-index="2"
+                                aria-label="스테인리스 주강 영역으로 이동"
+                            >
+                                03
+                            </button>
+                        </nav>
                     </div>
-                    <nav class="card-stack__navigation" aria-label="사업 카드 선택">
-                        <button
-                            class="card-stack__nav is-current"
-                            type="button"
-                            data-card-index="0"
-                            aria-current="true"
-                            aria-label="주조사업 카드로 이동"
-                        >
-                            01
-                        </button>
-                        <button
-                            class="card-stack__nav"
-                            type="button"
-                            data-card-index="1"
-                            aria-label="특수합금강 카드로 이동"
-                        >
-                            02
-                        </button>
-                        <button
-                            class="card-stack__nav"
-                            type="button"
-                            data-card-index="2"
-                            aria-label="스테인리스 주강 카드로 이동"
-                        >
-                            03
-                        </button>
-                    </nav>
                 </section>
 
                 <!-- 기업 실적 영역 -->

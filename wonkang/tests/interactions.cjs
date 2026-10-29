@@ -12,36 +12,51 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(baseUrl, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
-    const sectionTop = await page.locator('.card-stack').evaluate((el) => el.getBoundingClientRect().top + scrollY);
-    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sectionTop + 450);
-    await page.waitForTimeout(100);
-    assert.ok(
-        Math.abs(
-            await page
-                .locator('.steel-service')
-                .first()
-                .evaluate((el) => el.getBoundingClientRect().top)
-        ) < 1,
-        'first card must fill the viewport from its top edge'
+    const sequence = await page.locator('.card-stack').evaluate((el) => ({
+        top: el.getBoundingClientRect().top + scrollY,
+        step: (el.offsetHeight - el.querySelector('.card-stack__deck').offsetHeight) / 2,
+        enabled: el.classList.contains('is-enhanced'),
+    }));
+    assert.equal(sequence.enabled, true, 'desktop enables the scroll-driven story sequence');
+    const sample = () => page.locator('.steel-service').evaluateAll((cards) =>
+        cards.map((card) => {
+            const text = card.querySelector('.steel-service__text');
+            const image = card.querySelector('.steel-service__image');
+            return {
+                textOpacity: Number(getComputedStyle(text).opacity),
+                imageOpacity: Number(getComputedStyle(image).opacity),
+                textY: new DOMMatrix(getComputedStyle(text).transform).m42,
+                imageY: new DOMMatrix(getComputedStyle(image).transform).m42,
+                visible: getComputedStyle(card).visibility === 'visible',
+            };
+        })
     );
-    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sectionTop + 1350);
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top);
+    await page.waitForFunction(() => document.querySelector('.steel-service--casting')?.classList.contains('is-visible'));
+    const initial = await sample();
+    assert.ok(initial[0].textOpacity > 0.99 && !initial[1].visible, 'first content occupies the initial scene');
+
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.25);
     await page.waitForTimeout(100);
-    assert.equal(
-        await page.evaluate(() =>
-            document.elementFromPoint(720, 100).closest('.steel-service')?.classList.contains('steel-service--alloy')
-        ),
-        true,
-        'second card must cover the first'
-    );
+    const early = await sample();
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.75);
+    await page.waitForTimeout(100);
+    const late = await sample();
+    assert.ok(late[0].textOpacity < early[0].textOpacity, 'outgoing text fades during upward scroll');
+    assert.ok(late[1].imageOpacity > early[1].imageOpacity, 'incoming image appears while scrolling');
+    assert.ok(late[0].textY < 0 && late[0].imageY < 0, 'outgoing text and photo move upward');
+    assert.ok(late[1].textY > 0 && late[1].imageY > 0, 'incoming text and photo rise from below');
     const navigation = await page.locator('.card-stack__navigation').boundingBox();
-    assert.ok(navigation.y >= 0 && navigation.y + navigation.height <= 900, 'card controls stay visible');
+    assert.ok(navigation.y >= 0 && navigation.y + navigation.height <= 900, 'number controls stay visible');
     await page.locator('[data-card-index="2"]').click();
     await page.waitForFunction(() =>
-        document.elementFromPoint(720, 100)?.closest('.steel-service')?.classList.contains('steel-service--stainless')
+        document.querySelector('[data-card-index="2"]')?.getAttribute('aria-current') === 'true' &&
+        Number(getComputedStyle(document.querySelector('.steel-service--stainless .steel-service__text')).opacity) > 0.99
     );
     await page.locator('[data-card-index="0"]').click();
     await page.waitForFunction(() =>
-        document.elementFromPoint(720, 100)?.closest('.steel-service')?.classList.contains('steel-service--casting')
+        document.querySelector('[data-card-index="0"]')?.getAttribute('aria-current') === 'true' &&
+        Number(getComputedStyle(document.querySelector('.steel-service--casting .steel-service__text')).opacity) > 0.99
     );
 
     await page.locator('#products').evaluate((el) => scrollTo({ top: el.offsetTop - 80, behavior: 'instant' }));
@@ -155,18 +170,21 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         '1'
     );
     assert.equal(
-        await reduced
-            .locator('.steel-service')
-            .first()
-            .evaluate((el) => getComputedStyle(el).position),
+        await reduced.locator('.card-stack').evaluate((el) => el.classList.contains('is-enhanced')),
+        false,
+        'reduced motion disables the pinned sequence'
+    );
+    assert.equal(
+        await reduced.locator('.steel-service').first().evaluate((el) => getComputedStyle(el).position),
         'relative'
     );
+    assert.equal(await reduced.locator('.steel-service').count(), 3, 'all three sections remain in document flow');
     const result = {
         date: '2026-10-29',
         url: baseUrl,
         checks: [
-            'scroll cards pin and overlap',
-            'card controls navigate forward and backward',
+            'service text and images rise and exit with scroll progress',
+            'service number controls jump forward and backward',
             'all 4 CTA panels reveal 3 controls on hover',
             'CTA controls hide on mouseleave and reveal with keyboard focus',
             'gallery slides from below into its final position',

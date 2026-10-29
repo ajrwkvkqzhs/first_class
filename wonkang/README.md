@@ -2,6 +2,8 @@
 
 피그마의 [전체 메인 프레임 33:43](https://www.figma.com/design/PEBV3D0WA6ZmD4UyFLXlRv/?node-id=33-43)을 기존 HTML/CSS/JavaScript와 Swiper로 구현했습니다.
 
+2026-10-29 현재 주요 사업 소개는 **겹치는 카드가 아닌 스크롤 연동 장면 전환** 방식입니다. 한 화면에서 기존 글자와 사진이 위로 사라지고 다음 콘텐츠가 아래에서 진입합니다. 모션 감소 설정에서는 3개 사업을 순서대로 표시합니다. 아래의 기존 카드 비교·캡처 보고서는 이전 구현의 기록입니다.
+
 - [메인페이지](index.html)
 - [요약과 구현 보고서](reports/renewal-report.md)
 - [캡처가 포함된 보고서](reports/renewal-report.html)

@@ -351,68 +351,93 @@ figure,
     background: #ffffffa6;
 }
 
-/* 165:223 / 327 / 336 — 다음 카드가 아래에서 겹쳐지는 스크롤 스택 */
+/* 사업 분야: 고정된 화면에서 텍스트와 사진만 수직으로 교체합니다. */
 .card-stack {
     position: relative;
     isolation: isolate;
     background: var(--background-default);
 }
 .card-stack__deck {
-    position: static;
-    overflow: visible;
+    position: relative;
 }
 .steel-service {
-    position: sticky;
-    top: 0;
+    position: relative;
     display: flex;
     align-items: center;
     min-height: 100svh;
-    padding: calc(60px + var(--header-height)) 20px 100px;
-    border-radius: clamp(20px, 2vw, 36px) clamp(20px, 2vw, 36px) 0 0;
-    box-shadow: 0 -14px 42px #0a172d2b;
-    background: #fff;
+    padding: calc(60px + var(--header-height)) 20px 112px;
 }
-.steel-service--casting {
-    z-index: 1;
-}
-.steel-service--alloy {
-    z-index: 2;
-    background: var(--brand-neutral-200);
-}
+.steel-service--casting,
+.steel-service--alloy,
 .steel-service--stainless {
-    z-index: 3;
-    background: var(--brand-blue);
-    color: #fff;
+    background: transparent;
+    color: var(--text-primary);
+}
+/* 모션을 허용한 화면에서만 sticky 장면 전환을 활성화합니다. */
+.card-stack.is-enhanced {
+    height: 300svh;
+}
+.card-stack.is-enhanced .card-stack__deck {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+}
+.card-stack.is-enhanced .steel-service {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    min-height: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.card-stack.is-enhanced .steel-service.is-visible {
+    visibility: visible;
+}
+.card-stack.is-enhanced .steel-service__text,
+.card-stack.is-enhanced .steel-service__image {
+    opacity: var(--sequence-opacity, 1);
+    will-change: transform, opacity;
+}
+.card-stack.is-enhanced .steel-service__text {
+    transform: translate3d(0, var(--sequence-text-y, 0px), 0);
+}
+.card-stack.is-enhanced .steel-service__image {
+    transform: translate3d(0, var(--sequence-image-y, 0px), 0);
 }
 .card-stack__navigation {
     position: sticky;
     z-index: 5;
     bottom: 28px;
     display: flex;
-    gap: 8px;
+    gap: 12px;
     width: max-content;
-    margin: -84px 40px 24px auto;
-    padding: 8px;
-    border-radius: 40px;
-    background: #161519cc;
-    color: #fff;
+    margin: -76px 40px 24px auto;
+}
+.card-stack.is-enhanced .card-stack__navigation {
+    position: absolute;
+    right: clamp(20px, 4vw, 70px);
+    bottom: max(24px, env(safe-area-inset-bottom));
+    margin: 0;
 }
 .card-stack__nav {
     width: 44px;
     height: 44px;
-    border-radius: 50%;
-    color: #ffffffb3;
+    border-bottom: 2px solid #aab4c1;
+    color: #637084;
     font-size: 13px;
     font-weight: 700;
-    transition:
-        background-color 0.2s,
-        color 0.2s;
+    transition: border-color 0.2s, color 0.2s;
 }
 .card-stack__nav.is-current,
 .card-stack__nav:hover,
 .card-stack__nav:focus-visible {
-    background: #fff;
-    color: var(--text-primary);
+    border-color: var(--brand-red-500);
+    color: var(--brand-red-500);
+}
+.card-stack__nav:focus-visible {
+    outline: 2px solid var(--brand-red-500);
+    outline-offset: 4px;
 }
 .steel-service__inner {
     display: grid;
@@ -424,15 +449,14 @@ figure,
 }
 .steel-service__label {
     display: inline-block;
-    padding: 5px 10px;
-    border-radius: 30px;
-    background: #e9ebee;
-    color: var(--text-muted);
+    color: var(--brand-red-500);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     line-height: 1.4375;
 }
 .steel-service__title {
+    margin-top: 12px;
     font-size: 60px;
     font-weight: 500;
     line-height: 1.2;
@@ -448,17 +472,15 @@ figure,
     font-weight: 500;
     line-height: 1.4;
 }
-.steel-service--stainless .steel-service__text p {
-    color: #fff;
-}
 .steel-service__image {
     width: 100%;
-    height: 278px;
+    height: auto;
+    aspect-ratio: 556 / 221;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 4px;
 }
 .steel-service--casting .steel-service__image {
-    height: 282.212px;
+    height: auto;
 }
 
 /* 69:232 — 75% 암전 배경과 실적 숫자 */
@@ -1431,6 +1453,11 @@ body.dialog-open {
         bottom: 20px;
         margin-right: 20px;
     }
+    .card-stack.is-enhanced .card-stack__navigation {
+        right: 20px;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        margin: 0;
+    }
     .steel-service__inner {
         grid-template-columns: 1fr;
         width: 100%;
@@ -1438,6 +1465,9 @@ body.dialog-open {
     }
     .steel-service--alloy .steel-service__image {
         order: 2;
+    }
+    .card-stack.is-enhanced .steel-service__inner {
+        padding-bottom: 36px;
     }
     .steel-service__label {
         font-size: 13px;
