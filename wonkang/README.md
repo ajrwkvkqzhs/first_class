@@ -9,6 +9,7 @@
 - [스크롤 카드·CTA 호버·사진 등장 인터랙션 수정 결과](reports/interactions-20261029.md)
 - [HTML 구조 평가·메뉴 정렬 수정 결과](reports/html-review-20261029.md)
 - [반응형 오류 수정·보류 항목](reports/responsive-fixes-20261029.md)
+- [사업 카드 디자인 대안·레퍼런스 비교](reports/card-slider-options-20261029.md)
 
 저장소 루트를 정적 서버로 실행한 뒤 `/wonkang/`을 열면 됩니다. GitHub Pages에서도 동일한 상대 경로를 사용합니다. 문의 버튼은 메일 앱·전화 앱을 열며, 카탈로그와 개인정보 취급방침 원문은 자료 제공 후 연결할 수 있습니다.
 
