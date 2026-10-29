@@ -1,0 +1,250 @@
+{
+  "url": "http://127.0.0.1:4173/wonkang/",
+  "results": [
+    {
+      "width": 1920,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 829.171875,
+          "submenuX": 829.171875,
+          "width": 180,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 1009.171875,
+          "submenuX": 1009.171875,
+          "width": 180,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 1189.171875,
+          "submenuX": 1189.171875,
+          "width": 180,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 551.671875,
+          "submenuX": 551.671875,
+          "width": 180,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 731.671875,
+          "submenuX": 731.671875,
+          "width": 180,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 911.671875,
+          "submenuX": 911.671875,
+          "width": 180,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 336.171875,
+          "submenuX": 336.171875,
+          "width": 180,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 516.171875,
+          "submenuX": 516.171875,
+          "width": 180,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 696.171875,
+          "submenuX": 696.171875,
+          "width": 180,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 851,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 281.921875,
+          "submenuX": 281.921875,
+          "width": 158.5,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 440.421875,
+          "submenuX": 440.421875,
+          "width": 158.5,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 598.921875,
+          "submenuX": 598.921875,
+          "width": 158.5,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 768,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 233.328125,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 267.328125,
+          "submenuX": 267.328125,
+          "width": 233.328125,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 512.65625,
+          "submenuX": 512.65625,
+          "width": 233.328125,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 107.328125,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 141.328125,
+          "submenuX": 141.328125,
+          "width": 107.328125,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 260.65625,
+          "submenuX": 260.65625,
+          "width": 107.34375,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 360,
+      "structure": {
+        "duplicateIds": [],
+        "missingControls": 0,
+        "groups": 3,
+        "nestedControls": 0,
+        "leftoverInlineStyles": 0,
+        "productHeadings": 5
+      },
+      "alignment": [
+        {
+          "name": "회사소개",
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 97.328125,
+          "delta": 0
+        },
+        {
+          "name": "공장",
+          "primaryX": 131.328125,
+          "submenuX": 131.328125,
+          "width": 97.328125,
+          "delta": 0
+        },
+        {
+          "name": "제품소개",
+          "primaryX": 240.65625,
+          "submenuX": 240.65625,
+          "width": 97.34375,
+          "delta": 0
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
