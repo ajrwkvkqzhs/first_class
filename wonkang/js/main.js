@@ -115,6 +115,8 @@ if (supportsObservation && !reducedMotion) {
 // 주 메뉴와 그 아래 목록을 하나의 그룹으로 제어합니다.
 function initializeNavigation() {
     const header = document.querySelector('.site-header');
+    const hero = document.querySelector('.hero-sec');
+    const logo = header.querySelector('.site-logo');
     const navigation = header.querySelector('.site-nav');
     const groups = [...navigation.querySelectorAll('.site-nav__group')];
     const buttons = groups.map((group) => group.querySelector('.site-nav__item'));
@@ -125,7 +127,8 @@ function initializeNavigation() {
     let activeButton = buttons[0];
 
     function updateHeaderAppearance() {
-        header.classList.toggle('is-scrolled', window.scrollY > 8);
+        // 다음 영역이 고정 헤더에 닿는 순간 밝은 배경으로 전환합니다.
+        header.classList.toggle('is-scrolled', hero.getBoundingClientRect().bottom <= logo.offsetHeight);
     }
 
     function setGroupOpen(index, open) {
@@ -181,7 +184,7 @@ function initializeNavigation() {
     });
 
     toggle.addEventListener('click', () => setMenuOpen(!header.classList.contains('mega-open')));
-    header.querySelector('.site-logo').addEventListener('click', () => setMenuOpen(false));
+    logo.addEventListener('click', () => setMenuOpen(false));
 
     navigation.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
@@ -207,6 +210,9 @@ function initializeNavigation() {
     compact.addEventListener('change', () => setMenuOpen(false));
     narrow.addEventListener('change', () => setMenuOpen(false));
     window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
+    const headerAppearanceObserver = new ResizeObserver(updateHeaderAppearance);
+    headerAppearanceObserver.observe(hero);
+    headerAppearanceObserver.observe(logo);
     updateHeaderAppearance();
     setMenuOpen(false);
 }
