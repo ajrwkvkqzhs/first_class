@@ -1,0 +1,89 @@
+{
+  "url": "http://127.0.0.1:4173/wonkang/",
+  "results": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    },
+    {
+      "width": 851,
+      "height": 568,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "downHides": true,
+      "upReveals": true,
+      "smallScrollStable": true,
+      "pointerReveals": true,
+      "keyboardReveals": true,
+      "activeMenuStaysVisible": true,
+      "returnsTransparentAtTop": true,
+      "errors": []
+    }
+  ]
+}

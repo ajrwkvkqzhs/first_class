@@ -125,10 +125,41 @@ function initializeNavigation() {
     const compact = window.matchMedia('(max-width: 850px)');
     const narrow = window.matchMedia('(max-width: 600px)');
     let activeButton = buttons[0];
+    let scrollReference = Math.max(0, window.scrollY);
+    let scrollHidesHeader = false;
+    let pointerNearHeader = false;
+
+    function hasKeyboardFocusInside() {
+        return header.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+    }
+
+    function updateHeaderVisibility() {
+        const keepVisible =
+            window.scrollY <= logo.offsetHeight ||
+            pointerNearHeader ||
+            header.classList.contains('mega-open') ||
+            hasKeyboardFocusInside();
+        header.classList.toggle('is-hidden', scrollHidesHeader && !keepVisible);
+    }
 
     function updateHeaderAppearance() {
         // 다음 영역이 고정 헤더에 닿는 순간 밝은 배경으로 전환합니다.
         header.classList.toggle('is-scrolled', hero.getBoundingClientRect().bottom <= logo.offsetHeight);
+    }
+
+    function updateHeaderOnScroll() {
+        // 화면 끝의 튕김과 작은 흔들림을 제외하고 8px 이동으로 방향을 판단합니다.
+        const scrollTop = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - innerHeight));
+        const distance = scrollTop - scrollReference;
+        if (scrollTop <= logo.offsetHeight) {
+            scrollHidesHeader = false;
+            scrollReference = scrollTop;
+        } else if (Math.abs(distance) >= 8) {
+            scrollHidesHeader = distance > 0;
+            scrollReference = scrollTop;
+        }
+        updateHeaderAppearance();
+        updateHeaderVisibility();
     }
 
     function setGroupOpen(index, open) {
@@ -143,6 +174,7 @@ function initializeNavigation() {
         navigation.inert = compact.matches && !open;
         toggle.setAttribute('aria-expanded', String(open));
         toggle.setAttribute('aria-label', open ? '전체 메뉴 접기' : '전체 메뉴 펼치기');
+        updateHeaderVisibility();
     }
 
     groups.forEach((group, index) => {
@@ -176,13 +208,29 @@ function initializeNavigation() {
     });
 
     header.addEventListener('mouseleave', () => {
-        const keyboardFocusInside =
-            header.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
-        if (!compact.matches && !keyboardFocusInside) setMenuOpen(false);
+        if (!compact.matches && !hasKeyboardFocusInside()) setMenuOpen(false);
     });
 
+    header.addEventListener('focusin', updateHeaderVisibility);
     header.addEventListener('focusout', (event) => {
         if (!header.contains(event.relatedTarget)) setMenuOpen(false);
+    });
+
+    document.addEventListener(
+        'pointermove',
+        (event) => {
+            if (event.pointerType !== 'mouse') return;
+            const nearHeader = event.clientY <= logo.offsetHeight + 16 || header.contains(event.target);
+            if (nearHeader === pointerNearHeader) return;
+            pointerNearHeader = nearHeader;
+            updateHeaderVisibility();
+        },
+        { passive: true }
+    );
+    document.addEventListener('pointerout', (event) => {
+        if (event.pointerType !== 'mouse' || event.relatedTarget !== null) return;
+        pointerNearHeader = false;
+        updateHeaderVisibility();
     });
 
     toggle.addEventListener('click', () => setMenuOpen(!header.classList.contains('mega-open')));
@@ -211,8 +259,11 @@ function initializeNavigation() {
 
     compact.addEventListener('change', () => setMenuOpen(false));
     narrow.addEventListener('change', () => setMenuOpen(false));
-    window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
-    const headerAppearanceObserver = new ResizeObserver(updateHeaderAppearance);
+    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+    const headerAppearanceObserver = new ResizeObserver(() => {
+        updateHeaderAppearance();
+        updateHeaderVisibility();
+    });
     headerAppearanceObserver.observe(hero);
     headerAppearanceObserver.observe(logo);
     updateHeaderAppearance();

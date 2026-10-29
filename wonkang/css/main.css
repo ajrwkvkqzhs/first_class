@@ -62,13 +62,15 @@ figure,
     clip-path: none;
 }
 
-/* 25:4 — 히어로 위에서는 투명하고 스크롤 후에도 남는 고정 헤더 */
+/* 25:4 — 스크롤 방향에 따라 숨고, 위쪽 탐색 시 다시 나타나는 헤더 */
 .site-header {
     position: fixed;
     z-index: 100;
     inset: 0 0 auto;
     color: #fff;
+    transform: translateY(0);
     transition:
+        transform 0.24s ease,
         background-color 0.2s,
         color 0.2s;
 }
@@ -77,6 +79,11 @@ figure,
     background: var(--background-default);
     color: var(--text-primary);
     box-shadow: 0 8px 26px #0001;
+}
+.site-header.is-hidden {
+    transform: translateY(calc(-100% - 12px));
+    box-shadow: none;
+    pointer-events: none;
 }
 .site-header__inner {
     display: grid;
