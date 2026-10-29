@@ -375,7 +375,7 @@ figure,
 }
 /* 모션을 허용한 화면에서만 sticky 장면 전환을 활성화합니다. */
 .card-stack.is-enhanced {
-    height: 300svh;
+    height: 360svh;
 }
 .card-stack.is-enhanced .card-stack__deck {
     position: sticky;

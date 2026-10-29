@@ -39,6 +39,14 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.25);
     await page.waitForTimeout(100);
     const early = await sample();
+    assert.ok(early[0].textOpacity > 0.99, 'previous content remains readable longer');
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.64);
+    await page.waitForTimeout(100);
+    const between = await sample();
+    assert.ok(
+        between[0].textOpacity < 0.015 && between[1].imageOpacity < 0.015,
+        'a clear scroll gap separates outgoing and incoming content'
+    );
     await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * 0.75);
     await page.waitForTimeout(100);
     const late = await sample();
@@ -184,6 +192,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         url: baseUrl,
         checks: [
             'service text and images rise and exit with scroll progress',
+            'service scenes have a distinct scroll interval between exit and entry',
             'service number controls jump forward and backward',
             'all 4 CTA panels reveal 3 controls on hover',
             'CTA controls hide on mouseleave and reveal with keyboard focus',

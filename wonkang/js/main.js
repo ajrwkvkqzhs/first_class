@@ -80,8 +80,12 @@ function updateCardNavigation() {
         activeIndex = Math.max(0, Math.min(steelCards.length - 1, Math.round(phase)));
         steelCards.forEach((card, index) => {
             const delta = phase - index;
-            const distance = Math.min(1, Math.abs(delta));
-            const opacity = Math.pow(1 - distance, 1.35);
+            // 각 장면이 잠시 머물고, 이전 장면이 완전히 사라진 다음
+            // 다음 장면이 진입하게 하여 두 콘텐츠 사이에 스크롤 여백을 만듭니다.
+            const clamp01 = (value) => Math.max(0, Math.min(1, value));
+            const opacity = delta < 0
+                ? clamp01((delta + 0.30) / 0.30)
+                : 1 - clamp01((delta - 0.26) / 0.31);
             const offset = Math.max(-1, Math.min(1, -delta));
             const visible = opacity > 0.015;
             card.style.setProperty('--sequence-opacity', opacity.toFixed(4));
