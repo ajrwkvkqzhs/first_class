@@ -34,6 +34,13 @@ const url = process.env.WONKANG_URL || 'http://127.0.0.1:4173/wonkang/';
         assert.equal(structure.leftoverInlineStyles, 0);
         assert.equal(structure.productHeadings, 5);
         if (width > 850) {
+            await page.locator('.site-nav__item').first().click();
+            await page.mouse.move(width - 20, 700);
+            assert.equal(
+                await page.locator('.site-nav__submenu').first().isVisible(),
+                false,
+                'clicked menu must close when the pointer leaves at ' + width
+            );
             await page.locator('.site-nav__item').first().hover();
         } else {
             await page.getByRole('button', { name: '전체 메뉴 펼치기' }).click();

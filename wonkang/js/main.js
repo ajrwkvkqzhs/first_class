@@ -176,7 +176,9 @@ function initializeNavigation() {
     });
 
     header.addEventListener('mouseleave', () => {
-        if (!compact.matches && !header.contains(document.activeElement)) setMenuOpen(false);
+        const keyboardFocusInside =
+            header.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+        if (!compact.matches && !keyboardFocusInside) setMenuOpen(false);
     });
 
     header.addEventListener('focusout', (event) => {
