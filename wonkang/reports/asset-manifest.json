@@ -1,0 +1,240 @@
+{
+  "figmaFile": "PEBV3D0WA6ZmD4UyFLXlRv",
+  "frame": "33:43",
+  "date": "2026-10-29",
+  "note": "Figma get_design_context에서 받은 자산을 curl -L로 내려받아 원본 그대로 보관. 임시 원격 URL은 런타임에서 사용하지 않음.",
+  "assets": [
+    {
+      "designVariable": "imgImage74",
+      "file": "img/figma/logo-white.png"
+    },
+    {
+      "designVariable": "img",
+      "file": "img/figma/hero-casting.png"
+    },
+    {
+      "designVariable": "imgImage66",
+      "file": "img/figma/hero-thumb-casting.png"
+    },
+    {
+      "designVariable": "imgImage67",
+      "file": "img/figma/hero-thumb-quality.png"
+    },
+    {
+      "designVariable": "imgImage68",
+      "file": "img/figma/hero-thumb-solution.png"
+    },
+    {
+      "designVariable": "imgSteelCasting",
+      "file": "img/figma/service-casting.png"
+    },
+    {
+      "designVariable": "imgAlloySteel",
+      "file": "img/figma/service-alloy.png"
+    },
+    {
+      "designVariable": "imgStainlessSteel",
+      "file": "img/figma/service-stainless.png"
+    },
+    {
+      "designVariable": "img1",
+      "file": "img/figma/factory.png"
+    },
+    {
+      "designVariable": "img04",
+      "file": "img/figma/product-general.png"
+    },
+    {
+      "designVariable": "img03",
+      "file": "img/figma/product-pressure.png"
+    },
+    {
+      "designVariable": "img02",
+      "file": "img/figma/product-valve.png"
+    },
+    {
+      "designVariable": "img01",
+      "file": "img/figma/product-machinery.png"
+    },
+    {
+      "designVariable": "img2",
+      "file": "img/figma/contact-icon.png"
+    },
+    {
+      "designVariable": "img3",
+      "file": "img/figma/catalog-icon.png"
+    },
+    {
+      "designVariable": "img4",
+      "file": "img/figma/process-casting.png"
+    },
+    {
+      "designVariable": "img5",
+      "file": "img/figma/process-housing.png"
+    },
+    {
+      "designVariable": "img05",
+      "file": "img/figma/process-machining.png"
+    },
+    {
+      "designVariable": "img073D",
+      "file": "img/figma/process-quality.png"
+    },
+    {
+      "designVariable": "img6",
+      "file": "img/figma/process-pattern.png"
+    },
+    {
+      "designVariable": "img7",
+      "file": "img/figma/process-stainless.png"
+    },
+    {
+      "designVariable": "img06Cnc",
+      "file": "img/figma/process-scanning.png"
+    },
+    {
+      "designVariable": "img08",
+      "file": "img/figma/process-impeller.png"
+    },
+    {
+      "designVariable": "img01Iso9001",
+      "file": "img/figma/certificate-iso9001.png"
+    },
+    {
+      "designVariable": "img02Iso14001",
+      "file": "img/figma/certificate-iso14001.png"
+    },
+    {
+      "designVariable": "img03Jis",
+      "file": "img/figma/certificate-jis.png"
+    },
+    {
+      "designVariable": "img04Ims",
+      "file": "img/figma/certificate-ims.png"
+    },
+    {
+      "designVariable": "img05Norsok",
+      "file": "img/figma/certificate-norsok.png"
+    },
+    {
+      "designVariable": "img06",
+      "file": "img/figma/certificate-patent.png"
+    },
+    {
+      "designVariable": "img07Abs",
+      "file": "img/figma/certificate-abs.png"
+    },
+    {
+      "designVariable": "img08Lr",
+      "file": "img/figma/certificate-lr.png"
+    },
+    {
+      "designVariable": "img09Dnv",
+      "file": "img/figma/certificate-dnv.png"
+    },
+    {
+      "designVariable": "img10Bv",
+      "file": "img/figma/certificate-bv.png"
+    },
+    {
+      "designVariable": "img11Kr",
+      "file": "img/figma/certificate-kr.png"
+    },
+    {
+      "designVariable": "img01Torishima1",
+      "file": "img/figma/partner-torishima.png"
+    },
+    {
+      "designVariable": "img02GouldsPumps1",
+      "file": "img/figma/partner-goulds.png"
+    },
+    {
+      "designVariable": "img03Fukui1",
+      "file": "img/figma/partner-fukui.png"
+    },
+    {
+      "designVariable": "img04HyosungGoodsprings1",
+      "file": "img/figma/partner-hyosung.png"
+    },
+    {
+      "designVariable": "img05Kubota1",
+      "file": "img/figma/partner-kubota.png"
+    },
+    {
+      "designVariable": "img06Kobelco2",
+      "file": "img/figma/partner-kobelco.png"
+    },
+    {
+      "designVariable": "img07HpValves1",
+      "file": "img/figma/partner-hp-valves.png"
+    },
+    {
+      "designVariable": "img08Ksb1",
+      "file": "img/figma/partner-ksb.png"
+    },
+    {
+      "designVariable": "img09DmwCorporation1",
+      "file": "img/figma/partner-dmw.png"
+    },
+    {
+      "designVariable": "img10Flowserve1",
+      "file": "img/figma/partner-flowserve.png"
+    },
+    {
+      "designVariable": "img11HyundaiHeavyIndustriesTurbomachinery1",
+      "file": "img/figma/partner-hyundai.png"
+    },
+    {
+      "designVariable": "img12MitsubishiHeavyIndustries1",
+      "file": "img/figma/partner-mitsubishi.png"
+    },
+    {
+      "designVariable": "imgRectangle",
+      "file": "img/figma/footer-logo.png"
+    },
+    {
+      "designVariable": "imgLine3",
+      "file": "img/figma/hero-divider.svg"
+    },
+    {
+      "designVariable": "imgVector",
+      "file": "img/figma/product-shade.svg"
+    },
+    {
+      "designVariable": "imgVector1",
+      "file": "img/figma/detail-circle.svg"
+    },
+    {
+      "designVariable": "imgVector2",
+      "file": "img/figma/detail-arrow.svg"
+    },
+    {
+      "designVariable": "imgVector3",
+      "file": "img/figma/product-active-shade.svg"
+    },
+    {
+      "designVariable": "imgVector4",
+      "file": "img/figma/product-action.svg"
+    },
+    {
+      "designVariable": "imgFooterBackground",
+      "file": "img/figma/footer-background.svg"
+    },
+    {
+      "designVariable": "imgVector5",
+      "file": "img/figma/footer-panel.svg"
+    },
+    {
+      "designVariable": "imgVector6",
+      "file": "img/figma/footer-divider.svg"
+    },
+    {
+      "designVariable": "imgVector7",
+      "file": "img/figma/top-background.svg"
+    },
+    {
+      "designVariable": "imgVector8",
+      "file": "img/figma/top-arrow.svg"
+    }
+  ]
+}

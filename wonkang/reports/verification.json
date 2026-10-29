@@ -1,0 +1,3412 @@
+{
+  "date": "2026-10-29",
+  "browser": "Microsoft Edge / Chromium",
+  "viewports": [
+    {
+      "width": 1920,
+      "scrollWidth": 1920,
+      "height": 14178,
+      "broken": [],
+      "anchors": [],
+      "h1": 1,
+      "sections": [
+        {
+          "id": "top",
+          "class": "hero-sec",
+          "top": 0,
+          "height": 920
+        },
+        {
+          "id": "company",
+          "class": "steel-services card-stack",
+          "top": 920,
+          "height": 1198.203125
+        },
+        {
+          "id": "achievements",
+          "class": "company-achievements",
+          "top": 2118.203125,
+          "height": 1002
+        },
+        {
+          "id": "products",
+          "class": "product-showcase",
+          "top": 3120.203125,
+          "height": 920
+        },
+        {
+          "id": "factory",
+          "class": "process-gallery",
+          "top": 4040.203125,
+          "height": 6978.96875
+        },
+        {
+          "id": "certifications",
+          "class": "certifications",
+          "top": 11019.171875,
+          "height": 1087
+        },
+        {
+          "id": "partners",
+          "class": "partners",
+          "top": 12106.171875,
+          "height": 1200
+        },
+        {
+          "id": "contact",
+          "class": "site-footer",
+          "top": 13306.171875,
+          "height": 871.96875
+        }
+      ],
+      "overflow": [],
+      "assets": [
+        {
+          "src": "img/figma/logo-white.png",
+          "width": 300,
+          "height": 39.4375,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/logo_black.png",
+          "width": 300,
+          "height": 39,
+          "naturalWidth": 600,
+          "naturalHeight": 78,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/hero-casting.png",
+          "width": 1920,
+          "height": 920,
+          "naturalWidth": 1920,
+          "naturalHeight": 1529,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 1920,
+          "height": 920,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 1920,
+          "height": 920,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-casting.png",
+          "width": 100,
+          "height": 55,
+          "naturalWidth": 1022,
+          "naturalHeight": 575,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 100,
+          "height": 55,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 100,
+          "height": 55,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-casting.png",
+          "width": 710,
+          "height": 282.203125,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-alloy.png",
+          "width": 710,
+          "height": 278,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-stainless.png",
+          "width": 710,
+          "height": 278,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/product-machinery.png",
+          "width": 480,
+          "height": 920,
+          "naturalWidth": 1108,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-valve.png",
+          "width": 480,
+          "height": 920,
+          "naturalWidth": 1200,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/contact-icon.png",
+          "width": 32,
+          "height": 29,
+          "naturalWidth": 32,
+          "naturalHeight": 29,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/catalog-icon.png",
+          "width": 27,
+          "height": 32,
+          "naturalWidth": 27,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/product-pressure.png",
+          "width": 480,
+          "height": 920,
+          "naturalWidth": 1024,
+          "naturalHeight": 683,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-general.png",
+          "width": 480,
+          "height": 920,
+          "naturalWidth": 1200,
+          "naturalHeight": 900,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-casting.png",
+          "width": 960,
+          "height": 948,
+          "naturalWidth": 2121,
+          "naturalHeight": 1414,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-housing.png",
+          "width": 962.015625,
+          "height": 960.03125,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-machining.png",
+          "width": 960,
+          "height": 948,
+          "naturalWidth": 800,
+          "naturalHeight": 600,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-quality.png",
+          "width": 960,
+          "height": 948,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-pattern.png",
+          "width": 960,
+          "height": 960,
+          "naturalWidth": 800,
+          "naturalHeight": 800,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-stainless.png",
+          "width": 960,
+          "height": 948,
+          "naturalWidth": 786,
+          "naturalHeight": 553,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-scanning.png",
+          "width": 960,
+          "height": 948,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-impeller.png",
+          "width": 960,
+          "height": 948,
+          "naturalWidth": 550,
+          "naturalHeight": 550,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso9001.png",
+          "width": 117.59375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso14001.png",
+          "width": 117.609375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-jis.png",
+          "width": 117.59375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-ims.png",
+          "width": 117.609375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-norsok.png",
+          "width": 117.59375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-patent.png",
+          "width": 498,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-abs.png",
+          "width": 117.609375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-lr.png",
+          "width": 117.59375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-dnv.png",
+          "width": 117.609375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-bv.png",
+          "width": 117.59375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-kr.png",
+          "width": 117.59375,
+          "height": 698,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/partner-torishima.png",
+          "width": 352,
+          "height": 75.9375,
+          "naturalWidth": 292,
+          "naturalHeight": 63,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-goulds.png",
+          "width": 252,
+          "height": 114,
+          "naturalWidth": 252,
+          "naturalHeight": 114,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-fukui.png",
+          "width": 184,
+          "height": 121,
+          "naturalWidth": 184,
+          "naturalHeight": 121,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyosung.png",
+          "width": 264,
+          "height": 68,
+          "naturalWidth": 264,
+          "naturalHeight": 68,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kubota.png",
+          "width": 251,
+          "height": 59,
+          "naturalWidth": 251,
+          "naturalHeight": 59,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kobelco.png",
+          "width": 240,
+          "height": 58,
+          "naturalWidth": 240,
+          "naturalHeight": 58,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hp-valves.png",
+          "width": 246,
+          "height": 113,
+          "naturalWidth": 246,
+          "naturalHeight": 113,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-ksb.png",
+          "width": 230,
+          "height": 105,
+          "naturalWidth": 230,
+          "naturalHeight": 105,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-dmw.png",
+          "width": 292,
+          "height": 56,
+          "naturalWidth": 292,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-flowserve.png",
+          "width": 253,
+          "height": 96,
+          "naturalWidth": 253,
+          "naturalHeight": 96,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyundai.png",
+          "width": 287,
+          "height": 32,
+          "naturalWidth": 287,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-mitsubishi.png",
+          "width": 282,
+          "height": 56,
+          "naturalWidth": 282,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/footer-logo.png",
+          "width": 258.109375,
+          "height": 33.921875,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/top-arrow.svg",
+          "width": 15.15625,
+          "height": 17.421875,
+          "naturalWidth": 15,
+          "naturalHeight": 17,
+          "fit": "fill"
+        }
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 11440,
+      "broken": [],
+      "anchors": [],
+      "h1": 1,
+      "sections": [
+        {
+          "id": "top",
+          "class": "hero-sec",
+          "top": 0,
+          "height": 720
+        },
+        {
+          "id": "company",
+          "class": "steel-services card-stack",
+          "top": 720,
+          "height": 1198.203125
+        },
+        {
+          "id": "achievements",
+          "class": "company-achievements",
+          "top": 1918.203125,
+          "height": 751.5
+        },
+        {
+          "id": "products",
+          "class": "product-showcase",
+          "top": 2669.703125,
+          "height": 690
+        },
+        {
+          "id": "factory",
+          "class": "process-gallery",
+          "top": 3359.703125,
+          "height": 5234.21875
+        },
+        {
+          "id": "certifications",
+          "class": "certifications",
+          "top": 8593.921875,
+          "height": 838.1875
+        },
+        {
+          "id": "partners",
+          "class": "partners",
+          "top": 9432.109375,
+          "height": 1072
+        },
+        {
+          "id": "contact",
+          "class": "site-footer",
+          "top": 10504.109375,
+          "height": 936.28125
+        }
+      ],
+      "overflow": [],
+      "assets": [
+        {
+          "src": "img/figma/logo-white.png",
+          "width": 225,
+          "height": 29.578125,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/logo_black.png",
+          "width": 225,
+          "height": 29.25,
+          "naturalWidth": 600,
+          "naturalHeight": 78,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/hero-casting.png",
+          "width": 1440,
+          "height": 720,
+          "naturalWidth": 1920,
+          "naturalHeight": 1529,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 1440,
+          "height": 720,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 1440,
+          "height": 720,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-casting.png",
+          "width": 74.875,
+          "height": 55,
+          "naturalWidth": 1022,
+          "naturalHeight": 575,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 74.875,
+          "height": 55,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 74.875,
+          "height": 55,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-casting.png",
+          "width": 602.5,
+          "height": 282.203125,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-alloy.png",
+          "width": 602.5,
+          "height": 278,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-stainless.png",
+          "width": 602.5,
+          "height": 278,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/product-machinery.png",
+          "width": 360,
+          "height": 690,
+          "naturalWidth": 1108,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-valve.png",
+          "width": 360,
+          "height": 690,
+          "naturalWidth": 1200,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/contact-icon.png",
+          "width": 23,
+          "height": 20.84375,
+          "naturalWidth": 32,
+          "naturalHeight": 29,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/catalog-icon.png",
+          "width": 23,
+          "height": 27.25,
+          "naturalWidth": 27,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/product-pressure.png",
+          "width": 360,
+          "height": 690,
+          "naturalWidth": 1024,
+          "naturalHeight": 683,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-general.png",
+          "width": 360,
+          "height": 690,
+          "naturalWidth": 1200,
+          "naturalHeight": 900,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-casting.png",
+          "width": 720,
+          "height": 711,
+          "naturalWidth": 2121,
+          "naturalHeight": 1414,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-housing.png",
+          "width": 721.5,
+          "height": 720.015625,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-machining.png",
+          "width": 720,
+          "height": 711,
+          "naturalWidth": 800,
+          "naturalHeight": 600,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-quality.png",
+          "width": 720,
+          "height": 711,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-pattern.png",
+          "width": 720,
+          "height": 720,
+          "naturalWidth": 800,
+          "naturalHeight": 800,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-stainless.png",
+          "width": 720,
+          "height": 711,
+          "naturalWidth": 786,
+          "naturalHeight": 553,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-scanning.png",
+          "width": 720,
+          "height": 711,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-impeller.png",
+          "width": 720,
+          "height": 711,
+          "naturalWidth": 550,
+          "naturalHeight": 550,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso9001.png",
+          "width": 87.6875,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso14001.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-jis.png",
+          "width": 87.6875,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-ims.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-norsok.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-patent.png",
+          "width": 373,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-abs.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-lr.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-dnv.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-bv.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-kr.png",
+          "width": 87.703125,
+          "height": 523,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/partner-torishima.png",
+          "width": 264,
+          "height": 56.953125,
+          "naturalWidth": 292,
+          "naturalHeight": 63,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-goulds.png",
+          "width": 252,
+          "height": 114,
+          "naturalWidth": 252,
+          "naturalHeight": 114,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-fukui.png",
+          "width": 184,
+          "height": 121,
+          "naturalWidth": 184,
+          "naturalHeight": 121,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyosung.png",
+          "width": 264,
+          "height": 68,
+          "naturalWidth": 264,
+          "naturalHeight": 68,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kubota.png",
+          "width": 251,
+          "height": 59,
+          "naturalWidth": 251,
+          "naturalHeight": 59,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kobelco.png",
+          "width": 240,
+          "height": 58,
+          "naturalWidth": 240,
+          "naturalHeight": 58,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hp-valves.png",
+          "width": 246,
+          "height": 113,
+          "naturalWidth": 246,
+          "naturalHeight": 113,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-ksb.png",
+          "width": 230,
+          "height": 105,
+          "naturalWidth": 230,
+          "naturalHeight": 105,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-dmw.png",
+          "width": 264,
+          "height": 50.625,
+          "naturalWidth": 292,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-flowserve.png",
+          "width": 253,
+          "height": 96,
+          "naturalWidth": 253,
+          "naturalHeight": 96,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyundai.png",
+          "width": 264,
+          "height": 29.421875,
+          "naturalWidth": 287,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-mitsubishi.png",
+          "width": 264,
+          "height": 52.421875,
+          "naturalWidth": 282,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/footer-logo.png",
+          "width": 258.109375,
+          "height": 33.921875,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/top-arrow.svg",
+          "width": 15.15625,
+          "height": 17.421875,
+          "naturalWidth": 15,
+          "naturalHeight": 17,
+          "fit": "fill"
+        }
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "height": 10219,
+      "broken": [],
+      "anchors": [],
+      "h1": 1,
+      "sections": [
+        {
+          "id": "top",
+          "class": "hero-sec",
+          "top": 0,
+          "height": 820
+        },
+        {
+          "id": "company",
+          "class": "steel-services card-stack",
+          "top": 820,
+          "height": 1198.203125
+        },
+        {
+          "id": "achievements",
+          "class": "company-achievements",
+          "top": 2018.203125,
+          "height": 700
+        },
+        {
+          "id": "products",
+          "class": "product-showcase",
+          "top": 2718.203125,
+          "height": 1240
+        },
+        {
+          "id": "factory",
+          "class": "process-gallery",
+          "top": 3958.203125,
+          "height": 3722.015625
+        },
+        {
+          "id": "certifications",
+          "class": "certifications",
+          "top": 7680.21875,
+          "height": 694.375
+        },
+        {
+          "id": "partners",
+          "class": "partners",
+          "top": 8374.59375,
+          "height": 791.0625
+        },
+        {
+          "id": "contact",
+          "class": "site-footer",
+          "top": 9165.65625,
+          "height": 1053.046875
+        }
+      ],
+      "overflow": [],
+      "assets": [
+        {
+          "src": "img/figma/logo-white.png",
+          "width": 210,
+          "height": 27.609375,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/logo_black.png",
+          "width": 210,
+          "height": 27.296875,
+          "naturalWidth": 600,
+          "naturalHeight": 78,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/hero-casting.png",
+          "width": 1024,
+          "height": 820,
+          "naturalWidth": 1920,
+          "naturalHeight": 1529,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 1024,
+          "height": 820,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 1024,
+          "height": 820,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-casting.png",
+          "width": 78,
+          "height": 50,
+          "naturalWidth": 1022,
+          "naturalHeight": 575,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 78,
+          "height": 50,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 78,
+          "height": 50,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-casting.png",
+          "width": 454,
+          "height": 240,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-alloy.png",
+          "width": 454,
+          "height": 240,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-stainless.png",
+          "width": 454,
+          "height": 240,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/product-machinery.png",
+          "width": 512,
+          "height": 620,
+          "naturalWidth": 1108,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-valve.png",
+          "width": 512,
+          "height": 620,
+          "naturalWidth": 1200,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/contact-icon.png",
+          "width": 23,
+          "height": 20.84375,
+          "naturalWidth": 32,
+          "naturalHeight": 29,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/catalog-icon.png",
+          "width": 23,
+          "height": 27.25,
+          "naturalWidth": 27,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/product-pressure.png",
+          "width": 512,
+          "height": 620,
+          "naturalWidth": 1024,
+          "naturalHeight": 683,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-general.png",
+          "width": 512,
+          "height": 620,
+          "naturalWidth": 1200,
+          "naturalHeight": 900,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-casting.png",
+          "width": 512,
+          "height": 505.59375,
+          "naturalWidth": 2121,
+          "naturalHeight": 1414,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-housing.png",
+          "width": 513.0625,
+          "height": 512,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-machining.png",
+          "width": 512,
+          "height": 505.59375,
+          "naturalWidth": 800,
+          "naturalHeight": 600,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-quality.png",
+          "width": 512,
+          "height": 505.59375,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-pattern.png",
+          "width": 512,
+          "height": 511.984375,
+          "naturalWidth": 800,
+          "naturalHeight": 800,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-stainless.png",
+          "width": 512,
+          "height": 505.59375,
+          "naturalWidth": 786,
+          "naturalHeight": 553,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-scanning.png",
+          "width": 512,
+          "height": 505.59375,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-impeller.png",
+          "width": 512,
+          "height": 505.59375,
+          "naturalWidth": 550,
+          "naturalHeight": 550,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso9001.png",
+          "width": 61.78125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso14001.png",
+          "width": 61.796875,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-jis.png",
+          "width": 61.78125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-ims.png",
+          "width": 61.796875,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-norsok.png",
+          "width": 61.78125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-patent.png",
+          "width": 264.671875,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-abs.png",
+          "width": 61.796875,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-lr.png",
+          "width": 61.78125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-dnv.png",
+          "width": 61.796875,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-bv.png",
+          "width": 61.78125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-kr.png",
+          "width": 61.796875,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/partner-torishima.png",
+          "width": 187.734375,
+          "height": 40.5,
+          "naturalWidth": 292,
+          "naturalHeight": 63,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-goulds.png",
+          "width": 187.75,
+          "height": 84.921875,
+          "naturalWidth": 252,
+          "naturalHeight": 114,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-fukui.png",
+          "width": 184,
+          "height": 121,
+          "naturalWidth": 184,
+          "naturalHeight": 121,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyosung.png",
+          "width": 187.75,
+          "height": 48.359375,
+          "naturalWidth": 264,
+          "naturalHeight": 68,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kubota.png",
+          "width": 187.734375,
+          "height": 44.125,
+          "naturalWidth": 251,
+          "naturalHeight": 59,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kobelco.png",
+          "width": 187.75,
+          "height": 45.359375,
+          "naturalWidth": 240,
+          "naturalHeight": 58,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hp-valves.png",
+          "width": 187.734375,
+          "height": 86.234375,
+          "naturalWidth": 246,
+          "naturalHeight": 113,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-ksb.png",
+          "width": 187.75,
+          "height": 85.703125,
+          "naturalWidth": 230,
+          "naturalHeight": 105,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-dmw.png",
+          "width": 187.734375,
+          "height": 36,
+          "naturalWidth": 292,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-flowserve.png",
+          "width": 187.75,
+          "height": 71.234375,
+          "naturalWidth": 253,
+          "naturalHeight": 96,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyundai.png",
+          "width": 187.734375,
+          "height": 20.921875,
+          "naturalWidth": 287,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-mitsubishi.png",
+          "width": 187.75,
+          "height": 37.28125,
+          "naturalWidth": 282,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/footer-logo.png",
+          "width": 258.109375,
+          "height": 33.921875,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/top-arrow.svg",
+          "width": 15.15625,
+          "height": 17.421875,
+          "naturalWidth": 15,
+          "naturalHeight": 17,
+          "fit": "fill"
+        }
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "height": 9240,
+      "broken": [],
+      "anchors": [],
+      "h1": 1,
+      "sections": [
+        {
+          "id": "top",
+          "class": "hero-sec",
+          "top": 0,
+          "height": 820
+        },
+        {
+          "id": "company",
+          "class": "steel-services card-stack",
+          "top": 820,
+          "height": 1198.203125
+        },
+        {
+          "id": "achievements",
+          "class": "company-achievements",
+          "top": 2018.203125,
+          "height": 700
+        },
+        {
+          "id": "products",
+          "class": "product-showcase",
+          "top": 2718.203125,
+          "height": 1240
+        },
+        {
+          "id": "factory",
+          "class": "process-gallery",
+          "top": 3958.203125,
+          "height": 2791.40625
+        },
+        {
+          "id": "certifications",
+          "class": "certifications",
+          "top": 6749.609375,
+          "height": 694.375
+        },
+        {
+          "id": "partners",
+          "class": "partners",
+          "top": 7443.984375,
+          "height": 722.78125
+        },
+        {
+          "id": "contact",
+          "class": "site-footer",
+          "top": 8166.765625,
+          "height": 1073.046875
+        }
+      ],
+      "overflow": [],
+      "assets": [
+        {
+          "src": "img/figma/logo-white.png",
+          "width": 238.078125,
+          "height": 31.296875,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/logo_black.png",
+          "width": 238.078125,
+          "height": 30.9375,
+          "naturalWidth": 600,
+          "naturalHeight": 78,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/hero-casting.png",
+          "width": 768,
+          "height": 820,
+          "naturalWidth": 1920,
+          "naturalHeight": 1529,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 768,
+          "height": 820,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 768,
+          "height": 820,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-casting.png",
+          "width": 78,
+          "height": 50,
+          "naturalWidth": 1022,
+          "naturalHeight": 575,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 78,
+          "height": 50,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 78,
+          "height": 50,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-casting.png",
+          "width": 326,
+          "height": 240,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-alloy.png",
+          "width": 326,
+          "height": 240,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-stainless.png",
+          "width": 326,
+          "height": 240,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/product-machinery.png",
+          "width": 384,
+          "height": 620,
+          "naturalWidth": 1108,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-valve.png",
+          "width": 384,
+          "height": 620,
+          "naturalWidth": 1200,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/contact-icon.png",
+          "width": 23,
+          "height": 20.84375,
+          "naturalWidth": 32,
+          "naturalHeight": 29,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/catalog-icon.png",
+          "width": 23,
+          "height": 27.25,
+          "naturalWidth": 27,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/product-pressure.png",
+          "width": 384,
+          "height": 620,
+          "naturalWidth": 1024,
+          "naturalHeight": 683,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-general.png",
+          "width": 384,
+          "height": 620,
+          "naturalWidth": 1200,
+          "naturalHeight": 900,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-casting.png",
+          "width": 384,
+          "height": 379.1875,
+          "naturalWidth": 2121,
+          "naturalHeight": 1414,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-housing.png",
+          "width": 384.796875,
+          "height": 384,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-machining.png",
+          "width": 384,
+          "height": 379.1875,
+          "naturalWidth": 800,
+          "naturalHeight": 600,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-quality.png",
+          "width": 384,
+          "height": 379.1875,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-pattern.png",
+          "width": 384,
+          "height": 383.984375,
+          "naturalWidth": 800,
+          "naturalHeight": 800,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-stainless.png",
+          "width": 384,
+          "height": 379.1875,
+          "naturalWidth": 786,
+          "naturalHeight": 553,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-scanning.png",
+          "width": 384,
+          "height": 379.1875,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-impeller.png",
+          "width": 384,
+          "height": 379.1875,
+          "naturalWidth": 550,
+          "naturalHeight": 550,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso9001.png",
+          "width": 45.828125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso14001.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-jis.png",
+          "width": 45.828125,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-ims.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-norsok.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-patent.png",
+          "width": 198,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-abs.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-lr.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-dnv.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-bv.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-kr.png",
+          "width": 45.84375,
+          "height": 408,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/partner-torishima.png",
+          "width": 140.796875,
+          "height": 30.375,
+          "naturalWidth": 292,
+          "naturalHeight": 63,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-goulds.png",
+          "width": 140.8125,
+          "height": 63.6875,
+          "naturalWidth": 252,
+          "naturalHeight": 114,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-fukui.png",
+          "width": 140.796875,
+          "height": 92.578125,
+          "naturalWidth": 184,
+          "naturalHeight": 121,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyosung.png",
+          "width": 140.8125,
+          "height": 36.265625,
+          "naturalWidth": 264,
+          "naturalHeight": 68,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kubota.png",
+          "width": 140.796875,
+          "height": 33.09375,
+          "naturalWidth": 251,
+          "naturalHeight": 59,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kobelco.png",
+          "width": 140.8125,
+          "height": 34.015625,
+          "naturalWidth": 240,
+          "naturalHeight": 58,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hp-valves.png",
+          "width": 140.796875,
+          "height": 64.671875,
+          "naturalWidth": 246,
+          "naturalHeight": 113,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-ksb.png",
+          "width": 140.8125,
+          "height": 64.28125,
+          "naturalWidth": 230,
+          "naturalHeight": 105,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-dmw.png",
+          "width": 140.796875,
+          "height": 27,
+          "naturalWidth": 292,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-flowserve.png",
+          "width": 140.8125,
+          "height": 53.421875,
+          "naturalWidth": 253,
+          "naturalHeight": 96,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyundai.png",
+          "width": 140.796875,
+          "height": 15.6875,
+          "naturalWidth": 287,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-mitsubishi.png",
+          "width": 140.8125,
+          "height": 27.953125,
+          "naturalWidth": 282,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/footer-logo.png",
+          "width": 258.109375,
+          "height": 33.921875,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/top-arrow.svg",
+          "width": 15.15625,
+          "height": 17.421875,
+          "naturalWidth": 15,
+          "naturalHeight": 17,
+          "fit": "fill"
+        }
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 11560,
+      "broken": [],
+      "anchors": [],
+      "h1": 1,
+      "sections": [
+        {
+          "id": "top",
+          "class": "hero-sec",
+          "top": 0,
+          "height": 844
+        },
+        {
+          "id": "company",
+          "class": "steel-services card-stack",
+          "top": 844,
+          "height": 1198.734375
+        },
+        {
+          "id": "achievements",
+          "class": "company-achievements",
+          "top": 2042.734375,
+          "height": 620
+        },
+        {
+          "id": "products",
+          "class": "product-showcase",
+          "top": 2662.734375,
+          "height": 2160
+        },
+        {
+          "id": "factory",
+          "class": "process-gallery",
+          "top": 4822.734375,
+          "height": 3889.0625
+        },
+        {
+          "id": "certifications",
+          "class": "certifications",
+          "top": 8711.796875,
+          "height": 600
+        },
+        {
+          "id": "partners",
+          "class": "partners",
+          "top": 9311.796875,
+          "height": 982
+        },
+        {
+          "id": "contact",
+          "class": "site-footer",
+          "top": 10293.796875,
+          "height": 1266.5
+        }
+      ],
+      "overflow": [],
+      "assets": [
+        {
+          "src": "img/figma/logo-white.png",
+          "width": 170,
+          "height": 22.34375,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/logo_black.png",
+          "width": 170,
+          "height": 22.09375,
+          "naturalWidth": 600,
+          "naturalHeight": 78,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/hero-casting.png",
+          "width": 390,
+          "height": 844,
+          "naturalWidth": 1920,
+          "naturalHeight": 1529,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 390,
+          "height": 844,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 390,
+          "height": 844,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-casting.png",
+          "width": 77.765625,
+          "height": 44,
+          "naturalWidth": 1022,
+          "naturalHeight": 575,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 77.390625,
+          "height": 44,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 82.84375,
+          "height": 44,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-casting.png",
+          "width": 350,
+          "height": 139.109375,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-alloy.png",
+          "width": 350,
+          "height": 139.109375,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-stainless.png",
+          "width": 350,
+          "height": 139.109375,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/product-machinery.png",
+          "width": 390,
+          "height": 540,
+          "naturalWidth": 1108,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-valve.png",
+          "width": 390,
+          "height": 540,
+          "naturalWidth": 1200,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/contact-icon.png",
+          "width": 32,
+          "height": 29,
+          "naturalWidth": 32,
+          "naturalHeight": 29,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/catalog-icon.png",
+          "width": 27,
+          "height": 32,
+          "naturalWidth": 27,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/product-pressure.png",
+          "width": 390,
+          "height": 540,
+          "naturalWidth": 1024,
+          "naturalHeight": 683,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-general.png",
+          "width": 390,
+          "height": 540,
+          "naturalWidth": 1200,
+          "naturalHeight": 900,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-casting.png",
+          "width": 390,
+          "height": 385.125,
+          "naturalWidth": 2121,
+          "naturalHeight": 1414,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-housing.png",
+          "width": 390.8125,
+          "height": 390.015625,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-machining.png",
+          "width": 390,
+          "height": 385.125,
+          "naturalWidth": 800,
+          "naturalHeight": 600,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-quality.png",
+          "width": 390,
+          "height": 385.125,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-pattern.png",
+          "width": 390,
+          "height": 390,
+          "naturalWidth": 800,
+          "naturalHeight": 800,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-stainless.png",
+          "width": 390,
+          "height": 385.125,
+          "naturalWidth": 786,
+          "naturalHeight": 553,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-scanning.png",
+          "width": 390,
+          "height": 385.125,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-impeller.png",
+          "width": 390,
+          "height": 385.125,
+          "naturalWidth": 550,
+          "naturalHeight": 550,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso9001.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-iso14001.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-jis.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-ims.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-norsok.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-patent.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-abs.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-lr.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-dnv.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-bv.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-kr.png",
+          "width": 273.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-torishima.png",
+          "width": 157,
+          "height": 33.859375,
+          "naturalWidth": 292,
+          "naturalHeight": 63,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-goulds.png",
+          "width": 157,
+          "height": 71.015625,
+          "naturalWidth": 252,
+          "naturalHeight": 114,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-fukui.png",
+          "width": 157,
+          "height": 74,
+          "naturalWidth": 184,
+          "naturalHeight": 121,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyosung.png",
+          "width": 157,
+          "height": 40.4375,
+          "naturalWidth": 264,
+          "naturalHeight": 68,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kubota.png",
+          "width": 157,
+          "height": 36.890625,
+          "naturalWidth": 251,
+          "naturalHeight": 59,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kobelco.png",
+          "width": 157,
+          "height": 37.9375,
+          "naturalWidth": 240,
+          "naturalHeight": 58,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hp-valves.png",
+          "width": 157,
+          "height": 72.109375,
+          "naturalWidth": 246,
+          "naturalHeight": 113,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-ksb.png",
+          "width": 157,
+          "height": 71.671875,
+          "naturalWidth": 230,
+          "naturalHeight": 105,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-dmw.png",
+          "width": 157,
+          "height": 30.109375,
+          "naturalWidth": 292,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-flowserve.png",
+          "width": 157,
+          "height": 59.5625,
+          "naturalWidth": 253,
+          "naturalHeight": 96,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyundai.png",
+          "width": 157,
+          "height": 17.5,
+          "naturalWidth": 287,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-mitsubishi.png",
+          "width": 157,
+          "height": 31.171875,
+          "naturalWidth": 282,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/footer-logo.png",
+          "width": 200,
+          "height": 26.28125,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/top-arrow.svg",
+          "width": 15.15625,
+          "height": 17.421875,
+          "naturalWidth": 15,
+          "naturalHeight": 17,
+          "fit": "fill"
+        }
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 360,
+      "scrollWidth": 360,
+      "height": 11249,
+      "broken": [],
+      "anchors": [],
+      "h1": 1,
+      "sections": [
+        {
+          "id": "top",
+          "class": "hero-sec",
+          "top": 0,
+          "height": 800
+        },
+        {
+          "id": "company",
+          "class": "steel-services card-stack",
+          "top": 800,
+          "height": 1162.96875
+        },
+        {
+          "id": "achievements",
+          "class": "company-achievements",
+          "top": 1962.96875,
+          "height": 620
+        },
+        {
+          "id": "products",
+          "class": "product-showcase",
+          "top": 2582.96875,
+          "height": 2160
+        },
+        {
+          "id": "factory",
+          "class": "process-gallery",
+          "top": 4742.96875,
+          "height": 3657.65625
+        },
+        {
+          "id": "certifications",
+          "class": "certifications",
+          "top": 8400.625,
+          "height": 600
+        },
+        {
+          "id": "partners",
+          "class": "partners",
+          "top": 9000.625,
+          "height": 982
+        },
+        {
+          "id": "contact",
+          "class": "site-footer",
+          "top": 9982.625,
+          "height": 1266.5
+        }
+      ],
+      "overflow": [],
+      "assets": [
+        {
+          "src": "img/figma/logo-white.png",
+          "width": 170,
+          "height": 22.34375,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/logo_black.png",
+          "width": 170,
+          "height": 22.09375,
+          "naturalWidth": 600,
+          "naturalHeight": 78,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/hero-casting.png",
+          "width": 360,
+          "height": 800,
+          "naturalWidth": 1920,
+          "naturalHeight": 1529,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 360,
+          "height": 800,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 360,
+          "height": 800,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-casting.png",
+          "width": 67.90625,
+          "height": 44,
+          "naturalWidth": 1022,
+          "naturalHeight": 575,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-quality.png",
+          "width": 67.546875,
+          "height": 44,
+          "naturalWidth": 1000,
+          "naturalHeight": 546,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/hero-thumb-solution.png",
+          "width": 72.546875,
+          "height": 44,
+          "naturalWidth": 2816,
+          "naturalHeight": 1536,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-casting.png",
+          "width": 320,
+          "height": 127.1875,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-alloy.png",
+          "width": 320,
+          "height": 127.1875,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/service-stainless.png",
+          "width": 320,
+          "height": 127.1875,
+          "naturalWidth": 350,
+          "naturalHeight": 141,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/product-machinery.png",
+          "width": 360,
+          "height": 540,
+          "naturalWidth": 1108,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-valve.png",
+          "width": 360,
+          "height": 540,
+          "naturalWidth": 1200,
+          "naturalHeight": 800,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/contact-icon.png",
+          "width": 32,
+          "height": 29,
+          "naturalWidth": 32,
+          "naturalHeight": 29,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/catalog-icon.png",
+          "width": 27,
+          "height": 32,
+          "naturalWidth": 27,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/product-pressure.png",
+          "width": 360,
+          "height": 540,
+          "naturalWidth": 1024,
+          "naturalHeight": 683,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/product-general.png",
+          "width": 360,
+          "height": 540,
+          "naturalWidth": 1200,
+          "naturalHeight": 900,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/detail-circle.svg",
+          "width": 40,
+          "height": 40,
+          "naturalWidth": 40,
+          "naturalHeight": 40,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/detail-arrow.svg",
+          "width": 21.78125,
+          "height": 13.796875,
+          "naturalWidth": 22,
+          "naturalHeight": 14,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-casting.png",
+          "width": 360,
+          "height": 355.5,
+          "naturalWidth": 2121,
+          "naturalHeight": 1414,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-housing.png",
+          "width": 360.75,
+          "height": 360,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-machining.png",
+          "width": 360,
+          "height": 355.5,
+          "naturalWidth": 800,
+          "naturalHeight": 600,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-quality.png",
+          "width": 360,
+          "height": 355.5,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-pattern.png",
+          "width": 360,
+          "height": 360,
+          "naturalWidth": 800,
+          "naturalHeight": 800,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/process-stainless.png",
+          "width": 360,
+          "height": 355.5,
+          "naturalWidth": 786,
+          "naturalHeight": 553,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-scanning.png",
+          "width": 360,
+          "height": 355.5,
+          "naturalWidth": 1500,
+          "naturalHeight": 1000,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/process-impeller.png",
+          "width": 360,
+          "height": 355.5,
+          "naturalWidth": 550,
+          "naturalHeight": 550,
+          "fit": "cover"
+        },
+        {
+          "src": "img/figma/certificate-iso9001.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-iso14001.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-jis.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-ims.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-norsok.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-patent.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-abs.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-lr.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-dnv.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-bv.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/certificate-kr.png",
+          "width": 249.1875,
+          "height": 342,
+          "naturalWidth": 500,
+          "naturalHeight": 700,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-torishima.png",
+          "width": 142,
+          "height": 30.625,
+          "naturalWidth": 292,
+          "naturalHeight": 63,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-goulds.png",
+          "width": 142,
+          "height": 64.234375,
+          "naturalWidth": 252,
+          "naturalHeight": 114,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-fukui.png",
+          "width": 142,
+          "height": 74,
+          "naturalWidth": 184,
+          "naturalHeight": 121,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyosung.png",
+          "width": 142,
+          "height": 36.5625,
+          "naturalWidth": 264,
+          "naturalHeight": 68,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kubota.png",
+          "width": 142,
+          "height": 33.375,
+          "naturalWidth": 251,
+          "naturalHeight": 59,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-kobelco.png",
+          "width": 142,
+          "height": 34.3125,
+          "naturalWidth": 240,
+          "naturalHeight": 58,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hp-valves.png",
+          "width": 142,
+          "height": 65.21875,
+          "naturalWidth": 246,
+          "naturalHeight": 113,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-ksb.png",
+          "width": 142,
+          "height": 64.8125,
+          "naturalWidth": 230,
+          "naturalHeight": 105,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-dmw.png",
+          "width": 142,
+          "height": 27.21875,
+          "naturalWidth": 292,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-flowserve.png",
+          "width": 142,
+          "height": 53.875,
+          "naturalWidth": 253,
+          "naturalHeight": 96,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-hyundai.png",
+          "width": 142,
+          "height": 15.828125,
+          "naturalWidth": 287,
+          "naturalHeight": 32,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/partner-mitsubishi.png",
+          "width": 142,
+          "height": 28.1875,
+          "naturalWidth": 282,
+          "naturalHeight": 56,
+          "fit": "contain"
+        },
+        {
+          "src": "img/figma/footer-logo.png",
+          "width": 200,
+          "height": 26.28125,
+          "naturalWidth": 251,
+          "naturalHeight": 33,
+          "fit": "fill"
+        },
+        {
+          "src": "img/figma/top-arrow.svg",
+          "width": 15.15625,
+          "height": 17.421875,
+          "naturalWidth": 15,
+          "naturalHeight": 17,
+          "fit": "fill"
+        }
+      ],
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "interactions": [
+    "Desktop hover menu / Escape",
+    "All hero thumbnail controls / persistent headline",
+    "4 product details / email link / Escape focus return",
+    "Catalog request information / close",
+    "Certificate selection / arrows / Home / End / zoom",
+    "Mobile menu / section navigation / close",
+    "Without JS: content, metrics, gallery and partner logos remain present",
+    "Normal motion: achievement counters build and finish without errors"
+  ],
+  "imageMetadata": [
+    {
+      "file": "catalog-icon.png",
+      "bytes": 470
+    },
+    {
+      "file": "certificate-abs.png",
+      "bytes": 88394
+    },
+    {
+      "file": "certificate-bv.png",
+      "bytes": 69840
+    },
+    {
+      "file": "certificate-dnv.png",
+      "bytes": 67277
+    },
+    {
+      "file": "certificate-ims.png",
+      "bytes": 113164
+    },
+    {
+      "file": "certificate-iso14001.png",
+      "bytes": 69271
+    },
+    {
+      "file": "certificate-iso9001.png",
+      "bytes": 65352
+    },
+    {
+      "file": "certificate-jis.png",
+      "bytes": 88409
+    },
+    {
+      "file": "certificate-kr.png",
+      "bytes": 83305
+    },
+    {
+      "file": "certificate-lr.png",
+      "bytes": 61139
+    },
+    {
+      "file": "certificate-norsok.png",
+      "bytes": 105525
+    },
+    {
+      "file": "certificate-patent.png",
+      "bytes": 71544
+    },
+    {
+      "file": "contact-icon.png",
+      "bytes": 598
+    },
+    {
+      "file": "detail-arrow.svg",
+      "bytes": 330
+    },
+    {
+      "file": "detail-circle.svg",
+      "bytes": 322
+    },
+    {
+      "file": "factory.png",
+      "bytes": 609843
+    },
+    {
+      "file": "footer-background.svg",
+      "bytes": 5592
+    },
+    {
+      "file": "footer-divider.svg",
+      "bytes": 328
+    },
+    {
+      "file": "footer-logo.png",
+      "bytes": 4214
+    },
+    {
+      "file": "footer-panel.svg",
+      "bytes": 427
+    },
+    {
+      "file": "hero-casting.png",
+      "bytes": 550720
+    },
+    {
+      "file": "hero-divider.svg",
+      "bytes": 244
+    },
+    {
+      "file": "hero-thumb-casting.png",
+      "bytes": 934824
+    },
+    {
+      "file": "hero-thumb-quality.png",
+      "bytes": 650555
+    },
+    {
+      "file": "hero-thumb-solution.png",
+      "bytes": 2730197
+    },
+    {
+      "file": "logo-white.png",
+      "bytes": 4942
+    },
+    {
+      "file": "partner-dmw.png",
+      "bytes": 23049
+    },
+    {
+      "file": "partner-flowserve.png",
+      "bytes": 14603
+    },
+    {
+      "file": "partner-fukui.png",
+      "bytes": 5133
+    },
+    {
+      "file": "partner-goulds.png",
+      "bytes": 23415
+    },
+    {
+      "file": "partner-hp-valves.png",
+      "bytes": 9660
+    },
+    {
+      "file": "partner-hyosung.png",
+      "bytes": 13806
+    },
+    {
+      "file": "partner-hyundai.png",
+      "bytes": 8261
+    },
+    {
+      "file": "partner-kobelco.png",
+      "bytes": 10517
+    },
+    {
+      "file": "partner-ksb.png",
+      "bytes": 20094
+    },
+    {
+      "file": "partner-kubota.png",
+      "bytes": 7774
+    },
+    {
+      "file": "partner-mitsubishi.png",
+      "bytes": 11752
+    },
+    {
+      "file": "partner-torishima.png",
+      "bytes": 11815
+    },
+    {
+      "file": "process-casting.png",
+      "bytes": 440427
+    },
+    {
+      "file": "process-housing.png",
+      "bytes": 93565
+    },
+    {
+      "file": "process-impeller.png",
+      "bytes": 21526
+    },
+    {
+      "file": "process-machining.png",
+      "bytes": 100054
+    },
+    {
+      "file": "process-pattern.png",
+      "bytes": 55717
+    },
+    {
+      "file": "process-quality.png",
+      "bytes": 197132
+    },
+    {
+      "file": "process-scanning.png",
+      "bytes": 197291
+    },
+    {
+      "file": "process-stainless.png",
+      "bytes": 40151
+    },
+    {
+      "file": "product-action.svg",
+      "bytes": 245
+    },
+    {
+      "file": "product-active-shade.svg",
+      "bytes": 248
+    },
+    {
+      "file": "product-general.png",
+      "bytes": 201351
+    },
+    {
+      "file": "product-machinery.png",
+      "bytes": 134214
+    },
+    {
+      "file": "product-pressure.png",
+      "bytes": 41151
+    },
+    {
+      "file": "product-shade.svg",
+      "bytes": 249
+    },
+    {
+      "file": "product-valve.png",
+      "bytes": 137335
+    },
+    {
+      "file": "service-alloy.png",
+      "bytes": 9312
+    },
+    {
+      "file": "service-casting.png",
+      "bytes": 14999
+    },
+    {
+      "file": "service-stainless.png",
+      "bytes": 12913
+    },
+    {
+      "file": "top-arrow.svg",
+      "bytes": 402
+    },
+    {
+      "file": "top-background.svg",
+      "bytes": 422
+    }
+  ]
+}
