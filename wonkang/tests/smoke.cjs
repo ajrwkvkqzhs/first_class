@@ -144,6 +144,7 @@ const root = path.resolve(__dirname, '../..');
         if (width === 390) {
             await page.getByRole('button', { name: '전체 메뉴 펼치기' }).click();
             assert.equal(await page.locator('#main-navigation').isVisible(), true);
+            await page.locator('#nav-company').click();
             await page.locator('.site-nav__submenu a[href="#partners"]').click();
             assert.equal(await page.locator('#main-navigation').isVisible(), false);
             results.interactions.push('Mobile menu / section navigation / close');

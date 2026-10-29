@@ -1,0 +1,154 @@
+{
+  "url": "http://127.0.0.1:4173/wonkang/",
+  "results": [
+    {
+      "width": 320,
+      "height": 568,
+      "reachability": {
+        "top": 300,
+        "bottom": 344,
+        "hit": true,
+        "navScroll": 0,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 240,
+      "reachability": {
+        "top": 136,
+        "bottom": 180,
+        "hit": true,
+        "navScroll": 164,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 600,
+      "height": 360,
+      "reachability": {
+        "top": 300,
+        "bottom": 344,
+        "hit": true,
+        "navScroll": 0,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 601,
+      "height": 320,
+      "reachability": {
+        "top": 276,
+        "bottom": 320,
+        "hit": true,
+        "navScroll": 20,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 768,
+      "height": 360,
+      "reachability": {
+        "top": 296,
+        "bottom": 340,
+        "hit": true,
+        "navScroll": 0,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 850,
+      "height": 320,
+      "reachability": {
+        "top": 276,
+        "bottom": 320,
+        "hit": true,
+        "navScroll": 20,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 851,
+      "height": 320,
+      "reachability": {
+        "top": 268,
+        "bottom": 312,
+        "hit": true,
+        "navScroll": 0,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 900,
+      "height": 240,
+      "reachability": {
+        "top": 172,
+        "bottom": 216,
+        "hit": true,
+        "navScroll": 96,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "height": 568,
+      "reachability": {
+        "top": 268,
+        "bottom": 312,
+        "hit": true,
+        "navScroll": 0,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "reachability": {
+        "top": 268,
+        "bottom": 312,
+        "hit": true,
+        "navScroll": 0,
+        "pageScroll": 0
+      },
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "height": 568,
+      "dialogClose": {
+        "scroll": 898,
+        "top": 52,
+        "bottom": 96,
+        "hit": true
+      }
+    },
+    {
+      "width": 390,
+      "height": 320,
+      "dialogClose": {
+        "scroll": 273,
+        "top": 44,
+        "bottom": 88,
+        "hit": true
+      }
+    }
+  ],
+  "resizeSequence": [
+    1440,
+    850,
+    600,
+    320,
+    601,
+    851,
+    1440
+  ]
+}

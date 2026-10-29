@@ -191,21 +191,21 @@
           "name": "회사소개",
           "primaryX": 22,
           "submenuX": 22,
-          "width": 107.328125,
+          "width": 346,
           "delta": 0
         },
         {
           "name": "공장",
-          "primaryX": 141.328125,
-          "submenuX": 141.328125,
-          "width": 107.328125,
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 346,
           "delta": 0
         },
         {
           "name": "제품소개",
-          "primaryX": 260.65625,
-          "submenuX": 260.65625,
-          "width": 107.34375,
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 346,
           "delta": 0
         }
       ],
@@ -226,21 +226,21 @@
           "name": "회사소개",
           "primaryX": 22,
           "submenuX": 22,
-          "width": 97.328125,
+          "width": 316,
           "delta": 0
         },
         {
           "name": "공장",
-          "primaryX": 131.328125,
-          "submenuX": 131.328125,
-          "width": 97.328125,
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 316,
           "delta": 0
         },
         {
           "name": "제품소개",
-          "primaryX": 240.65625,
-          "submenuX": 240.65625,
-          "width": 97.34375,
+          "primaryX": 22,
+          "submenuX": 22,
+          "width": 316,
           "delta": 0
         }
       ],

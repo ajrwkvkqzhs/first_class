@@ -118,6 +118,7 @@ function initializeNavigation() {
     const submenus = groups.map((group) => group.querySelector('.site-nav__submenu'));
     const toggle = header.querySelector('.menu-toggle');
     const compact = window.matchMedia('(max-width: 850px)');
+    const narrow = window.matchMedia('(max-width: 600px)');
     let activeButton = buttons[0];
 
     function setGroupOpen(index, open) {
@@ -128,7 +129,7 @@ function initializeNavigation() {
 
     function setMenuOpen(open) {
         header.classList.toggle('mega-open', open);
-        groups.forEach((group, index) => setGroupOpen(index, open));
+        groups.forEach((group, index) => setGroupOpen(index, open && !narrow.matches));
         navigation.inert = compact.matches && !open;
         toggle.setAttribute('aria-expanded', String(open));
         toggle.setAttribute('aria-label', open ? '전체 메뉴 접기' : '전체 메뉴 펼치기');
@@ -136,12 +137,13 @@ function initializeNavigation() {
 
     groups.forEach((group, index) => {
         const button = buttons[index];
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (event) => {
             activeButton = button;
             if (compact.matches) {
                 setGroupOpen(index, button.getAttribute('aria-expanded') !== 'true');
             } else {
-                setMenuOpen(!header.classList.contains('mega-open'));
+                // Pointer entry already opens the menu; its following click must not close it again.
+                setMenuOpen(event.detail > 0 || !header.classList.contains('mega-open'));
             }
         });
 
@@ -195,6 +197,7 @@ function initializeNavigation() {
     });
 
     compact.addEventListener('change', () => setMenuOpen(false));
+    narrow.addEventListener('change', () => setMenuOpen(false));
     setMenuOpen(false);
 }
 

@@ -37,6 +37,9 @@ const url = process.env.WONKANG_URL || 'http://127.0.0.1:4173/wonkang/';
             await page.locator('.site-nav__item').first().hover();
         } else {
             await page.getByRole('button', { name: '전체 메뉴 펼치기' }).click();
+            if (width <= 600) {
+                for (const button of await page.locator('.site-nav__item').all()) await button.click();
+            }
         }
         const alignment = await page.locator('.site-nav__group').evaluateAll((groups) =>
             groups.map((group) => {
