@@ -351,7 +351,8 @@ figure,
     background: #ffffffa6;
 }
 
-/* 사업 분야: 장면 전체가 아래에서 진입해 기존 글자와 사진을 덮는 스크롤 연출. */
+/* 원강금속의 원래 색상(백색 → 연회색 → 브랜드 파랑)을 복원하고
+   배경·텍스트·사진을 같은 스크롤 진행도에 따라 자연스럽게 교차시킵니다. */
 .card-stack {
     position: relative;
     isolation: isolate;
@@ -366,14 +367,19 @@ figure,
     align-items: center;
     min-height: 100svh;
     padding: calc(60px + var(--header-height)) 20px 112px;
+    background: var(--service-background);
 }
-.steel-service--casting,
-.steel-service--alloy,
+.steel-service--casting {
+    --service-background: #fff;
+}
+.steel-service--alloy {
+    --service-background: var(--brand-neutral-200);
+}
 .steel-service--stainless {
-    background: transparent;
-    color: var(--text-primary);
+    --service-background: var(--brand-blue);
+    color: #fff;
 }
-/* 모션을 허용한 화면에서만 sticky 장면 전환을 활성화합니다. */
+/* 모션 설정이 허용되는 경우에만 한 화면을 고정하고 내용끼리 교차시킵니다. */
 .card-stack.is-enhanced {
     height: 360svh;
 }
@@ -388,11 +394,10 @@ figure,
     inset: 0;
     height: 100%;
     min-height: 0;
-    background: var(--background-default);
+    background: transparent;
     visibility: hidden;
     pointer-events: none;
-    transform: translate3d(0, var(--sequence-panel-y, 100%), 0);
-    will-change: transform;
+    isolation: isolate;
 }
 .card-stack.is-enhanced .steel-service:nth-child(1) { z-index: 1; }
 .card-stack.is-enhanced .steel-service:nth-child(2) { z-index: 2; }
@@ -400,14 +405,42 @@ figure,
 .card-stack.is-enhanced .steel-service.is-visible {
     visibility: visible;
 }
+/* 다음 장면의 배경만 서서히 불투명해집니다. 색상을 강제로 덮어쓰지 않습니다. */
+.card-stack.is-enhanced .steel-service::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--service-background);
+    opacity: var(--sequence-background-opacity, 1);
+    pointer-events: none;
+}
+.card-stack.is-enhanced .steel-service__inner {
+    position: relative;
+    z-index: 1;
+}
+.card-stack.is-enhanced .steel-service__text {
+    opacity: var(--sequence-text-opacity, 1);
+    transform: translate3d(0, var(--sequence-text-y, 0px), 0);
+    will-change: opacity, transform;
+}
+.card-stack.is-enhanced .steel-service__image {
+    opacity: var(--sequence-image-opacity, 1);
+    transform: translate3d(0, var(--sequence-image-y, 0px), 0);
+    will-change: opacity, transform;
+}
 .card-stack__navigation {
     position: sticky;
     z-index: 5;
     bottom: 28px;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     width: max-content;
-    margin: -76px 40px 24px auto;
+    margin: -84px 40px 24px auto;
+    padding: 8px;
+    border-radius: 40px;
+    background: #161519cc;
+    color: #fff;
 }
 .card-stack.is-enhanced .card-stack__navigation {
     position: absolute;
@@ -418,21 +451,21 @@ figure,
 .card-stack__nav {
     width: 44px;
     height: 44px;
-    border-bottom: 2px solid #aab4c1;
-    color: #637084;
+    border-radius: 50%;
+    color: #ffffffb3;
     font-size: 13px;
     font-weight: 700;
-    transition: border-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
 .card-stack__nav.is-current,
 .card-stack__nav:hover,
 .card-stack__nav:focus-visible {
-    border-color: var(--brand-red-500);
-    color: var(--brand-red-500);
+    background: #fff;
+    color: var(--text-primary);
 }
 .card-stack__nav:focus-visible {
-    outline: 2px solid var(--brand-red-500);
-    outline-offset: 4px;
+    outline: 2px solid #fff;
+    outline-offset: 3px;
 }
 .steel-service__inner {
     display: grid;
@@ -444,14 +477,15 @@ figure,
 }
 .steel-service__label {
     display: inline-block;
-    color: var(--brand-red-500);
+    padding: 5px 10px;
+    border-radius: 30px;
+    background: #e9ebee;
+    color: var(--text-muted);
     font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
+    font-weight: 500;
     line-height: 1.4375;
 }
 .steel-service__title {
-    margin-top: 12px;
     font-size: 60px;
     font-weight: 500;
     line-height: 1.2;
@@ -467,15 +501,17 @@ figure,
     font-weight: 500;
     line-height: 1.4;
 }
+.steel-service--stainless .steel-service__text p {
+    color: #fff;
+}
 .steel-service__image {
     width: 100%;
-    height: auto;
-    aspect-ratio: 556 / 221;
+    height: 278px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 12px;
 }
 .steel-service--casting .steel-service__image {
-    height: auto;
+    height: 282.212px;
 }
 
 /* 69:232 — 75% 암전 배경과 실적 숫자 */

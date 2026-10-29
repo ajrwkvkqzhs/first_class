@@ -17,15 +17,24 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         step: (el.offsetHeight - el.querySelector('.card-stack__deck').offsetHeight) / 2,
         enabled: el.classList.contains('is-enhanced'),
     }));
-    assert.equal(sequence.enabled, true, 'desktop enables the scroll-driven service sequence');
+    assert.equal(sequence.enabled, true, 'desktop enables the service crossfade');
     const sample = () => page.locator('.steel-service').evaluateAll((cards) =>
-        cards.map((card) => ({
-            visible: getComputedStyle(card).visibility === 'visible',
-            background: getComputedStyle(card).backgroundColor,
-            opacity: Number(getComputedStyle(card).opacity),
-            y: new DOMMatrix(getComputedStyle(card).transform).m42,
-            ariaHidden: card.getAttribute('aria-hidden'),
-        }))
+        cards.map((card) => {
+            const text = card.querySelector('.steel-service__text');
+            const image = card.querySelector('.steel-service__image');
+            const layer = getComputedStyle(card, '::before');
+            return {
+                visible: getComputedStyle(card).visibility === 'visible',
+                background: layer.backgroundColor,
+                layerOpacity: Number(layer.opacity),
+                textOpacity: Number(getComputedStyle(text).opacity),
+                imageOpacity: Number(getComputedStyle(image).opacity),
+                textY: new DOMMatrix(getComputedStyle(text).transform).m42,
+                imageY: new DOMMatrix(getComputedStyle(image).transform).m42,
+                paragraphColor: getComputedStyle(text.querySelector('p')).color,
+                ariaHidden: card.getAttribute('aria-hidden'),
+            };
+        })
     );
     const goToPhase = async (phase) => {
         await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), sequence.top + sequence.step * phase);
@@ -33,28 +42,32 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         return sample();
     };
     const first = await goToPhase(0);
-    assert.ok(first[0].visible && !first[1].visible && first[0].y === 0, 'first scene starts visible');
+    assert.ok(first[0].visible && !first[1].visible && first[0].textOpacity === 1, 'first design starts fully visible');
+    assert.equal(first[0].background, 'rgb(255, 255, 255)', 'casting preserves the original white background');
 
     const holding = await goToPhase(0.1);
-    assert.ok(holding[0].visible && !holding[1].visible, 'first scene stays before the transition');
+    assert.ok(holding[0].visible && !holding[1].visible, 'first scene remains readable before transition');
 
     const midway = await goToPhase(0.5);
-    assert.ok(midway[0].visible && midway[1].visible, 'incoming scene layers over outgoing scene');
-    assert.ok(midway[1].y > 0 && midway[1].y < 900, 'incoming scene rises from below');
-    assert.equal(midway[0].y, 0, 'outgoing scene remains behind rather than fading upward');
-    assert.equal(midway[0].opacity, 1, 'outgoing scene is not faded');
-    assert.equal(midway[1].opacity, 1, 'incoming scene is not faded');
-    assert.notEqual(midway[1].background, 'rgba(0, 0, 0, 0)', 'incoming scene has opaque backing');
+    assert.ok(midway[0].visible && midway[1].visible, 'both text/photo pairs overlap during transition');
+    assert.equal(midway[1].background, 'rgb(221, 225, 229)', 'alloy preserves the original gray');
+    assert.ok(midway[1].layerOpacity > 0.45 && midway[1].layerOpacity < 0.55, 'incoming gray background mixes gradually with white');
+    assert.ok(midway[0].textOpacity > 0.45 && midway[0].textOpacity < 0.55, 'outgoing text fades gradually');
+    assert.ok(midway[1].textOpacity > 0.45 && midway[1].textOpacity < 0.55, 'incoming text fades in over previous content');
+    assert.ok(midway[0].imageOpacity > 0.45 && midway[1].imageOpacity > 0.45, 'both photos remain partially visible');
+    assert.ok(midway[0].textY < 0 && midway[1].textY > 0, 'text passes in opposite vertical directions');
+    assert.ok(midway[0].imageY < 0 && midway[1].imageY > 0, 'images overlap while moving');
 
     const second = await goToPhase(1);
-    assert.ok(!second[0].visible && second[1].visible && !second[2].visible, 'second scene fully covers first');
-    assert.equal(second[1].y, 0, 'new scene settles at its original position');
-
-    const thirdIncoming = await goToPhase(1.5);
-    assert.ok(thirdIncoming[1].visible && thirdIncoming[2].visible && thirdIncoming[2].y > 0, 'third scene overlays second');
+    assert.ok(!second[0].visible && second[1].visible && second[1].textOpacity === 1, 'gray scene becomes fully visible');
+    const midwayBlue = await goToPhase(1.5);
+    assert.ok(midwayBlue[1].visible && midwayBlue[2].visible, 'alloy and stainless overlap');
+    assert.equal(midwayBlue[2].background, 'rgb(8, 51, 125)', 'stainless preserves the original blue');
+    assert.ok(midwayBlue[2].layerOpacity > 0.45 && midwayBlue[2].layerOpacity < 0.55, 'gray gradually blends to blue');
+    assert.equal(midwayBlue[2].paragraphColor, 'rgb(255, 255, 255)', 'blue scene retains white paragraph text');
 
     const back = await goToPhase(0.5);
-    assert.ok(back[0].visible && back[1].visible && back[1].y > 0, 'scrolling upward reveals the previous scene');
+    assert.ok(back[0].visible && back[1].visible && back[0].textOpacity > 0.45, 'reverse scroll restores the previous content');
 
     const navigation = await page.locator('.card-stack__navigation').boundingBox();
     assert.ok(navigation.y >= 0 && navigation.y + navigation.height <= 900, 'scene controls stay visible');
@@ -193,8 +206,8 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         date: '2026-10-29',
         url: baseUrl,
         checks: [
-            'service scenes overlay from below with an opaque background, without fading',
-            'scroll direction reverses the overlay to reveal the preceding scene',
+            'original white gray blue backgrounds retained and mixed during scrolling',
+            'texts and photos crossfade and overlap on forward or reverse scroll',
             'service number controls jump forward and backward',
             'all 4 CTA panels reveal 3 controls on hover',
             'CTA controls hide on mouseleave and reveal with keyboard focus',
