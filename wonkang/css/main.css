@@ -12,6 +12,7 @@
  --border-default:var(--brand-neutral-200); --brand-blue:#08337d;
 }
 html { scroll-behavior:smooth; }
+html,body { overflow-x:clip; }
 body { background:#fff; color:var(--text-primary); font-family:'Noto Sans KR',sans-serif; }
 main:focus { outline:none; }
 section,figure,#contact { scroll-margin-top:24px; }
@@ -62,11 +63,16 @@ section,figure,#contact { scroll-margin-top:24px; }
 .hero-sec .swiper-scrollbar.swiper-scrollbar-horizontal { position:absolute; inset:0 0 auto; width:100%; height:2px; border-radius:0; background:transparent; }
 .hero-sec .swiper-scrollbar-drag { border-radius:0; background:#ffffffa6; }
 
-/* 165:223 / 327 / 336 — 원본의 3개 가로 밴드 */
-.steel-service { display:flex; align-items:center; min-height:398px; padding:60px 20px; background:#fff; }
-.steel-service--casting { min-height:402.212px; }
-.steel-service--alloy { background:var(--brand-neutral-200); }
-.steel-service--stainless { background:var(--brand-blue); color:#fff; }
+/* 165:223 / 327 / 336 — 다음 카드가 아래에서 겹쳐지는 스크롤 스택 */
+.card-stack { position:relative; isolation:isolate; background:var(--background-default); }
+.card-stack__sticky,.card-stack__deck { position:static; overflow:visible; }
+.steel-service { position:sticky; top:0; display:flex; align-items:center; min-height:100svh; padding:60px 20px 100px; border-radius:clamp(20px,2vw,36px) clamp(20px,2vw,36px) 0 0; box-shadow:0 -14px 42px #0a172d2b; background:#fff; }
+.steel-service--casting { z-index:1; }
+.steel-service--alloy { z-index:2; background:var(--brand-neutral-200); }
+.steel-service--stainless { z-index:3; background:var(--brand-blue); color:#fff; }
+.card-stack__navigation { position:sticky; z-index:5; bottom:28px; display:flex; gap:8px; width:max-content; margin:-84px 40px 24px auto; padding:8px; border-radius:40px; background:#161519cc; color:#fff; }
+.card-stack__nav { width:44px; height:44px; border-radius:50%; color:#ffffffb3; font-size:13px; font-weight:700; transition:background-color .2s,color .2s; }
+.card-stack__nav.is-current,.card-stack__nav:hover,.card-stack__nav:focus-visible { background:#fff; color:var(--text-primary); }
 .steel-service__inner { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:center; gap:100px; width:min(100%,1520px); margin-inline:auto; }
 .steel-service__label { display:inline-block; padding:5px 10px; border-radius:30px; background:#e9ebee; color:var(--text-muted); font-size:16px; font-weight:500; line-height:1.4375; }
 .steel-service__text h2 { font-size:60px; font-weight:500; line-height:1.2; letter-spacing:-.9px; }
@@ -96,7 +102,11 @@ section,figure,#contact { scroll-margin-top:24px; }
 .product-panel { position:relative; isolation:isolate; min-width:0; height:920px; color:#fff; }
 .product-panel__image { position:absolute; z-index:-2; width:100%; height:100%; object-fit:cover; }
 .product-panel::before { position:absolute; z-index:-1; inset:0; content:''; background:url('../img/figma/product-shade.svg') center/100% 100%; }
-.product-panel--valve::before { background-image:url('../img/figma/product-active-shade.svg'); }
+.product-panel::after { position:absolute; z-index:-1; inset:0; content:''; background:url('../img/figma/product-active-shade.svg') center/100% 100%; opacity:0; transition:opacity .35s; }
+.product-panel:hover::after,.product-panel:focus-within::after { opacity:1; }
+.product-panel__reveal { opacity:0; visibility:hidden; transform:translateY(24px); transition:opacity .3s,transform .4s,visibility .3s; }
+.product-panel:hover .product-panel__reveal,.product-panel:focus-within .product-panel__reveal { opacity:1; visibility:visible; transform:translateY(0); }
+.product-panel:focus-visible { outline:3px solid #fff; outline-offset:-6px; }
 .product-panel__content { padding:310px 18.75% 0; }
 .product-panel h2 { font-size:34px; font-weight:700; line-height:41px; white-space:nowrap; }
 .product-panel p { margin-top:15px; font-size:18px; line-height:22px; letter-spacing:-.15px; }
@@ -110,20 +120,21 @@ section,figure,#contact { scroll-margin-top:24px; }
 .product-panel__actions>* { display:flex; align-items:center; justify-content:space-between; flex:1; min-width:0; height:70px; padding:0 16px; background:url('../img/figma/product-action.svg') center/100% 100%; font-size:14px; font-weight:700; white-space:nowrap; }
 .product-panel__actions img { flex-shrink:0; object-fit:contain; }
 
-/* 85:54 — 1920px 좌표를 같은 비율로 축소하는 2열 갤러리 */
+/* 85:54 — 일정한 간격의 좌우 교차 배치와 아래에서 위로 등장 */
 .process-gallery { padding-block:5.364583333vw; background:#fff; }
 .process-gallery h2 { font-size:6.666666667vw; font-weight:300; line-height:1.2; letter-spacing:.333333333vw; }
-.process-gallery__columns { display:flex; align-items:flex-start; margin-top:12.489583333vw; }
-.process-column { display:flex; flex-direction:column; width:50%; }
-.process-column--left { gap:25.086805555vw; }
-.process-column--right { gap:28.819444444vw; padding-top:35.46875vw; }
-.process-item { min-width:0; }
+.process-gallery__columns { display:flex; flex-direction:column; gap:clamp(96px,8.333333333vw,160px); width:calc(100% - 112px); margin:12.489583333vw auto 0; }
+.process-item { align-self:flex-start; min-width:0; width:calc(50% - 32px); }
+.process-item:nth-child(even) { align-self:flex-end; --reveal-x:40px; }
+.process-item:nth-child(odd) { --reveal-x:-40px; }
 .process-item__media { position:relative; overflow:hidden; aspect-ratio:960/948; }
 .process-item__media img { width:100%; height:100%; object-fit:cover; }
 .process-item--pattern .process-item__media { aspect-ratio:960/733; }
 .process-item--pattern img { position:absolute; top:-15.55%; height:130.97%; object-fit:fill; }
 .process-item--housing img { position:absolute; top:-.67%; width:100.21%; max-width:none; height:101.27%; }
-.process-item figcaption { font-size:3.333333333vw; font-weight:300; line-height:1.203125; letter-spacing:.166666667vw; white-space:nowrap; }
+.process-item figcaption { padding-top:12px; font-size:2.8125vw; font-weight:300; line-height:1.3; letter-spacing:.08em; white-space:nowrap; }
+.scroll-reveal { opacity:0; transform:translate3d(var(--reveal-x,0px),96px,0); transition:opacity .8s,transform .9s cubic-bezier(.16,1,.3,1); }
+.scroll-reveal.is-revealed { opacity:1; transform:translate3d(0,0,0); }
 
 /* 85:53 — 특허증을 펼친 11개 인증서 */
 .certifications { min-height:1087px; padding:50px 5.833333333% 193px; background:#fff; }
@@ -283,7 +294,8 @@ body.dialog-open { overflow:hidden; }
  .hero-solution-label { grid-column:1; font-size:11px; }
  .hero-solution-description { grid-column:1; font-size:11px; line-height:1.45; }
  .hero-solution-link { grid-column:2; grid-row:1/3; min-width:88px; min-height:44px; font-size:12px; }
- .steel-service,.steel-service--casting { min-height:0; padding:48px 20px; }
+ .steel-service,.steel-service--casting { min-height:100svh; padding:64px 20px 112px; }
+ .card-stack__navigation { bottom:20px; margin-right:20px; }
  .steel-service__inner { grid-template-columns:1fr; width:100%; gap:28px; }
  .steel-service--alloy .steel-service__image { order:2; }
  .steel-service__label { font-size:13px; }
@@ -308,10 +320,11 @@ body.dialog-open { overflow:hidden; }
  .product-panel__actions img { max-width:32px; }
  .process-gallery { padding:64px 0; }
  .process-gallery h2 { padding-inline:20px; font-size:clamp(28px,6.3vw,38px); line-height:1.3; letter-spacing:.025em; }
- .process-gallery__columns { display:flex; flex-direction:column; gap:48px; margin-top:64px; }
- .process-column { display:contents; }
- .process-item { order:var(--order); width:100%; }
- .process-item figcaption { padding:12px 20px 0; font-size:clamp(19px,4.9vw,28px); line-height:1.3; letter-spacing:.03em; white-space:normal; }
+ .process-gallery__columns { gap:64px; width:calc(100% - 32px); margin-top:64px; }
+ .process-item { width:92%; }
+ .process-item figcaption { padding:12px 0 0; font-size:clamp(16px,4.35vw,24px); line-height:1.3; letter-spacing:.02em; white-space:normal; }
+ .process-item:nth-child(odd) { --reveal-x:-12px; }
+ .process-item:nth-child(even) { --reveal-x:12px; }
  .certifications { padding:40px 20px 64px; }
  .certifications h2 { font-size:24px; line-height:1.5; letter-spacing:0; }
  .certifications h2 br { display:none; }
@@ -344,7 +357,16 @@ body.dialog-open { overflow:hidden; }
  .detail-dialog { padding:20px; }
  .detail-dialog h2 { font-size:21px; }
 }
+@media (hover:none), (pointer:coarse) {
+ .product-panel__reveal { opacity:1; visibility:visible; transform:none; }
+}
+@media (max-height:600px) {
+ .steel-service { position:relative; min-height:0; padding-block:48px 100px; }
+}
 @media (prefers-reduced-motion:reduce) {
  html { scroll-behavior:auto; }
  .site-header,.certificate-card,.swiper-pagination-bullet,.stat-digit__strip { transition:none!important; }
+ .scroll-reveal { opacity:1; transform:none; transition:none; }
+ .product-panel__reveal,.product-panel::after { transition:none; }
+ .steel-service { position:relative; }
 }

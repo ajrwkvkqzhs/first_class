@@ -37,6 +37,63 @@ if (typeof Swiper !== 'undefined') {
     });
 }
 
+// 카드의 겹침은 CSS sticky가 담당하고, 번호 버튼과 현재 카드만 JS로 연결합니다.
+const cardStack = document.querySelector('.card-stack');
+const steelCards = [...cardStack.querySelectorAll('.steel-service')];
+const cardNavButtons = [...cardStack.querySelectorAll('.card-stack__nav')];
+let cardFramePending = false;
+
+function cardScrollPosition(index) {
+    const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
+    return sectionTop + steelCards.slice(0, index).reduce((height, card) => height + card.offsetHeight, 0);
+}
+
+function updateCardNavigation() {
+    cardFramePending = false;
+    let activeIndex = 0;
+    steelCards.forEach((card, index) => {
+        if (window.scrollY + window.innerHeight * .4 >= cardScrollPosition(index)) activeIndex = index;
+    });
+    cardNavButtons.forEach((button, index) => {
+        const active = index === activeIndex;
+        button.classList.toggle('is-current', active);
+        if (active) button.setAttribute('aria-current', 'true');
+        else button.removeAttribute('aria-current');
+    });
+}
+
+function requestCardNavigationUpdate() {
+    if (cardFramePending) return;
+    cardFramePending = true;
+    window.requestAnimationFrame(updateCardNavigation);
+}
+
+cardNavButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+        window.scrollTo({top: cardScrollPosition(index), behavior: reducedMotion ? 'instant' : 'smooth'});
+    });
+});
+window.addEventListener('scroll', requestCardNavigationUpdate, {passive: true});
+window.addEventListener('resize', requestCardNavigationUpdate, {passive: true});
+requestCardNavigationUpdate();
+
+// 사용자 요청: 같은 간격의 좌우 사진이 뷰포트에 들어올 때 아래에서 위로 등장합니다.
+// JS가 없거나 모션 감소를 선택한 경우에는 원래 콘텐츠를 그대로 보여 줍니다.
+if (supportsObservation && !reducedMotion) {
+    const processTargets = document.querySelectorAll('.process-gallery > h2, .process-item');
+    const processObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+        });
+    }, {rootMargin: '0px 0px -10% 0px', threshold: 0});
+    processTargets.forEach(target => {
+        target.classList.add('scroll-reveal');
+        processObserver.observe(target);
+    });
+}
+
 // 마우스, 키보드, 모바일 메뉴에서 같은 열림 상태를 사용합니다.
 const siteHeader = document.querySelector('.site-header');
 const siteNav = siteHeader.querySelector('.site-nav');

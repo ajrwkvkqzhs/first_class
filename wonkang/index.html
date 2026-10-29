@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../font/default/css/notosanskr.css">
     <link rel="stylesheet" href="../CSS/default.css">
     <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="css/main.css?v=20261029-figma">
+    <link rel="stylesheet" href="css/main.css?v=20261029-interactions">
     <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-    <script src="js/main.js?v=20261029-figma" defer></script>
+    <script src="js/main.js?v=20261029-interactions" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -108,9 +108,10 @@
             </section>
 
             <!-- 주조 사업 영역: 3개 프레임을 모두 유지 -->
-            <!-- 피그마 165:223, 165:327, 165:336: 3개 사업 프레임 -->
+            <!-- 3개 사업 프레임: 스크롤에 따라 다음 카드가 아래에서 겹쳐집니다. -->
             <section id="company" class="steel-services card-stack" aria-label="주요 사업 분야">
                 <h2 class="sr-only">주요 사업 분야</h2>
+                <p class="sr-only">스크롤하거나 번호 버튼으로 주조사업, 특수합금강, 스테인리스 주강 카드를 확인할 수 있습니다.</p>
                 <div class="card-stack__sticky">
                     <div class="card-stack__deck">
                         <article class="steel-service steel-service--casting">
@@ -155,6 +156,11 @@
                             </div>
                         </article>
                     </div>
+                    <nav class="card-stack__navigation" aria-label="사업 카드 선택">
+                        <button class="card-stack__nav is-current" type="button" data-card-index="0" aria-current="true" aria-label="주조사업 카드로 이동">01</button>
+                        <button class="card-stack__nav" type="button" data-card-index="1" aria-label="특수합금강 카드로 이동">02</button>
+                        <button class="card-stack__nav" type="button" data-card-index="2" aria-label="스테인리스 주강 카드로 이동">03</button>
+                    </nav>
                 </div>
             </section>
 
@@ -181,95 +187,111 @@
 
             <!-- 피그마 188:673: 4분할 제품 안내 -->
             <section class="product-showcase" id="products" aria-label="대표 제품">
-                <article class="product-panel product-panel--machinery" id="product-machinery">
+                <article class="product-panel product-panel--machinery" id="product-machinery" tabindex="0" aria-label="산업기계부품 제품 안내">
                     <img class="product-panel__image" src="img/figma/product-machinery.png" alt="산업기계부품" loading="lazy">
                     <div class="product-panel__content">
                         <h2>산업기계부품</h2>
                         <p><span>최신 설비와 고도의 기술력이 장인정신과</span><span>만나 최고의 품질을 실현합니다.</span></p>
-                        <button class="product-panel__detail" type="button" data-product="machinery" aria-haspopup="dialog" aria-label="산업기계부품 자세히 보기">
+                        <div class="product-panel__reveal">
+                            <button class="product-panel__detail" type="button" data-product="machinery" aria-haspopup="dialog" aria-label="산업기계부품 자세히 보기">
                             자세히 보기 <span class="detail-icon" aria-hidden="true"><img src="img/figma/detail-circle.svg" alt=""><img class="detail-arrow" src="img/figma/detail-arrow.svg" alt=""></span>
                         </button>
+                            <div class="product-panel__actions">
+                                <a href="mailto:jmlee@wonkangmetal.com?subject=%EC%82%B0%EC%97%85%EA%B8%B0%EA%B3%84%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98">고객 문의<img src="img/figma/contact-icon.png" width="32" height="29" alt=""></a>
+                                <button type="button" data-info="catalog" aria-haspopup="dialog" aria-label="산업기계부품 카탈로그 요청">카탈로그<img src="img/figma/catalog-icon.png" width="27" height="32" alt=""></button>
+                            </div>
+                        </div>
 
                     </div>
                 </article>
-                <article class="product-panel product-panel--valve" id="product-valve">
+                <article class="product-panel product-panel--valve" id="product-valve" tabindex="0" aria-label="밸브부품 제품 안내">
                     <img class="product-panel__image" src="img/figma/product-valve.png" alt="밸브부품" loading="lazy">
                     <div class="product-panel__content">
                         <h2>밸브부품</h2>
                         <p><span>철저한 고객 중심 경영으로 초대형 고급</span><span>단조재 수요 고객의 가치를 높여 갑니다.</span></p>
-                        <button class="product-panel__detail" type="button" data-product="valve" aria-haspopup="dialog" aria-label="밸브부품 자세히 보기">
+                        <div class="product-panel__reveal">
+                            <button class="product-panel__detail" type="button" data-product="valve" aria-haspopup="dialog" aria-label="밸브부품 자세히 보기">
                             자세히 보기 <span class="detail-icon" aria-hidden="true"><img src="img/figma/detail-circle.svg" alt=""><img class="detail-arrow" src="img/figma/detail-arrow.svg" alt=""></span>
                         </button>
-                        <div class="product-panel__actions">
-                            <a href="mailto:jmlee@wonkangmetal.com?subject=%EB%B0%B8%EB%B8%8C%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98">고객 문의<img src="img/figma/contact-icon.png" width="32" height="29" alt=""></a>
-                            <button type="button" data-info="catalog" aria-haspopup="dialog">카탈로그<img src="img/figma/catalog-icon.png" width="27" height="32" alt=""></button>
+                            <div class="product-panel__actions">
+                                <a href="mailto:jmlee@wonkangmetal.com?subject=%EB%B0%B8%EB%B8%8C%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98">고객 문의<img src="img/figma/contact-icon.png" width="32" height="29" alt=""></a>
+                                <button type="button" data-info="catalog" aria-haspopup="dialog" aria-label="밸브부품 카탈로그 요청">카탈로그<img src="img/figma/catalog-icon.png" width="27" height="32" alt=""></button>
+                            </div>
                         </div>
                     </div>
                 </article>
-                <article class="product-panel product-panel--pressure" id="product-pressure">
+                <article class="product-panel product-panel--pressure" id="product-pressure" tabindex="0" aria-label="고압펌프부품 제품 안내">
                     <img class="product-panel__image" src="img/figma/product-pressure.png" alt="고압펌프부품" loading="lazy">
                     <div class="product-panel__content">
                         <h2>고압펌프부품</h2>
                         <p><span>국내 최초 CASK 완제품을 미국 수출에</span><span>성공하여 글로벌 시장을 공략합니다.</span></p>
-                        <button class="product-panel__detail" type="button" data-product="pressure" aria-haspopup="dialog" aria-label="고압펌프부품 자세히 보기">
+                        <div class="product-panel__reveal">
+                            <button class="product-panel__detail" type="button" data-product="pressure" aria-haspopup="dialog" aria-label="고압펌프부품 자세히 보기">
                             자세히 보기 <span class="detail-icon" aria-hidden="true"><img src="img/figma/detail-circle.svg" alt=""><img class="detail-arrow" src="img/figma/detail-arrow.svg" alt=""></span>
                         </button>
+                            <div class="product-panel__actions">
+                                <a href="mailto:jmlee@wonkangmetal.com?subject=%EA%B3%A0%EC%95%95%ED%8E%8C%ED%94%84%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98">고객 문의<img src="img/figma/contact-icon.png" width="32" height="29" alt=""></a>
+                                <button type="button" data-info="catalog" aria-haspopup="dialog" aria-label="고압펌프부품 카탈로그 요청">카탈로그<img src="img/figma/catalog-icon.png" width="27" height="32" alt=""></button>
+                            </div>
+                        </div>
 
                     </div>
                 </article>
-                <article class="product-panel product-panel--general" id="product-general">
+                <article class="product-panel product-panel--general" id="product-general" tabindex="0" aria-label="일반펌프부품 제품 안내">
                     <img class="product-panel__image" src="img/figma/product-general.png" alt="일반펌프부품" loading="lazy">
                     <div class="product-panel__content">
                         <h2>일반펌프부품</h2>
                         <p><span>특수강을 활용한 다양한 제품 서비스를</span><span>제공합니다.</span></p>
-                        <button class="product-panel__detail" type="button" data-product="general" aria-haspopup="dialog" aria-label="일반펌프부품 자세히 보기">
+                        <div class="product-panel__reveal">
+                            <button class="product-panel__detail" type="button" data-product="general" aria-haspopup="dialog" aria-label="일반펌프부품 자세히 보기">
                             자세히 보기 <span class="detail-icon" aria-hidden="true"><img src="img/figma/detail-circle.svg" alt=""><img class="detail-arrow" src="img/figma/detail-arrow.svg" alt=""></span>
                         </button>
+                            <div class="product-panel__actions">
+                                <a href="mailto:jmlee@wonkangmetal.com?subject=%EC%9D%BC%EB%B0%98%ED%8E%8C%ED%94%84%EB%B6%80%ED%92%88%20%EB%AC%B8%EC%9D%98">고객 문의<img src="img/figma/contact-icon.png" width="32" height="29" alt=""></a>
+                                <button type="button" data-info="catalog" aria-haspopup="dialog" aria-label="일반펌프부품 카탈로그 요청">카탈로그<img src="img/figma/catalog-icon.png" width="27" height="32" alt=""></button>
+                            </div>
+                        </div>
 
                     </div>
                 </article>
             </section>
 
-            <!-- 피그마 85:54: 시차를 둔 2열 공정 갤러리 -->
+            <!-- 일정한 세로 간격과 좌우 교차 배치, 스크롤하면 아래에서 위로 등장 -->
             <section class="process-gallery" id="factory" aria-labelledby="process-title">
                 <h2 id="process-title">Life to Metal.<br>Value to Technology.</h2>
                 <div class="process-gallery__columns">
-                    <div class="process-column process-column--left">
                     <figure class="process-item process-item--casting" id="process-casting" style="--order: 1">
                         <div class="process-item__media"><img src="img/figma/process-casting.png" alt="고온의 용탕을 주입하는 주조 공정" loading="lazy"></div>
                         <figcaption>STEEL CASTING</figcaption>
+                    </figure>
+                    <figure class="process-item process-item--pattern" id="process-pattern" style="--order: 2">
+                        <div class="process-item__media"><img src="img/figma/process-pattern.png" alt="용해로와 주조 생산 현장" loading="lazy"></div>
+                        <figcaption>PATTERN MAKING</figcaption>
                     </figure>
                     <figure class="process-item process-item--housing" id="process-housing" style="--order: 3">
                         <div class="process-item__media"><img src="img/figma/process-housing.png" alt="정밀하게 주조된 하우징 부품" loading="lazy"></div>
                         <figcaption>MOLTEN METAL REFINING</figcaption>
                     </figure>
-                    <figure class="process-item process-item--machining" id="process-machining" style="--order: 5">
-                        <div class="process-item__media"><img src="img/figma/process-machining.png" alt="대형 정밀 가공 설비" loading="lazy"></div>
-                        <figcaption>PRECISION MACHINING</figcaption>
-                    </figure>
-                    <figure class="process-item process-item--quality" id="process-quality" style="--order: 7">
-                        <div class="process-item__media"><img src="img/figma/process-quality.png" alt="3차원 측정 장비를 활용한 품질 검사" loading="lazy"></div>
-                        <figcaption>QUALITY CONTROL</figcaption>
-                    </figure>
-                    </div>
-                    <div class="process-column process-column--right">
-                    <figure class="process-item process-item--pattern" id="process-pattern" style="--order: 2">
-                        <div class="process-item__media"><img src="img/figma/process-pattern.png" alt="용해로와 주조 생산 현장" loading="lazy"></div>
-                        <figcaption>PATTERN MAKING</figcaption>
-                    </figure>
                     <figure class="process-item process-item--stainless" id="process-stainless" style="--order: 4">
                         <div class="process-item__media"><img src="img/figma/process-stainless.png" alt="산업용 스테인리스 주조 부품" loading="lazy"></div>
                         <figcaption>STAINLESS CASTING</figcaption>
+                    </figure>
+                    <figure class="process-item process-item--machining" id="process-machining" style="--order: 5">
+                        <div class="process-item__media"><img src="img/figma/process-machining.png" alt="대형 정밀 가공 설비" loading="lazy"></div>
+                        <figcaption>PRECISION MACHINING</figcaption>
                     </figure>
                     <figure class="process-item process-item--scanning" id="process-scanning" style="--order: 6">
                         <div class="process-item__media"><img src="img/figma/process-scanning.png" alt="CNC 정밀 가공 설비" loading="lazy"></div>
                         <figcaption>3D SCANNING</figcaption>
                     </figure>
+                    <figure class="process-item process-item--quality" id="process-quality" style="--order: 7">
+                        <div class="process-item__media"><img src="img/figma/process-quality.png" alt="3차원 측정 장비를 활용한 품질 검사" loading="lazy"></div>
+                        <figcaption>QUALITY CONTROL</figcaption>
+                    </figure>
                     <figure class="process-item process-item--impeller" id="process-impeller" style="--order: 8">
                         <div class="process-item__media"><img src="img/figma/process-impeller.png" alt="정밀 주조로 완성한 금속 임펠러" loading="lazy"></div>
                         <figcaption>WONKANG METAL</figcaption>
                     </figure>
-                    </div>
                 </div>
             </section>
 

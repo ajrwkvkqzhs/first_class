@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29",
+  "url": "http://127.0.0.1:4173/wonkang/",
+  "checks": [
+    "scroll cards pin and overlap",
+    "card controls navigate forward and backward",
+    "all 4 CTA panels reveal 3 controls on hover",
+    "CTA controls hide on mouseleave and reveal with keyboard focus",
+    "gallery slides from below into its final position",
+    "8 gallery figures alternate left/right with equal gaps",
+    "touch controls work without hover",
+    "reduced motion keeps content visible"
+  ],
+  "galleryGaps": [
+    119.99993896484375,
+    120,
+    120,
+    119.999755859375,
+    120.000244140625,
+    120,
+    120.00048828125
+  ],
+  "errors": []
+}

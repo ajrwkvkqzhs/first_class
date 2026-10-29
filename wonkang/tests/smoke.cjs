@@ -65,6 +65,7 @@ const root = path.resolve(__dirname, '../..');
    assert.equal(await page.locator('h1').isVisible(),true);
    results.interactions.push('All hero thumbnail controls / persistent headline');
    for(const btn of await page.locator('[data-product]').all()) {
+    await btn.locator('xpath=ancestor::article').hover();
     await btn.click();
     assert.equal(await page.locator('dialog').evaluate(e=>e.open),true);
     assert.equal(await page.locator('dialog a[href^="mailto:"]').count(),1);
@@ -72,7 +73,8 @@ const root = path.resolve(__dirname, '../..');
     assert.equal(await btn.evaluate(e=>e===document.activeElement),true);
    }
    results.interactions.push('4 product details / email link / Escape focus return');
-   await page.locator('[data-info="catalog"]').click();
+   await page.locator('.product-panel').first().hover();
+   await page.locator('[data-info="catalog"]').first().click();
    assert.match(await page.locator('#dialog-body').innerText(),/현재 제공되지/);
    await page.locator('.dialog-close').click();
    results.interactions.push('Catalog request information / close');
