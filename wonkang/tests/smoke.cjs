@@ -178,7 +178,7 @@ const root = path.resolve(__dirname, '../..');
         };
     });
     assert.equal(metrics.framePosition, 'sticky', 'achievements frame must be sticky with normal motion');
-    assert.ok(metrics.hold >= 160 && metrics.hold <= 220, 'hold lasts slightly longer than one wheel step');
+    assert.ok(metrics.hold >= 480 && metrics.hold <= 660, 'hold lasts approximately three times longer');
     const readFrameTop = () => normal.locator('.company-achievements__frame')
         .evaluate((frame) => frame.getBoundingClientRect().top);
     await normal.evaluate((top) => scrollTo({ top, behavior: 'instant' }), metrics.top);
