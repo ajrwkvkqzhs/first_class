@@ -409,7 +409,9 @@ document.querySelectorAll('[data-info]').forEach((button) => {
     });
 });
 
-// 인증서: 원본의 펼침 배치를 유지하고 클릭·방향키·확대를 지원합니다.
+// 인증서: 데스크톱에서는 마우스 호버만으로 펼치고, 클릭하면 확대합니다.
+// 실제 키보드 포커스는 마우스 이동으로 변경하지 않습니다.
+// 터치 기기의 기존 선택-확대 두 단계 동작은 유지합니다.
 const certificateList = document.querySelector('.certificate-list');
 const certificates = [...certificateList.querySelectorAll('.certificate-card')];
 const certificateMobile = window.matchMedia('(max-width: 600px)');
@@ -426,6 +428,16 @@ function selectCertificate(card, scroll = true) {
         });
     }
 }
+
+// 펼침 애니메이션 때문에 카드 경계가 움직이더라도 마우스가 가만히 있을 때
+// 인접 카드로 선택이 튀지 않도록 실제 포인터 이동에만 반응합니다.
+certificateList.addEventListener('pointermove', (event) => {
+    if (certificateMobile.matches || (event.pointerType !== 'mouse' && event.pointerType !== 'pen')) return;
+    const hovered = event.target.closest('.certificate-card');
+    if (hovered && hovered.parentElement === certificateList && !hovered.classList.contains('is-active')) {
+        selectCertificate(hovered, false);
+    }
+}, { passive: true });
 
 certificates.forEach((card, index) => {
     card.addEventListener('click', () => {

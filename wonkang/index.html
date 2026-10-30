@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="../font/default/css/notosanskr.css" />
         <link rel="stylesheet" href="../CSS/default.css" />
         <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="css/main.css?v=20261030-service-scroll-snap" />
+        <link rel="stylesheet" href="css/main.css?v=20261030-cta-pin-cert-hover" />
         <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-        <script src="js/main.js?v=20261030-service-scroll-snap" defer></script>
+        <script src="js/main.js?v=20261030-cta-pin-cert-hover" defer></script>
     </head>
     <body>
         <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -269,9 +269,10 @@
                     </div>
                 </section>
 
-                <!-- 피그마 188:673: 4분할 제품 안내 -->
-                <section class="product-showcase" id="products" aria-labelledby="products-title">
-                    <h2 class="sr-only" id="products-title">대표 제품</h2>
+                <!-- 피그마 188:673: 4분할 제품 안내. 데스크톱에서 CTA 화면만 잠시 고정합니다. -->
+                <section class="product-showcase-scroll" id="products" aria-labelledby="products-title">
+                    <div class="product-showcase">
+                        <h2 class="sr-only" id="products-title">대표 제품</h2>
                     <article
                         class="product-panel product-panel--machinery"
                         id="product-machinery"
@@ -473,6 +474,7 @@
                             </div>
                         </div>
                     </article>
+                    </div>
                 </section>
 
                 <!-- 일정한 세로 간격과 좌우 교차 배치, 스크롤하면 아래에서 위로 등장 -->
@@ -556,7 +558,7 @@
                         원강금속 주요 성과 • 인증 이력<br />기술로 증명한 신뢰의 기록입니다.
                     </h2>
                     <p class="sr-only" id="certificate-help">
-                        인증서를 선택해 펼치고, 다시 누르면 확대합니다. 방향키와 Home, End 키로도 선택할 수 있습니다.
+                        데스크톱에서는 마우스를 올리면 인증서가 펼쳐지고, 클릭하면 확대됩니다. 키보드 방향키와 Home, End 키로도 선택할 수 있습니다.
                     </p>
                     <div
                         class="certificate-list"
@@ -571,7 +573,7 @@
                             aria-pressed="false"
                             aria-label="ISO 9001 품질경영 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="ISO 9001 품질경영 — 선택 후 다시 누르면 확대"
+                            title="ISO 9001 품질경영 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img
                                 src="img/figma/certificate-iso9001.png"
@@ -586,7 +588,7 @@
                             aria-pressed="false"
                             aria-label="ISO 14001 환경경영 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="ISO 14001 환경경영 — 선택 후 다시 누르면 확대"
+                            title="ISO 14001 환경경영 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img
                                 src="img/figma/certificate-iso14001.png"
@@ -601,7 +603,7 @@
                             aria-pressed="false"
                             aria-label="JIS 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="JIS — 선택 후 다시 누르면 확대"
+                            title="JIS — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-jis.png" alt="JIS 인증서" loading="lazy" />
                         </button>
@@ -612,7 +614,7 @@
                             aria-pressed="false"
                             aria-label="IMS 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="IMS — 선택 후 다시 누르면 확대"
+                            title="IMS — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-ims.png" alt="IMS 인증서" loading="lazy" />
                         </button>
@@ -623,7 +625,7 @@
                             aria-pressed="false"
                             aria-label="NORSOK 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="NORSOK — 선택 후 다시 누르면 확대"
+                            title="NORSOK — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-norsok.png" alt="NORSOK 인증서" loading="lazy" />
                         </button>
@@ -634,7 +636,7 @@
                             aria-pressed="true"
                             aria-label="특허증 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="특허증 — 선택 후 다시 누르면 확대"
+                            title="특허증 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-patent.png" alt="특허증 인증서" loading="lazy" />
                         </button>
@@ -645,7 +647,7 @@
                             aria-pressed="false"
                             aria-label="ABS 선급 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="ABS 선급 — 선택 후 다시 누르면 확대"
+                            title="ABS 선급 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-abs.png" alt="ABS 선급 인증서" loading="lazy" />
                         </button>
@@ -656,7 +658,7 @@
                             aria-pressed="false"
                             aria-label="LR 선급 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="LR 선급 — 선택 후 다시 누르면 확대"
+                            title="LR 선급 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-lr.png" alt="LR 선급 인증서" loading="lazy" />
                         </button>
@@ -667,7 +669,7 @@
                             aria-pressed="false"
                             aria-label="DNV 선급 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="DNV 선급 — 선택 후 다시 누르면 확대"
+                            title="DNV 선급 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-dnv.png" alt="DNV 선급 인증서" loading="lazy" />
                         </button>
@@ -678,7 +680,7 @@
                             aria-pressed="false"
                             aria-label="BV 선급 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="BV 선급 — 선택 후 다시 누르면 확대"
+                            title="BV 선급 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-bv.png" alt="BV 선급 인증서" loading="lazy" />
                         </button>
@@ -689,7 +691,7 @@
                             aria-pressed="false"
                             aria-label="KR 선급 인증서 선택 및 확대"
                             aria-haspopup="dialog"
-                            title="KR 선급 — 선택 후 다시 누르면 확대"
+                            title="KR 선급 — 마우스로 선택 후 클릭하면 확대"
                         >
                             <img src="img/figma/certificate-kr.png" alt="KR 선급 인증서" loading="lazy" />
                         </button>

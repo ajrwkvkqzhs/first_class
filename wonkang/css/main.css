@@ -631,10 +631,29 @@ figure,
     line-height: 1;
 }
 
-/* 188:673 — 원본 사진과 SVG 오버레이 */
+/* 188:673 — 원본 사진과 SVG 오버레이. 고정은 바깥 스크롤 영역이 담당합니다. */
+.product-showcase-scroll {
+    position: relative;
+}
 .product-showcase {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+/* 제품 CTA 네 칸을 한 장면으로 유지하고, 잠시 읽고 누를 여유를 줍니다.
+   좁은 화면의 2열·1열 목록에는 적용하지 않으며 스크롤 입력을 차단하지 않습니다. */
+@media (min-width: 1101px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+    .product-showcase-scroll {
+        --cta-stage-height: min(920px, 100svh);
+        height: calc(var(--cta-stage-height) + clamp(180px, 25svh, 260px));
+    }
+    .product-showcase-scroll > .product-showcase {
+        position: sticky;
+        top: 0;
+        height: var(--cta-stage-height);
+    }
+    .product-showcase-scroll .product-panel {
+        height: var(--cta-stage-height);
+    }
 }
 .product-panel {
     position: relative;

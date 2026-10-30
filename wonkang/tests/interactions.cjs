@@ -112,6 +112,28 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         document.querySelector('.steel-service--casting')?.getAttribute('aria-hidden') === 'false'
     );
 
+    // CTA 프레임은 4열 데스크톱에서만 sticky로 잠깐 머무릅니다.
+    const cta = await page.locator('#products').evaluate((section) => {
+        const frame = section.querySelector('.product-showcase');
+        const rect = section.getBoundingClientRect();
+        return {
+            top: rect.top + scrollY,
+            hold: section.offsetHeight - frame.offsetHeight,
+            position: getComputedStyle(frame).position,
+            frameHeight: frame.offsetHeight,
+            viewportHeight: innerHeight,
+        };
+    });
+    assert.equal(cta.position, 'sticky', 'desktop CTA frame has sticky positioning');
+    assert.ok(cta.hold >= 180 && cta.hold <= 260, 'CTA frame holds for a short scroll distance');
+    const readCTA = () => page.locator('#products .product-showcase').evaluate((el) => el.getBoundingClientRect().top);
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), cta.top + cta.hold / 2);
+    await page.waitForTimeout(100);
+    assert.ok(Math.abs(await readCTA()) < 2, 'CTA frame remains pinned midway through hold');
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), cta.top + cta.hold + 110);
+    await page.waitForTimeout(100);
+    assert.ok((await readCTA()) < -60, 'CTA frame releases after hold');
+
     await page.locator('#products').evaluate((el) => scrollTo({ top: el.offsetTop - 80, behavior: 'instant' }));
     await page.mouse.move(5, 5);
     assert.equal(
@@ -148,6 +170,23 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         true,
         'keyboard can reach a revealed detail button'
     );
+
+    // 호버만으로 인증서가 펼쳐지며 마우스 이동은 실제 키보드 포커스를 빼앗지 않습니다.
+    const certOne = page.locator('.certificate-card').nth(0);
+    const certTwo = page.locator('.certificate-card').nth(1);
+    await certOne.hover();
+    assert.equal(await certOne.getAttribute('aria-pressed'), 'true', 'first certificate expands on hover');
+    await certTwo.hover();
+    assert.equal(await certTwo.getAttribute('aria-pressed'), 'true', 'hover switches active certificate');
+    assert.equal(await certOne.getAttribute('aria-pressed'), 'false', 'previous certificate collapses');
+    assert.notEqual(
+        await certTwo.evaluate((card) => document.activeElement === card),
+        true,
+        'hover does not steal keyboard focus'
+    );
+    await certTwo.click();
+    assert.equal(await page.locator('dialog').evaluate((el) => el.open), true, 'click after hover zooms certificate');
+    await page.keyboard.press('Escape');
 
     const firstFigure = page.locator('.process-item').first();
     assert.equal(
@@ -209,6 +248,11 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         'visible',
         'touch devices show actions without hover'
     );
+    assert.notEqual(
+        await touch.locator('#products .product-showcase').evaluate((el) => getComputedStyle(el).position),
+        'sticky',
+        'mobile CTA remains a normal vertical list'
+    );
     await touch.locator('[data-info="catalog"]').nth(2).click();
     assert.equal(await touch.locator('dialog').evaluate((el) => el.open), true);
     await touch.locator('.dialog-close').click();
@@ -227,6 +271,11 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         false,
         'reduced motion disables the pinned sequence'
     );
+    assert.notEqual(
+        await reduced.locator('#products .product-showcase').evaluate((el) => getComputedStyle(el).position),
+        'sticky',
+        'reduced motion disables CTA pinning'
+    );
     assert.equal(
         await reduced.evaluate(() => getComputedStyle(document.documentElement).scrollSnapType),
         'none',
@@ -242,6 +291,8 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         url: baseUrl,
         checks: [
             'three scene anchors use proximity snapping at exact phase positions',
+            'desktop CTA pins briefly while mobile and reduced motion remain unpinned',
+            'certificate hover expands without keyboard focus theft and click opens zoom',
             'original white gray blue backgrounds retained and mixed during scrolling',
             'texts and photos crossfade and overlap on forward or reverse scroll',
             'service number controls jump forward and backward',

@@ -130,8 +130,13 @@ const root = path.resolve(__dirname, '../..');
             await page.locator('.dialog-close').click();
             results.interactions.push('Catalog request information / close');
             const first = page.locator('.certificate-card').first();
+            await first.hover();
+            assert.equal(await first.getAttribute('aria-pressed'), 'true', 'certificate opens on hover');
             await first.click();
+            assert.equal(await page.locator('dialog').evaluate((e) => e.open), true, 'hovered certificate click opens zoom');
+            await page.keyboard.press('Escape');
             assert.equal(await first.getAttribute('aria-pressed'), 'true');
+            await first.focus();
             await page.keyboard.press('ArrowRight');
             assert.equal(await page.locator('.certificate-card').nth(1).getAttribute('aria-pressed'), 'true');
             await page.keyboard.press('End');
@@ -140,7 +145,7 @@ const root = path.resolve(__dirname, '../..');
             await page.keyboard.press('Enter');
             assert.equal(await page.locator('dialog').evaluate((e) => e.open), true);
             await page.keyboard.press('Escape');
-            results.interactions.push('Certificate selection / arrows / Home / End / zoom');
+            results.interactions.push('Certificate hover selection / click zoom / arrows / Home / End');
         }
         if (width === 390) {
             await page.getByRole('button', { name: '전체 메뉴 펼치기' }).click();
