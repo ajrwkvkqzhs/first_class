@@ -865,24 +865,27 @@ figure,
     letter-spacing: 2.4px;
 }
 .certificate-list {
-    display: flex;
+    /* 각 카드의 flex-basis를 개별 애니메이션으로 바꾸면 전환 중 가로폭 합이
+       줄거나 경계가 한쪽으로 밀립니다. 11개 트랙을 한 번에 전환해
+       선택을 빠르게 바꿔도 인증서 행 전체를 항상 100% 채웁니다. */
+    display: grid;
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr))
+        minmax(0, 4.180602fr)
+        repeat(5, minmax(0, 1fr));
     height: 700px;
     margin-top: 28px;
+    transition: grid-template-columns 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .certificate-card {
     position: relative;
-    /* 활성 여부와 관계없이 flex-grow / flex-shrink를 고정합니다.
-       기존 flex:1 → flex:0 전환은 첫 프레임에 카드가 0에 가까운 폭으로
-       급격히 수축하는 원인이었습니다. */
-    flex: 0 0 calc((100% - 29.481132075%) / 10);
     min-width: 0;
     overflow: hidden;
     border: 1px solid #b8bec5;
     background: #fff;
-    transition: flex-basis 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .certificate-card.is-active {
-    flex-basis: 29.481132075%;
+    z-index: 1;
 }
 .certificate-card img {
     width: 100%;
@@ -1655,6 +1658,8 @@ body.dialog-open {
         display: none;
     }
     .certificate-list {
+        display: flex;
+        grid-template-columns: none;
         height: 360px;
         margin-top: 28px;
         overflow-x: auto;
@@ -1795,6 +1800,7 @@ body.dialog-open {
     }
     .site-header,
     .certificate-card,
+    .certificate-list,
     .swiper-pagination-bullet,
     .stat-digit__strip {
         transition: none !important;

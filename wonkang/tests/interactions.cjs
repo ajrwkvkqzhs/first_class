@@ -177,14 +177,38 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     const cardWidths = () => page.locator('.certificate-card').evaluateAll((cards) =>
         cards.map((card) => card.getBoundingClientRect().width)
     );
+    const inspectCertificateRow = async (step) => {
+        const values = await page.locator('.certificate-list').evaluate((list) => {
+            const container = list.getBoundingClientRect();
+            const rects = [...list.querySelectorAll('.certificate-card')].map((card) => card.getBoundingClientRect());
+            return {
+                containerWidth: container.width,
+                firstLeft: rects[0].left,
+                lastRight: rects[rects.length - 1].right,
+                totalWidth: rects.reduce((sum, rect) => sum + rect.width, 0),
+                widths: rects.map((rect) => rect.width),
+                display: getComputedStyle(list).display,
+            };
+        });
+        assert.equal(values.display, 'grid', step + ': certificate row uses shared grid tracks');
+        assert.ok(Math.abs(values.totalWidth - values.containerWidth) < 2, step + ': no horizontal shrinkage');
+        assert.ok(Math.abs(values.lastRight - values.firstLeft - values.containerWidth) < 2,
+            step + ': edges stay flush with container');
+        assert.ok(values.widths.every((width) => width > 35), step + ': no collapsed cards');
+        return values;
+    };
     const baselineWidths = await cardWidths();
+    await inspectCertificateRow('initial');
     // 최초 카드 선택에서 폭이 일시적으로 0에 가깝게 수축하지 않아야 합니다.
     await certOne.hover();
     assert.equal(await certOne.getAttribute('aria-pressed'), 'true', 'first certificate expands on hover');
     const earlyWidths = await cardWidths();
     assert.ok(earlyWidths[0] >= baselineWidths[0] - 2, 'newly active certificate never collapses first');
     assert.ok(earlyWidths.every((width) => width > 35), 'every certificate remains visible during switch');
-    await page.waitForTimeout(500);
+    await inspectCertificateRow('first hover immediate');
+    await page.waitForTimeout(80);
+    await inspectCertificateRow('first hover midway');
+    await page.waitForTimeout(420);
     const expandedWidths = await cardWidths();
     assert.ok(expandedWidths[0] > expandedWidths[1] * 2, 'hovered card finishes expanding smoothly');
     await certTwo.hover();
@@ -192,7 +216,12 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     assert.equal(await certOne.getAttribute('aria-pressed'), 'false', 'previous certificate collapses');
     const switchingWidths = await cardWidths();
     assert.ok(switchingWidths[0] > 35 && switchingWidths[1] > 35, 'both cards keep nonzero width while switching');
-    await page.waitForTimeout(500);
+    await inspectCertificateRow('second hover immediate');
+    await page.waitForTimeout(75);
+    await inspectCertificateRow('second hover first phase');
+    await page.waitForTimeout(125);
+    await inspectCertificateRow('second hover midway');
+    await page.waitForTimeout(300);
     const settledWidths = await cardWidths();
     assert.ok(Math.abs(settledWidths.reduce((sum, width) => sum + width, 0) -
         baselineWidths.reduce((sum, width) => sum + width, 0)) < 3,
@@ -202,6 +231,17 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         true,
         'hover does not steal keyboard focus'
     );
+    // 진행 중인 전환을 끊고 다른 인증서를 선택해도 행의 왼쪽/오른쪽 경계는 고정입니다.
+    for (const index of [8, 2, 10, 4]) {
+        await page.locator('.certificate-card').nth(index).hover({ force: true });
+        await page.waitForTimeout(45);
+        await inspectCertificateRow('rapid hover ' + index);
+    }
+    // 확대 동작은 현재 선택된 인증서에서 여전히 동작해야 합니다.
+    await certTwo.hover({ force: true });
+    await page.waitForTimeout(100);
+    assert.equal(await certTwo.getAttribute('aria-pressed'), 'true');
+
     await certTwo.click();
     assert.equal(await page.locator('dialog').evaluate((el) => el.open), true, 'click after hover zooms certificate');
     await page.keyboard.press('Escape');
@@ -310,6 +350,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         checks: [
             'three scene anchors use proximity snapping at exact phase positions',
             'desktop CTA pins briefly while mobile and reduced motion remain unpinned',
+            'certificate grid tracks keep full width during fast hover changes',
             'certificate hover transitions preserve widths with no zero-width flash or target jitter',
             'certificate hover expands without keyboard focus theft and click opens zoom',
             'original white gray blue backgrounds retained and mixed during scrolling',

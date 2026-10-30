@@ -421,6 +421,11 @@ function selectCertificate(card, scroll = true) {
         item.classList.toggle('is-active', item === card);
         item.setAttribute('aria-pressed', String(item === card));
     });
+    // 동일한 grid-template-columns에서 11개 열을 함께 보간하여
+    // 이동 도중에도 전체 가로폭이 줄거나 한쪽에 빈 공간이 생기지 않습니다.
+    certificateList.style.gridTemplateColumns = certificates
+        .map((item) => item === card ? 'minmax(0, 4.180602fr)' : 'minmax(0, 1fr)')
+        .join(' ');
     if (scroll && certificateMobile.matches) {
         certificateList.scrollTo({
             left: card.offsetLeft - certificateList.offsetLeft - (certificateList.clientWidth - card.clientWidth) / 2,
