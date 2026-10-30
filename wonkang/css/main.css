@@ -1776,11 +1776,11 @@ body.dialog-open {
     }
 }
 
-/* 100~160px가량의 추가 스크롤만 소비합니다. wheel 이벤트 차단·강제 스냅 없음.
+/* 160~220px가량의 추가 스크롤만 소비합니다. wheel 이벤트 차단·강제 스냅 없음.
    작은 높이 또는 모션 감소 환경에서는 기존 일반 스크롤을 유지합니다. */
 @media (prefers-reduced-motion: no-preference) and (min-height: 650px) {
     .company-achievements {
-        height: calc(100svh + clamp(100px, 14svh, 160px));
+        height: calc(100svh + clamp(160px, 20svh, 220px));
     }
     .company-achievements__frame {
         position: sticky;
