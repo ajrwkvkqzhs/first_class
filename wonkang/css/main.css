@@ -1625,26 +1625,41 @@ body.dialog-open {
         line-height: 1.3;
         letter-spacing: 0.025em;
     }
+    /* 모바일 생산공정 갤러리는 애매한 좌우 지그재그를 없애고
+       가로형 크롭 + 짧은 간격으로 기존 세로 길이를 약 절반으로 줄입니다. */
     .process-gallery__items {
-        gap: 64px;
-        width: calc(100% - 32px);
-        margin-top: 64px;
+        gap: 24px;
+        width: calc(100% - 40px);
+        margin-top: 32px;
     }
-    .process-item {
-        width: 92%;
+    .process-item,
+    .process-item:nth-child(odd),
+    .process-item:nth-child(even) {
+        align-self: center;
+        width: 100%;
+        --reveal-x: 0px;
+    }
+    .process-item__media,
+    .process-item--pattern .process-item__media {
+        aspect-ratio: 2.2 / 1;
+    }
+    /* 데스크톱 전용 사진 위치·확대 보정은 모바일 가로형 프레임에서 해제합니다. */
+    .process-item--pattern img,
+    .process-item--housing img {
+        position: static;
+        top: auto;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
     .process-item figcaption {
-        padding: 12px 0 0;
+        padding: 9px 0 0;
         font-size: clamp(16px, 4.35vw, 24px);
         line-height: 1.3;
         letter-spacing: 0.02em;
         white-space: normal;
-    }
-    .process-item:nth-child(odd) {
-        --reveal-x: -12px;
-    }
-    .process-item:nth-child(even) {
-        --reveal-x: 12px;
     }
     .certifications {
         padding: 40px 20px 64px;
@@ -1701,10 +1716,17 @@ body.dialog-open {
     .partner-list img {
         max-height: 74px;
     }
+    /* SVG 배경의 진한 #212121이 끝나면서 흰 바탕이 다시 나타나던 틈 보정.
+       상단 곡선 SVG는 유지하고 나머지 하단 면을 같은 색으로 연장합니다. */
     .site-footer {
         padding: 90px 12px 12px;
-        background-position-y: 0;
-        background-size: auto 340px;
+        background:
+            url('../img/figma/footer-background.svg') left top / auto 340px no-repeat,
+            linear-gradient(to bottom, var(--background-default) 0 39px, #212121 39px 100%);
+    }
+    /* 모바일 최하단에서 바운스 스크롤이 일어나도 밝은 배경이 보이지 않도록 합니다. */
+    html {
+        background-color: #212121;
     }
     .footer-panel {
         padding: 32px 20px;

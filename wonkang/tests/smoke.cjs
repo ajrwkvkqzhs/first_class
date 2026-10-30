@@ -148,6 +148,35 @@ const root = path.resolve(__dirname, '../..');
             results.interactions.push('Certificate hover selection / click zoom / arrows / Home / End');
         }
         if (width === 390) {
+            const mobileLayout = await page.evaluate(() => {
+                const gallery = document.querySelector('.process-gallery');
+                const photos = [...gallery.querySelectorAll('.process-item')];
+                const rects = photos.map((photo) => photo.getBoundingClientRect());
+                const media = photos.map((photo) => photo.querySelector('.process-item__media').getBoundingClientRect());
+                const footer = document.querySelector('.site-footer');
+                return {
+                    galleryHeight: gallery.getBoundingClientRect().height,
+                    photos: rects.map((r) => ({ x: r.x, width: r.width })),
+                    mediaAspect: media.map((r) => r.width / r.height),
+                    footerBackground: getComputedStyle(footer).backgroundImage,
+                    rootBackground: getComputedStyle(document.documentElement).backgroundColor,
+                };
+            });
+            assert.equal(mobileLayout.photos.length, 8, 'all eight factory images remain on mobile');
+            assert.ok(mobileLayout.photos.every((r) =>
+                Math.abs(r.x - mobileLayout.photos[0].x) < 1 &&
+                Math.abs(r.width - mobileLayout.photos[0].width) < 1
+            ), 'factory gallery photos share the same centered width on mobile');
+            assert.ok(mobileLayout.mediaAspect.every((ratio) => Math.abs(ratio - 2.2) < 0.02),
+                'factory photos use shortened 2.2:1 mobile frames');
+            assert.ok(mobileLayout.galleryHeight < 2000,
+                'mobile gallery is compact rather than the original 3000px+ tall layout');
+            assert.match(mobileLayout.footerBackground, /linear-gradient/,
+                'footer has a continuous dark base below the SVG artwork');
+            assert.equal(mobileLayout.rootBackground, 'rgb(33, 33, 33)',
+                'bottom overscroll background matches the footer base');
+            results.interactions.push('Centered half-length mobile factory gallery / continuous footer base');
+
             await page.getByRole('button', { name: '전체 메뉴 펼치기' }).click();
             assert.equal(await page.locator('#main-navigation').isVisible(), true);
             await page.locator('#nav-company').click();
