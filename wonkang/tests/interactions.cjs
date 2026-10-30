@@ -18,6 +18,30 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         enabled: el.classList.contains('is-enhanced'),
     }));
     assert.equal(sequence.enabled, true, 'desktop enables the service crossfade');
+    const snapPoints = await page.locator('.card-stack__snap-point').evaluateAll((markers) =>
+        markers.map((marker) => ({
+            top: marker.getBoundingClientRect().top + scrollY,
+            align: getComputedStyle(marker).scrollSnapAlign,
+            margin: getComputedStyle(marker).scrollMarginTop,
+            visible: getComputedStyle(marker).display !== 'none',
+        }))
+    );
+    assert.equal(snapPoints.length, 3, 'all three service scenes have snap targets');
+    assert.equal(
+        await page.evaluate(() => getComputedStyle(document.documentElement).scrollSnapType),
+        'y proximity',
+        'page uses non-mandatory scroll snapping'
+    );
+    for (let index = 0; index < snapPoints.length; index++) {
+        assert.ok(
+            Math.abs(snapPoints[index].top - (sequence.top + sequence.step * index)) < 2,
+            'snap target must match scene ' + (index + 1) + ' scroll position'
+        );
+        assert.equal(snapPoints[index].align, 'start');
+        assert.equal(snapPoints[index].visible, true);
+    }
+    // 중간 교차 프레임의 불투명도 검증은 CSS 스냅의 브라우저별 정렬 거리와 독립시킵니다.
+    await page.evaluate(() => document.documentElement.style.scrollSnapType = 'none');
     const sample = () => page.locator('.steel-service').evaluateAll((cards) =>
         cards.map((card) => {
             const text = card.querySelector('.steel-service__text');
@@ -69,6 +93,12 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     const back = await goToPhase(0.5);
     assert.ok(back[0].visible && back[1].visible && back[0].textOpacity > 0.45, 'reverse scroll restores the previous content');
 
+    await page.evaluate(() => document.documentElement.style.removeProperty('scroll-snap-type'));
+    assert.equal(
+        await page.evaluate(() => getComputedStyle(document.documentElement).scrollSnapType),
+        'y proximity',
+        'CSS scroll snapping resumes after intermediate-frame checks'
+    );
     const navigation = await page.locator('.card-stack__navigation').boundingBox();
     assert.ok(navigation.y >= 0 && navigation.y + navigation.height <= 900, 'scene controls stay visible');
     await page.locator('[data-card-index="2"]').click();
@@ -198,6 +228,11 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         'reduced motion disables the pinned sequence'
     );
     assert.equal(
+        await reduced.evaluate(() => getComputedStyle(document.documentElement).scrollSnapType),
+        'none',
+        'reduced motion disables service scroll snapping'
+    );
+    assert.equal(
         await reduced.locator('.steel-service').first().evaluate((el) => getComputedStyle(el).position),
         'relative'
     );
@@ -206,6 +241,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         date: '2026-10-29',
         url: baseUrl,
         checks: [
+            'three scene anchors use proximity snapping at exact phase positions',
             'original white gray blue backgrounds retained and mixed during scrolling',
             'texts and photos crossfade and overlap on forward or reverse scroll',
             'service number controls jump forward and backward',

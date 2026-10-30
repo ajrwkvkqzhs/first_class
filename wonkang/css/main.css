@@ -361,6 +361,37 @@ figure,
 .card-stack__deck {
     position: relative;
 }
+/* 고정 장면 내부의 절대 배치 요소는 스냅 좌표가 될 수 없으므로,
+   일반 문서 흐름에 연결된 사업 영역 안에 별도의 스냅 기준점을 둡니다. */
+.card-stack__snap-points {
+    display: none;
+}
+/* 세 장면에 가까이 멈추면 정렬하되, 다른 페이지 구간을 강제로 넘기지 않습니다. */
+@media (prefers-reduced-motion: no-preference) and (min-height: 601px) {
+    html {
+        scroll-snap-type: y proximity;
+    }
+    .card-stack.is-enhanced .card-stack__snap-points {
+        position: absolute;
+        inset: 0;
+        display: block;
+        pointer-events: none;
+    }
+    .card-stack.is-enhanced .card-stack__snap-point {
+        position: absolute;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+        /* 기존 html scroll-padding-top(헤더 높이)만큼 상쇄하여
+           스냅이 JS의 0 / 1 / 2 장면 좌표와 정확히 일치하도록 합니다. */
+        scroll-margin-top: calc(-1 * var(--header-height));
+    }
+    .card-stack.is-enhanced .card-stack__snap-point[data-snap-index='0'] { top: 0; }
+    .card-stack.is-enhanced .card-stack__snap-point[data-snap-index='1'] { top: 130svh; }
+    .card-stack.is-enhanced .card-stack__snap-point[data-snap-index='2'] { top: 260svh; }
+}
 .steel-service {
     position: relative;
     display: flex;
