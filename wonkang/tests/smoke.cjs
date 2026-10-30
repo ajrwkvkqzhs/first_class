@@ -147,6 +147,31 @@ const root = path.resolve(__dirname, '../..');
             await page.keyboard.press('Escape');
             results.interactions.push('Certificate hover selection / click zoom / arrows / Home / End');
         }
+        if (width === 390 || width === 360) {
+            const typography = await page.evaluate(() => {
+                const size = (selector) => parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
+                const title = document.querySelector('.hero-title');
+                return {
+                    hero: size('.hero-title'),
+                    business: size('.steel-service__title'),
+                    section: size('.certifications h2'),
+                    partner: size('.partners h2'),
+                    body: size('.steel-service__text p'),
+                    helper: size('.hero-solution-description'),
+                    address: size('.footer-contacts address'),
+                    nav: size('.footer-navigation li'),
+                    titleClipped: title.scrollWidth > title.clientWidth + 2,
+                };
+            });
+            assert.ok(typography.hero > typography.business, 'mobile H1 must lead business H3');
+            assert.ok(typography.business > typography.body, 'service H3 must lead body');
+            assert.ok(typography.section >= 26 && typography.partner >= 26,
+                'mobile section titles must stay legible');
+            assert.ok(typography.helper >= 12 && typography.address >= 14 && typography.nav >= 14,
+                'helper and footer information must have readable size');
+            assert.equal(typography.titleClipped, false, 'hero headline must wrap instead of clipping');
+            results.interactions.push('Mobile typography hierarchy at ' + width + 'px');
+        }
         if (width === 390) {
             const mobileLayout = await page.evaluate(() => {
                 const gallery = document.querySelector('.process-gallery');
