@@ -174,11 +174,29 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     // 호버만으로 인증서가 펼쳐지며 마우스 이동은 실제 키보드 포커스를 빼앗지 않습니다.
     const certOne = page.locator('.certificate-card').nth(0);
     const certTwo = page.locator('.certificate-card').nth(1);
+    const cardWidths = () => page.locator('.certificate-card').evaluateAll((cards) =>
+        cards.map((card) => card.getBoundingClientRect().width)
+    );
+    const baselineWidths = await cardWidths();
+    // 최초 카드 선택에서 폭이 일시적으로 0에 가깝게 수축하지 않아야 합니다.
     await certOne.hover();
     assert.equal(await certOne.getAttribute('aria-pressed'), 'true', 'first certificate expands on hover');
+    const earlyWidths = await cardWidths();
+    assert.ok(earlyWidths[0] >= baselineWidths[0] - 2, 'newly active certificate never collapses first');
+    assert.ok(earlyWidths.every((width) => width > 35), 'every certificate remains visible during switch');
+    await page.waitForTimeout(500);
+    const expandedWidths = await cardWidths();
+    assert.ok(expandedWidths[0] > expandedWidths[1] * 2, 'hovered card finishes expanding smoothly');
     await certTwo.hover();
     assert.equal(await certTwo.getAttribute('aria-pressed'), 'true', 'hover switches active certificate');
     assert.equal(await certOne.getAttribute('aria-pressed'), 'false', 'previous certificate collapses');
+    const switchingWidths = await cardWidths();
+    assert.ok(switchingWidths[0] > 35 && switchingWidths[1] > 35, 'both cards keep nonzero width while switching');
+    await page.waitForTimeout(500);
+    const settledWidths = await cardWidths();
+    assert.ok(Math.abs(settledWidths.reduce((sum, width) => sum + width, 0) -
+        baselineWidths.reduce((sum, width) => sum + width, 0)) < 3,
+        'certificate row width remains stable without layout jumps');
     assert.notEqual(
         await certTwo.evaluate((card) => document.activeElement === card),
         true,
@@ -292,6 +310,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         checks: [
             'three scene anchors use proximity snapping at exact phase positions',
             'desktop CTA pins briefly while mobile and reduced motion remain unpinned',
+            'certificate hover transitions preserve widths with no zero-width flash or target jitter',
             'certificate hover expands without keyboard focus theft and click opens zoom',
             'original white gray blue backgrounds retained and mixed during scrolling',
             'texts and photos crossfade and overlap on forward or reverse scroll',

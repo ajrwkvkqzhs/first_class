@@ -429,15 +429,21 @@ function selectCertificate(card, scroll = true) {
     }
 }
 
-// 펼침 애니메이션 때문에 카드 경계가 움직이더라도 마우스가 가만히 있을 때
-// 인접 카드로 선택이 튀지 않도록 실제 포인터 이동에만 반응합니다.
+// 호버 대상이 확대되는 동안 카드의 경계가 이동할 수 있습니다.
+// 커서가 거의 움직이지 않았는데 다른 카드로 전환되는 현상을 방지합니다.
+let certificateHoverX = null;
 certificateList.addEventListener('pointermove', (event) => {
     if (certificateMobile.matches || (event.pointerType !== 'mouse' && event.pointerType !== 'pen')) return;
     const hovered = event.target.closest('.certificate-card');
-    if (hovered && hovered.parentElement === certificateList && !hovered.classList.contains('is-active')) {
-        selectCertificate(hovered, false);
-    }
+    if (!hovered || hovered.parentElement !== certificateList || hovered.classList.contains('is-active')) return;
+    // 마지막 선택 이후 18px 이상 의도적으로 움직인 경우에만 다시 선택합니다.
+    if (certificateHoverX !== null && Math.abs(event.clientX - certificateHoverX) < 18) return;
+    selectCertificate(hovered, false);
+    certificateHoverX = event.clientX;
 }, { passive: true });
+certificateList.addEventListener('pointerleave', () => {
+    certificateHoverX = null;
+});
 
 certificates.forEach((card, index) => {
     card.addEventListener('click', () => {

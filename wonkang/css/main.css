@@ -871,15 +871,18 @@ figure,
 }
 .certificate-card {
     position: relative;
-    flex: 1;
+    /* 활성 여부와 관계없이 flex-grow / flex-shrink를 고정합니다.
+       기존 flex:1 → flex:0 전환은 첫 프레임에 카드가 0에 가까운 폭으로
+       급격히 수축하는 원인이었습니다. */
+    flex: 0 0 calc((100% - 29.481132075%) / 10);
     min-width: 0;
     overflow: hidden;
     border: 1px solid #b8bec5;
     background: #fff;
-    transition: flex-basis 0.35s;
+    transition: flex-basis 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .certificate-card.is-active {
-    flex: 0 0 29.481132075%;
+    flex-basis: 29.481132075%;
 }
 .certificate-card img {
     width: 100%;
