@@ -514,13 +514,17 @@ figure,
     height: 282.212px;
 }
 
-/* 69:232 — 75% 암전 배경과 실적 숫자 */
+/* 69:232 — 75% 암전 배경과 실적 숫자.
+   프레임은 원본 그대로 두고, 한 번의 휠 이동에 해당하는 거리만큼만 잠시 붙잡습니다. */
 .company-achievements {
     position: relative;
+    height: 1002px;
+}
+.company-achievements__frame {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 1002px;
+    height: 100%;
     background:
         linear-gradient(#000000bf, #000000bf),
         url('../img/figma/factory.png') center/cover;
@@ -1769,5 +1773,18 @@ body.dialog-open {
     .steel-service {
         position: relative;
         top: auto;
+    }
+}
+
+/* 100~160px가량의 추가 스크롤만 소비합니다. wheel 이벤트 차단·강제 스냅 없음.
+   작은 높이 또는 모션 감소 환경에서는 기존 일반 스크롤을 유지합니다. */
+@media (prefers-reduced-motion: no-preference) and (min-height: 650px) {
+    .company-achievements {
+        height: calc(100svh + clamp(100px, 14svh, 160px));
+    }
+    .company-achievements__frame {
+        position: sticky;
+        top: 0;
+        height: 100svh;
     }
 }

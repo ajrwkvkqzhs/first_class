@@ -166,6 +166,44 @@ const root = path.resolve(__dirname, '../..');
     assert.equal(await normal.locator('.stat-roller').count(), 3);
     assert.deepEqual(normalErrors, []);
     results.interactions.push('Normal motion: achievement counters build and finish without errors');
+    // 실적 숫자 구간을 한 번의 휠 입력 분량만큼 잠시 붙잡고 다시 정상 스크롤합니다.
+    // scrollIntoViewIfNeeded 같은 보조 자동 스크롤은 고정 위치 검증에서 사용하지 않습니다.
+    const metrics = await normal.locator('.company-achievements').evaluate((section) => {
+        const frame = section.querySelector('.company-achievements__frame');
+        return {
+            top: section.getBoundingClientRect().top + scrollY,
+            hold: section.offsetHeight - frame.offsetHeight,
+            framePosition: getComputedStyle(frame).position,
+            viewportHeight: innerHeight,
+        };
+    });
+    assert.equal(metrics.framePosition, 'sticky', 'achievements frame must be sticky with normal motion');
+    assert.ok(metrics.hold >= 100 && metrics.hold <= 160, 'hold lasts about one wheel step');
+    const readFrameTop = () => normal.locator('.company-achievements__frame')
+        .evaluate((frame) => frame.getBoundingClientRect().top);
+    await normal.evaluate((top) => scrollTo({ top, behavior: 'instant' }), metrics.top);
+    await normal.waitForTimeout(80);
+    assert.ok(Math.abs(await readFrameTop()) < 2, 'frame sits at viewport top when pinned');
+    await normal.evaluate((top) => scrollTo({ top, behavior: 'instant' }), metrics.top + metrics.hold / 2);
+    await normal.waitForTimeout(80);
+    assert.ok(Math.abs(await readFrameTop()) < 2, 'frame remains pinned during short hold');
+    await normal.evaluate((top) => scrollTo({ top, behavior: 'instant' }), metrics.top + metrics.hold + 90);
+    await normal.waitForTimeout(80);
+    assert.ok((await readFrameTop()) < -60, 'frame is released to the next section after hold');
+    results.interactions.push('Short achievements sticky hold / wheel-distance release');
+
+    const reducedFrame = await browser.newPage({
+        viewport: { width: 1440, height: 900 },
+        reducedMotion: 'reduce',
+    });
+    await reducedFrame.goto(baseUrl);
+    assert.notEqual(
+        await reducedFrame.locator('.company-achievements__frame').evaluate((el) => getComputedStyle(el).position),
+        'sticky',
+        'reduced motion leaves achievements in regular document flow'
+    );
+    await reducedFrame.close();
+
     const sources = ['wonkang/index.html', 'wonkang/css/main.css', 'wonkang/js/main.js']
         .map((source) => fs.readFileSync(path.join(root, source), 'utf8'))
         .join('\n');
