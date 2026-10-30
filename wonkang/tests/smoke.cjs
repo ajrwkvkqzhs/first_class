@@ -118,11 +118,12 @@ const root = path.resolve(__dirname, '../..');
                 await btn.locator('xpath=ancestor::article').hover();
                 await btn.click();
                 assert.equal(await page.locator('dialog').evaluate((e) => e.open), true);
-                assert.equal(await page.locator('dialog a[href^="mailto:"]').count(), 1);
+                assert.equal(await page.locator('dialog a[href^="mailto:"]').count(), 0);
+                assert.equal(await page.locator('dialog a[href^="tel:"]').count(), 1);
                 await page.keyboard.press('Escape');
                 assert.equal(await btn.evaluate((e) => e === document.activeElement), true);
             }
-            results.interactions.push('4 product details / email link / Escape focus return');
+            results.interactions.push('4 product details / phone link / Escape focus return');
             await page.locator('.product-panel').first().hover();
             await page.locator('[data-info="catalog"]').first().click();
             assert.match(await page.locator('#dialog-body').innerText(), /현재 제공되지/);
@@ -204,6 +205,7 @@ const root = path.resolve(__dirname, '../..');
     );
     await reducedFrame.close();
 
+    assert.equal(await normal.locator('a[href^="mailto:"]').count(), 0, 'no unverified email addresses remain');
     const sources = ['wonkang/index.html', 'wonkang/css/main.css', 'wonkang/js/main.js']
         .map((source) => fs.readFileSync(path.join(root, source), 'utf8'))
         .join('\n');

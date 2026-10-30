@@ -344,16 +344,14 @@ function paragraph(text) {
     return element;
 }
 
-function contactLinks(subject) {
+function contactLinks() {
     const links = document.createElement('div');
     links.className = 'dialog-contact';
-    const email = document.createElement('a');
-    email.href = 'mailto:jmlee@wonkangmetal.com?subject=' + encodeURIComponent(subject);
-    email.textContent = '이메일로 문의';
+    // 확인되지 않은 이메일을 임의로 문의처에 사용하지 않습니다.
     const phone = document.createElement('a');
     phone.href = 'tel:0328111653';
     phone.textContent = '영업소 전화 연결';
-    links.append(email, phone);
+    links.append(phone);
     return links;
 }
 
@@ -386,8 +384,8 @@ document.querySelectorAll('[data-product]').forEach((button) => {
             [
                 image,
                 paragraph(panel.querySelector('p').innerText),
-                paragraph('도면, 재질, 규격, 수량 등 문의 내용을 이메일로 보내 주시거나 영업소로 연락해 주세요.'),
-                contactLinks(title + ' 문의'),
+                paragraph('도면, 재질, 규격, 수량 등에 대한 문의는 아래 영업소 연락처를 이용해 주세요.'),
+                contactLinks(),
             ],
             button
         );
@@ -400,12 +398,12 @@ const information = {
         '카탈로그 파일은 현재 제공되지 않았습니다. 필요한 제품명을 적어 원강금속 영업소에 요청해 주세요.',
     ],
     privacy: ['개인정보 취급방침', '개인정보 취급방침 원문은 원강금속에 문의해 주세요.'],
-    email: ['이메일 무단수집거부', '이 페이지에 게시된 이메일 주소의 무단 수집을 거부합니다.'],
+    email: ['이메일 무단수집거부', '현재 이 웹사이트에는 확인된 이메일 연락처를 게시하지 않습니다.'],
 };
 document.querySelectorAll('[data-info]').forEach((button) => {
     button.addEventListener('click', () => {
         const [title, description] = information[button.dataset.info];
-        showDetail(title, [paragraph(description), contactLinks(title + ' 문의')], button);
+        showDetail(title, [paragraph(description), contactLinks()], button);
     });
 });
 

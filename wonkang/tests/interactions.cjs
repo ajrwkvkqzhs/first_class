@@ -99,7 +99,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         );
         assert.equal(await panel.locator('button,a').count(), 3, 'every CTA has detail, contact and catalog');
         assert.equal(await panel.locator('[data-product]').isVisible(), true);
-        assert.equal(await panel.locator('a[href^="mailto:"]').isVisible(), true);
+        assert.equal(await panel.locator('a[href="#contact"]').isVisible(), true);
         assert.equal(await panel.locator('[data-info="catalog"]').isVisible(), true);
     }
     await page.mouse.move(5, 5);

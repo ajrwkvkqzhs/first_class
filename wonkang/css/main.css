@@ -926,17 +926,6 @@ figure,
     font-style: normal;
     line-height: 20px;
 }
-.footer-email {
-    grid-column: 1/-1;
-}
-.footer-email h2 {
-    margin-bottom: 22.15px;
-}
-.footer-email > a {
-    display: block;
-    font-size: 16.981px;
-    line-height: 20px;
-}
 .footer-navigation {
     display: grid;
     grid-template-columns: repeat(3, 1fr) 0.74fr;
@@ -1190,9 +1179,6 @@ body.dialog-open {
     .footer-contacts {
         grid-template-columns: 1fr;
         gap: 30px;
-    }
-    .footer-email {
-        grid-column: auto;
     }
     .footer-navigation {
         gap: 20px;
@@ -1690,8 +1676,7 @@ body.dialog-open {
         font-size: 16px;
         line-height: 22px;
     }
-    .footer-contacts address,
-    .footer-email > a {
+    .footer-contacts address {
         font-size: 13px;
         line-height: 24px;
     }
