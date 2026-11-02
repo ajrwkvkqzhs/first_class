@@ -1,0 +1,473 @@
+/* 원강금속 회사소개 서브페이지 — wonkang/Design.md 및 css/main.css의 확장 규칙.
+   메인페이지 공통 헤더·GNB·푸터 스타일은 ../css/main.css에서 재사용합니다.
+   새 규칙은 .about-page 아래에서만 적용합니다. */
+.about-page {
+    --about-inline: clamp(20px, 4.453125vw, 86px);
+    --about-max: 1520px;
+}
+.about-page .about-inner {
+    width: min(calc(100% - var(--about-inline) * 2), var(--about-max));
+    margin-inline: auto;
+}
+.about-page .about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--primary-default);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+.about-page .about-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 2px;
+    background: currentColor;
+}
+.about-page .about-section-title {
+    margin-top: 23px;
+    color: var(--text-primary);
+    font-size: clamp(36px, 3.333vw, 64px);
+    line-height: 1.25;
+    letter-spacing: -.045em;
+    font-weight: 700;
+    word-break: keep-all;
+}
+.about-page .about-section-description {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+
+/* 01. 서브 비주얼. 메인 히어로의 이미지 오버레이·왼쪽 대형 타이포를 계승합니다. */
+.about-page .about-hero {
+    position: relative;
+    display: flex;
+    align-items: end;
+    min-height: clamp(570px, 75svh, 820px);
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--brand-neutral-950);
+    color: var(--text-inverse);
+}
+.about-page .about-hero__image,
+.about-page .about-hero::after {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.about-page .about-hero__image {
+    z-index: -2;
+    object-fit: cover;
+    object-position: center 45%;
+}
+.about-page .about-hero::after {
+    content: '';
+    z-index: -1;
+    background: linear-gradient(90deg, rgba(8, 20, 39, .77) 0%, rgba(8, 20, 39, .46) 53%, rgba(8, 20, 39, .22) 100%),
+        linear-gradient(0deg, rgba(0, 0, 0, .42), transparent 50%);
+}
+.about-page .about-hero__content {
+    position: relative;
+    padding-block: calc(var(--header-height) + 90px) 116px;
+}
+.about-page .about-hero__eyebrow {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .15em;
+}
+.about-page .about-hero__title {
+    margin-top: 24px;
+    max-width: 1160px;
+    font-size: clamp(48px, 5vw, 96px);
+    line-height: 1.2;
+    letter-spacing: -.05em;
+    font-weight: 700;
+    word-break: keep-all;
+}
+.about-page .about-hero__desc {
+    max-width: 680px;
+    margin-top: 26px;
+    font-size: clamp(16px, 1.25vw, 20px);
+    font-weight: 500;
+    line-height: 1.65;
+    word-break: keep-all;
+}
+.about-page .about-hero__index {
+    position: absolute;
+    right: 0;
+    bottom: 38px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .16em;
+}
+.about-page .about-hero__index::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 64px;
+    height: 1px;
+    margin-right: 14px;
+    background: rgba(255, 255, 255, .6);
+}
+
+/* 02. 브레드크럼 */
+.about-page .about-breadcrumb {
+    border-bottom: 1px solid var(--border-default);
+    background: var(--surface-default);
+}
+.about-page .about-breadcrumb ol {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 72px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+.about-page .about-breadcrumb li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.about-page .about-breadcrumb li + li::before {
+    content: '/';
+    color: var(--brand-neutral-500);
+    opacity: .65;
+}
+.about-page .about-breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+}
+.about-page .about-breadcrumb a:hover,
+.about-page .about-breadcrumb a:focus-visible {
+    color: var(--primary-default);
+}
+.about-page .about-breadcrumb [aria-current='page'] {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* 03. 브랜드 스토리 */
+.about-page .about-story {
+    padding-block: clamp(100px, 10.417vw, 200px) clamp(105px, 9.375vw, 180px);
+    background: var(--surface-default);
+}
+.about-page .about-story__layout {
+    display: grid;
+    grid-template-columns: minmax(0, .93fr) minmax(0, 1.07fr);
+    gap: clamp(50px, 7.8vw, 150px);
+    align-items: center;
+}
+.about-page .about-story__lead {
+    max-width: 615px;
+    margin-top: 38px;
+    color: var(--text-primary);
+    font-size: clamp(20px, 1.5vw, 26px);
+    font-weight: 500;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+.about-page .about-story__body {
+    max-width: 580px;
+    margin-top: 25px;
+}
+.about-page .about-story__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 48px;
+    margin-top: 35px;
+    border-bottom: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
+    transition: gap .2s ease, color .2s ease, border-color .2s ease;
+}
+.about-page .about-story__link:hover,
+.about-page .about-story__link:focus-visible {
+    gap: 28px;
+    color: var(--primary-default);
+    border-color: var(--primary-default);
+}
+.about-page .about-story__media {
+    position: relative;
+    margin: 0;
+}
+.about-page .about-story__media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.12;
+    object-fit: cover;
+}
+.about-page .about-story__media figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+.about-page .about-story__media figcaption::before {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--border-default);
+}
+
+/* 04. 가치. 원강금속의 중립 배경 + 명확한 카드 계층을 재해석합니다. */
+.about-page .about-values {
+    padding-block: clamp(100px, 9.375vw, 180px);
+    background: var(--background-default);
+}
+.about-page .about-values__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 50px;
+}
+.about-page .about-values__header .about-section-description {
+    max-width: 430px;
+    padding-bottom: 5px;
+}
+.about-page .about-values__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 80px;
+}
+.about-page .about-value {
+    min-width: 0;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 28px 37px;
+    border-top: 3px solid var(--brand-neutral-200);
+    background: var(--surface-default);
+    transition: border-color .25s ease, transform .25s ease;
+}
+.about-page .about-value:hover,
+.about-page .about-value:focus-within {
+    border-color: var(--primary-default);
+    transform: translateY(-6px);
+}
+.about-page .about-value__number {
+    color: var(--primary-default);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .06em;
+}
+.about-page .about-value__mark {
+    display: block;
+    margin: auto 0 16px;
+    font-size: clamp(42px, 4vw, 78px);
+    font-weight: 300;
+    letter-spacing: -.08em;
+    line-height: 1;
+    color: var(--brand-neutral-200);
+}
+.about-page .about-value__title {
+    margin-top: 0;
+    font-size: clamp(23px, 1.55vw, 30px);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+.about-page .about-value__en {
+    display: block;
+    margin-top: 7px;
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: .03em;
+}
+.about-page .about-value__desc {
+    margin-top: 30px;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+    word-break: keep-all;
+}
+
+/* 05. 기업 연혁. 메인 사업 장면에서 사용한 딥블루를 신뢰 섹션에 재사용합니다. */
+.about-page .about-history {
+    padding-block: clamp(110px, 10.417vw, 200px);
+    color: var(--text-inverse);
+    background: var(--brand-blue);
+}
+.about-page .about-history__layout {
+    display: grid;
+    grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+    gap: clamp(55px, 9vw, 170px);
+}
+.about-page .about-history .about-eyebrow {
+    color: #fff;
+}
+.about-page .about-history .about-section-title {
+    color: #fff;
+}
+.about-page .about-history__intro {
+    max-width: 370px;
+    margin-top: 30px;
+    color: rgba(255,255,255,.78);
+    font-size: 18px;
+    line-height: 1.75;
+    word-break: keep-all;
+}
+.about-page .about-history__years {
+    margin-top: 58px;
+    color: rgba(255,255,255,.26);
+    font-size: clamp(46px, 5vw, 90px);
+    font-weight: 700;
+    letter-spacing: -.06em;
+    line-height: 1;
+}
+.about-page .about-history__list {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.about-page .about-history__item {
+    display: grid;
+    grid-template-columns: 128px minmax(0,1fr);
+    gap: 40px;
+    padding: 35px 0;
+    border-top: 1px solid rgba(255,255,255,.28);
+}
+.about-page .about-history__item:last-child {
+    border-bottom: 1px solid rgba(255,255,255,.28);
+}
+.about-page .about-history__year {
+    color: #fff;
+    font-size: 31px;
+    font-weight: 700;
+    letter-spacing: -.045em;
+}
+.about-page .about-history__detail {
+    margin-top: 6px;
+    color: rgba(255,255,255,.84);
+    font-size: 17px;
+    line-height: 1.75;
+    word-break: keep-all;
+}
+.about-page .about-history__detail li + li {
+    margin-top: 6px;
+}
+
+/* 마무리 안내: 별도의 신규 CTA 컬러 대신 기존 레드와 흰 배경 */
+.about-page .about-next {
+    padding-block: 95px;
+    background: var(--surface-default);
+}
+.about-page .about-next__layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.about-page .about-next h2 {
+    color: var(--text-primary);
+    font-size: clamp(28px, 2.5vw, 48px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -.04em;
+    word-break: keep-all;
+}
+.about-page .about-next p {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+.about-page .about-next__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    min-height: 58px;
+    padding: 15px 30px;
+    border-radius: 30px;
+    background: var(--primary-default);
+    color: var(--text-inverse);
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color .2s ease, gap .2s ease;
+}
+.about-page .about-next__button:hover,
+.about-page .about-next__button:focus-visible {
+    background: var(--primary-hover);
+    gap: 36px;
+}
+
+/* 기존 메인 브레이크포인트를 그대로 사용합니다. */
+@media (max-width: 1100px) {
+    .about-page .about-story__layout { gap: 50px; }
+    .about-page .about-values__grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .about-page .about-value { min-height: 330px; }
+    .about-page .about-history__layout { gap: 45px; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); }
+    .about-page .about-history__item { grid-template-columns: 100px minmax(0,1fr); gap: 20px; }
+}
+@media (max-width: 850px) {
+    .about-page .about-hero { min-height: 640px; }
+    .about-page .about-hero__content { padding-block: 190px 105px; }
+    .about-page .about-story__layout { grid-template-columns: 1fr; }
+    .about-page .about-story__media img { aspect-ratio: 1.5; }
+    .about-page .about-values__header { display: block; }
+    .about-page .about-values__header .about-section-description { margin-top: 24px; }
+    .about-page .about-values__grid { margin-top: 48px; }
+    .about-page .about-history__layout { grid-template-columns: 1fr; }
+    .about-page .about-history__years { margin-top: 24px; }
+}
+@media (max-width: 600px) {
+    .about-page { --about-inline: 20px; }
+    .about-page .about-eyebrow { font-size: 12px; gap: 9px; }
+    .about-page .about-eyebrow::before { width: 20px; }
+    .about-page .about-section-title { margin-top: 16px; font-size: clamp(28px,7vw,34px); line-height: 1.32; }
+    .about-page .about-section-description { font-size: 15px; line-height: 1.75; }
+    .about-page .about-hero { min-height: 650px; min-height: 100svh; }
+    .about-page .about-hero__image { object-position: 60% center; }
+    .about-page .about-hero::after { background: linear-gradient(90deg,rgba(8,20,39,.78),rgba(8,20,39,.36)), linear-gradient(0deg,rgba(0,0,0,.4),transparent 60%); }
+    .about-page .about-hero__content { padding-block: 165px 105px; }
+    .about-page .about-hero__eyebrow { font-size: 12px; }
+    .about-page .about-hero__title { font-size: clamp(34px,8vw,42px); margin-top: 20px; line-height: 1.29; }
+    .about-page .about-hero__desc { margin-top: 20px; font-size: 15px; }
+    .about-page .about-hero__index { bottom: 36px; right: 0; font-size: 11px; }
+    .about-page .about-hero__index::before { width: 30px; }
+    .about-page .about-breadcrumb ol { min-height: 60px; gap: 6px; font-size: 12px; }
+    .about-page .about-breadcrumb li { gap: 6px; }
+    .about-page .about-story,.about-page .about-values,.about-page .about-history { padding-block: 76px; }
+    .about-page .about-story__layout { gap: 42px; }
+    .about-page .about-story__lead { margin-top: 24px; font-size: 18px; }
+    .about-page .about-story__body { margin-top: 14px; }
+    .about-page .about-story__link { margin-top: 23px; font-size: 14px; }
+    .about-page .about-story__media img { aspect-ratio: 1.2; }
+    .about-page .about-values__grid { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+    .about-page .about-value { min-height: 235px; padding: 22px; }
+    .about-page .about-value__mark { margin-top: 16px; font-size: 46px; }
+    .about-page .about-value__title { font-size: 24px; }
+    .about-page .about-value__desc { margin-top: 18px; font-size: 14px; }
+    .about-page .about-history__intro { margin-top: 20px; font-size: 15px; }
+    .about-page .about-history__years { font-size: 42px; }
+    .about-page .about-history__item { grid-template-columns: 82px minmax(0,1fr); padding: 22px 0; gap: 16px; }
+    .about-page .about-history__year { font-size: 23px; }
+    .about-page .about-history__detail { font-size: 14px; }
+    .about-page .about-next { padding-block: 65px; }
+    .about-page .about-next__layout { flex-direction: column; align-items: flex-start; }
+    .about-page .about-next h2 { font-size: 27px; }
+    .about-page .about-next p { font-size: 14px; }
+    .about-page .about-next__button { width: 100%; min-height: 52px; }
+}
+@media (hover: none), (pointer: coarse) {
+    .about-page .about-value:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .about-page .about-story__link,
+    .about-page .about-value,
+    .about-page .about-next__button { transition: none; }
+}
