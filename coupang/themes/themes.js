@@ -125,7 +125,7 @@ if (mount) {
       if(e.target.id==="user-id")setError("user-id","");
       if(e.target.id==="user-pass")setError("user-pass","");
     }
-    if(view()==="signup")updateTerms();
+    // Signup checkbox state is synchronized on change, after the master toggle settles.
   });
   mount.addEventListener("change",e=>{
     if(view()!=="signup")return;
