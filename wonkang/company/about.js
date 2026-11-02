@@ -194,3 +194,36 @@ document.querySelectorAll('[data-info]').forEach(button => {
         document.querySelector('.dialog-close').focus();
     });
 });
+
+
+// 현재 읽고 있는 섹션을 목차에 표시합니다. URL을 강제로 변경하지 않고 aria-current만 갱신합니다.
+// IntersectionObserver를 지원하지 않아도 목차 링크는 일반 앵커로 동작합니다.
+const sectionLinks = [...document.querySelectorAll('.about-section-nav a[href^="#"]')];
+const sectionPairs = sectionLinks.map(link => ({
+    link,
+    section: document.getElementById(link.getAttribute('href').slice(1))
+})).filter(entry => entry.section);
+function setActiveSection(id) {
+    sectionPairs.forEach(({ link, section }) => {
+        if (section.id === id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+    });
+}
+if (sectionPairs.length) {
+    setActiveSection('overview');
+    if ('IntersectionObserver' in window) {
+        const observedSections = new IntersectionObserver(() => {
+            const offset = document.querySelector('.site-header').offsetHeight +
+                document.querySelector('.about-section-nav').offsetHeight + 22;
+            let current = sectionPairs[0].section.id;
+            for (const { section } of sectionPairs) {
+                if (section.getBoundingClientRect().top <= offset + 30) current = section.id;
+            }
+            setActiveSection(current);
+        }, { threshold: 0, rootMargin: '-100px 0px -60% 0px' });
+        sectionPairs.forEach(({ section }) => observedSections.observe(section));
+    }
+    sectionPairs.forEach(({ link, section }) => {
+        link.addEventListener('click', () => setActiveSection(section.id));
+    });
+}
