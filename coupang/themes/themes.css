@@ -60,7 +60,7 @@ a{color:inherit;text-decoration:none}
 .in-app-nav .nav-ornament{font-size:19px;letter-spacing:.12em;font-weight:800}
 .app-main{padding:12px 25px 66px;position:relative;z-index:2}
 .app-header{position:relative;padding:9px 0 19px}
-.brand-logo{width:183px;height:44px;display:block;background:url("../img/login_sprite.png") no-repeat 0 0/200px 125px;margin-bottom:13px}
+.brand-logo{width:183px;height:44px;display:block;background:transparent url("../img/coupang-logo.svg") no-repeat center/contain;margin-bottom:13px}
 .hero-kicker,.section-tag{font-size:10px;letter-spacing:.15em;font-weight:850;display:block}
 .hero-kicker{color:var(--accent);margin:0 0 7px}
 .hero-title{font-size:30px;line-height:1.3;letter-spacing:-.06em;font-weight:900;margin:0;position:relative}
@@ -171,7 +171,7 @@ a{color:inherit;text-decoration:none}
 .theme-05 .field input::placeholder{color:#e5efff}
 .theme-05 .primary-btn{background:#fff}
 .theme-05 .sns-icons button{color:#172e47}
-.theme-05 .brand-logo{filter:drop-shadow(0 2px 3px #0005)}
+
 
 /* 06 — Claymorphism */
 .theme-06{--bg:#f2ecff;--ink:#464078;--accent:#9b76ed;--muted:#887cad;--stroke:#d8caf5;--field:#f9f4ff;--rad:23px;--pv-bg:#e9dbfb;--pv-fg:#5e4ca2;--pv-btn:#9b76ed;--pv-field:#f9f4ff;--pv-round:9px}
@@ -229,7 +229,7 @@ a{color:inherit;text-decoration:none}
 .theme-12{--bg:#19243e;--ink:#eeffe1;--accent:#8affc1;--stroke:#6eaabb;--muted:#adc9da;--field:#263857;--rad:0;--button-fg:#1d2842;--face:"Courier New",monospace;--pv-bg:#19243e;--pv-fg:#87ffd1;--pv-field:#284364;--pv-border:2px solid #8affc1;--pv-btn:#8affc1;--pv-btnfg:#151c38;--pv-font:monospace}
 .theme-12 .phone{image-rendering:pixelated;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:16px 16px;background-color:#19243e}
 .theme-12 .hero-title{font-size:26px;line-height:1.38;letter-spacing:-.04em}
-.theme-12 .brand-logo{filter:drop-shadow(3px 3px 0 #70fac5)}
+
 .theme-12 .field input{border:2px solid var(--accent);box-shadow:4px 4px 0 #08101f;font-family:monospace}
 .theme-12 .primary-btn{border:3px solid #0b1526;box-shadow:5px 5px 0 #08111b}
 .theme-12 .section-tag{border-bottom:2px dashed var(--accent)}
@@ -293,7 +293,7 @@ a{color:inherit;text-decoration:none}
 .theme-18 .phone{border:6px double #cba767}
 .theme-18 .app-main{padding:18px 25px 66px}
 .theme-18 .app-header{text-align:center;border:1px solid #cba767;padding:16px 10px;margin-bottom:14px}
-.theme-18 .brand-logo{margin-inline:auto;filter:grayscale(1) brightness(2)}
+.theme-18 .brand-logo{margin-inline:auto}
 .theme-18 .hero-title{font-family:Georgia,serif;font-size:29px;letter-spacing:0;font-weight:400}
 .theme-18 .hero-title em{color:#e6bb71;font-style:italic}
 .theme-18 .hero-kicker{letter-spacing:.35em}
