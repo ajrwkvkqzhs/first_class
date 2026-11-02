@@ -196,9 +196,9 @@ document.querySelectorAll('[data-info]').forEach(button => {
 });
 
 
-// 섹션 목차의 현재 위치 표시. 위치가 바뀔 때마다 실제 화면 좌표로 계산합니다.
-// 기존 구현의 IntersectionObserver는 임계선을 넘는 경우에만 갱신되었고,
-// 첫 섹션에 아직 진입하지 않았는데도 '기업 개요'를 미리 활성화했습니다.
+// 서브페이지 목차: 선택된 섹션(aria-current)과 키보드 포커스는 서로 다른 상태입니다.
+// 기존 구현은 부드러운 앵커 이동 중에도 스크롤 이벤트가 이전 섹션을 다시 활성화했고,
+// 고정 헤더가 숨을 때 기준선이 달라져 이전 메뉴에 밑줄이 남을 수 있었습니다.
 const sectionNavigation = document.querySelector('.about-section-nav');
 const sectionLinks = [...sectionNavigation.querySelectorAll('a[href^="#"]')];
 const sectionPairs = sectionLinks.map(link => ({
@@ -207,44 +207,51 @@ const sectionPairs = sectionLinks.map(link => ({
 })).filter(({section}) => Boolean(section));
 let sectionUpdateScheduled = false;
 let activeSectionId = null;
+let pendingSectionId = null;
+let navigationSettledTimer = null;
 
 function setActiveSection(id) {
     if (activeSectionId === id) return;
     activeSectionId = id;
     for (const {link, section} of sectionPairs) {
-        if (section.id === id) {
-            link.setAttribute('aria-current', 'location');
-        } else {
-            link.removeAttribute('aria-current');
-        }
+        if (section.id === id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
     }
 }
 
-// 현재 보이는 헤더의 높이만 포함합니다. 스크롤 시 헤더가 숨겨지면
-// 서브 내비게이션이 화면 맨 위에 붙으므로 이를 활성 영역 계산에도 반영합니다.
 function getReadingLine() {
-    const header = document.querySelector('.site-header');
-    const headerHeight = header.classList.contains('is-hidden')
-        ? 0
-        : header.querySelector('.site-logo').offsetHeight;
-    return headerHeight + sectionNavigation.offsetHeight + 24;
+    // 화면에서 실제 차지하는 고정 목차의 하단을 사용합니다.
+    const navBottom = sectionNavigation.getBoundingClientRect().bottom;
+    // html의 scroll-padding-top + 섹션의 scroll-margin-top은 브라우저의
+    // 앵커 이동 착지점입니다. 이 값이 화면 기준선보다 아래일 수 있습니다.
+    const docStyle = getComputedStyle(document.documentElement);
+    const sectionStyle = getComputedStyle(sectionPairs[0].section);
+    const anchorLanding = (parseFloat(docStyle.scrollPaddingTop) || 0) +
+        (parseFloat(sectionStyle.scrollMarginTop) || 0);
+    return Math.max(navBottom + 12, anchorLanding + 12);
+}
+
+function scrollSectionFromViewport() {
+    if (!sectionPairs.length) return null;
+    const line = getReadingLine();
+    if (sectionPairs[0].section.getBoundingClientRect().top > line) return null;
+    let current = sectionPairs[0].section.id;
+    for (const {section} of sectionPairs) {
+        if (section.getBoundingClientRect().top <= line) current = section.id;
+    }
+    // 문서 마지막에 도달하면 마지막 섹션이 기준선까지 올라오지 못해도 표시합니다.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 3) {
+        current = sectionPairs[sectionPairs.length - 1].section.id;
+    }
+    return current;
 }
 
 function updateSectionHighlight() {
     sectionUpdateScheduled = false;
     if (!sectionPairs.length) return;
-    const line = getReadingLine();
-    // 첫 콘텐츠 섹션 전에 있는 히어로·브레드크럼·목차에서는
-    // 실제로 보고 있는 섹션이 없으므로 아무 메뉴도 활성화하지 않습니다.
-    if (sectionPairs[0].section.getBoundingClientRect().top > line) {
-        setActiveSection(null);
-        return;
-    }
-    let current = sectionPairs[0].section.id;
-    for (const {section} of sectionPairs) {
-        if (section.getBoundingClientRect().top <= line) current = section.id;
-    }
-    setActiveSection(current);
+    // 메뉴를 누른 뒤 부드러운 스크롤 도중 이전 섹션이 선택을 덮어쓰지 못하게 합니다.
+    if (pendingSectionId !== null) return;
+    setActiveSection(scrollSectionFromViewport());
 }
 
 function scheduleSectionHighlight() {
@@ -253,18 +260,38 @@ function scheduleSectionHighlight() {
     window.requestAnimationFrame(updateSectionHighlight);
 }
 
+function finishSectionNavigation() {
+    if (pendingSectionId === null) return;
+    pendingSectionId = null;
+    clearTimeout(navigationSettledTimer);
+    navigationSettledTimer = null;
+    scheduleSectionHighlight();
+}
+
 if (sectionPairs.length) {
-    window.addEventListener('scroll', scheduleSectionHighlight, {passive: true});
+    for (const {link, section} of sectionPairs) {
+        link.addEventListener('click', () => {
+            pendingSectionId = section.id;
+            setActiveSection(section.id); // 클릭 즉시 새 항목 하나만 활성화합니다.
+            clearTimeout(navigationSettledTimer);
+        });
+    }
+    window.addEventListener('scroll', () => {
+        if (pendingSectionId !== null) {
+            // 'scrollend' 미지원 브라우저: 마지막 스크롤 이벤트 이후 확정합니다.
+            clearTimeout(navigationSettledTimer);
+            navigationSettledTimer = setTimeout(finishSectionNavigation, 160);
+        }
+        scheduleSectionHighlight();
+    }, {passive: true});
+    // 최신 브라우저는 네이티브 스크롤 종료 이벤트를 사용합니다.
+    if ('onscrollend' in window) window.addEventListener('scrollend', finishSectionNavigation);
+    // 사용자가 직접 스크롤을 시작하면 클릭 이동 잠금을 해제합니다.
+    window.addEventListener('wheel', finishSectionNavigation, {passive: true});
+    window.addEventListener('touchstart', finishSectionNavigation, {passive: true});
     window.addEventListener('resize', scheduleSectionHighlight, {passive: true});
     window.addEventListener('hashchange', scheduleSectionHighlight);
     window.addEventListener('load', scheduleSectionHighlight);
     document.querySelector('.site-header').addEventListener('transitionend', scheduleSectionHighlight);
-    for (const {link} of sectionPairs) {
-        link.addEventListener('click', () => {
-            // 앵커 스크롤이 진행되는 동안 선택된 메뉴를 우선 표시하고
-            // 스크롤 좌표가 안정되면 실제 위치를 다시 계산합니다.
-            setActiveSection(link.hash.slice(1));
-        });
-    }
     updateSectionHighlight();
 }
