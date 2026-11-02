@@ -196,34 +196,75 @@ document.querySelectorAll('[data-info]').forEach(button => {
 });
 
 
-// 현재 읽고 있는 섹션을 목차에 표시합니다. URL을 강제로 변경하지 않고 aria-current만 갱신합니다.
-// IntersectionObserver를 지원하지 않아도 목차 링크는 일반 앵커로 동작합니다.
-const sectionLinks = [...document.querySelectorAll('.about-section-nav a[href^="#"]')];
+// 섹션 목차의 현재 위치 표시. 위치가 바뀔 때마다 실제 화면 좌표로 계산합니다.
+// 기존 구현의 IntersectionObserver는 임계선을 넘는 경우에만 갱신되었고,
+// 첫 섹션에 아직 진입하지 않았는데도 '기업 개요'를 미리 활성화했습니다.
+const sectionNavigation = document.querySelector('.about-section-nav');
+const sectionLinks = [...sectionNavigation.querySelectorAll('a[href^="#"]')];
 const sectionPairs = sectionLinks.map(link => ({
     link,
-    section: document.getElementById(link.getAttribute('href').slice(1))
-})).filter(entry => entry.section);
+    section: document.getElementById(link.hash.slice(1))
+})).filter(({section}) => Boolean(section));
+let sectionUpdateScheduled = false;
+let activeSectionId = null;
+
 function setActiveSection(id) {
-    sectionPairs.forEach(({ link, section }) => {
-        if (section.id === id) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-    });
-}
-if (sectionPairs.length) {
-    setActiveSection('overview');
-    if ('IntersectionObserver' in window) {
-        const observedSections = new IntersectionObserver(() => {
-            const offset = document.querySelector('.site-header').offsetHeight +
-                document.querySelector('.about-section-nav').offsetHeight + 22;
-            let current = sectionPairs[0].section.id;
-            for (const { section } of sectionPairs) {
-                if (section.getBoundingClientRect().top <= offset + 30) current = section.id;
-            }
-            setActiveSection(current);
-        }, { threshold: 0, rootMargin: '-100px 0px -60% 0px' });
-        sectionPairs.forEach(({ section }) => observedSections.observe(section));
+    if (activeSectionId === id) return;
+    activeSectionId = id;
+    for (const {link, section} of sectionPairs) {
+        if (section.id === id) {
+            link.setAttribute('aria-current', 'location');
+        } else {
+            link.removeAttribute('aria-current');
+        }
     }
-    sectionPairs.forEach(({ link, section }) => {
-        link.addEventListener('click', () => setActiveSection(section.id));
-    });
+}
+
+// 현재 보이는 헤더의 높이만 포함합니다. 스크롤 시 헤더가 숨겨지면
+// 서브 내비게이션이 화면 맨 위에 붙으므로 이를 활성 영역 계산에도 반영합니다.
+function getReadingLine() {
+    const header = document.querySelector('.site-header');
+    const headerHeight = header.classList.contains('is-hidden')
+        ? 0
+        : header.querySelector('.site-logo').offsetHeight;
+    return headerHeight + sectionNavigation.offsetHeight + 24;
+}
+
+function updateSectionHighlight() {
+    sectionUpdateScheduled = false;
+    if (!sectionPairs.length) return;
+    const line = getReadingLine();
+    // 첫 콘텐츠 섹션 전에 있는 히어로·브레드크럼·목차에서는
+    // 실제로 보고 있는 섹션이 없으므로 아무 메뉴도 활성화하지 않습니다.
+    if (sectionPairs[0].section.getBoundingClientRect().top > line) {
+        setActiveSection(null);
+        return;
+    }
+    let current = sectionPairs[0].section.id;
+    for (const {section} of sectionPairs) {
+        if (section.getBoundingClientRect().top <= line) current = section.id;
+    }
+    setActiveSection(current);
+}
+
+function scheduleSectionHighlight() {
+    if (sectionUpdateScheduled) return;
+    sectionUpdateScheduled = true;
+    window.requestAnimationFrame(updateSectionHighlight);
+}
+
+if (sectionPairs.length) {
+    window.addEventListener('scroll', scheduleSectionHighlight, {passive: true});
+    window.addEventListener('resize', scheduleSectionHighlight, {passive: true});
+    window.addEventListener('hashchange', scheduleSectionHighlight);
+    window.addEventListener('load', scheduleSectionHighlight);
+    document.querySelector('.site-header').addEventListener('transitionend', scheduleSectionHighlight);
+    for (const {link} of sectionPairs) {
+        link.addEventListener('click', () => {
+            // 앵커 스크롤이 진행되는 동안 선택된 메뉴를 우선 표시하고
+            // 스크롤 좌표가 안정되면 실제 위치를 다시 계산합니다.
+            setActiveSection(link.hash.slice(1));
+        });
+    }
+    updateSectionHighlight();
 }
