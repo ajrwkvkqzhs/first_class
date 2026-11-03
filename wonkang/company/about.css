@@ -184,7 +184,8 @@
 }
 @media(max-width:600px) {
   .about-page { --about-gutter:20px; }
-  .about-page main section { scroll-margin-top:67px; }
+  /* 76px header + 79px two-row section bar; leave a readable gap at anchor landing. */
+  .about-page main section { scroll-margin-top:89px; }
   .about-page .about-kicker { font-size:12px; gap:9px; }
   .about-page .about-kicker::before { width:20px; }
   .about-page .about-section h2 { font-size:clamp(28px,7.1vw,36px); line-height:1.34; }
