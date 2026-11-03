@@ -102,7 +102,7 @@ const root = path.resolve(__dirname, '../..');
         results.viewports.push({ ...inspection, errors, failed });
 
         if (width === 1920) {
-            await page.getByRole('button', { name: '회사소개', exact: true }).hover();
+            await page.locator('#nav-company').hover();
             assert.equal(await page.locator('.site-nav__submenu').first().isVisible(), true);
             await page.keyboard.press('Escape');
             assert.equal(await page.locator('.site-nav__submenu').first().isVisible(), false);
@@ -204,10 +204,12 @@ const root = path.resolve(__dirname, '../..');
 
             await page.getByRole('button', { name: '전체 메뉴 펼치기' }).click();
             assert.equal(await page.locator('#main-navigation').isVisible(), true);
-            await page.locator('#nav-company').click();
-            await page.locator('.site-nav__submenu a[href="#partners"]').click();
+            await page.locator('.site-nav__expand[aria-controls="submenu-company"]').click();
+            assert.equal(await page.locator('#submenu-company').isVisible(), true);
+            await page.locator('#submenu-company a[href="company/about.html"]').click();
+            await page.waitForURL('**/wonkang/company/about.html');
             assert.equal(await page.locator('#main-navigation').isVisible(), false);
-            results.interactions.push('Mobile menu / section navigation / close');
+            results.interactions.push('Mobile menu / disclosure / first subpage navigation');
         }
         await page.close();
     }
