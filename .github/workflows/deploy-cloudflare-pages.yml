@@ -1,0 +1,85 @@
+name: Deploy first_class to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: first-class-site-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publish static website
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out website source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Prepare public files without changing source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p deploy
+          cp index.html deploy/index.html
+
+          # The website uses shared files one level above /wonkang/.
+          # Keep their relative paths intact by publishing the repository's web directories.
+          for directory in CSS coupang font king npm swiper-img wonkang; do
+            test -d "$directory" || { echo "::error::Missing directory: $directory"; exit 1; }
+            mkdir -p "deploy/$directory"
+            rsync -a "$directory/" "deploy/$directory/" \
+              --exclude='reports/' \
+              --exclude='tests/' \
+              --exclude='node_modules/' \
+              --exclude='*.md' \
+              --exclude='*.map' \
+              --exclude='.git/' \
+              --exclude='.github/' \
+              --exclude='.DS_Store'
+          done
+
+          # Fail early if key pages and shared assets are missing.
+          for required in \
+            deploy/index.html \
+            deploy/wonkang/index.html \
+            deploy/wonkang/css/main.css \
+            deploy/wonkang/js/main.js \
+            deploy/npm/swiper/swiper-bundle.min.css \
+            deploy/npm/swiper/swiper-bundle.min.js \
+            deploy/font/default/css/notosanskr.css \
+            deploy/CSS/default.css; do
+            test -f "$required" || { echo "::error::Missing asset: $required"; exit 1; }
+          done
+          echo "Prepared $(find deploy -type f | wc -l) public files"
+
+      - name: Check deployment credentials
+        shell: bash
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$CF_API_TOKEN" || -z "$CF_ACCOUNT_ID" ]]; then
+            echo "::error::Set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID under GitHub Actions secrets."
+            exit 1
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy deploy --project-name=first-class-site --branch=main
+
+      - name: Deployment address
+        run: |
+          echo "https://first-class-site.pages.dev/" >> "$GITHUB_STEP_SUMMARY"
+          echo "https://first-class-site.pages.dev/wonkang/" >> "$GITHUB_STEP_SUMMARY"
