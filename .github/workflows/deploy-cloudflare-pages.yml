@@ -64,11 +64,10 @@ jobs:
         shell: bash
         env:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -euo pipefail
-          if [[ -z "$CF_API_TOKEN" || -z "$CF_ACCOUNT_ID" ]]; then
-            echo "::error::Set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID under GitHub Actions secrets."
+          if [[ -z "$CF_API_TOKEN" ]]; then
+            echo "::error::Set CLOUDFLARE_API_TOKEN under GitHub Actions secrets."
             exit 1
           fi
 
@@ -76,7 +75,8 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Account ID is not a credential. The optional secret can override this verified account.
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || 'd5dcc5d0f654084ebc2e8de29ad64b8f' }}
           command: pages deploy deploy --project-name=first-class-site --branch=main
 
       - name: Deployment address
