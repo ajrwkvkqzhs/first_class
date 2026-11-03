@@ -55,6 +55,7 @@ function initializeNavigation() {
     function setGroupOpen(index, open) {
         groups[index].classList.toggle('is-expanded', open);
         buttons[index].setAttribute('aria-expanded', String(open));
+        buttons[index].setAttribute('aria-label', topLinks[index].textContent.trim() + ' 하위 메뉴 ' + (open ? '접기' : '펼치기'));
         submenus[index].inert = !open;
     }
 
@@ -169,6 +170,8 @@ function initializeNavigation() {
     headerAppearanceObserver.observe(logo);
     updateHeaderAppearance();
     setMenuOpen(false);
+    // No-JS fallback stays available until the complete GNB initializer succeeds.
+    header.classList.add('nav-ready');
 }
 
 initializeNavigation();
