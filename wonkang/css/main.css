@@ -1917,3 +1917,64 @@ body.dialog-open {
         height: 48px;
     }
 }
+
+/* GNB mobile single-column stability + graceful fallback if navigation JS cannot initialize. */
+@media (max-width: 850px) {
+    .site-nav__list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+    .site-nav__group + .site-nav__group {
+        border-top: 1px solid var(--border-default);
+    }
+    .site-nav__top {
+        min-height: 54px;
+    }
+    .site-nav__top > .site-nav__item {
+        justify-content: flex-start;
+        padding-inline: 10px;
+        text-align: left;
+    }
+    .site-nav__expand {
+        flex-basis: 48px;
+        width: 48px;
+        min-height: 48px;
+    }
+    .site-nav__submenu {
+        padding: 0 0 12px;
+    }
+    .site-nav__submenu a {
+        justify-content: flex-start;
+        padding: 10px 24px;
+        min-height: 44px;
+        text-align: left;
+    }
+
+    /* If the script fails, links remain accessible rather than an inoperable hamburger.
+       The header leaves document flow only after the GNB has successfully initialized. */
+    .site-header:not(.nav-ready) {
+        position: relative;
+        background: var(--background-default);
+        color: var(--text-primary);
+        transform: none;
+        pointer-events: auto;
+    }
+    .site-header:not(.nav-ready) .site-nav {
+        display: block;
+        max-height: none;
+        overflow: visible;
+    }
+    .site-header:not(.nav-ready) .site-nav__submenu {
+        display: flex;
+    }
+    .site-header:not(.nav-ready) .site-nav__expand,
+    .site-header:not(.nav-ready) .menu-toggle {
+        display: none;
+    }
+    .site-header:not(.nav-ready) .site-logo__light {
+        opacity: 0;
+    }
+    .site-header:not(.nav-ready) .site-logo__dark {
+        opacity: 1;
+    }
+}
