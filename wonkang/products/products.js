@@ -7,12 +7,13 @@ function initializeNavigation() {
     const logo = header.querySelector('.site-logo');
     const navigation = header.querySelector('.site-nav');
     const groups = [...navigation.querySelectorAll('.site-nav__group')];
-    const buttons = groups.map((group) => group.querySelector('.site-nav__item'));
+    const buttons = groups.map((group) => group.querySelector('.site-nav__expand'));
+    const topLinks = groups.map((group) => group.querySelector('.site-nav__item'));
     const submenus = groups.map((group) => group.querySelector('.site-nav__submenu'));
     const toggle = header.querySelector('.menu-toggle');
     const compact = window.matchMedia('(max-width: 850px)');
     const narrow = window.matchMedia('(max-width: 600px)');
-    let activeButton = buttons[0];
+    let activeButton = topLinks[0];
     let scrollReference = Math.max(0, window.scrollY);
     let scrollHidesHeader = false;
     let pointerNearHeader = false;
@@ -58,36 +59,44 @@ function initializeNavigation() {
 
     function setMenuOpen(open) {
         header.classList.toggle('mega-open', open);
-        groups.forEach((group, index) => setGroupOpen(index, open && !narrow.matches));
+        groups.forEach((group, index) => setGroupOpen(index, open && !compact.matches));
         navigation.inert = compact.matches && !open;
         toggle.setAttribute('aria-expanded', String(open));
         toggle.setAttribute('aria-label', open ? '전체 메뉴 접기' : '전체 메뉴 펼치기');
         updateHeaderVisibility();
     }
 
+    // The category name is a real link. Only the separate disclosure button expands a category on mobile.
     groups.forEach((group, index) => {
         const button = buttons[index];
-        button.addEventListener('click', (event) => {
-            activeButton = button;
-            if (compact.matches) {
-                setGroupOpen(index, button.getAttribute('aria-expanded') !== 'true');
-            } else {
-                // Pointer entry already opens the menu; its following click must not close it again.
-                setMenuOpen(event.detail > 0 || !header.classList.contains('mega-open'));
-            }
-        });
+        const link = topLinks[index];
 
-        button.addEventListener('keydown', (event) => {
-            if (event.key !== 'ArrowDown') return;
-            event.preventDefault();
+        button.addEventListener('click', () => {
             activeButton = button;
+            if (!compact.matches) return;
+            const nextOpen = button.getAttribute('aria-expanded') !== 'true';
             if (!header.classList.contains('mega-open')) setMenuOpen(true);
-            setGroupOpen(index, true);
-            submenus[index].querySelector('a').focus();
+            setGroupOpen(index, nextOpen);
         });
 
-        group.addEventListener('focusin', () => {
-            activeButton = button;
+        // Keyboard users can open the desktop megamenu from the top-level link.
+        [link, button].forEach((control) => {
+            control.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowDown') return;
+                event.preventDefault();
+                activeButton = control;
+                if (!header.classList.contains('mega-open')) setMenuOpen(true);
+                setGroupOpen(index, true);
+                const first = submenus[index].querySelector('a');
+                if (first) first.focus();
+            });
+        });
+
+        group.addEventListener('focusin', (event) => {
+            activeButton = event.target instanceof HTMLElement ? event.target : link;
+            if (!compact.matches && event.target.matches(':focus-visible')) {
+                setMenuOpen(true);
+            }
         });
     });
 
