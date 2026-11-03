@@ -1856,3 +1856,64 @@ body.dialog-open {
         height: 100svh;
     }
 }
+
+/* GNB split-action navigation: heading is a link, disclosure is an independent mobile button.
+   Desktop hover continues to open the existing megamenu without changing its three-column design. */
+.site-nav__top {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+.site-nav__top > .site-nav__item {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+}
+.site-nav__expand {
+    display: none;
+}
+.site-nav__top > .site-nav__item:focus-visible {
+    outline: 2px solid var(--primary-default);
+    outline-offset: -5px;
+}
+@media (max-width: 850px) {
+    .site-nav__expand {
+        display: flex;
+        flex: 0 0 40px;
+        width: 40px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        color: var(--brand-blue);
+        font-size: 23px;
+        font-weight: 400;
+        line-height: 1;
+        cursor: pointer;
+    }
+    .site-nav__expand::after {
+        content: '+';
+    }
+    .site-nav__expand[aria-expanded='true']::after {
+        content: '−';
+    }
+    .site-nav__expand:focus-visible {
+        outline: 2px solid var(--primary-default);
+        outline-offset: -4px;
+    }
+}
+@media (max-width: 600px) {
+    .site-nav__top > .site-nav__item {
+        justify-content: flex-start;
+        padding-inline: 8px;
+    }
+    .site-nav__top > .site-nav__item::after {
+        content: none;
+    }
+    .site-nav__expand {
+        flex-basis: 48px;
+        width: 48px;
+        height: 48px;
+    }
+}
