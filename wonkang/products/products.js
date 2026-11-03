@@ -219,7 +219,9 @@ const productPanels = new Map(productTabs.map(tab => [tab.dataset.productTab, do
 const availableIds = new Set(productPanels.keys());
 
 function activeTabId() {
-    const hash = decodeURIComponent(window.location.hash.slice(1));
+    // Malformed percent-encoding in a pasted URL must not break the navigation script.
+    let hash = '';
+    try { hash = decodeURIComponent(window.location.hash.slice(1)); } catch { return 'all'; }
     return availableIds.has(hash) ? hash : 'all';
 }
 function showProduct(id, {updateHash = false, focus = false} = {}) {
@@ -256,7 +258,7 @@ document.querySelectorAll('[data-product-link]').forEach(link => {
         if (!availableIds.has(id)) return;
         event.preventDefault();
         showProduct(id,{updateHash:true});
-        document.getElementById('products-catalog').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+        document.querySelector('.products-tabs').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
     });
 });
 document.querySelectorAll('.site-nav__submenu a[href^="#"]').forEach(link => {
