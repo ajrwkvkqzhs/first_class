@@ -243,6 +243,17 @@ document.querySelectorAll('[data-product-link]').forEach(link => {
         document.getElementById('products-catalog').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
     });
 });
+document.querySelectorAll('.site-nav__submenu a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+        const id = link.hash.slice(1);
+        if (!availableIds.has(id)) return;
+        showProduct(id);
+        document.getElementById('products-catalog').scrollIntoView({
+            behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+            block: 'start'
+        });
+    });
+});
 window.addEventListener('hashchange', () => showProduct(activeTabId()));
 window.addEventListener('popstate', () => showProduct(activeTabId()));
 showProduct(activeTabId());
