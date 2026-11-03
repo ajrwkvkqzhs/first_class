@@ -23,6 +23,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Verify site links and JavaScript before deployment
+        run: node wonkang/tests/paths.cjs
+
       - name: Prepare public files without changing source
         shell: bash
         run: |
