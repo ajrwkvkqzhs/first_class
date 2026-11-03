@@ -104,6 +104,7 @@
         <div><p class="products-kicker">PRODUCT LINEUP</p><h2 id="products-catalog-title">필요한 제품을<br />찾아보세요.</h2></div>
         <p>원강금속의 제품을 분야별로 확인할 수 있습니다.<br />분류를 선택하면 해당 제품과 상세 안내가 표시됩니다.</p>
       </div>
+      <div class="products-deep-links" aria-hidden="true"><span id="general"></span><span id="pressure"></span><span id="valve"></span><span id="machinery"></span></div>
       <div class="products-tabs" role="tablist" aria-label="제품 분류" aria-orientation="horizontal">
 <button class="products-tab" id="tab-all" type="button" role="tab" aria-selected="true" aria-controls="panel-all" tabindex="0" data-product-tab="all">전체 제품</button>
 <button class="products-tab" id="tab-general" type="button" role="tab" aria-selected="false" aria-controls="panel-general" tabindex="-1" data-product-tab="general">일반 펌프부품</button>
@@ -111,27 +112,28 @@
 <button class="products-tab" id="tab-valve" type="button" role="tab" aria-selected="false" aria-controls="panel-valve" tabindex="-1" data-product-tab="valve">밸브부품</button>
 <button class="products-tab" id="tab-machinery" type="button" role="tab" aria-selected="false" aria-controls="panel-machinery" tabindex="-1" data-product-tab="machinery">산업기계부품</button>
       </div>
+      <noscript><p class="products-noscript">제품 분류 탭을 사용하려면 JavaScript가 필요합니다. 상세페이지는 다음 링크로 확인할 수 있습니다. <a href="general.html">일반 펌프부품</a> · <a href="pressure.html">고압 펌프부품</a> · <a href="valve.html">밸브부품</a> · <a href="machinery.html">산업기계부품</a></p></noscript>
       <div class="products-panels">
 <div class="products-panel" id="panel-all" role="tabpanel" aria-labelledby="tab-all" tabindex="0"><div class="products-card-grid"><article class="products-card">
-  <a class="products-card__link" href="#general" data-product-link="general" aria-label="일반 펌프부품 상세 내용 보기">
+  <a class="products-card__link" href="general.html" data-product-link="general" aria-label="일반 펌프부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-general.png" alt="일반 펌프부품 이미지" loading="lazy" /></div>
     <div class="products-card__info"><span class="products-card__number">01 / PRODUCT</span><h3>일반 펌프부품</h3><p>일반 펌프에 적용되는 주조·가공 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article>
 <article class="products-card">
-  <a class="products-card__link" href="#pressure" data-product-link="pressure" aria-label="고압 펌프부품 상세 내용 보기">
+  <a class="products-card__link" href="pressure.html" data-product-link="pressure" aria-label="고압 펌프부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-pressure.png" alt="고압 펌프부품 이미지" loading="lazy" /></div>
     <div class="products-card__info"><span class="products-card__number">02 / PRODUCT</span><h3>고압 펌프부품</h3><p>고압 펌프에 적용되는 산업용 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article>
 <article class="products-card">
-  <a class="products-card__link" href="#valve" data-product-link="valve" aria-label="밸브부품 상세 내용 보기">
+  <a class="products-card__link" href="valve.html" data-product-link="valve" aria-label="밸브부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-valve.png" alt="밸브부품 이미지" loading="lazy" /></div>
     <div class="products-card__info"><span class="products-card__number">03 / PRODUCT</span><h3>밸브부품</h3><p>산업용 밸브에 활용되는 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article>
 <article class="products-card">
-  <a class="products-card__link" href="#machinery" data-product-link="machinery" aria-label="산업기계부품 상세 내용 보기">
+  <a class="products-card__link" href="machinery.html" data-product-link="machinery" aria-label="산업기계부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-machinery.png" alt="산업기계부품 이미지" loading="lazy" /></div>
     <div class="products-card__info"><span class="products-card__number">04 / PRODUCT</span><h3>산업기계부품</h3><p>다양한 산업기계에 사용되는 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
