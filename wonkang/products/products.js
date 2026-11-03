@@ -14,6 +14,7 @@ function initializeNavigation() {
     const compact = window.matchMedia('(max-width: 850px)');
     const narrow = window.matchMedia('(max-width: 600px)');
     let activeButton = topLinks[0];
+    let suppressFocusOpen = false;
     let scrollReference = Math.max(0, window.scrollY);
     let scrollHidesHeader = false;
     let pointerNearHeader = false;
@@ -93,8 +94,9 @@ function initializeNavigation() {
         });
 
         group.addEventListener('focusin', (event) => {
-            activeButton = event.target instanceof HTMLElement ? event.target : link;
-            if (!compact.matches && event.target.matches(':focus-visible')) {
+            // Escape should return focus to the top-level link, never a hidden submenu item.
+            activeButton = link;
+            if (!compact.matches && !suppressFocusOpen && event.target.matches(':focus-visible')) {
                 setMenuOpen(true);
             }
         });
@@ -150,8 +152,10 @@ function initializeNavigation() {
 
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape' || !header.classList.contains('mega-open')) return;
+        suppressFocusOpen = true;
         setMenuOpen(false);
         (compact.matches ? toggle : activeButton).focus();
+        window.requestAnimationFrame(() => { suppressFocusOpen = false; });
     });
 
     compact.addEventListener('change', () => setMenuOpen(false));
