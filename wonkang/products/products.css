@@ -109,3 +109,9 @@
 @media(prefers-reduced-motion:reduce) {
 .products-page .products-card__media img,.products-page .products-tab { transition:none!important; }
 }
+
+/* Hash targets share a physical position beside the tabs; this preserves direct links and native scrolling. */
+.products-page .products-deep-links { position: relative; height: 0; }
+.products-page .products-deep-links > span { position: absolute; top: 0; scroll-margin-top: calc(var(--header-height) + 16px); }
+.products-page .products-noscript { padding: 22px 0; line-height: 1.8; color: var(--text-muted); }
+.products-page .products-noscript a { text-decoration: underline; color: var(--primary-default); }
