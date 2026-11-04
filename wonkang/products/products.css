@@ -115,3 +115,12 @@
 .products-page .products-deep-links > span { position: absolute; top: 0; scroll-margin-top: calc(var(--header-height) + 16px); }
 .products-page .products-noscript { padding: 22px 0; line-height: 1.8; color: var(--text-muted); }
 .products-page .products-noscript a { text-decoration: underline; color: var(--primary-default); }
+
+/* Product cards, images and missing-asset placeholders share the site's 12px radius. */
+.products-page .products-card,
+.products-page .products-card__media,
+.products-page .products-detail__media img,
+.products-page .products-placeholder {
+    border-radius: 12px;
+    overflow: hidden;
+}

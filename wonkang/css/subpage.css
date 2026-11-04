@@ -164,3 +164,16 @@
 @media(prefers-reduced-motion:reduce) {
 .detail-page .detail-hero,.detail-page .detail-siblings { transition:none!important; }
 }
+
+/* Shared subpage image frames and rectangular content cards. */
+.detail-page .detail-split__media img,
+.detail-page .detail-product-feature img,
+.detail-page .detail-step img,
+.detail-page .detail-logo-grid li,
+.detail-page .detail-certificate,
+.detail-page .detail-info-card,
+.detail-page .detail-rule-card,
+.detail-page .detail-placeholder {
+    border-radius: 12px;
+    overflow: hidden;
+}

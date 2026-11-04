@@ -577,9 +577,9 @@ figure,
     width: calc(100% - 418px);
 }
 .company-achievements h2 {
-    font-size: 48px;
+    font-size: 68px;
     font-weight: 500;
-    line-height: 1.45;
+    line-height: 1;
     text-align: center;
 }
 .company-achievements__stats {
@@ -594,9 +594,9 @@ figure,
     align-items: center;
 }
 .company-achievements__stats dd {
-    font-size: 64px;
+    font-size: 100px;
     font-weight: 500;
-    line-height: 1.45;
+    line-height: 1.1;
     white-space: nowrap;
 }
 .company-achievements__stats dt {
@@ -800,19 +800,22 @@ figure,
     letter-spacing: 0.333333333vw;
 }
 .process-gallery__items {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(96px, 8.333333333vw, 160px);
-    width: calc(100% - 112px);
-    margin: 12.489583333vw auto 0;
+    /* Figma 297:477: 960px + 960px at 1920px, 200px vertical gap, 513px right-column stagger. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0;
+    row-gap: clamp(64px, 10.416667vw, 200px);
+    width: 100%;
+    margin: clamp(54px, 5.729167vw, 110px) auto 0;
+    padding-bottom: clamp(160px, 26.7vw, 513px);
 }
 .process-item {
-    align-self: flex-start;
     min-width: 0;
-    width: calc(50% - 32px);
+    width: 100%;
 }
 .process-item:nth-child(even) {
-    align-self: flex-end;
+    position: relative;
+    top: clamp(160px, 26.7vw, 513px);
     --reveal-x: 40px;
 }
 .process-item:nth-child(odd) {
@@ -829,13 +832,13 @@ figure,
     object-fit: cover;
 }
 .process-item--pattern .process-item__media {
-    aspect-ratio: 960/733;
+    aspect-ratio: 960/948;
 }
 .process-item--pattern img {
-    position: absolute;
-    top: -15.55%;
-    height: 130.97%;
-    object-fit: fill;
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .process-item--housing img {
     position: absolute;
@@ -845,11 +848,11 @@ figure,
     height: 101.27%;
 }
 .process-item figcaption {
-    padding-top: 12px;
-    font-size: 2.8125vw;
+    padding-top: 0;
+    font-size: clamp(20px, 3.333333vw, 64px);
     font-weight: 300;
-    line-height: 1.3;
-    letter-spacing: 0.08em;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
     white-space: nowrap;
 }
 .scroll-reveal {
@@ -1641,9 +1644,15 @@ body.dialog-open {
     /* 모바일 생산공정 갤러리는 애매한 좌우 지그재그를 없애고
        가로형 크롭 + 짧은 간격으로 기존 세로 길이를 약 절반으로 줄입니다. */
     .process-gallery__items {
+        display: flex;
+        flex-direction: column;
         gap: 24px;
         width: calc(100% - 40px);
         margin-top: 32px;
+        padding-bottom: 0;
+    }
+    .process-item:nth-child(even) {
+        top: 0;
     }
     .process-item,
     .process-item:nth-child(odd),
@@ -1988,4 +1997,18 @@ body.dialog-open {
     .site-header:not(.nav-ready) .site-logo__dark {
         opacity: 1;
     }
+}
+
+/* Consistent corner radius for visual cards, image frames, and image-backed actions. */
+.hero-thumb,
+.hero-sec .swiper-controls .swiper-pagination-bullet,
+.process-item__media,
+.certificate-card,
+.product-panel__actions > *,
+.product-panel,
+.partner-list li {
+    border-radius: 12px;
+}
+.product-panel {
+    overflow: hidden;
 }

@@ -257,3 +257,11 @@
 @media (prefers-reduced-motion:reduce) {
   .about-page .about-text-link,.about-page .about-section-nav,.about-page .about-section-nav a,.about-page .about-contact__primary { transition:none; }
 }
+/* Image and content-card corner radius shared with the main page. */
+.about-page .about-overview__image img,
+.about-page .about-process__media,
+.about-page .about-proof__certificates figure,
+.about-page .about-proof__logos li {
+    border-radius: 12px;
+    overflow: hidden;
+}
