@@ -71,7 +71,7 @@
 .about-page .about-process__media { min-width:0; overflow:hidden; background:var(--brand-neutral-200); }
 .about-page .about-process__media img { display:block; width:100%; aspect-ratio:1.4; object-fit:cover; }
 .about-page .about-process__content { min-width:0; }
-.about-page .about-process__top { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:18px; padding-bottom:20px; border-bottom:1px solid var(--border-default); }
+.about-page .about-process__top { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-start; gap:18px; padding-bottom:20px; border-bottom:1px solid var(--border-default); }
 .about-page .about-process__number { color:var(--primary-default); font-size:18px; font-weight:700; }
 .about-page .about-process__keyword { color:var(--text-muted); font-size:12px; font-weight:700; letter-spacing:.11em; }
 .about-page .about-process__content h3 { margin-top:34px; color:var(--text-primary); font-size:clamp(28px,2.55vw,48px); font-weight:700; letter-spacing:-.045em; line-height:1.33; word-break:keep-all; }
@@ -86,7 +86,7 @@
 .about-page .about-proof__heading > p { max-width:365px; padding-bottom:7px; color:var(--text-muted); font-size:17px; line-height:1.85; }
 .about-page .about-proof__grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:75px; }
 .about-page .about-proof__cert,.about-page .about-proof__partners { display:flex; flex-direction:column; min-width:0; padding:38px 35px 44px; background:var(--background-default); }
-.about-page .about-proof__label { display:flex; justify-content:space-between; gap:12px; padding-bottom:20px; border-bottom:1px solid var(--border-default); color:var(--primary-default); font-size:12px; font-weight:700; letter-spacing:.08em; }
+.about-page .about-proof__label { display:flex; justify-content:flex-start; gap:12px; padding-bottom:20px; border-bottom:1px solid var(--border-default); color:var(--primary-default); font-size:12px; font-weight:700; letter-spacing:.08em; }
 .about-page .about-proof__grid h3 { margin-top:33px; color:var(--text-primary); font-size:clamp(25px,2vw,38px); font-weight:700; }
 .about-page .about-proof__grid article > p { max-width:520px; margin-top:14px; color:var(--text-muted); font-size:16px; line-height:1.85; }
 .about-page .about-proof__certificates { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:34px 0; }
@@ -104,7 +104,7 @@
 .about-page .about-belief .about-kicker { color:#ff7181; }
 .about-page .about-belief h2 { margin-top:25px; color:var(--text-inverse); }
 .about-page .about-belief__intro > p { max-width:410px; margin-top:30px; color:#ffffffb3; font-size:17px; line-height:1.85; }
-.about-page .about-belief__item { display:grid; grid-template-columns:64px minmax(0,1fr); gap:26px; padding:27px 0 30px; border-top:1px solid #ffffff45; }
+.about-page .about-belief__item { display:grid; grid-template-columns:minmax(0,1fr); gap:0; padding:27px 0 30px; border-top:1px solid #ffffff45; }
 .about-page .about-belief__item:last-child { border-bottom:1px solid #ffffff45; }
 .about-page .about-belief__index { color:#ff7181; font-size:15px; font-weight:700; }
 .about-page .about-belief__item h3 { color:var(--text-inverse); font-size:27px; font-weight:700; }
@@ -238,7 +238,7 @@
   .about-page .about-proof__logos img { max-width:120px; max-height:60px; }
   .about-page .about-belief__layout,.about-page .about-history__layout { gap:32px; }
   .about-page .about-belief__intro > p,.about-page .about-history__intro > p { margin-top:20px; font-size:15px; }
-  .about-page .about-belief__item { grid-template-columns:36px minmax(0,1fr); gap:15px; padding:20px 0; }
+  .about-page .about-belief__item { grid-template-columns:minmax(0,1fr); gap:0; padding:20px 0; }
   .about-page .about-belief__item h3 { font-size:21px; }
   .about-page .about-belief__item h3 span { margin-left:10px; font-size:12px; }
   .about-page .about-belief__item p { font-size:13px; margin-top:9px; }
