@@ -2012,3 +2012,30 @@ body.dialog-open {
 .product-panel {
     overflow: hidden;
 }
+
+/* Progressive subpage scroll-entry motion. The no-JS default remains fully visible. */
+main .page-reveal-pending {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.75,.25,1);
+}
+main .page-reveal-pending.page-reveal-visible {
+    opacity: 1;
+    transform: none;
+}
+/* Visible keyboard feedback for interactive controls (not decorative cards). */
+.detail-page .detail-link:focus-visible,
+.detail-page .detail-certificate:focus-visible,
+.detail-page .detail-siblings a:focus-visible,
+.detail-page [data-copy-address]:focus-visible,
+.products-page .products-card__link:focus-visible {
+    outline: 2px solid var(--primary-default);
+    outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+    main .page-reveal-pending {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

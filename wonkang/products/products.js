@@ -252,15 +252,8 @@ productTabs.forEach((tab, index) => {
         showProduct(productTabs[next].dataset.productTab,{updateHash:true,focus:true});
     });
 });
-document.querySelectorAll('[data-product-link]').forEach(link => {
-    link.addEventListener('click', event => {
-        const id = link.dataset.productLink;
-        if (!availableIds.has(id)) return;
-        event.preventDefault();
-        showProduct(id,{updateHash:true});
-        document.querySelector('.products-tabs').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
-    });
-});
+// Product cards use normal HTML links to their full detail pages.
+// Category tabs above remain the controls for switching the inline product panel.
 document.querySelectorAll('.site-nav__submenu a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => {
         const id = link.hash.slice(1);
