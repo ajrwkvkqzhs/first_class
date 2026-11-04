@@ -67,6 +67,7 @@ figure,
     position: fixed;
     z-index: 100;
     inset: 0 0 auto;
+    background: rgba(255, 255, 255, 0.08);
     color: #fff;
     transform: translateY(0);
     transition:
@@ -91,6 +92,14 @@ figure,
     align-items: start;
     column-gap: clamp(24px, 4vw, 80px);
     padding-inline: 4.453125%;
+}
+.site-logo-heading {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    min-width: 0;
+    margin: 0;
+    line-height: 1;
 }
 .site-logo {
     grid-column: 1;
@@ -213,15 +222,18 @@ figure,
 .hero-copy {
     position: absolute;
     z-index: 2;
-    left: 10px;
-    right: 20px;
+    left: 50%;
+    right: auto;
+    width: min(calc(100% - 8.90625%), 1520px);
+    max-width: 1520px;
+    transform: translateX(-50%);
     bottom: 179px;
     pointer-events: none;
 }
 .hero-title {
-    font-size: 72px;
-    font-weight: 700;
-    line-height: 1.444444;
+    font-size: 62px;
+    font-weight: 600;
+    line-height: 1.2;
     letter-spacing: 0;
 }
 .swiper-controls {
@@ -275,7 +287,7 @@ figure,
 }
 .hero-thumb-title {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.22;
 }
 .hero-pagination-index {
@@ -308,7 +320,7 @@ figure,
     flex-shrink: 0;
     padding-top: 10px;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     white-space: nowrap;
 }
 .hero-solution-description {
@@ -1128,7 +1140,7 @@ body.dialog-open {
 /* 화면 축소 시 글자와 조작 영역은 읽을 수 있는 크기로 유지 */
 @media (max-width: 1700px) {
     .hero-title {
-        font-size: clamp(44px, 3.75vw, 72px);
+        font-size: clamp(50px, 4.75vw, 62px);
     }
     .hero-sec .swiper {
         height: max(720px, 47.916666667vw);
@@ -1248,7 +1260,7 @@ body.dialog-open {
         height: 820px;
     }
     .hero-copy {
-        left: 24px;
+        width: calc(100% - 48px);
         bottom: 230px;
     }
     .hero-title {
@@ -1466,13 +1478,12 @@ body.dialog-open {
         object-position: 46% center;
     }
     .hero-copy {
-        left: 20px;
-        right: 20px;
+        width: calc(100% - 40px);
         bottom: 205px;
     }
     .hero-title {
         font-size: clamp(30px, 8vw, 34px);
-        line-height: 1.35;
+        line-height: 1.2;
         letter-spacing: -0.025em;
     }
     .swiper-controls {
