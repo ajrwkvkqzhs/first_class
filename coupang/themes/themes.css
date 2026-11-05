@@ -375,4 +375,161 @@ a{color:inherit;text-decoration:none}
 .theme-20 .auth-panel{background:#fff;border:1px solid #b9c4e8;border-radius:16px;padding:18px;box-shadow:8px 10px 0 #b6c8f4,15px 18px 28px #2c468122}
 .theme-20 .primary-btn{box-shadow:0 6px 0 #2f4f9e,0 13px 14px #5573a444}
 .theme-20 .preview-button{box-shadow:4px 5px 0 #2f4f9e}
+
+/* Gallery-to-demo parity: keep preview's wordmark and theme identity in 02–20. */
+.demo:not(.theme-01) .phone:not(.is-subscreen) .in-app-nav{display:none}
+.demo:not(.theme-01) .app-header--themed{position:relative;min-height:176px;padding:22px 0 30px;margin-bottom:12px}
+.demo:not(.theme-01) .app-header--themed .hero-kicker{font-size:10px;letter-spacing:.18em;margin-bottom:13px}
+.demo:not(.theme-01) .app-header--themed .hero-title{font-size:43px;line-height:1.02;letter-spacing:-.075em;overflow-wrap:anywhere}
+.demo:not(.theme-01) .app-header--themed .hero-title span{display:block;font-size:22px;line-height:1.1;letter-spacing:-.03em;margin-top:8px}
+.demo:not(.theme-01) .app-header--themed .hero-deco{top:33px}
+.demo:not(.theme-01) .brand-wordmark{display:block;width:fit-content;color:var(--ink);font-family:inherit;font-size:25px;font-weight:900;line-height:1.1;letter-spacing:-.055em;margin-bottom:15px}
+.demo:not(.theme-01) .sns-icons button:focus-visible,.demo:not(.theme-01) .primary-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media(max-width:520px){.demo:not(.theme-01) .app-header--themed{min-height:164px;padding-top:16px}.demo:not(.theme-01) .app-header--themed .hero-title{font-size:39px}}
+
+/* 02 Editorial: serif masthead and fine rules */
+.theme-02 .app-header--themed{min-height:166px;padding:18px 0 25px;border-top:1px solid #332d2b;border-bottom:1px solid #91867d}
+.theme-02 .app-header--themed .hero-title{font-family:Georgia,serif;font-size:48px;font-style:italic;font-weight:400}
+.theme-02 .app-header--themed .hero-title span{font-size:24px;font-style:normal;letter-spacing:.01em}
+.theme-02 .app-header--themed .hero-deco{display:none}
+.theme-02 .brand-wordmark{font-family:Georgia,serif;font-weight:400;font-style:italic}
+.theme-02 .sns-icons button{background:transparent;border-radius:0;border-bottom:1px solid #a99c8f}
+
+/* 03 Swiss Style: modular grid and red type signal */
+.theme-03 .app-header--themed{padding-left:16px;border-left:5px solid #e31f22;border-bottom:2px solid #111}
+.theme-03 .app-header--themed .hero-title{font-size:46px;font-weight:950;line-height:.94}
+.theme-03 .app-header--themed .hero-title span{font-size:23px;color:#e31f22;margin-top:13px}
+.theme-03 .app-header--themed .hero-deco{display:none}
+.theme-03 .auth-panel{border-top:2px solid #111;padding-top:16px}
+.theme-03 .section-tag{text-align:right;font-family:monospace;color:#111}
+.theme-03 .sns-icons button{border-radius:0;border:2px solid #111;background:#fff}
+
+/* 04 Bento Grid: distinct, rounded content tiles */
+.theme-04 .app-header--themed{background:#fff;border:1px solid #d3dff8;border-radius:24px;padding:20px;min-height:185px}
+.theme-04 .app-header--themed .hero-title{font-size:38px}
+.theme-04 .app-header--themed .hero-title span{font-size:21px}
+.theme-04 .app-header--themed .hero-deco{right:17px;top:30px}
+.theme-04 .account-links,.theme-04 .sns-login{background:#fff;border-radius:18px;padding:13px;margin-top:14px}
+
+/* 05 Glassmorphism: frosted luminosity */
+.theme-05 .app-header--themed{background:#ffffff1c;border:1px solid #ffffff80;border-radius:20px;padding:19px;backdrop-filter:blur(17px);-webkit-backdrop-filter:blur(17px);box-shadow:inset 0 1px #fff8,0 12px 36px #243f8750}
+.theme-05 .app-header--themed .hero-title{font-size:40px;text-shadow:0 2px 9px #122e7866}
+.theme-05 .app-header--themed .hero-title span{font-size:21px}
+.theme-05 .brand-wordmark{color:#fff}
+.theme-05 .field input{background:#ffffff20;border-color:#ffffff9c}
+.theme-05 .sns-icons button{background:#ffffffd9;border-color:#ffffff80;color:#172e47}
+
+/* 06 Claymorphism: inflated surfaces */
+.theme-06 .app-header--themed .hero-title{font-size:40px;filter:drop-shadow(0 2px 1px #fff)}
+.theme-06 .app-header--themed .hero-title span{font-size:21px}
+.theme-06 .auth-panel{border:1px solid #faf6ff}
+.theme-06 .sns-icons button{border:0;background:#f6eeff;box-shadow:4px 4px 9px #d4c7ec,-3px -3px 8px #fff}
+.theme-06 .preview-input,.theme-06 .preview-button{box-shadow:3px 3px 6px #c8b7dd,-2px -2px 5px #fff}
+
+/* 07 Neo Brutalism: ink edges and hard shadows */
+.theme-07 .app-header--themed .hero-title{font-size:46px;font-weight:950;line-height:.94}
+.theme-07 .app-header--themed .hero-title span{font-size:23px;background:#ff6b50;width:fit-content;padding:4px 7px;box-shadow:4px 4px #111}
+.theme-07 .app-header--themed .hero-deco{display:none}
+.theme-07 .section-tag{border-bottom:3px solid #111;color:#111}
+.theme-07 .sns-icons button{border:2px solid #111;border-radius:0;box-shadow:3px 3px #111;background:#fff}
+
+/* 08 Maximalism: colorful graphic density */
+.theme-08 .app-header--themed{min-height:195px;background:radial-gradient(circle at 94% 8%,#77e5cf 0 10%,transparent 11%),radial-gradient(circle at 10% 96%,#ff8a64 0 10%,transparent 11%),#fff4c7}
+.theme-08 .app-header--themed .hero-title{font-size:44px;font-weight:950;color:#5b239b;text-shadow:3px 3px #ff95bd,-2px -2px #fff}
+.theme-08 .app-header--themed .hero-title span{font-size:22px;background:#ffe35a;color:#9a2089;width:fit-content;padding:4px 6px}
+.theme-08 .sns-icons button{border:2px solid #7e2388;box-shadow:3px 3px #ef53ac;background:#ffe35a}
+.theme-08 .preview-input{border:2px solid #9438d8}
+
+/* 09 Kinetic Typography: animated type rhythm */
+.theme-09 .app-header--themed{border-bottom:1px solid #45667a}
+.theme-09 .app-header--themed .hero-title{font-size:45px;font-weight:900}
+.theme-09 .app-header--themed .hero-title span{font-size:23px;letter-spacing:.1em;color:#53e8e4}
+.theme-09 .app-header--themed .hero-deco{display:none}
+.theme-09 .section-tag{font-family:monospace;letter-spacing:.24em}
+.theme-09 .preview-title{animation:kicker-track 3s ease-in-out infinite alternate}
+
+/* 10 Grainy Gradient: translucent color layer */
+.theme-10 .app-header--themed{background:#ffffff55;border:1px solid #ffffff80;border-radius:20px;padding:22px 17px;backdrop-filter:blur(9px)}
+.theme-10 .app-header--themed .hero-title{font-size:42px;font-weight:800}
+.theme-10 .app-header--themed .hero-title span{font-size:21px;color:#8539a2}
+.theme-10 .field input{background:#ffffffa1;border-color:#fff8}
+.theme-10 .primary-btn{background:linear-gradient(120deg,#9452b7,#e76b99)}
+
+/* 11 Y2K Chrome: metallic lettering and polished controls */
+.theme-11 .app-header--themed .hero-title{font-size:43px;font-weight:950;text-shadow:0 2px #fff9,0 5px 8px #5f64a266}
+.theme-11 .app-header--themed .hero-title span{font-size:22px;color:#5d568f;-webkit-text-fill-color:#5d568f}
+.theme-11 .app-header--themed .hero-deco{border:2px solid #ffffff9c;border-radius:50%;box-shadow:0 0 18px #fff}
+.theme-11 .field input{box-shadow:inset 0 2px 5px #a9a1c844,0 2px #fff}
+.theme-11 .sns-icons button{border:1px solid #fff;box-shadow:0 3px 8px #9583be60}
+
+/* 12 Pixel Art: monospace tiles and pixel offsets */
+.theme-12 .app-header--themed{background:#202e4b;border:2px solid #8affc1;padding:13px;min-height:174px;box-shadow:6px 6px #0c172a}
+.theme-12 .app-header--themed .hero-title{font-size:30px;letter-spacing:0;line-height:1.14}
+.theme-12 .app-header--themed .hero-title span{font-size:18px;letter-spacing:.07em}
+.theme-12 .app-header--themed .hero-deco{display:none}
+.theme-12 .sns-icons button{border-radius:0;border:2px solid #8affc1;background:#263857;color:#eeffe1;box-shadow:3px 3px #08101f}
+.theme-12 .brand-wordmark{font-family:monospace;letter-spacing:0}
+
+/* 13 Memphis: geometric labels and bright modules */
+.theme-13 .app-header--themed .hero-title{font-size:39px;font-weight:950}
+.theme-13 .app-header--themed .hero-title span{font-size:22px;background:#ffe354;color:#202752;width:fit-content;padding:4px 8px}
+.theme-13 .sns-icons button{border:2px solid #25315f;background:#ffe354;border-radius:8px;box-shadow:3px 3px #53d6ba}
+.theme-13 .preview::after{content:"";position:absolute;right:18px;top:54px;width:31px;height:31px;border-radius:50%;background:#53d6ba}
+
+/* 14 Bauhaus: primary shapes and structured borders */
+.theme-14 .app-header--themed{border-bottom:4px solid #181818}
+.theme-14 .app-header--themed .hero-title{font-size:43px;font-weight:900}
+.theme-14 .app-header--themed .hero-title span{font-size:21px;color:#1960b6}
+.theme-14 .auth-panel{border-left:6px solid #e23624;padding-left:13px}
+.theme-14 .primary-btn{border:2px solid #111}
+.theme-14 .sns-icons button{border:2px solid #111;border-radius:0;background:#f4c529;color:#111}
+
+/* 15 Pop Art: comics and halftone language */
+.theme-15 .app-header--themed .hero-title{font-size:41px;font-weight:950;line-height:.97}
+.theme-15 .app-header--themed .hero-title span{font-size:23px;color:#111;background:#ff5b89;border:3px solid #111;box-shadow:4px 4px #111;width:fit-content;padding:3px 8px}
+.theme-15 .app-header--themed .hero-deco{display:none}
+.theme-15 .section-tag{border-bottom:3px solid #111;color:#111}
+.theme-15 .sns-icons button{border:2px solid #111;border-radius:0;background:#ffe147;box-shadow:3px 3px #111}
+
+/* 16 Collage: layered paper labels and tape */
+.theme-16 .app-header--themed .hero-title{font-size:42px;font-weight:800}
+.theme-16 .app-header--themed .hero-title span{font-size:22px;background:#e5caad;width:fit-content;padding:3px 11px;transform:rotate(2deg)}
+.theme-16 .app-header--themed .hero-deco{display:none}
+.theme-16 .section-tag{font-family:Georgia,serif;font-style:italic}
+.theme-16 .primary-btn{transform:rotate(-1deg);box-shadow:4px 6px #b8a28d}
+.theme-16 .primary-btn:not(:disabled):hover{transform:rotate(-1deg) translateY(-2px)}
+.theme-16 .sns-icons button{border-radius:0;background:#fff8e8;transform:rotate(-4deg)}
+
+/* 17 Risograph: two-ink misregistration */
+.theme-17 .app-header--themed{border-bottom:2px solid #275caa}
+.theme-17 .app-header--themed .hero-title{font-size:42px}
+.theme-17 .app-header--themed .hero-title span{font-size:23px;color:#275caa;text-shadow:2px 2px #f36a97}
+.theme-17 .app-header--themed .hero-deco{display:none}
+.theme-17 .sns-icons button{border-radius:0;border:1px solid #275caa;background:#fffdf2;box-shadow:2px 2px #ed5992}
+
+/* 18 Art Deco: symmetric gold ornament */
+.theme-18 .app-header--themed{padding:20px 11px;min-height:178px}
+.theme-18 .app-header--themed .hero-title{font-family:Georgia,serif;font-size:42px;font-weight:400;line-height:1.09;letter-spacing:-.035em}
+.theme-18 .app-header--themed .hero-title span{font-size:19px;letter-spacing:.16em;color:#e6bb71}
+.theme-18 .app-header--themed::after{content:"◆";display:block;color:#cba767;font-size:12px;margin:16px auto 0}
+.theme-18 .brand-wordmark{font-family:Georgia,serif;font-weight:400;color:#f9e9c1;letter-spacing:.12em;margin-inline:auto}
+.theme-18 .sns-icons button{border-radius:0;border:1px solid #cba767;background:transparent;color:#f9e9c1}
+
+/* 19 Cyberpunk: neon HUD contrast and clipped geometry */
+.theme-19 .app-header--themed{border-left:3px solid #ff2db6;border-bottom:1px solid #05c2d7;padding-left:14px}
+.theme-19 .app-header--themed .hero-title{font-size:44px;font-weight:950}
+.theme-19 .app-header--themed .hero-title span{font-size:21px;letter-spacing:.1em;color:#04f2ea;text-shadow:2px 1px #ff2db6}
+.theme-19 .app-header--themed .hero-deco{display:none}
+.theme-19 .section-tag{font-family:monospace;color:#ff2db6}
+.theme-19 .sns-icons button{border-radius:0;border:1px solid #05c2d7;background:#101528;color:#e8faff;box-shadow:inset 0 0 8px #05e9f438}
+
+/* 20 Isometric: elevated cards and tactile depth */
+.theme-20 .app-header--themed{background:#fff;border:1px solid #b9c4e8;border-radius:13px;padding:20px 17px;box-shadow:7px 7px #b6c8f4,13px 13px 18px #334b8b20}
+.theme-20 .app-header--themed .hero-title{font-size:40px;font-weight:900}
+.theme-20 .app-header--themed .hero-title span{font-size:22px;color:#4b70d2}
+.theme-20 .auth-panel{margin-top:20px}
+.theme-20 .field input{box-shadow:2px 3px #d4def8}
+.theme-20 .sns-icons button{background:#f6f8ff;border:1px solid #aab8e1;box-shadow:3px 4px #b6c8f4}
+.theme-20 .preview-input{box-shadow:3px 3px #b6c8f4}
+
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
