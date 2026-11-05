@@ -865,6 +865,8 @@ figure,
     max-width: 420px;
     margin-top: 24px;
     color: var(--text-primary);
+    white-space: normal;
+    letter-spacing: normal;
 }
 .process-item__story h3 {
     font-size: 30px;
