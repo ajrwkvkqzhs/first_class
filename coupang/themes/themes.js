@@ -12,7 +12,10 @@ if (mount) {
   };
   const isMinimal = document.body.classList.contains("theme-01");
   const minimalLoginHeader = '<header class="app-header app-header--minimal"><p class="hero-kicker">01 / UI</p><h1 class="hero-title">COUPANG<span>LOG IN.</span></h1></header>';
-  const logo = '<span class="brand-logo" role="img" aria-label="쿠팡 로고"></span>';
+  const themeNumber = document.body.dataset.theme || "01";
+  const logo = isMinimal
+    ? '<span class="brand-logo" role="img" aria-label="쿠팡 로고"></span>'
+    : '<span class="brand-wordmark" role="img" aria-label="쿠팡">COUPANG</span>';
   const decoration = '<span class="hero-deco" aria-hidden="true"><i></i><i></i><i></i></span>';
   const screenLink = (screen,label) => '<a href="?screen=' + screen + '" data-screen="' + screen + '">' + label + '</a>';
   const header = (kicker,title,sub) =>
@@ -26,8 +29,11 @@ if (mount) {
     (type === "password" ? '<button type="button" class="toggle-password" data-password="' + id + '" aria-label="비밀번호 표시">보기</button>' : "") +
     '</div><p class="field-message" id="' + id + '-error" role="alert"></p></div>';
   const notice = '<p class="notice" id="form-notice" role="status" hidden></p>';
+  const themedLoginHeader = () =>
+    '<header class="app-header app-header--themed"><p class="hero-kicker">' + themeNumber +
+    ' / UI</p><h1 class="hero-title">COUPANG<span>LOG IN.</span></h1>' + decoration + '</header>';
   const showLogin = () =>
-    (isMinimal ? minimalLoginHeader : header("MEMBER ACCESS  /  COUPANG","안녕하세요,<br><em>쿠팡입니다.</em>","로그인하고 더 편리하게 쇼핑하세요.")) +
+    (isMinimal ? minimalLoginHeader : themedLoginHeader()) +
     '<section class="auth-panel"><span class="section-tag">01 / SIGN IN</span>' +
     '<form id="login-form" novalidate><fieldset style="border:0;padding:0;margin:0">' +
     field("user-id","아이디(이메일)","아이디(이메일)을 입력해 주세요.","text","username") +
