@@ -10,6 +10,8 @@ if (mount) {
     const v = new URLSearchParams(location.search).get("screen") || "login";
     return allowedScreens.includes(v) ? v : "login";
   };
+  const isMinimal = document.body.classList.contains("theme-01");
+  const minimalLoginHeader = '<header class="app-header app-header--minimal"><p class="hero-kicker">01 / UI</p><h1 class="hero-title">COUPANG<span>LOG IN.</span></h1></header>';
   const logo = '<span class="brand-logo" role="img" aria-label="쿠팡 로고"></span>';
   const decoration = '<span class="hero-deco" aria-hidden="true"><i></i><i></i><i></i></span>';
   const screenLink = (screen,label) => '<a href="?screen=' + screen + '" data-screen="' + screen + '">' + label + '</a>';
@@ -25,7 +27,7 @@ if (mount) {
     '</div><p class="field-message" id="' + id + '-error" role="alert"></p></div>';
   const notice = '<p class="notice" id="form-notice" role="status" hidden></p>';
   const showLogin = () =>
-    header("MEMBER ACCESS  /  COUPANG","안녕하세요,<br><em>쿠팡입니다.</em>","로그인하고 더 편리하게 쇼핑하세요.") +
+    (isMinimal ? minimalLoginHeader : header("MEMBER ACCESS  /  COUPANG","안녕하세요,<br><em>쿠팡입니다.</em>","로그인하고 더 편리하게 쇼핑하세요.")) +
     '<section class="auth-panel"><span class="section-tag">01 / SIGN IN</span>' +
     '<form id="login-form" novalidate><fieldset style="border:0;padding:0;margin:0">' +
     field("user-id","아이디(이메일)","아이디(이메일)을 입력해 주세요.","text","username") +
@@ -83,7 +85,11 @@ if (mount) {
     const v=view();
     document.getElementById("screen-heading").textContent=headings[v];
     mount.classList.toggle("screen-page",v!=="login");
+    mount.closest(".phone")?.classList.toggle("is-subscreen",v!=="login");
     mount.innerHTML=({login:showLogin,reset:showReset,signup:showSignup,find:showFind})[v]();
+    if(isMinimal && v==="login"){
+      mount.querySelectorAll(".sns-icons [data-social]").forEach(button=>{button.textContent=button.dataset.social;});
+    }
     document.title=headings[v]+" | Coupang UI Lab";
     window.scrollTo(0,0);
   }
