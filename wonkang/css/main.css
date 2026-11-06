@@ -391,7 +391,8 @@ figure,
     display: none;
 }
 /* 세 장면에 가까이 멈추면 정렬하되, 다른 페이지 구간을 강제로 넘기지 않습니다. */
-@media (prefers-reduced-motion: no-preference) and (min-height: 601px) {
+@media (prefers-reduced-motion: no-preference) and (min-height: 601px) and (min-width: 601px),
+       (prefers-reduced-motion: no-preference) and (min-height: 850px) and (max-width: 600px) {
     html {
         scroll-snap-type: y proximity;
     }
@@ -479,10 +480,10 @@ figure,
     transform: translate3d(0, var(--sequence-text-y, 0px), 0);
     will-change: opacity, transform;
 }
+/* Images stay vertically aligned while scenes crossfade; only text slides. */
 .card-stack.is-enhanced .steel-service__image {
     opacity: var(--sequence-image-opacity, 1);
-    transform: translate3d(0, var(--sequence-image-y, 0px), 0);
-    will-change: opacity, transform;
+    will-change: opacity;
 }
 .card-stack__navigation {
     position: sticky;
@@ -545,9 +546,6 @@ figure,
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: -0.9px;
-}
-.steel-service--casting .steel-service__title {
-    line-height: 1.45;
 }
 .steel-service__text p {
     margin-top: 26px;
@@ -1656,6 +1654,10 @@ body.dialog-open {
         grid-template-columns: 1fr;
         width: 100%;
         gap: 28px;
+    }
+    /* Keep images consistent without forcing 360px into short phone screens. */
+    .steel-service__image {
+        height: clamp(180px, 30svh, 300px);
     }
     .steel-service--alloy .steel-service__image {
         order: 2;
