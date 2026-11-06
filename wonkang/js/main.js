@@ -9,6 +9,19 @@ const heroPaginationItems = [
     { image: 'img/figma/hero-thumb-solution.png', title: '산업의 미래를 연결하는 주조 솔루션' },
 ];
 
+const heroTitle = document.querySelector('.hero-title');
+function syncHeroTitle(swiper) {
+    const item = heroPaginationItems[swiper.realIndex ?? 0];
+    if (!item || !heroTitle || heroTitle.textContent === item.title) return;
+    heroTitle.textContent = item.title;
+    if (reducedMotion || typeof heroTitle.animate !== 'function') return;
+    heroTitle.getAnimations().forEach(animation => animation.cancel());
+    heroTitle.animate(
+        [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }],
+        { duration: 360, easing: 'ease-out' }
+    );
+}
+
 if (typeof Swiper !== 'undefined') {
     new Swiper('.hero-sec > .swiper', {
         direction: 'horizontal',
@@ -46,6 +59,10 @@ if (typeof Swiper !== 'undefined') {
             },
         },
         scrollbar: { el: '.hero-sec .swiper-scrollbar', draggable: true, snapOnRelease: true, hide: false },
+        on: {
+            init: syncHeroTitle,
+            slideChange: syncHeroTitle,
+        },
     });
 }
 

@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="../font/default/css/notosanskr.css" />
         <link rel="stylesheet" href="../CSS/default.css" />
         <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="css/main.css?v=20261105-process-story-semantic" />
+        <link rel="stylesheet" href="css/main.css?v=20261106-hero-hierarchy-motion" />
         <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-        <script src="js/main.js?v=20261103-nav-stability" defer></script>
+        <script src="js/main.js?v=20261106-hero-sync" defer></script>
     </head>
     <body>
         <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                         <div class="hero-copy">
-                            <h2 class="hero-title">공정 수직 계열화로 완성된<br />원스톱 생산 솔루션</h2>
+                            <h2 class="hero-title" aria-live="polite" aria-atomic="true">금속의 가치를 만드는 정밀 주조 기술</h2>
                         </div>
                         <!-- 피그마 20:91: 썸네일 3개와 SOLUTION -->
                         <div class="swiper-controls">
@@ -467,7 +467,20 @@
 
                 <!-- 일정한 세로 간격과 좌우 교차 배치, 스크롤하면 아래에서 위로 등장 -->
                 <section class="process-gallery" id="factory" aria-labelledby="process-title">
-                    <h2 id="process-title">Life to Metal.<br />Value to Technology.</h2>
+                    <h2 id="process-title" class="process-gallery__kinetic" aria-label="Life to Metal. Value to Technology.">
+                        <span class="process-gallery__kinetic-line process-gallery__kinetic-line--left" aria-hidden="true">
+                            <span class="process-gallery__kinetic-track">
+                                <span class="process-gallery__kinetic-group"><span>Life to Metal.</span><span>Life to Metal.</span><span>Life to Metal.</span></span>
+                                <span class="process-gallery__kinetic-group"><span>Life to Metal.</span><span>Life to Metal.</span><span>Life to Metal.</span></span>
+                            </span>
+                        </span>
+                        <span class="process-gallery__kinetic-line process-gallery__kinetic-line--right" aria-hidden="true">
+                            <span class="process-gallery__kinetic-track">
+                                <span class="process-gallery__kinetic-group"><span>Value to Technology.</span><span>Value to Technology.</span><span>Value to Technology.</span></span>
+                                <span class="process-gallery__kinetic-group"><span>Value to Technology.</span><span>Value to Technology.</span><span>Value to Technology.</span></span>
+                            </span>
+                        </span>
+                    </h2>
                     <div class="process-gallery__items">
                         <figure class="process-item process-item--casting" id="process-casting">
                             <div class="process-item__media">
@@ -548,9 +561,10 @@
 
                 <!-- 피그마 85:53: 특허증을 펼친 인증서 아코디언 -->
                 <section class="certifications" id="certifications" aria-labelledby="certifications-title">
-                    <h2 id="certifications-title">
-                        원강금속 주요 성과 • 인증 이력<br />기술로 증명한 신뢰의 기록입니다.
-                    </h2>
+                    <h2 id="certifications-title">원강금속 주요 성과</h2>
+                    <p class="certifications__subtitle">
+                        원강금속 주요 성과·인증 이력<br />기술로 증명한 신뢰의 기록입니다.
+                    </p>
                     <p class="sr-only" id="certificate-help">
                         데스크톱에서는 마우스를 올리면 인증서가 펼쳐지고, 클릭하면 확대됩니다. 키보드 방향키와 Home, End 키로도 선택할 수 있습니다.
                     </p>
