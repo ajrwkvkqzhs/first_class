@@ -4,9 +4,9 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const supportsObservation = 'IntersectionObserver' in window;
 const heroPaginationItems = [
-    { image: 'img/figma/hero-thumb-casting.png', title: '금속의 가치를 만드는 정밀 주조 기술' },
-    { image: 'img/figma/hero-thumb-quality.png', title: '첨단 기술로 완성하는 정밀 품질 관리' },
-    { image: 'img/figma/hero-thumb-solution.png', title: '산업의 미래를 연결하는 주조 솔루션' },
+    { image: 'img/figma/hero-thumb-casting-small.jpg', title: '금속의 가치를 만드는 정밀 주조 기술' },
+    { image: 'img/figma/hero-thumb-quality-small.jpg', title: '첨단 기술로 완성하는 정밀 품질 관리' },
+    { image: 'img/figma/hero-thumb-solution-small.jpg', title: '산업의 미래를 연결하는 주조 솔루션' },
 ];
 
 const heroTitle = document.querySelector('.hero-title');
@@ -48,7 +48,7 @@ if (typeof Swiper !== 'undefined') {
                     ' 슬라이드로 이동">' +
                     '<img class="hero-thumb" src="' +
                     item.image +
-                    '" alt="">' +
+                    '" alt="" width="100" height="55" decoding="async">' +
                     '<span class="hero-thumb-title">' +
                     item.title +
                     '</span>' +

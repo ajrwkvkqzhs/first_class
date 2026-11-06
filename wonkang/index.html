@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="../font/default/css/notosanskr.css" />
         <link rel="stylesheet" href="../CSS/default.css" />
         <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="css/main.css?v=20261106-audit-fixes" />
+        <link rel="stylesheet" href="css/main.css?v=20261106-uniform-hero-assets" />
         <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-        <script src="js/main.js?v=20261106-audit-fixes" defer></script>
+        <script src="js/main.js?v=20261106-uniform-hero-assets" defer></script>
     </head>
     <body>
         <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -98,21 +98,24 @@
                     <div class="swiper" role="region" aria-roledescription="캐러셀" aria-label="원강금속 주요 기술">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img
-                                    src="img/figma/hero-casting.png"
-                                    alt="금속을 녹여 주입하는 주조 현장"
-                                    width="1920"
-                                    height="1529"
-                                    fetchpriority="high"
-                                />
+                                <picture>
+                                    <source media="(max-width: 600px)" srcset="img/figma/hero-slide-casting-mo.jpg" width="900" height="1800" />
+                                    <img src="img/figma/hero-slide-casting-pc.jpg" alt="금속을 녹여 주입하는 주조 현장" width="1920" height="960" fetchpriority="high" decoding="async" />
+                                </picture>
                             </div>
 
                             <div class="swiper-slide">
-                                <img src="img/figma/hero-thumb-quality.png" alt="정밀 품질 관리 현장" />
+                                <picture>
+                                    <source media="(max-width: 600px)" srcset="img/figma/hero-slide-quality-mo.jpg" width="900" height="1800" />
+                                    <img src="img/figma/hero-slide-quality-pc.jpg" alt="정밀 품질 관리 현장" width="1920" height="960" decoding="async" />
+                                </picture>
                             </div>
 
                             <div class="swiper-slide">
-                                <img src="img/figma/hero-thumb-solution.png" alt="산업용 주조 부품 솔루션" />
+                                <picture>
+                                    <source media="(max-width: 600px)" srcset="img/figma/hero-slide-solution-mo.jpg" width="900" height="1800" />
+                                    <img src="img/figma/hero-slide-solution-pc.jpg" alt="산업용 주조 부품 솔루션" width="1920" height="960" decoding="async" />
+                                </picture>
                             </div>
                         </div>
                         <div class="hero-copy">
