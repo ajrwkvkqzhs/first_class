@@ -1579,7 +1579,7 @@ body.dialog-open {
     }
     .hero-copy {
         width: calc(100% - 40px);
-        bottom: 205px;
+        bottom: calc(var(--hero-controls-height, 210px) + 25px);
     }
     .hero-title {
         font-size: clamp(30px, 8vw, 34px);
@@ -1587,7 +1587,8 @@ body.dialog-open {
         letter-spacing: -0.025em;
     }
     .swiper-controls {
-        height: 180px;
+        height: auto;
+        min-height: 180px;
         padding: 12px 16px 16px;
         gap: 10px;
     }

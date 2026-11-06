@@ -23,6 +23,16 @@ const url = process.env.WONKANG_URL || 'http://127.0.0.1:4173/wonkang/';
         const errors = [];
         page.on('pageerror', (error) => errors.push(error.message));
         await page.goto(url, { waitUntil: 'networkidle' });
+        if (width <= 600) {
+            const heroLayout = await page.evaluate(() => ({
+                heroBottom: document.querySelector('.hero-sec').getBoundingClientRect().bottom,
+                descriptionBottom: document.querySelector('.hero-solution-description').getBoundingClientRect().bottom,
+                titleBottom: document.querySelector('.hero-copy').getBoundingClientRect().bottom,
+                controlsTop: document.querySelector('.swiper-controls').getBoundingClientRect().top,
+            }));
+            assert.ok(heroLayout.descriptionBottom <= heroLayout.heroBottom - 12, 'hero description is not clipped');
+            assert.ok(heroLayout.titleBottom + 20 <= heroLayout.controlsTop, 'hero title clears the controls');
+        }
         if (width <= 850) {
             const toggle = page.locator('.menu-toggle');
             const toggleHit = await toggle.evaluate((el) => {
@@ -102,7 +112,7 @@ const url = process.env.WONKANG_URL || 'http://127.0.0.1:4173/wonkang/';
         const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });
         await page.goto(url, { waitUntil: 'networkidle' });
         await page.locator('.certificate-card').first().click();
-        await page.locator('.certificate-card').first().click();
+        assert.equal(await page.locator('dialog').evaluate((el) => el.open), true, 'one click opens the certificate');
         await page.locator('#dialog-body img').evaluate((img) => img.decode());
         await page.locator('dialog').evaluate((el) => (el.scrollTop = el.scrollHeight));
         const close = await page.locator('.dialog-close').evaluate((el) => {

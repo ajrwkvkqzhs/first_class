@@ -114,16 +114,15 @@ const root = path.resolve(__dirname, '../..');
             assert.equal(await page.locator('.hero-sec>.swiper').evaluate((el) => el.swiper.realIndex), 2);
             assert.equal(await page.locator('h1').isVisible(), true);
             results.interactions.push('All hero thumbnail controls / persistent headline');
-            for (const btn of await page.locator('[data-product]').all()) {
-                await btn.locator('xpath=ancestor::article').hover();
-                await btn.click();
-                assert.equal(await page.locator('dialog').evaluate((e) => e.open), true);
-                assert.equal(await page.locator('dialog a[href^="mailto:"]').count(), 0);
-                assert.equal(await page.locator('dialog a[href^="tel:"]').count(), 1);
-                await page.keyboard.press('Escape');
-                assert.equal(await btn.evaluate((e) => e === document.activeElement), true);
+            const productLinks = page.locator('a.product-panel__detail');
+            assert.equal(await productLinks.count(), 4, 'all four products have detail links');
+            for (const link of await productLinks.all()) {
+                const href = await link.getAttribute('href');
+                assert.match(href, /^products\/(machinery|valve|pressure|general)\.html$/);
+                const response = await page.request.get(new URL(href, page.url()).href);
+                assert.equal(response.status(), 200, 'product detail page exists: ' + href);
             }
-            results.interactions.push('4 product details / phone link / Escape focus return');
+            results.interactions.push('4 product links lead to existing detail pages');
             await page.locator('.product-panel').first().hover();
             await page.locator('[data-info="catalog"]').first().click();
             assert.match(await page.locator('#dialog-body').innerText(), /현재 제공되지/);

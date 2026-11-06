@@ -150,7 +150,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
             await panel.locator('.product-panel__reveal').elementHandle()
         );
         assert.equal(await panel.locator('button,a').count(), 3, 'every CTA has detail, contact and catalog');
-        assert.equal(await panel.locator('[data-product]').isVisible(), true);
+        assert.equal(await panel.locator('a.product-panel__detail').isVisible(), true);
         assert.equal(await panel.locator('a[href="#contact"]').isVisible(), true);
         assert.equal(await panel.locator('[data-info="catalog"]').isVisible(), true);
     }
@@ -166,9 +166,9 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     );
     await page.keyboard.press('Tab');
     assert.equal(
-        await page.locator('[data-product="machinery"]').evaluate((el) => el === document.activeElement),
+        await page.locator('#product-machinery a.product-panel__detail').evaluate((el) => el === document.activeElement),
         true,
-        'keyboard can reach a revealed detail button'
+        'keyboard can reach a revealed detail link'
     );
 
     // 호버만으로 인증서가 펼쳐지며 마우스 이동은 실제 키보드 포커스를 빼앗지 않습니다.

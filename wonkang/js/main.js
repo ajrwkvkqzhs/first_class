@@ -66,6 +66,15 @@ if (typeof Swiper !== 'undefined') {
     });
 }
 
+// 좁은 화면에서 설명이 여러 줄로 늘어나도 제목과 하단 컨트롤이 겹치지 않습니다.
+const heroSection = document.querySelector('.hero-sec');
+const heroControls = heroSection.querySelector('.swiper-controls');
+function updateHeroControlsHeight() {
+    heroSection.style.setProperty('--hero-controls-height', heroControls.getBoundingClientRect().height + 'px');
+}
+updateHeroControlsHeight();
+new ResizeObserver(updateHeroControlsHeight).observe(heroControls);
+
 // 각 사업의 원래 배경색과 텍스트 색상을 유지하고
 // 이전/다음 글자와 사진을 중첩하면서 배경색을 연속적으로 교차시킵니다.
 const cardStack = document.querySelector('.card-stack');
@@ -407,26 +416,6 @@ detailDialog.addEventListener('close', () => {
     if (dialogTrigger && document.contains(dialogTrigger)) dialogTrigger.focus({ preventScroll: true });
 });
 
-document.querySelectorAll('[data-product]').forEach((button) => {
-    button.addEventListener('click', () => {
-        const panel = button.closest('.product-panel');
-        const title = panel.querySelector('.product-panel__title').textContent;
-        const image = panel.querySelector('.product-panel__image').cloneNode();
-        image.removeAttribute('class');
-        image.loading = 'eager';
-        showDetail(
-            title,
-            [
-                image,
-                paragraph(panel.querySelector('p').innerText),
-                paragraph('도면, 재질, 규격, 수량 등에 대한 문의는 아래 영업소 연락처를 이용해 주세요.'),
-                contactLinks(),
-            ],
-            button
-        );
-    });
-});
-
 const information = {
     catalog: [
         '카탈로그 요청',
@@ -444,7 +433,7 @@ document.querySelectorAll('[data-info]').forEach((button) => {
 
 // 인증서: 데스크톱에서는 마우스 호버만으로 펼치고, 클릭하면 확대합니다.
 // 실제 키보드 포커스는 마우스 이동으로 변경하지 않습니다.
-// 터치 기기의 기존 선택-확대 두 단계 동작은 유지합니다.
+// 클릭·터치·키보드 실행은 한 번에 확대합니다.
 const certificateList = document.querySelector('.certificate-list');
 const certificates = [...certificateList.querySelectorAll('.certificate-card')];
 const certificateMobile = window.matchMedia('(max-width: 600px)');
@@ -467,6 +456,20 @@ function selectCertificate(card, scroll = true) {
     }
 }
 
+// 모바일에서는 처음 보이는 인증서와 선택 상태를 일치시킵니다.
+const initialCertificate = certificateMobile.matches
+    ? certificates[0]
+    : certificates.find(card => card.classList.contains('is-active')) || certificates[0];
+selectCertificate(initialCertificate, false);
+new ResizeObserver(() => {
+    if (!certificateMobile.matches) return;
+    const active = certificates.find(card => card.classList.contains('is-active'));
+    certificateList.scrollTo({
+        left: active.offsetLeft - certificateList.offsetLeft - (certificateList.clientWidth - active.clientWidth) / 2,
+        behavior: 'instant',
+    });
+}).observe(certificateList);
+
 // 호버 대상이 확대되는 동안 카드의 경계가 이동할 수 있습니다.
 // 커서가 거의 움직이지 않았는데 다른 카드로 전환되는 현상을 방지합니다.
 let certificateHoverX = null;
@@ -485,10 +488,7 @@ certificateList.addEventListener('pointerleave', () => {
 
 certificates.forEach((card, index) => {
     card.addEventListener('click', () => {
-        if (!card.classList.contains('is-active')) {
-            selectCertificate(card);
-            return;
-        }
+        selectCertificate(card, false);
         const image = card.querySelector('img').cloneNode();
         image.loading = 'eager';
         showDetail(image.alt, [image], card, true);
