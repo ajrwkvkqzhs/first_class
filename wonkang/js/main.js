@@ -82,7 +82,7 @@ const cardDeck = cardStack.querySelector('.card-stack__deck');
 const cardSnapPoints = [...cardStack.querySelectorAll('.card-stack__snap-point')];
 const steelCards = [...cardDeck.querySelectorAll('.steel-service')];
 const cardNavButtons = [...cardStack.querySelectorAll('.card-stack__nav')];
-const sequenceMotion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 601px)');
+const sequenceMotion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 601px) and (min-width: 601px), (prefers-reduced-motion: no-preference) and (min-height: 850px) and (max-width: 600px)');
 let cardFramePending = false;
 
 function cardScrollPosition(index) {
@@ -124,7 +124,6 @@ function updateCardNavigation() {
             card.style.setProperty('--sequence-text-opacity', strength.toFixed(4));
             card.style.setProperty('--sequence-image-opacity', strength.toFixed(4));
             card.style.setProperty('--sequence-text-y', (distance * 62).toFixed(1) + 'px');
-            card.style.setProperty('--sequence-image-y', (distance * 90).toFixed(1) + 'px');
             card.classList.toggle('is-visible', visible);
             card.inert = index !== activeIndex;
             card.setAttribute('aria-hidden', String(index !== activeIndex));
@@ -137,7 +136,6 @@ function updateCardNavigation() {
                 '--sequence-text-opacity',
                 '--sequence-image-opacity',
                 '--sequence-text-y',
-                '--sequence-image-y',
             ]) card.style.removeProperty(name);
             card.inert = false;
             card.removeAttribute('aria-hidden');
