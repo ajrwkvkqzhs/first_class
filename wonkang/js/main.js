@@ -79,21 +79,9 @@ new ResizeObserver(updateHeroControlsHeight).observe(heroControls);
 // 이전/다음 글자와 사진을 중첩하면서 배경색을 연속적으로 교차시킵니다.
 const cardStack = document.querySelector('.card-stack');
 const cardDeck = cardStack.querySelector('.card-stack__deck');
-const cardSnapPoints = [...cardStack.querySelectorAll('.card-stack__snap-point')];
 const steelCards = [...cardDeck.querySelectorAll('.steel-service')];
-const cardNavButtons = [...cardStack.querySelectorAll('.card-stack__nav')];
 const sequenceMotion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 601px) and (min-width: 601px), (prefers-reduced-motion: no-preference) and (min-height: 850px) and (max-width: 600px)');
 let cardFramePending = false;
-
-function cardScrollPosition(index) {
-    const sectionTop = cardStack.getBoundingClientRect().top + window.scrollY;
-    if (!cardStack.classList.contains('is-enhanced')) {
-        return steelCards[index].getBoundingClientRect().top + window.scrollY - 16;
-    }
-    // CSS Scroll Snap과 01·02·03 버튼이 동일한 정렬 좌표를 사용합니다.
-    const marker = cardSnapPoints[index];
-    return marker ? marker.getBoundingClientRect().top + window.scrollY : sectionTop;
-}
 
 function updateCardNavigation() {
     cardFramePending = false;
@@ -139,16 +127,10 @@ function updateCardNavigation() {
             ]) card.style.removeProperty(name);
             card.inert = false;
             card.removeAttribute('aria-hidden');
-            if (window.scrollY + window.innerHeight * 0.45 >= cardScrollPosition(index)) activeIndex = index;
         });
     }
 
-    cardNavButtons.forEach((button, index) => {
-        const active = index === activeIndex;
-        button.classList.toggle('is-current', active);
-        if (active) button.setAttribute('aria-current', 'true');
-        else button.removeAttribute('aria-current');
-    });
+
 }
 
 function requestCardNavigationUpdate() {
@@ -157,11 +139,6 @@ function requestCardNavigationUpdate() {
     window.requestAnimationFrame(updateCardNavigation);
 }
 
-cardNavButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        window.scrollTo({ top: cardScrollPosition(index), behavior: reducedMotion ? 'instant' : 'smooth' });
-    });
-});
 window.addEventListener('scroll', requestCardNavigationUpdate, { passive: true });
 window.addEventListener('resize', requestCardNavigationUpdate, { passive: true });
 sequenceMotion.addEventListener('change', requestCardNavigationUpdate);
