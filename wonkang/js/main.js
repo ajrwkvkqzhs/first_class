@@ -83,7 +83,7 @@ const steelCards = [...cardDeck.querySelectorAll('.steel-service')];
 const sequenceMotion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 601px) and (min-width: 601px), (prefers-reduced-motion: no-preference) and (min-height: 850px) and (max-width: 600px)');
 let cardFramePending = false;
 
-function updateCardNavigation() {
+function updateCardSequence() {
     cardFramePending = false;
     const enhanced = sequenceMotion.matches;
     cardStack.classList.toggle('is-enhanced', enhanced);
@@ -129,20 +129,18 @@ function updateCardNavigation() {
             card.removeAttribute('aria-hidden');
         });
     }
-
-
 }
 
-function requestCardNavigationUpdate() {
+function requestCardSequenceUpdate() {
     if (cardFramePending) return;
     cardFramePending = true;
-    window.requestAnimationFrame(updateCardNavigation);
+    window.requestAnimationFrame(updateCardSequence);
 }
 
-window.addEventListener('scroll', requestCardNavigationUpdate, { passive: true });
-window.addEventListener('resize', requestCardNavigationUpdate, { passive: true });
-sequenceMotion.addEventListener('change', requestCardNavigationUpdate);
-updateCardNavigation();
+window.addEventListener('scroll', requestCardSequenceUpdate, { passive: true });
+window.addEventListener('resize', requestCardSequenceUpdate, { passive: true });
+sequenceMotion.addEventListener('change', requestCardSequenceUpdate);
+updateCardSequence();
 
 // 사용자 요청: 같은 간격의 좌우 사진이 뷰포트에 들어올 때 아래에서 위로 등장합니다.
 // JS가 없거나 모션 감소를 선택한 경우에는 원래 콘텐츠를 그대로 보여 줍니다.
