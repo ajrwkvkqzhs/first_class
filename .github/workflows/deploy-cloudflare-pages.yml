@@ -35,7 +35,7 @@ jobs:
 
           # The website uses shared files one level above /wonkang/.
           # Keep their relative paths intact by publishing the repository's web directories.
-          for directory in CSS coupang font king npm swiper-img wonkang; do
+          for directory in CSS coupang font king npm swiper-img wonkang raspberry; do
             test -d "$directory" || { echo "::error::Missing directory: $directory"; exit 1; }
             mkdir -p "deploy/$directory"
             rsync -a "$directory/" "deploy/$directory/" \
@@ -52,6 +52,10 @@ jobs:
           # Fail early if key pages and shared assets are missing.
           for required in \
             deploy/index.html \
+            deploy/raspberry/index.html \
+            deploy/raspberry/detail/index.html \
+            deploy/raspberry/source/index.html \
+            deploy/raspberry/detail/assets/01-hero.png \
             deploy/wonkang/index.html \
             deploy/wonkang/css/main.css \
             deploy/wonkang/js/main.js \
