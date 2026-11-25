@@ -7,10 +7,10 @@
   <title>제품소개 | 원강금속</title>
   <link rel="stylesheet" href="../../font/default/css/notosanskr.css" />
   <link rel="stylesheet" href="../../CSS/default.css" />
-  <link rel="stylesheet" href="../css/main.css?v=20261104-interaction-review" />
-  <link rel="stylesheet" href="products.css?v=20261103-subnav-qa" />
+  <link rel="stylesheet" href="../css/main.css?v=20261125" />
+  <link rel="stylesheet" href="products.css?v=20261125" />
   <script src="../js/reveal.js?v=20261104-interaction-review" defer></script>
-<script src="products.js?v=20261104-interaction-review" defer></script>
+<script src="products.js?v=20261125" defer></script>
 </head>
 <body class="products-page">
 <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -103,78 +103,92 @@
     <div class="products-shell">
       <div class="products-catalog__heading">
         <div><p class="products-kicker">PRODUCT LINEUP</p><h2 id="products-catalog-title">필요한 제품을<br />찾아보세요.</h2></div>
-        <p>원강금속의 제품을 분야별로 확인할 수 있습니다.<br />분류를 선택하면 해당 제품과 상세 안내가 표시됩니다.</p>
+        <p>펌프·밸브·산업기계 중 원하는 분야를 선택하세요.</p>
       </div>
       <div class="products-deep-links" aria-hidden="true"><span id="general"></span><span id="pressure"></span><span id="valve"></span><span id="machinery"></span></div>
-      <div class="products-tabs" role="tablist" aria-label="제품 분류" aria-orientation="horizontal">
+      <div class="products-tabs" role="tablist" aria-label="제품 분류" aria-orientation="horizontal" hidden>
 <button class="products-tab" id="tab-all" type="button" role="tab" aria-selected="true" aria-controls="panel-all" tabindex="0" data-product-tab="all">전체 제품</button>
 <button class="products-tab" id="tab-general" type="button" role="tab" aria-selected="false" aria-controls="panel-general" tabindex="-1" data-product-tab="general">일반 펌프부품</button>
 <button class="products-tab" id="tab-pressure" type="button" role="tab" aria-selected="false" aria-controls="panel-pressure" tabindex="-1" data-product-tab="pressure">고압 펌프부품</button>
 <button class="products-tab" id="tab-valve" type="button" role="tab" aria-selected="false" aria-controls="panel-valve" tabindex="-1" data-product-tab="valve">밸브부품</button>
 <button class="products-tab" id="tab-machinery" type="button" role="tab" aria-selected="false" aria-controls="panel-machinery" tabindex="-1" data-product-tab="machinery">산업기계부품</button>
       </div>
-      <noscript><p class="products-noscript">제품 분류 탭을 사용하려면 JavaScript가 필요합니다. 상세페이지는 다음 링크로 확인할 수 있습니다. <a href="general.html">일반 펌프부품</a> · <a href="pressure.html">고압 펌프부품</a> · <a href="valve.html">밸브부품</a> · <a href="machinery.html">산업기계부품</a></p></noscript>
       <div class="products-panels">
 <div class="products-panel" id="panel-all" role="tabpanel" aria-labelledby="tab-all" tabindex="0"><div class="products-card-grid"><article class="products-card">
   <a class="products-card__link" href="general.html" data-product-link="general" aria-label="일반 펌프부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-general.png" alt="일반 펌프부품 이미지" loading="lazy" /></div>
-    <div class="products-card__info"><span class="products-card__number">PRODUCT</span><h3>일반 펌프부품</h3><p>일반 펌프에 적용되는 주조·가공 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
+    <div class="products-card__info"><h3>일반 펌프부품</h3><p>일반 펌프에 적용되는 주조·가공 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article>
 <article class="products-card">
   <a class="products-card__link" href="pressure.html" data-product-link="pressure" aria-label="고압 펌프부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-pressure.png" alt="고압 펌프부품 이미지" loading="lazy" /></div>
-    <div class="products-card__info"><span class="products-card__number">PRODUCT</span><h3>고압 펌프부품</h3><p>고압 펌프에 적용되는 산업용 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
+    <div class="products-card__info"><h3>고압 펌프부품</h3><p>고압 펌프에 적용되는 산업용 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article>
 <article class="products-card">
   <a class="products-card__link" href="valve.html" data-product-link="valve" aria-label="밸브부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-valve.png" alt="밸브부품 이미지" loading="lazy" /></div>
-    <div class="products-card__info"><span class="products-card__number">PRODUCT</span><h3>밸브부품</h3><p>산업용 밸브에 활용되는 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
+    <div class="products-card__info"><h3>밸브부품</h3><p>산업용 밸브에 활용되는 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article>
 <article class="products-card">
   <a class="products-card__link" href="machinery.html" data-product-link="machinery" aria-label="산업기계부품 상세 내용 보기">
     <div class="products-card__media"><img src="../img/figma/product-machinery.png" alt="산업기계부품 이미지" loading="lazy" /></div>
-    <div class="products-card__info"><span class="products-card__number">PRODUCT</span><h3>산업기계부품</h3><p>다양한 산업기계에 사용되는 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
+    <div class="products-card__info"><h3>산업기계부품</h3><p>다양한 산업기계에 사용되는 금속 부품을 소개합니다.</p><span class="products-card__action">자세히 보기 <span aria-hidden="true">↗</span></span></div>
   </a>
 </article></div></div>
 <div class="products-panel" id="panel-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0" hidden><section class="products-detail" aria-labelledby="detail-general-title">
-  <div class="products-detail__feature">
-    <figure class="products-detail__media"><img src="../img/figma/product-general.png" alt="일반 펌프부품 제품 이미지" loading="lazy" /><figcaption>WONKANG METAL / PRODUCT</figcaption></figure>
-    <div class="products-detail__content"><p class="products-kicker">GENERAL PUMP PARTS</p><h3 id="detail-general-title">일반 펌프부품</h3><p class="products-detail__lead">일반 펌프에 적용되는 주조·가공 부품을 소개합니다.</p><p class="products-detail__description">펌프 시스템에 사용되는 금속 부품을 원강금속의 주조 및 가공 공정과 연결해 소개합니다. 상세 치수와 소재 정보는 제품별 자료 확인이 필요합니다.</p><a class="products-detail__cta" href="../index.html#contact">제품 문의하기 <span aria-hidden="true">↗</span></a></div>
-  </div>
-  <div class="products-detail__more"><div class="products-detail__more-heading"><h4>제품 상세자료</h4><p>실제 제품별 이미지 및 사양 자료는 확보 후 반영합니다.</p></div><div class="products-placeholders"><div class="products-placeholder" role="img" aria-label="제품 상세사진 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 상세 이미지</strong><small>추후 이미지 삽입</small></div><div class="products-placeholder" role="img" aria-label="제품 도면 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 도면 · 규격 이미지</strong><small>추후 이미지 삽입</small></div></div></div>
+    <div class="products-detail__feature">
+        <figure class="products-detail__media"><img src="../img/figma/product-general.png" alt="일반 펌프부품" loading="lazy" /></figure>
+        <div class="products-detail__content">
+            <p class="products-kicker" lang="en">GENERAL PUMP PARTS</p>
+            <h3 id="detail-general-title">일반 펌프부품</h3>
+            <p class="products-detail__lead">물을 비롯한 유체를 이송하는 산업용 펌프에 쓰이는 주조·가공 부품입니다.</p>
+            <a class="products-detail__cta" href="general.html">제품 상세 보기 <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
 </section></div>
 <div class="products-panel" id="panel-pressure" role="tabpanel" aria-labelledby="tab-pressure" tabindex="0" hidden><section class="products-detail" aria-labelledby="detail-pressure-title">
-  <div class="products-detail__feature">
-    <figure class="products-detail__media"><img src="../img/figma/product-pressure.png" alt="고압 펌프부품 제품 이미지" loading="lazy" /><figcaption>WONKANG METAL / PRODUCT</figcaption></figure>
-    <div class="products-detail__content"><p class="products-kicker">HIGH-PRESSURE PUMP PARTS</p><h3 id="detail-pressure-title">고압 펌프부품</h3><p class="products-detail__lead">고압 펌프에 적용되는 산업용 금속 부품을 소개합니다.</p><p class="products-detail__description">고압 펌프 분야의 부품을 확인할 수 있는 영역입니다. 적용 환경에 따른 재질·규격·검사 조건 등 구체적인 요구사항은 별도 상담을 통해 확인하도록 구성했습니다.</p><a class="products-detail__cta" href="../index.html#contact">제품 문의하기 <span aria-hidden="true">↗</span></a></div>
-  </div>
-  <div class="products-detail__more"><div class="products-detail__more-heading"><h4>제품 상세자료</h4><p>실제 제품별 이미지 및 사양 자료는 확보 후 반영합니다.</p></div><div class="products-placeholders"><div class="products-placeholder" role="img" aria-label="제품 상세사진 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 상세 이미지</strong><small>추후 이미지 삽입</small></div><div class="products-placeholder" role="img" aria-label="제품 도면 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 도면 · 규격 이미지</strong><small>추후 이미지 삽입</small></div></div></div>
+    <div class="products-detail__feature">
+        <figure class="products-detail__media"><img src="../img/figma/product-pressure.png" alt="고압 펌프부품" loading="lazy" /></figure>
+        <div class="products-detail__content">
+            <p class="products-kicker" lang="en">HIGH-PRESSURE PUMP PARTS</p>
+            <h3 id="detail-pressure-title">고압 펌프부품</h3>
+            <p class="products-detail__lead">높은 압력에서 유체를 이송하는 펌프에 쓰이는 금속 부품입니다. 운전 조건에 따라 소재와 검사 기준이 달라집니다.</p>
+            <a class="products-detail__cta" href="pressure.html">제품 상세 보기 <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
 </section></div>
 <div class="products-panel" id="panel-valve" role="tabpanel" aria-labelledby="tab-valve" tabindex="0" hidden><section class="products-detail" aria-labelledby="detail-valve-title">
-  <div class="products-detail__feature">
-    <figure class="products-detail__media"><img src="../img/figma/product-valve.png" alt="밸브부품 제품 이미지" loading="lazy" /><figcaption>WONKANG METAL / PRODUCT</figcaption></figure>
-    <div class="products-detail__content"><p class="products-kicker">VALVE PARTS</p><h3 id="detail-valve-title">밸브부품</h3><p class="products-detail__lead">산업용 밸브에 활용되는 금속 부품을 소개합니다.</p><p class="products-detail__description">유체 흐름을 제어하는 산업용 밸브에 활용되는 부품을 소개합니다. 제품별 상세 형상과 사양은 실제 자료 확보 후 반영할 수 있도록 구성했습니다.</p><a class="products-detail__cta" href="../index.html#contact">제품 문의하기 <span aria-hidden="true">↗</span></a></div>
-  </div>
-  <div class="products-detail__more"><div class="products-detail__more-heading"><h4>제품 상세자료</h4><p>실제 제품별 이미지 및 사양 자료는 확보 후 반영합니다.</p></div><div class="products-placeholders"><div class="products-placeholder" role="img" aria-label="제품 상세사진 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 상세 이미지</strong><small>추후 이미지 삽입</small></div><div class="products-placeholder" role="img" aria-label="제품 도면 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 도면 · 규격 이미지</strong><small>추후 이미지 삽입</small></div></div></div>
+    <div class="products-detail__feature">
+        <figure class="products-detail__media"><img src="../img/figma/product-valve.png" alt="밸브부품" loading="lazy" /></figure>
+        <div class="products-detail__content">
+            <p class="products-kicker" lang="en">VALVE PARTS</p>
+            <h3 id="detail-valve-title">밸브부품</h3>
+            <p class="products-detail__lead">배관에서 유체의 흐름을 조절하는 산업용 밸브의 금속 부품입니다. 연결 방식과 유체 조건을 함께 검토합니다.</p>
+            <a class="products-detail__cta" href="valve.html">제품 상세 보기 <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
 </section></div>
 <div class="products-panel" id="panel-machinery" role="tabpanel" aria-labelledby="tab-machinery" tabindex="0" hidden><section class="products-detail" aria-labelledby="detail-machinery-title">
-  <div class="products-detail__feature">
-    <figure class="products-detail__media"><img src="../img/figma/product-machinery.png" alt="산업기계부품 제품 이미지" loading="lazy" /><figcaption>WONKANG METAL / PRODUCT</figcaption></figure>
-    <div class="products-detail__content"><p class="products-kicker">INDUSTRIAL MACHINERY PARTS</p><h3 id="detail-machinery-title">산업기계부품</h3><p class="products-detail__lead">다양한 산업기계에 사용되는 금속 부품을 소개합니다.</p><p class="products-detail__description">산업기계에 활용되는 주조·가공 부품을 소개합니다. 다양한 제조 환경에 대응하는 제품의 세부 제원과 적용 사례는 자료가 확보되면 추가합니다.</p><a class="products-detail__cta" href="../index.html#contact">제품 문의하기 <span aria-hidden="true">↗</span></a></div>
-  </div>
-  <div class="products-detail__more"><div class="products-detail__more-heading"><h4>제품 상세자료</h4><p>실제 제품별 이미지 및 사양 자료는 확보 후 반영합니다.</p></div><div class="products-placeholders"><div class="products-placeholder" role="img" aria-label="제품 상세사진 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 상세 이미지</strong><small>추후 이미지 삽입</small></div><div class="products-placeholder" role="img" aria-label="제품 도면 이미지 준비 중"><span>IMAGE PLACEHOLDER</span><strong>제품 도면 · 규격 이미지</strong><small>추후 이미지 삽입</small></div></div></div>
+    <div class="products-detail__feature">
+        <figure class="products-detail__media"><img src="../img/figma/product-machinery.png" alt="산업기계부품" loading="lazy" /></figure>
+        <div class="products-detail__content">
+            <p class="products-kicker" lang="en">INDUSTRIAL MACHINERY PARTS</p>
+            <h3 id="detail-machinery-title">산업기계부품</h3>
+            <p class="products-detail__lead">산업기계의 장착 위치와 용도에 맞춰 주조하고 가공하는 금속 부품입니다.</p>
+            <a class="products-detail__cta" href="machinery.html">제품 상세 보기 <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
 </section></div>
       </div>
-      <p class="products-catalog__note">※ 제품 이미지와 소개는 기존 원강금속 리뉴얼 메인페이지 자료를 재사용했습니다. 세부 규격 및 도면은 확인 자료가 확보된 후 추가됩니다.</p>
     </div>
   </section>
   <section class="products-contact" aria-labelledby="products-contact-title">
     <div class="products-shell products-contact__inner">
-      <div><p class="products-kicker">CONTACT US</p><h2 id="products-contact-title">제품에 관한 문의가<br />필요하신가요?</h2><p>요구 사양에 관한 문의는 기존 연락처를 통해 확인해 주세요.</p></div>
-      <a href="../index.html#contact" class="products-contact__link">연락처 확인하기 <span aria-hidden="true">↗</span></a>
+      <div><p class="products-kicker">CONTACT US</p><h2 id="products-contact-title">제품에 관한 문의가<br />필요하신가요?</h2><p>도면, 재질, 사용 조건에 관한 문의는 인천 영업소로 연락해 주세요.</p></div>
+      <a href="../company/directions.html#sales-office" class="products-contact__link">연락처 확인하기 <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 </main>
@@ -253,6 +267,8 @@
                     </div>
                     <div class="footer-legal">
                         <div>
+                            <a class="project-index-link" href="../../index.html">학습 프로젝트 목록</a>
+
                             <button type="button" data-info="privacy" aria-haspopup="dialog">개인정보 취급방침</button
                             ><button type="button" data-info="email" aria-haspopup="dialog">이메일 무단수집거부</button>
                         </div>

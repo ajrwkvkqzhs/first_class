@@ -110,8 +110,10 @@ const root = path.resolve(__dirname, '../..');
             const second = page.locator('.swiper-pagination-bullet').nth(1);
             await second.click();
             assert.equal(await page.locator('.hero-sec>.swiper').evaluate((el) => el.swiper.realIndex), 1);
+            assert.equal(await page.locator('.hero-solution-link').getAttribute('href'), 'factory/technology.html');
             await page.locator('.swiper-pagination-bullet').nth(2).click();
             assert.equal(await page.locator('.hero-sec>.swiper').evaluate((el) => el.swiper.realIndex), 2);
+            assert.equal(await page.locator('.hero-solution-link').getAttribute('href'), 'products/index.html#products-catalog');
             assert.equal(await page.locator('h1').isVisible(), true);
             results.interactions.push('All hero thumbnail controls / persistent headline');
             const productLinks = page.locator('a.product-panel__detail');
@@ -269,10 +271,11 @@ const root = path.resolve(__dirname, '../..');
     const sources = ['wonkang/index.html', 'wonkang/css/main.css', 'wonkang/js/main.js']
         .map((source) => fs.readFileSync(path.join(root, source), 'utf8'))
         .join('\n');
-    for (const file of fs.readdirSync(path.join(root, 'wonkang/img/figma'))) {
-        const stat = fs.statSync(path.join(root, 'wonkang/img/figma', file));
+    // The design folder also contains older exports. Check every image referenced by the live homepage.
+    const imagePaths = new Set(Array.from(sources.matchAll(/img\/(?:figma|web)\/[\w.-]+/g), match => match[0]));
+    for (const file of imagePaths) {
+        const stat = fs.statSync(path.join(root, 'wonkang', file));
         assert.ok(stat.size > 0);
-        assert.ok(sources.includes(file), 'Figma asset has no code callsite: ' + file);
         results.imageMetadata.push({ file, bytes: stat.size });
     }
     fs.writeFileSync(path.join(root, 'wonkang/reports/verification.json'), JSON.stringify(results, null, 2));

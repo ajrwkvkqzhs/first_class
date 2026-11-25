@@ -215,6 +215,7 @@ document.querySelectorAll('[data-info]').forEach(button => {
 
 /* Category navigation: selected tab is separate from keyboard focus and hover. */
 const productTabs = [...document.querySelectorAll('[data-product-tab]')];
+const tabList = document.querySelector('.products-tabs');
 const productPanels = new Map(productTabs.map(tab => [tab.dataset.productTab, document.getElementById('panel-' + tab.dataset.productTab)]));
 const availableIds = new Set(productPanels.keys());
 
@@ -233,10 +234,14 @@ function showProduct(id, {updateHash = false, focus = false} = {}) {
         productPanels.get(tab.dataset.productTab).hidden = !selected;
         if (selected && focus) tab.focus({preventScroll:true});
     }
+    const selectedTab = document.getElementById('tab-' + id).getBoundingClientRect();
+    const visibleArea = tabList.getBoundingClientRect();
+    if (selectedTab.left < visibleArea.left) tabList.scrollLeft += selectedTab.left - visibleArea.left;
+    else if (selectedTab.right > visibleArea.right) tabList.scrollLeft += selectedTab.right - visibleArea.right;
     if (updateHash) {
         const url = new URL(window.location.href);
-        url.hash = id === 'all' ? '' : id;
-        window.history.pushState(null, '', url);
+        url.hash = id === 'all' ? 'products-catalog' : id;
+        if (url.href !== window.location.href) window.history.pushState(null, '', url);
     }
 }
 productTabs.forEach((tab, index) => {
@@ -267,4 +272,5 @@ document.querySelectorAll('.site-nav__submenu a[href^="#"]').forEach(link => {
 });
 window.addEventListener('hashchange', () => showProduct(activeTabId()));
 window.addEventListener('popstate', () => showProduct(activeTabId()));
+tabList.hidden = false;
 showProduct(activeTabId());

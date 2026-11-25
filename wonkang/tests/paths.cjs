@@ -11,10 +11,11 @@ const docs = [
  'factory/equipment.html','factory/certifications.html','products/index.html',
  'products/general.html','products/pressure.html','products/valve.html','products/machinery.html'
 ].map(name=>'wonkang/'+name);
+docs.unshift('index.html');
 const subpages=docs.filter(name=>/wonkang\/(?:company\/(?!about)|factory\/|products\/(?!index))/.test(name));
 const cssFiles=[
  'wonkang/css/main.css','wonkang/css/subpage.css','wonkang/company/about.css',
- 'wonkang/company/ci.css','wonkang/products/products.css','CSS/default.css','font/default/css/notosanskr.css'
+ 'wonkang/company/ci.css','wonkang/products/products.css','CSS/default.css','CSS/project-index.css','font/default/css/notosanskr.css'
 ];
 const jsFiles=['wonkang/js/main.js','wonkang/js/subpage.js','wonkang/company/about.js','wonkang/products/products.js'];
 const errors=[];
@@ -41,6 +42,12 @@ for(const file of docs){
  if(!exists(file)){errors.push('missing HTML: '+file);continue;}
  const html=read(file);
  ids(file);
+ for(const match of html.matchAll(/\bsrcset\s*=\s*["']([^"']+)["']/g)){
+  for(const candidate of match[1].split(',')){
+   const source=candidate.trim().split(/\s+/)[0];
+   if(source&&!external(source)&&!exists(destination(file,source)))errors.push(file+': missing responsive image '+source);
+  }
+ }
  if(subpages.includes(file)){
   const nav=html.match(/<nav class="detail-siblings"[\s\S]*?<\/nav>/)?.[0]||'';
   if(!nav.includes('detail-siblings__heading')||!nav.includes('detail-siblings__links'))errors.push(file+': inconsistent sibling menu');
