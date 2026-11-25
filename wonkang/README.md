@@ -25,9 +25,9 @@
 
 저장소 루트를 정적 서버로 실행한 뒤 `/wonkang/`을 열면 됩니다. GitHub Pages에서도 동일한 상대 경로를 사용합니다. 문의 버튼은 하단 연락처로 이동하거나 전화 앱을 열며, 카탈로그와 개인정보 취급방침 원문은 자료 제공 후 연결할 수 있습니다.
 
-확인되지 않은 이메일 주소는 페이지에서 제거했습니다. 회사에서 확인한 이메일을 받기 전까지 메일 발송 기능은 제공하지 않습니다.
+2026-11-25 공개 홈페이지의 연락처를 확인해 오시는 길 및 생산거점 페이지에 이메일 문의 링크를 추가했습니다.
 
-CI 소개(`company/ci.html`)와 생산거점(`factory/locations.html`)은 사용자 요청에 따라 임시 경로만 연결했습니다. 준비 중 안내와 메인 복귀 링크만 있으며, 상세 콘텐츠와 기능은 현재 제작 범위에서 제외합니다.
+CI 소개(`company/ci.html`)에는 로고와 웹 컬러 시스템이 구현되어 있으며, 생산거점(`factory/locations.html`)과 오시는 길(`company/directions.html`)에는 사업장별 주소 및 외부 지도 검색 링크를 제공합니다. 제품 4개 분류와 핵심기술 6종을 보완했습니다. 제품별 실제 추가 사진·도면·제원, 설비 모델명, 카탈로그 및 공식 CI 지침은 미확보 상태이며 임의로 작성하지 않습니다.
 
 ## 브라우저 검증 재실행
 
@@ -40,3 +40,11 @@ node wonkang/tests/smoke.cjs
 Playwright가 다른 위치에 설치되어 있다면 `PLAYWRIGHT_MODULE`에 모듈 경로를 지정할 수 있습니다. 브라우저는 `PLAYWRIGHT_CHANNEL` 환경변수로 변경할 수 있습니다. 결과는 `reports/verification.json`에 저장됩니다.
 
 추가한 Noto Sans KR Light는 기존 폰트와 같은 배포 저장소의 [원본 파일](https://github.com/HelloWorld017/typeface-notosans-kr/blob/master/fonts/noto-sans-kr-v8-korean_latin-300.woff2)을 사용합니다. [SIL OFL 라이선스](../font/OFL-NotoSansKR.txt)를 따릅니다.
+
+## 2026-11-25 콘텐츠 보완 출처
+
+- [원강금속 공개 홈페이지](https://wks2025.mycafe24.com/): 핵심 기술 6종, 연락처 및 사업장 주소.
+- [영문 홈페이지](https://wks2025.mycafe24.com/index_en.php): 제품 세부 분류 및 VOD 기술.
+- [공식 연혁](https://wks2025.mycafe24.com/bbs/board.php?bo_table=history_en): 연혁 자료.
+- 제품 부품별 설명은 일반적인 기능 설명이며 실제 제품별 성능·치수·재질을 보증하지 않습니다.
+- 지도는 주소 검색 링크로 제공하며 새 창에서 열립니다. 실제 화면과 링크 동작은 배포 후 브라우저 검수가 필요합니다.
