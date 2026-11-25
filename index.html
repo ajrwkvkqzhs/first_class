@@ -1,20 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>최규현 클래스</title>
-</head>
-<body>
-    <h1>hello github</h1>
-    <a href="king/login.html">버거킹 로그인 ui</a><br>
-    <a href="king/password_reset_1.html">비밀번호 재설정 1</a><br>
-    <a href="king/password_reset_2.html">비밀번호 재설정 2</a><br>
-    <a href="coupang/login.html">쿠팡 로그인</a><br>
-    <a href="coupang/themes/index.html"><strong>쿠팡 모바일 UI 디자인 테마 20종 →</strong></a><br>
-    <a href="wonkang/index.html">원강금속 메인페이지</a><br>
-    <a href="wonkang/company/about.html"><strong>원강금속 회사소개 서브페이지 바로가기 →</strong></a>
-    <br>
-    <a href="raspberry/index.html"><strong>라즈베리파이 4B 상세페이지 과제 →</strong></a>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="최규현의 웹 프로젝트 모음. 원강금속 리뉴얼과 웹디자인 실습 결과물을 살펴보세요." />
+        <title>최규현의 웹 프로젝트 | First Class</title>
+        <link rel="stylesheet" href="font/default/css/notosanskr.css" />
+        <link rel="stylesheet" href="CSS/project-index.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#projects">프로젝트 목록으로 건너뛰기</a>
+        <header class="masthead">
+            <div class="shell masthead-inner">
+                <span class="wordmark" lang="en">First Class<span aria-hidden="true">.</span></span>
+                <span class="author">최규현의 웹 프로젝트</span>
+                <a class="index-jump" href="#projects">과제 목록 <span aria-hidden="true">↓</span></a>
+            </div>
+        </header>
+        <main>
+            <section class="feature" aria-labelledby="featured-title">
+                <picture class="feature-photo">
+                    <source type="image/webp" srcset="wonkang/img/web/casting-cover-800.webp 800w, wonkang/img/web/casting-cover-1600.webp 1600w" sizes="(max-width: 700px) 100vw, 76vw" />
+                    <img src="wonkang/img/figma/process-casting.png" width="2121" height="1414" alt="용광로의 쇳물이 주형으로 흘러드는 주조 현장" fetchpriority="high" />
+                </picture>
+                <div class="shell feature-inner">
+                    <img class="feature-logo" src="wonkang/img/figma/logo-white.png" alt="WONKANG" width="300" height="39" />
+                    <h1 id="featured-title">원강금속<br />웹사이트 리뉴얼</h1>
+                    <p>주조부터 가공과 검사까지, 금속 부품이 완성되는 과정을 담았습니다.</p>
+                    <a class="feature-link" href="wonkang/index.html">리뉴얼 사이트 열기 <span aria-hidden="true">→</span></a>
+                </div>
+            </section>
+            <nav class="shortcuts" aria-label="원강금속 주요 페이지">
+                <div class="shell shortcuts-inner">
+                    <a href="wonkang/company/about.html"><span><small lang="en">Company</small>회사소개</span><span class="arrow" aria-hidden="true">↗</span></a>
+                    <a href="wonkang/factory/process.html"><span><small lang="en">Process</small>생산공정</span><span class="arrow" aria-hidden="true">↗</span></a>
+                    <a href="wonkang/products/index.html#products-catalog"><span><small lang="en">Products</small>제품 목록</span><span class="arrow" aria-hidden="true">↗</span></a>
+                </div>
+            </nav>
+            <section class="projects shell" id="projects" aria-labelledby="projects-title" tabindex="-1">
+                <h2 id="projects-title">다른 학습 프로젝트</h2>
+                <ul class="project-list">
+                    <li>
+                        <h3>버거킹</h3>
+                        <div class="project-links">
+                            <a href="king/login.html" aria-label="버거킹 로그인 UI">로그인 UI</a>
+                            <a href="king/password_reset_1.html">비밀번호 재설정 1</a>
+                            <a href="king/password_reset_2.html">비밀번호 재설정 2</a>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>쿠팡</h3>
+                        <div class="project-links">
+                            <a href="coupang/login.html" aria-label="쿠팡 로그인 UI">로그인 UI</a>
+                            <a href="coupang/themes/index.html">모바일 UI 테마 20종</a>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>라즈베리파이 4B</h3>
+                        <div class="project-links"><a href="raspberry/index.html">상품 상세페이지 과제</a></div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </body>
 </html>

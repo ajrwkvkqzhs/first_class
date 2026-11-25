@@ -243,13 +243,20 @@ if (certDialog) {
 }
 /* On HTTPS the copy action copies exactly the address printed beside it. */
 document.querySelectorAll('[data-copy-address]').forEach(button => {
+    button.hidden = false;
     button.addEventListener('click', async () => {
-        const feedback = button.parentElement.querySelector('[data-copy-feedback]');
+        const card = button.closest('.detail-info-card');
+        const feedback = card.querySelector('[data-copy-feedback]');
         try {
             await navigator.clipboard.writeText(button.dataset.copyAddress);
-            if (feedback) feedback.textContent = '주소가 복사되었습니다.';
+            feedback.textContent = '주소를 복사했습니다.';
         } catch {
-            if (feedback) feedback.textContent = '주소를 선택하여 복사해 주세요.';
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(card.querySelector('dd'));
+            selection.removeAllRanges();
+            selection.addRange(range);
+            feedback.textContent = '선택한 주소를 복사해 주세요.';
         }
     });
 });

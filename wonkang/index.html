@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="../font/default/css/notosanskr.css" />
         <link rel="stylesheet" href="../CSS/default.css" />
         <link rel="stylesheet" href="../npm/swiper/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="css/main.css?v=20261109-remove-extra-controls" />
+        <link rel="stylesheet" href="css/main.css?v=20261125" />
         <script src="../npm/swiper/swiper-bundle.min.js" defer></script>
-        <script src="js/main.js?v=20261109-remove-extra-controls" defer></script>
+        <script src="js/main.js?v=20261125" defer></script>
     </head>
     <body>
         <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -21,7 +21,7 @@
             <!-- 헤더: 주 메뉴와 하위 메뉴를 같은 그룹과 열에 배치합니다. -->
             <header class="site-header" id="site-header">
                 <div class="site-header__inner">
-                    <h1 class="site-logo-heading">
+                    <div class="site-logo-heading">
                         <a class="site-logo" href="#top" aria-label="원강금속 메인으로">
                         <span class="site-logo__media">
                             <img
@@ -34,7 +34,7 @@
                             <img class="site-logo__dark" src="img/logo_black.png" alt="" aria-hidden="true" />
                         </span>
                         </a>
-                    </h1>
+                    </div>
                     <div class="site-header-right">
                         <span class="site-lang" aria-label="현재 언어: 한국어">ko</span>
                         <button
@@ -99,39 +99,41 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <picture>
+                                    <source media="(max-width: 600px)" type="image/webp" srcset="img/web/casting-mo.webp" width="900" height="1800" />
                                     <source media="(max-width: 600px)" srcset="img/figma/hero-slide-casting-mo.jpg" width="900" height="1800" />
+                                    <source type="image/webp" srcset="img/web/casting-pc.webp" width="1920" height="960" />
                                     <img src="img/figma/hero-slide-casting-pc.jpg" alt="금속을 녹여 주입하는 주조 현장" width="1920" height="960" fetchpriority="high" decoding="async" />
                                 </picture>
                             </div>
 
                             <div class="swiper-slide">
                                 <picture>
+                                    <source media="(max-width: 600px)" type="image/webp" srcset="img/web/quality-mo.webp" width="900" height="1800" />
                                     <source media="(max-width: 600px)" srcset="img/figma/hero-slide-quality-scene-mo.jpg" width="900" height="1800" />
+                                    <source type="image/webp" srcset="img/web/quality-pc.webp" width="1920" height="960" />
                                     <img src="img/figma/hero-slide-quality-scene-pc.jpg" alt="금속 부품의 형상을 검사하는 품질 관리 현장" width="1920" height="960" decoding="async" />
                                 </picture>
                             </div>
 
                             <div class="swiper-slide">
                                 <picture>
+                                    <source media="(max-width: 600px)" type="image/webp" srcset="img/web/solution-mo.webp" width="900" height="1800" />
                                     <source media="(max-width: 600px)" srcset="img/figma/hero-slide-solution-scene-mo.jpg" width="900" height="1800" />
+                                    <source type="image/webp" srcset="img/web/solution-pc.webp" width="1920" height="960" />
                                     <img src="img/figma/hero-slide-solution-scene-pc.jpg" alt="산업용 금속 부품을 생산하는 제조 설비 전경" width="1920" height="960" decoding="async" />
                                 </picture>
                             </div>
                         </div>
                         <div class="hero-copy">
-                            <h2 class="hero-title" aria-live="polite" aria-atomic="true">금속의 가치를 만드는 정밀 주조 기술</h2>
+                            <h1 class="hero-title" aria-live="polite" aria-atomic="true">금속의 가치를 만드는 정밀 주조 기술</h1>
                         </div>
                         <!-- 피그마 20:91: 썸네일 3개와 SOLUTION -->
                         <div class="swiper-controls">
                             <div class="swiper-pagination" aria-label="히어로 슬라이드 선택"></div>
                             <div class="hero-solution">
-                                <span class="hero-solution-label">• SOLUTION</span>
-                                <p class="hero-solution-description">
-                                    축적된 주조 기술과 정밀한 생산 역량을 바탕으로,<br class="hero-solution-break" />
-                                    다양한 산업 환경과 고객의 요구에 대응하는 신뢰할 수 있는 금속 부품 솔루션을
-                                    제공합니다.
-                                </p>
-                                <a class="hero-solution-link" href="#company">자세히 보기</a>
+                                <span class="hero-solution-label" lang="en">Solution</span>
+                                <p class="hero-solution-description">주강, 특수합금강, 스테인리스 주강을 주조해 산업용 부품을 만듭니다.</p>
+                                <a class="hero-solution-link" href="#company">사업 분야 보기</a>
                             </div>
                             <div class="swiper-scrollbar" aria-hidden="true"></div>
                         </div>
@@ -214,7 +216,7 @@
                 <section id="achievements" class="company-achievements" aria-labelledby="achievements-title">
                     <div class="company-achievements__frame">
                         <div class="company-achievements__content">
-                            <h2 id="achievements-title">축적된 기술로 만드는</h2>
+                            <h2 id="achievements-title">숫자로 보는 원강금속</h2>
                             <dl class="company-achievements__stats">
                                 <div>
                                     <dt>설립연도</dt>
@@ -678,7 +680,7 @@
                 <section class="partners" id="partners" aria-labelledby="partners-title">
                     <p class="partners__eyebrow">Partners</p>
                     <h2 id="partners-title">
-                        원강금속은 기술과 신뢰를 바탕으로<br />세계의 파트너들과 함께 성장합니다.
+                        원강금속은 기술과 신뢰를 바탕으로 <br />세계의 파트너들과 함께 성장합니다.
                     </h2>
                     <ul class="partner-list">
                         <li>
@@ -859,6 +861,8 @@
                     </div>
                     <div class="footer-legal">
                         <div>
+                            <a class="project-index-link" href="../index.html">학습 프로젝트 목록</a>
+
                             <button type="button" data-info="privacy" aria-haspopup="dialog">개인정보 취급방침</button
                             ><button type="button" data-info="email" aria-haspopup="dialog">이메일 무단수집거부</button>
                         </div>

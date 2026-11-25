@@ -4,16 +4,36 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const supportsObservation = 'IntersectionObserver' in window;
 const heroPaginationItems = [
-    { image: 'img/figma/hero-thumb-casting-small.jpg', title: '금속의 가치를 만드는 정밀 주조 기술' },
-    { image: 'img/figma/hero-thumb-quality-scene-small.jpg', title: '첨단 기술로 완성하는 정밀 품질 관리' },
-    { image: 'img/figma/hero-thumb-solution-scene-small.jpg', title: '산업의 미래를 연결하는 주조 솔루션' },
+    {
+        image: 'img/figma/hero-thumb-casting-small.jpg', label: '주조 기술',
+        title: '금속의 가치를 만드는 정밀 주조 기술',
+        description: '주강, 특수합금강, 스테인리스 주강을 주조해 산업용 부품을 만듭니다.',
+        action: '사업 분야 보기', href: '#company',
+    },
+    {
+        image: 'img/figma/hero-thumb-quality-scene-small.jpg', label: '품질 관리',
+        title: '첨단 기술로 완성하는 정밀 품질 관리',
+        description: '주조품의 형상과 가공 치수를 확인하는 측정·검사 공정을 소개합니다.',
+        action: '핵심기술 보기', href: 'factory/technology.html',
+    },
+    {
+        image: 'img/figma/hero-thumb-solution-scene-small.jpg', label: '생산 솔루션',
+        title: '산업의 미래를 연결하는 주조 솔루션',
+        description: '일반·고압 펌프, 밸브, 산업기계에 쓰이는 금속 부품을 살펴보세요.',
+        action: '전체 제품 보기', href: 'products/index.html#products-catalog',
+    },
 ];
 
 const heroTitle = document.querySelector('.hero-title');
+const heroDescription = document.querySelector('.hero-solution-description');
+const heroLink = document.querySelector('.hero-solution-link');
 function syncHeroTitle(swiper) {
     const item = heroPaginationItems[swiper.realIndex ?? 0];
     if (!item || !heroTitle || heroTitle.textContent === item.title) return;
     heroTitle.textContent = item.title;
+    heroDescription.textContent = item.description;
+    heroLink.textContent = item.action;
+    heroLink.setAttribute('href', item.href);
     if (reducedMotion || typeof heroTitle.animate !== 'function') return;
     heroTitle.getAnimations().forEach(animation => animation.cancel());
     heroTitle.animate(
@@ -50,7 +70,7 @@ if (typeof Swiper !== 'undefined') {
                     item.image +
                     '" alt="" width="100" height="55" decoding="async">' +
                     '<span class="hero-thumb-title">' +
-                    item.title +
+                    item.label +
                     '</span>' +
                     '<span class="hero-pagination-index">' +
                     String(index + 1).padStart(2, '0') +

@@ -58,6 +58,7 @@ async function scrollTo(page, top) {
             const errors = [];
             page.on('pageerror', (error) => errors.push(error.message));
             await page.goto(url, { waitUntil: 'networkidle' });
+            const initialBackground = await page.locator('.site-header').evaluate(el => getComputedStyle(el).backgroundColor);
             await page.mouse.move(width - 20, height - 20);
             await expectHeader(page, true);
 
@@ -78,13 +79,16 @@ async function scrollTo(page, top) {
                     'a pinned card must cover the top edge without a leftover header gap'
                 );
             }
-            await scrollTo(page, 1536);
+            // Measure scroll direction after the service gallery, outside its snap points.
+            const productTop = await page.locator('#products').evaluate(el => el.getBoundingClientRect().top + scrollY);
+            await scrollTo(page, productTop + 64);
+            await scrollTo(page, productTop);
             await expectHeader(page, true);
-            await scrollTo(page, 1540);
+            await scrollTo(page, productTop + 4);
             await expectHeader(page, true);
-            await scrollTo(page, 1536);
+            await scrollTo(page, productTop);
 
-            await scrollTo(page, 1800);
+            await scrollTo(page, productTop + 200);
             await expectHeader(page, false);
             await page.mouse.move(20, 8);
             await expectHeader(page, true);
@@ -97,27 +101,27 @@ async function scrollTo(page, top) {
             await expectHeader(page, true);
             assert.equal(await page.locator('.site-logo').evaluate((el) => el === document.activeElement), true);
             await page.keyboard.press('Tab');
-            await page.keyboard.press('Enter');
+            await page.keyboard.press(width > 850 ? 'ArrowDown' : 'Enter');
             assert.equal(await page.locator('.site-header').evaluate((el) => el.classList.contains('mega-open')), true);
-            await scrollTo(page, 2200);
+            await scrollTo(page, productTop + 600);
             await expectHeader(page, true);
             await page.keyboard.press('Escape');
             await expectHeader(page, true);
             await page.locator('#main-content').evaluate((el) => el.focus({ preventScroll: true }));
             await expectHeader(page, false);
 
-            await scrollTo(page, 2136);
+            await scrollTo(page, productTop + 536);
             await expectHeader(page, true);
             if (width > 850) {
-                await page.locator('#nav-company').click();
+                await page.locator('#nav-company').hover();
                 await page.locator('#submenu-company a').first().hover();
-                await scrollTo(page, 2400);
+                await scrollTo(page, productTop + 800);
                 await expectHeader(page, true);
                 await page.mouse.move(width - 20, height - 20);
             } else {
                 await page.locator('.menu-toggle').tap();
-                if (width <= 600) await page.locator('#nav-company').tap();
-                await scrollTo(page, 2400);
+                await page.locator('[aria-controls="submenu-company"]').tap();
+                await scrollTo(page, productTop + 800);
                 await expectHeader(page, true);
                 const outside = await page.locator('.site-header').evaluate((el) => ({
                     x: innerWidth - 20,
@@ -131,7 +135,8 @@ async function scrollTo(page, top) {
             await scrollTo(page, 0);
             await expectHeader(page, true);
             await page.waitForFunction(
-                () => getComputedStyle(document.querySelector('.site-header')).backgroundColor === 'rgba(0, 0, 0, 0)'
+                expected => getComputedStyle(document.querySelector('.site-header')).backgroundColor === expected,
+                initialBackground
             );
             assert.deepEqual(errors, []);
             results.push({
