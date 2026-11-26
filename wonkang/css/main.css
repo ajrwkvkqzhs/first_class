@@ -812,10 +812,6 @@ figure,
     height: 100%;
     object-fit: cover;
 }
-/* 원본 패턴 사진은 상하 약 91px의 흰 띠가 있어 프레임 안에서 확대해 제거합니다. */
-.process-item--pattern .process-item__media img {
-    transform: scale(1.3);
-}
 .process-item figcaption {
     padding: 0;
     flex: none;
