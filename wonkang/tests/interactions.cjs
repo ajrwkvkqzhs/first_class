@@ -283,10 +283,19 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     // A staggered grid overlaps vertically between columns by design.
     // Compare the actual whitespace within each column instead of DOM-neighbor gaps.
     const gaps = figures.slice(2).map((figure, i) => figure.top - figures[i].bottom);
-    assert.ok(
-        gaps.every((gap) => gap > 0 && Math.abs(gap - gaps[0]) < 2),
-        'all same-column gallery gaps must be equal'
-    );
+    assert.ok(gaps.every(gap => gap > 0), 'gallery cards must not overlap in either column');
+    // Pattern image intentionally uses its own photo ratio; verify actual caption spacing instead.
+    const captions = await page.locator('.process-item figcaption').evaluateAll(nodes => nodes.map(caption => {
+        const title = caption.querySelector('.process-item__title');
+        const description = caption.querySelector('.process-item__description');
+        return {
+            title: title?.textContent.trim(),
+            description: description?.textContent.trim(),
+            gap: description && title ? description.getBoundingClientRect().top - title.getBoundingClientRect().bottom : null
+        };
+    }));
+    assert.equal(captions.length, 8);
+    assert.ok(captions.every(c => c.title && c.description && Math.abs(c.gap - 10) < 1), 'all 8 captions have matching description structure and spacing');
     const stagger = figures[1].top - figures[0].top;
     assert.ok(stagger > 0 && figures.filter((_,i) => i % 2 === 1).every((figure,i) =>
         Math.abs(figure.top - figures[i * 2].top - stagger) < 2),
