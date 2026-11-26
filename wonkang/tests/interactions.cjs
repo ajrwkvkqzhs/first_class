@@ -122,11 +122,18 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
             position: getComputedStyle(frame).position,
             frameHeight: frame.offsetHeight,
             viewportHeight: innerHeight,
+            dissolve: document.querySelector('#achievements').getBoundingClientRect().bottom - document.querySelector('.company-achievements__frame').offsetHeight - rect.top,
         };
     });
     assert.equal(cta.position, 'sticky', 'desktop CTA frame has sticky positioning');
-    assert.ok(cta.hold >= 180 && cta.hold <= 260, 'CTA frame holds for a short scroll distance');
+    assert.ok(cta.dissolve >= 280 && cta.dissolve <= 420, 'dissolve scroll distance is bounded');
+    assert.ok(cta.hold - cta.dissolve >= 180 && cta.hold - cta.dissolve <= 260, 'CTA retains its original hold after the dissolve');
     const readCTA = () => page.locator('#products .product-showcase').evaluate((el) => el.getBoundingClientRect().top);
+    await page.evaluate(top => scrollTo({top, behavior:'instant'}), cta.top + cta.dissolve / 2);
+    await page.waitForFunction(() => { const a = Number(getComputedStyle(document.querySelector('#products .product-showcase')).opacity); return a > .4 && a < .6; });
+    assert.ok(Math.abs(await readCTA()) < 2, 'CTA remains pinned while dissolving');
+    await page.evaluate(top => scrollTo({top, behavior:'instant'}), cta.top + cta.dissolve + 10);
+    await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('#products .product-showcase')).opacity) === 1);
     await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), cta.top + cta.hold / 2);
     await page.waitForTimeout(100);
     assert.ok(Math.abs(await readCTA()) < 2, 'CTA frame remains pinned midway through hold');
@@ -134,7 +141,8 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
     await page.waitForTimeout(100);
     assert.ok((await readCTA()) < -60, 'CTA frame releases after hold');
 
-    await page.locator('#products').evaluate((el) => scrollTo({ top: el.offsetTop - 80, behavior: 'instant' }));
+    await page.evaluate(top => scrollTo({top, behavior:'instant'}), cta.top + cta.dissolve + 10);
+    await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('#products .product-showcase')).opacity) === 1);
     await page.mouse.move(5, 5);
     assert.equal(
         await page

@@ -1977,3 +1977,33 @@ main .page-reveal-pending.page-reveal-visible {
         transition: none;
     }
 }
+
+/* 실적 → 제품: 두 sticky 프레임을 겹치고 CTA의 투명도만 높여 디졸브합니다.
+   JS가 활성화된 넓은 화면에서만 적용하고, 일반 스크롤과 모션 감소 환경은 유지합니다. */
+@media (min-width: 1101px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+    body.has-scene-dissolve {
+        --scene-dissolve-distance: clamp(280px, 42svh, 420px);
+        --scene-stage-height: 100svh;
+    }
+    .has-scene-dissolve .company-achievements {
+        height: calc(var(--scene-stage-height) + clamp(480px, 60svh, 660px) + var(--scene-dissolve-distance));
+    }
+    .has-scene-dissolve .product-showcase-scroll {
+        --cta-stage-height: var(--scene-stage-height);
+        z-index: 2;
+        margin-top: calc(-1 * (var(--scene-stage-height) + var(--scene-dissolve-distance)));
+        height: calc(var(--cta-stage-height) + var(--scene-dissolve-distance) + clamp(180px, 25svh, 260px));
+        scroll-margin-top: calc(-1 * (var(--scene-dissolve-distance) + var(--header-height)));
+    }
+    .has-scene-dissolve .product-showcase-scroll > .product-showcase {
+        opacity: var(--cta-blend, 0);
+        background: var(--text-primary, #17191d);
+    }
+    .has-scene-dissolve .product-showcase-scroll.is-dissolving > .product-showcase {
+        pointer-events: none;
+    }
+    .has-scene-dissolve .product-showcase-scroll:focus-within > .product-showcase {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}

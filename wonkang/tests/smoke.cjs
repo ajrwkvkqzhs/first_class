@@ -237,10 +237,11 @@ const root = path.resolve(__dirname, '../..');
             hold: section.offsetHeight - frame.offsetHeight,
             framePosition: getComputedStyle(frame).position,
             viewportHeight: innerHeight,
+            dissolve: document.body.classList.contains('has-scene-dissolve') ? section.getBoundingClientRect().bottom - frame.offsetHeight - document.querySelector('#products').getBoundingClientRect().top : 0,
         };
     });
     assert.equal(metrics.framePosition, 'sticky', 'achievements frame must be sticky with normal motion');
-    assert.ok(metrics.hold >= 480 && metrics.hold <= 660, 'hold lasts approximately three times longer');
+    assert.ok(metrics.hold - metrics.dissolve >= 480 && metrics.hold - metrics.dissolve <= 660, 'number hold is preserved before dissolve');
     const readFrameTop = () => normal.locator('.company-achievements__frame')
         .evaluate((frame) => frame.getBoundingClientRect().top);
     await normal.evaluate((top) => scrollTo({ top, behavior: 'instant' }), metrics.top);

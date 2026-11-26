@@ -578,3 +578,47 @@ if (achievements && supportsObservation && !reducedMotion) {
 
     achievementsObserver.observe(achievements);
 }
+
+/* 스크롤 위치에 따라 숫자 화면 위로 제품 화면을 교차 합성합니다.
+   별도 wheel 차단, 스크롤 강제 이동, 타이머 재생을 사용하지 않습니다. */
+function initializeSceneDissolve() {
+    const stats = document.querySelector('#achievements');
+    const statsFrame = stats?.querySelector('.company-achievements__frame');
+    const products = document.querySelector('#products');
+    if (!stats || !statsFrame || !products) return;
+    const media = matchMedia('(min-width: 1101px) and (min-height: 760px) and (prefers-reduced-motion: no-preference)');
+    let scheduled = false;
+
+    function render() {
+        scheduled = false;
+        if (!media.matches) return;
+        const productTop = products.getBoundingClientRect().top;
+        const overlapDistance = stats.getBoundingClientRect().bottom - statsFrame.offsetHeight - productTop;
+        const progress = Math.max(0, Math.min(1, -productTop / Math.max(1, overlapDistance)));
+        const blend = progress * progress * (3 - 2 * progress);
+        products.style.setProperty('--cta-blend', blend.toFixed(4));
+        products.classList.toggle('is-dissolving', progress < 0.98);
+    }
+
+    function schedule() {
+        if (!media.matches || scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(render);
+    }
+
+    function syncMedia() {
+        document.body.classList.toggle('has-scene-dissolve', media.matches);
+        if (media.matches) render();
+        else {
+            products.style.removeProperty('--cta-blend');
+            products.classList.remove('is-dissolving');
+        }
+    }
+
+    media.addEventListener('change', syncMedia);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('pageshow', schedule);
+    syncMedia();
+}
+initializeSceneDissolve();
