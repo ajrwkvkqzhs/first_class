@@ -28,9 +28,6 @@
 #inquiry-result p{font-size:13px;line-height:1.7;margin-top:12px}
 .customer-page [hidden]{display:none!important}
 .customer-catalog-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:26px}
-.customer-catalog-nav{display:flex;flex-wrap:wrap;border-top:2px solid var(--text-primary);margin-top:40px}
-.customer-catalog-nav a{flex:1 1 180px;display:flex;justify-content:space-between;gap:12px;padding:18px 16px;border-bottom:1px solid var(--border-default);font-weight:600}
-.customer-catalog-nav a:hover{color:var(--primary-default)}
 .customer-catalog-item{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,76px);align-items:center;padding-block:48px;border-bottom:1px solid var(--border-default);scroll-margin-top:calc(var(--header-height) + 90px)}
 .customer-catalog-item:target{border-bottom-color:var(--primary-default)}
 .customer-catalog-item figure{margin:0;background:var(--background-default)}
@@ -43,4 +40,4 @@
 .customer-catalog-actions{display:flex;gap:10px;flex-wrap:wrap}
 @media(max-width:850px){.customer-contact-layout,.customer-catalog-item{grid-template-columns:1fr}.customer-catalog-item img{height:clamp(220px,55vw,360px)}}
 @media(max-width:520px){.customer-fields{grid-template-columns:1fr}.customer-catalog-heading{align-items:start;flex-direction:column}.customer-catalog-actions>*{flex:1}}
-@media print{.customer-page .site-header,.customer-page .site-footer,.customer-page .detail-hero,.customer-page .detail-breadcrumb,.customer-page .detail-siblings,.customer-page .detail-cta,.customer-catalog-nav,.customer-catalog-actions,#print-catalog,.skip-link{display:none!important}.customer-page .detail-shell{width:100%}.customer-page .detail-section{padding:0}.customer-catalog-item{break-inside:avoid;padding-block:16px;grid-template-columns:1fr 1fr;gap:20px}.customer-catalog-item img{height:150px}.customer-catalog-copy h3{font-size:23px}}
+@media print{.customer-page .site-header,.customer-page .site-footer,.customer-page .detail-hero,.customer-page .detail-breadcrumb,.customer-page .detail-siblings,.customer-page .detail-cta,.customer-catalog-actions,#print-catalog,.skip-link{display:none!important}.customer-page .detail-shell{width:100%}.customer-page .detail-section{padding:0}.customer-catalog-item{break-inside:avoid;padding-block:16px;grid-template-columns:1fr 1fr;gap:20px}.customer-catalog-item img{height:150px}.customer-catalog-copy h3{font-size:23px}}
