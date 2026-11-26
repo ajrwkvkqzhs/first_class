@@ -45,6 +45,7 @@ for(const file of docs){
  const utility=html.match(/<a class="site-support"[^>]*href="([^"]+)"[^>]*>고객문의<\/a>/);
  if((gnb.match(/class="site-nav__group"/g)||[]).length!==3||gnb.includes('nav-customer'))errors.push(file+': expected three primary GNB groups');
  if(!utility||destination(file,utility[1])!=='wonkang/customer/contact.html')errors.push(file+': missing customer utility link');
+ if(/<div class="site-header-right">\s*<a class="site-support"/.test(html))errors.push(file+': inquiry must be independent from language controls');
  if(subpages.includes(file)){
   const banner=html.match(/<section\b[^>]*class="[^"]*\bsubpage-banner\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0]||'';
   const nav=banner.match(/<nav class="subpage-depth"[\s\S]*?<\/nav>/)?.[0]||'';
