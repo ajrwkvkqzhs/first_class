@@ -5,7 +5,7 @@
 .about-page { --about-gutter: clamp(20px, 4.453125vw, 86px); }
 .about-page .about-shell { width:min(100% - var(--about-gutter) - var(--about-gutter), 1520px); margin-inline:auto; }
 .about-page main { background:var(--surface-default); }
-.about-page main section { /* html already supplies header scroll-padding-top */ scroll-margin-top:79px; }
+.about-page main section { /* html already supplies header scroll-padding-top */ scroll-margin-top:16px; }
 .about-page .about-section { position:relative; }
 .about-page .about-kicker { display:inline-flex; align-items:center; gap:14px; color:var(--primary-default); font-size:15px; font-weight:700; letter-spacing:.11em; }
 .about-page .about-kicker::before { content:''; display:block; width:28px; height:2px; background:currentColor; }
@@ -24,7 +24,7 @@
 .about-page .about-hero__description { margin-top:28px; font-size:clamp(16px,1.15vw,20px); line-height:1.75; font-weight:500; color:#fff; }
 .about-page .about-hero__line { position:absolute; left:0; right:0; bottom:0; min-height:66px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding-inline:var(--about-gutter); border-top:1px solid #ffffff80; color:#fff; font-size:12px; font-weight:700; letter-spacing:.12em; }
 
-/* The breadcrumb communicates location; the sticky bar belongs to the current page's section index. */
+/* Breadcrumb communicates the current page location. */
 .about-page .about-navigation { background:var(--neutral-50); border-bottom:1px solid var(--border-default); }
 .about-page .about-breadcrumb { width:min(100% - var(--about-gutter) - var(--about-gutter),1520px); margin-inline:auto; }
 .about-page .about-breadcrumb ol { display:flex; align-items:center; flex-wrap:wrap; gap:10px; min-height:44px; color:var(--text-muted); font-size:12px; font-weight:400; }
@@ -33,17 +33,7 @@
 .about-page .about-breadcrumb a { display:inline-flex; align-items:center; min-height:40px; }
 .about-page .about-breadcrumb a:hover,.about-page .about-breadcrumb a:focus-visible { color:var(--primary-default); }
 .about-page .about-breadcrumb [aria-current='page'] { color:var(--text-primary); font-weight:600; }
-.about-page .about-section-nav { position:sticky; top:var(--header-height); z-index:80; border-bottom:1px solid var(--border-default); background:#fff; box-shadow:0 7px 18px #00000008; transition:top .24s ease; }
-.about-page .site-header.is-hidden ~ main .about-section-nav { top:0; }
-.about-page .about-section-nav__inner { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:center; gap:clamp(20px,2.4vw,44px); min-height:76px; }
-.about-page .about-section-nav__heading { display:inline-flex; align-items:center; gap:clamp(20px,2.4vw,44px); color:var(--text-primary); font-size:21px; font-weight:700; white-space:nowrap; }
-.about-page .about-section-nav__heading::after { content:''; display:block; width:1px; height:22px; background:var(--border-default); }
-.about-page .about-section-nav__links { display:flex; align-items:center; gap:clamp(18px,2.2vw,40px); min-width:0; overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; }
-.about-page .about-section-nav a { display:inline-flex; align-items:center; min-height:75px; flex:none; border-bottom:2px solid transparent; color:var(--text-muted); font-size:14px; font-weight:500; white-space:nowrap; transition:color .2s ease,border-color .2s ease; }
-/* The red underline belongs only to the selected section, not pointer hover or keyboard focus. */
-.about-page .about-section-nav a:hover { color:var(--primary-default); }
-.about-page .about-section-nav a:focus-visible { outline:2px solid var(--primary-default); outline-offset:-5px; }
-.about-page .about-section-nav a[aria-current='location'] { border-bottom-color:var(--primary-default); color:var(--text-primary); font-weight:700; }
+
 
 /* Company overview: editorial type with evidence first, no invented headline KPI values. */
 .about-page .about-overview { padding-block:clamp(100px,10vw,185px) clamp(95px,9.2vw,165px); }
@@ -159,11 +149,6 @@
 }
 @media(max-width:850px) {
   .about-page .about-hero__content { padding-top:180px; padding-bottom:125px; }
-  .about-page .about-section-nav { top:var(--header-height); }
-  .about-page .about-section-nav__heading { font-size:18px; gap:18px; }
-  .about-page .about-section-nav__inner { gap:18px; }
-  .about-page .about-section-nav__links { gap:20px; }
-  .about-page .about-section-nav a { font-size:14px; }
   .about-page .about-overview__copy { display:block; }
   .about-page .about-overview__copy > p:not(.about-overview__lead) { margin-top:23px; }
   .about-page .about-overview__details { margin-top:45px; }
@@ -184,8 +169,8 @@
 }
 @media(max-width:600px) {
   .about-page { --about-gutter:20px; }
-  /* 76px header + 79px two-row section bar; leave a readable gap at anchor landing. */
-  .about-page main section { scroll-margin-top:89px; }
+  /* Extra spacing below the fixed header for anchor links. */
+  .about-page main section { scroll-margin-top:16px; }
   .about-page .about-kicker { font-size:12px; gap:9px; }
   .about-page .about-kicker::before { width:20px; }
   .about-page .about-section h2 { font-size:clamp(28px,7.1vw,36px); line-height:1.34; }
@@ -199,11 +184,6 @@
   .about-page .about-hero__line { min-height:55px; font-size:10px; }
   .about-page .about-breadcrumb ol { min-height:40px; font-size:11px; gap:7px; }
   .about-page .about-breadcrumb li { gap:7px; }
-  .about-page .about-section-nav__inner { display:flex; flex-direction:column; align-items:stretch; gap:0; min-height:0; }
-  .about-page .about-section-nav__heading { min-height:31px; align-items:flex-end; font-size:15px; }
-  .about-page .about-section-nav__heading::after { display:none; }
-  .about-page .about-section-nav__links { gap:22px; width:100%; }
-  .about-page .about-section-nav a { min-height:48px; font-size:13px; }
   .about-page .about-overview,.about-page .about-process,.about-page .about-proof,.about-page .about-belief,.about-page .about-history { padding-block:78px; }
   .about-page .about-section__head h2,.about-page .about-process__heading h2,.about-page .about-proof__heading h2,.about-page .about-belief h2,.about-page .about-history h2,.about-page .about-contact h2 { margin-top:17px; }
   .about-page .about-overview__body { margin-top:35px; gap:35px; }
@@ -251,11 +231,9 @@
   .about-page .about-contact__actions { width:100%; }
   .about-page .about-contact__primary { width:100%; min-height:54px; }
 }
-@media (hover:none), (pointer:coarse) {
-  .about-page .about-section-nav a { min-height:48px; }
-}
+
 @media (prefers-reduced-motion:reduce) {
-  .about-page .about-text-link,.about-page .about-section-nav,.about-page .about-section-nav a,.about-page .about-contact__primary { transition:none; }
+  .about-page .about-text-link,.about-page .about-contact__primary { transition:none; }
 }
 /* Image and content-card corner radius shared with the main page. */
 .about-page .about-overview__image img,
