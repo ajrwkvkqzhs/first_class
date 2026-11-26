@@ -793,15 +793,19 @@ figure,
     position: relative;
     overflow: hidden;
     aspect-ratio: 960/948;
+    width: 100%;
 }
 .process-item__media img {
     display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 .process-item figcaption {
-    padding-top: clamp(12px, 1.1vw, 20px);
+    padding-top: 12px;
+    margin: 0;
     font-size: clamp(19px, 2.8vw, 56px);
     font-weight: 600;
     line-height: 1.2;
