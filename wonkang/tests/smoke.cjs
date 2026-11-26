@@ -241,7 +241,7 @@ const root = path.resolve(__dirname, '../..');
         };
     });
     assert.equal(metrics.framePosition, 'sticky', 'achievements frame must be sticky with normal motion');
-    assert.ok(metrics.hold - metrics.dissolve >= 480 && metrics.hold - metrics.dissolve <= 660, 'number hold is preserved before dissolve');
+    assert.ok(metrics.hold - metrics.dissolve >= 1100 && metrics.hold - metrics.dissolve <= 1500, 'number hold is preserved before dissolve');
     const readFrameTop = () => normal.locator('.company-achievements__frame')
         .evaluate((frame) => frame.getBoundingClientRect().top);
     await normal.evaluate((top) => scrollTo({ top, behavior: 'instant' }), metrics.top);
