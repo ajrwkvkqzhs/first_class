@@ -44,3 +44,10 @@
     .subpage-depth__dropdown ul { left:auto; right:0; min-width:170px; }
 }
 @media print { .subpage-banner { display:none!important; } }
+
+/* Section titles stand alone; remove the gap previously reserved for eyebrow labels. */
+.about-page :is(.about-section__head,.about-process__heading,.about-proof__heading,.about-belief__intro,.about-history__intro,.about-contact) h2,
+.detail-page .detail-section__heading h2,
+.detail-page .detail-cta h2,
+.products-page .products-catalog__heading h2,
+.products-page .products-contact h2 { margin-top:0; }
