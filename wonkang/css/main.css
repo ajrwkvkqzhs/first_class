@@ -812,6 +812,12 @@ figure,
     height: 100%;
     object-fit: cover;
 }
+/* 패턴 사진의 실제 유효 영역: 800×622. 가로 폭은 유지하고 빈 프레임만 줄임. */
+@media (min-width: 851px) {
+    .process-item--pattern .process-item__media {
+        aspect-ratio: 800/622;
+    }
+}
 .process-item figcaption {
     padding: 0;
     flex: none;
