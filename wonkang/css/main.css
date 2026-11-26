@@ -1982,7 +1982,7 @@ main .page-reveal-pending.page-reveal-visible {
    JS가 활성화된 넓은 화면에서만 적용하고, 일반 스크롤과 모션 감소 환경은 유지합니다. */
 @media (min-width: 1101px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
     body.has-scene-dissolve {
-        --scene-dissolve-distance: clamp(280px, 42svh, 420px);
+        --scene-dissolve-distance: clamp(500px, 70svh, 760px);
         --scene-stage-height: 100svh;
     }
     .has-scene-dissolve .company-achievements {

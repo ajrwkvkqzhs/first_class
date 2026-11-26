@@ -126,7 +126,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         };
     });
     assert.equal(cta.position, 'sticky', 'desktop CTA frame has sticky positioning');
-    assert.ok(cta.dissolve >= 280 && cta.dissolve <= 420, 'dissolve scroll distance is bounded');
+    assert.ok(cta.dissolve >= 500 && cta.dissolve <= 760, 'dissolve scroll distance is bounded');
     assert.ok(cta.hold - cta.dissolve >= 180 && cta.hold - cta.dissolve <= 260, 'CTA retains its original hold after the dissolve');
     const readCTA = () => page.locator('#products .product-showcase').evaluate((el) => el.getBoundingClientRect().top);
     await page.evaluate(top => scrollTo({top, behavior:'instant'}), cta.top + cta.dissolve / 2);
