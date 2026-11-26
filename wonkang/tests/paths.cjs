@@ -41,6 +41,10 @@ for(const file of docs){
  if(!exists(file)){errors.push('missing HTML: '+file);continue;}
  const html=read(file);
  ids(file);
+ const gnb=html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0]||'';
+ const utility=html.match(/<a class="site-support"[^>]*href="([^"]+)"[^>]*>고객지원<\/a>/);
+ if((gnb.match(/class="site-nav__group"/g)||[]).length!==3||gnb.includes('nav-customer'))errors.push(file+': expected three primary GNB groups');
+ if(!utility||destination(file,utility[1])!=='wonkang/customer/contact.html')errors.push(file+': missing customer utility link');
  if(subpages.includes(file)){
   const banner=html.match(/<section\b[^>]*class="[^"]*\bsubpage-banner\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0]||'';
   const nav=banner.match(/<nav class="subpage-depth"[\s\S]*?<\/nav>/)?.[0]||'';

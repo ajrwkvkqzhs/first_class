@@ -136,14 +136,14 @@ figure,
     grid-column: 2;
     grid-row: 1;
     justify-self: center;
-    width: min(100%, 720px);
+    width: min(100%, 540px);
     max-height: 100dvh;
     overflow-y: auto;
     overscroll-behavior: contain;
 }
 .site-nav__list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .site-nav__group {
     min-width: 0;
@@ -1814,7 +1814,7 @@ body.dialog-open {
 }
 
 /* GNB split-action navigation: heading is a link, disclosure is an independent mobile button.
-   Desktop hover continues to open the existing megamenu using the shared four-column hierarchy. */
+   Desktop hover continues to open the existing megamenu using the original three-column hierarchy. */
 .site-nav__top {
     display: flex;
     align-items: center;
@@ -2021,3 +2021,12 @@ main .page-reveal-pending.page-reveal-visible {
 .certifications__link:hover { background:var(--text-primary); color:#fff; }
 .certifications__link:focus-visible { outline:2px solid var(--primary-default); outline-offset:4px; }
 @media(max-width:600px){.certifications__actions{margin-top:20px}.certifications__link{font-size:14px;min-height:44px}}
+
+/* Customer support is a utility link, not a fourth GNB column. */
+.site-header-right { gap:24px; }
+.site-support { display:inline-flex; align-items:center; white-space:nowrap; font-size:14px; font-weight:500; min-height:32px; }
+.site-support:hover,.site-support[aria-current="true"] { text-decoration:underline; text-underline-offset:4px; }
+.site-support:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
+@media(min-width:851px) { .site-support { align-self:flex-start; margin-top:12px; } }
+@media(max-width:850px) { .site-header-right { gap:14px; } .site-support { font-size:13px; min-height:44px; } }
+@media(max-width:420px) { .site-header__inner { padding-inline:16px; column-gap:8px; } .site-header-right { gap:8px; } .site-logo__media { width:clamp(105px,35vw,170px); } .site-support { font-size:12px; } }
