@@ -11,12 +11,12 @@ const docs = [
  'factory/equipment.html','factory/certifications.html','products/index.html',
  'products/general.html','products/pressure.html','products/valve.html','products/machinery.html','customer/contact.html','customer/catalog.html'
 ].map(name=>'wonkang/'+name);
-const subpages=docs.filter(name=>/wonkang\/(?:customer\/|company\/(?!about)|factory\/|products\/(?!index))/.test(name));
+const subpages=docs.filter(name=>name!=='wonkang/index.html');
 const cssFiles=[
- 'wonkang/css/main.css','wonkang/css/subpage.css','wonkang/customer/customer.css','wonkang/company/about.css',
+ 'wonkang/css/main.css','wonkang/css/subpage.css','wonkang/css/subpage-layout.css','wonkang/customer/customer.css','wonkang/company/about.css',
  'wonkang/company/ci.css','wonkang/products/products.css','CSS/default.css','font/default/css/notosanskr.css'
 ];
-const jsFiles=['wonkang/js/main.js','wonkang/js/subpage.js','wonkang/customer/customer.js','wonkang/company/about.js','wonkang/products/products.js'];
+const jsFiles=['wonkang/js/main.js','wonkang/js/subpage.js','wonkang/js/subpage-layout.js','wonkang/customer/customer.js','wonkang/company/about.js','wonkang/products/products.js'];
 const errors=[];
 let localReferences=0,cssAssets=0,anchors=0;
 const exists=rel=>fs.existsSync(path.join(root,rel));
@@ -42,9 +42,22 @@ for(const file of docs){
  const html=read(file);
  ids(file);
  if(subpages.includes(file)){
-  const nav=html.match(/<nav class="detail-siblings"[\s\S]*?<\/nav>/)?.[0]||'';
-  if(!nav.includes('detail-siblings__heading')||!nav.includes('detail-siblings__links'))errors.push(file+': inconsistent sibling menu');
-  if((nav.match(/aria-current="page"/g)||[]).length!==1)errors.push(file+': selected sibling link count mismatch');
+  const banner=html.match(/<section\b[^>]*class="[^"]*\bsubpage-banner\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0]||'';
+  const nav=banner.match(/<nav class="subpage-depth"[\s\S]*?<\/nav>/)?.[0]||'';
+  const dropdown=nav.match(/<details class="subpage-depth__dropdown"[\s\S]*?<\/details>/)?.[0]||'';
+  if(!dropdown.includes('<summary>')||!dropdown.includes('<ul>'))errors.push(file+': missing integrated depth menu');
+  if(!html.includes('subpage-layout.css')||!html.includes('subpage-layout.js'))errors.push(file+': missing shared subpage assets');
+  const group=path.posix.dirname(file);
+  const expected=subpages.filter(page=>path.posix.dirname(page)===group);
+  const links=[...dropdown.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)].map(m=>({href:m[1].match(/href="([^"]+)"/)?.[1],current:/aria-current="page"/.test(m[1]),label:m[2].trim()}));
+  const destinations=links.map(link=>destination(file,link.href||''));
+  if(destinations.length!==expected.length||new Set(destinations).size!==expected.length||expected.some(page=>!destinations.includes(page)))errors.push(file+': inconsistent depth menu destinations');
+  const selected=links.filter(link=>link.current);
+  if(selected.length!==1||destination(file,selected[0]?.href||'')!==file)errors.push(file+': selected depth link mismatch');
+  const heading=banner.match(/<h1\b[^>]*>([^<]+)<\/h1>/)?.[1]?.trim();
+  const summary=dropdown.match(/<summary>([^<]+)/)?.[1]?.trim();
+  if(!heading||heading!==summary||heading!==selected[0]?.label)errors.push(file+': inconsistent page title and depth label');
+  if(/<nav class="(?:detail-siblings|depth-nav|about-section-nav|customer-catalog-nav)"/.test(html))errors.push(file+': duplicate or legacy subpage navigation');
  }
  for(const m of html.matchAll(/\b(?:href|src)\s*=\s*(["'])(.*?)\1/g)){
   const href=m[2].trim();
