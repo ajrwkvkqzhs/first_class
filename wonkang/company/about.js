@@ -210,3 +210,17 @@ document.querySelectorAll('[data-info]').forEach(button => {
         document.querySelector('.dialog-close').focus();
     });
 });
+
+/* Native details keeps the depth menu keyboard operable even without JS. */
+const depthDropdown = document.querySelector('.about-depth-dropdown');
+if (depthDropdown) {
+    document.addEventListener('click', event => {
+        if (!depthDropdown.contains(event.target)) depthDropdown.open = false;
+    });
+    depthDropdown.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && depthDropdown.open) {
+            depthDropdown.open = false;
+            depthDropdown.querySelector('summary').focus();
+        }
+    });
+}

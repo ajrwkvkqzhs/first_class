@@ -8,10 +8,9 @@
 <link rel="stylesheet" href="../../font/default/css/notosanskr.css" />
 <link rel="stylesheet" href="../../CSS/default.css" />
 <link rel="stylesheet" href="../css/main.css?v=20261126-depth-consistency" />
-<link rel="stylesheet" href="about.css?v=20261126-remove-toc" />
+<link rel="stylesheet" href="about.css?v=20261126-compact-hero" />
 <script src="../js/reveal.js?v=20261104-interaction-review" defer></script>
-<script src="about.js?v=20261126-remove-toc" defer></script>
-<link rel="stylesheet" href="../css/depth-nav.css?v=20261126" />
+<script src="about.js?v=20261126-compact-hero" defer></script>
 </head>
 <body class="about-page">
 <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -99,28 +98,37 @@
                 </div>
             </header>
 <main id="main-content" tabindex="-1">
-<!-- 01 · 정체성: 메인 히어로의 이미지·대형 타이포 원칙은 재사용하되 서브페이지에 맞게 정보 목적을 명확히 합니다. -->
+<!-- 01 · 서브페이지 전용 배너와 현재 위치 -->
 <section class="about-hero hero-sec" id="top" aria-labelledby="about-hero-title">
-<img src="../img/figma/hero-casting.png" alt="" class="about-hero__image" width="1920" height="1529" fetchpriority="high" />
-<div class="about-shell about-hero__content">
-<p class="about-hero__eyebrow">COMPANY / WONKANG METAL</p>
-<h1 id="about-hero-title">기술을 축적하고,<br />신뢰를 주조합니다.</h1>
-<p class="about-hero__description">주조에서 가공과 품질 관리까지.<br />원강금속의 제조 역량과 발자취를 소개합니다.</p>
-</div>
-<div class="about-hero__line" aria-hidden="true"><span>SCROLL TO EXPLORE</span></div>
+    <img src="../img/figma/hero-casting.png" alt="" class="about-hero__image" width="1920" height="1529" fetchpriority="high" />
+    <div class="about-shell about-hero__content">
+        <h1 id="about-hero-title">회사개요</h1>
+        <nav class="about-hero-depth" aria-label="현재 위치 및 회사소개 하위 메뉴">
+            <ol>
+                <li><a href="../index.html" aria-label="홈">HOME</a></li>
+                <li><span>회사소개</span></li>
+                <li>
+                    <details class="about-depth-dropdown">
+                        <summary>회사개요 <span aria-hidden="true" class="about-depth-chevron"></span></summary>
+                        <ul>
+                            <li><a href="about.html" aria-current="page">회사개요</a></li>
+                            <li><a href="achievements.html">주요 실적</a></li>
+                            <li><a href="partners.html">비즈니스 파트너</a></li>
+                            <li><a href="certifications.html">주요 성과·인증</a></li>
+                            <li><a href="directions.html">오시는 길</a></li>
+                            <li><a href="ci.html">CI 소개</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ol>
+        </nav>
+    </div>
 </section>
 
-<!-- 02 · 탐색: 브레드크럼과 공통 2Depth 메뉴 -->
-<div class="about-navigation" id="company-nav">
-<nav class="about-breadcrumb" aria-label="현재 위치">
-<ol><li><a href="../index.html">HOME</a></li><li><span>회사소개</span></li><li><span aria-current="page">회사개요</span></li></ol>
-</nav>
-</div>
-<nav class="depth-nav" aria-label="회사소개 하위 메뉴"><div class="about-shell depth-nav__inner"><strong class="depth-nav__heading">회사소개</strong><div class="depth-nav__links"><a href="about.html" aria-current="page">회사개요</a><a href="achievements.html">주요 실적</a><a href="partners.html">비즈니스 파트너</a><a href="certifications.html">주요 성과·인증</a><a href="directions.html">오시는 길</a><a href="ci.html">CI 소개</a></div></div></nav>
 <!-- 03 · 기업 개요: 소개, 주력 소재와 제품 용도를 구체적으로 전달합니다. -->
 <section class="about-overview about-section" id="overview" aria-labelledby="overview-title">
 <div class="about-shell">
-<div class="about-section__head"><span class="about-kicker">WHO WE ARE</span><h2 id="overview-title">산업의 기반을 만드는<br />금속 제조 전문 기업</h2></div>
+<div class="about-section__head"><span class="about-kicker">WHO WE ARE</span><h2 id="overview-title">산업의 기반을 만드는<br />금속 제조 전문 기업</h2><p class="about-overview__intro">주조에서 가공과 품질 관리까지, 원강금속의 제조 역량과 발자취를 소개합니다.</p></div>
 <div class="about-overview__body">
 <div class="about-overview__copy">
 <p class="about-overview__lead">원강금속은 주강·특수합금강·스테인리스 주강을 활용한 산업용 금속 부품을 생산합니다.</p>
