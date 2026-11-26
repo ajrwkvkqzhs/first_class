@@ -136,14 +136,14 @@ figure,
     grid-column: 2;
     grid-row: 1;
     justify-self: center;
-    width: min(100%, 540px);
+    width: min(100%, 720px);
     max-height: 100dvh;
     overflow-y: auto;
     overscroll-behavior: contain;
 }
 .site-nav__list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .site-nav__group {
     min-width: 0;
@@ -1816,7 +1816,7 @@ body.dialog-open {
 }
 
 /* GNB split-action navigation: heading is a link, disclosure is an independent mobile button.
-   Desktop hover continues to open the existing megamenu without changing its three-column design. */
+   Desktop hover continues to open the existing megamenu using the shared four-column hierarchy. */
 .site-nav__top {
     display: flex;
     align-items: center;
@@ -2006,4 +2006,13 @@ main .page-reveal-pending.page-reveal-visible {
         opacity: 1;
         pointer-events: auto;
     }
+}
+
+/* Consistent current-page styling for GNB and footer. */
+.site-nav__submenu a[aria-current="page"], .footer-navigation a[aria-current="page"] { color:var(--primary-default); font-weight:700; }
+.site-nav__group:has(.site-nav__submenu a[aria-current="page"]) > .site-nav__top > .site-nav__item { font-weight:700; }
+@media (min-width:851px) and (max-width:1100px) {
+    .site-header__inner { column-gap:clamp(16px,2vw,24px); }
+    .site-nav__submenu a { font-size:14px; padding-inline:4px; word-break:keep-all; }
+    .site-nav__item { font-size:16px; }
 }

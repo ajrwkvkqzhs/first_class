@@ -335,7 +335,7 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         'sticky',
         'mobile CTA remains a normal vertical list'
     );
-    await touch.locator('a[href^="customer/catalog.html"]').nth(2).click();
+    await touch.locator('.product-panel a[href^="customer/catalog.html"]').nth(2).click();
     assert.match(touch.url(), /customer\/catalog\.html#pressure$/);
     assert.equal(await touch.locator('#pressure').count(), 1);
 
