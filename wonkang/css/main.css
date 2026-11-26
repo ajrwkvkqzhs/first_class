@@ -812,6 +812,15 @@ figure,
     height: 100%;
     object-fit: cover;
 }
+/* 원본 process-pattern.png: 800×800, 실제 사진은 y=91~709.
+   데스크톱 정사각형 프레임에서 이미지 자체의 흰 띠를 잘라냅니다.
+   모바일 가로형 프레임은 object-fit: cover로 이미 제거됩니다. */
+@media (min-width: 851px) {
+    .process-item--pattern .process-item__media img {
+        transform: scale(1.29);
+        transform-origin: center;
+    }
+}
 .process-item figcaption {
     padding: 0;
     flex: none;
