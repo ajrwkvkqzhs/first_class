@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="products.css?v=20261103-subnav-qa" />
   <script src="../js/reveal.js?v=20261104-interaction-review" defer></script>
 <script src="products.js?v=20261104-interaction-review" defer></script>
-<link rel="stylesheet" href="../css/depth-nav.css?v=20261126" />
+<link rel="stylesheet" href="../css/subpage-layout.css?v=20261126-compact" />
+<script src="../js/subpage-layout.js?v=20261126-compact" defer></script>
 </head>
 <body class="products-page">
 <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -99,23 +100,21 @@
                 </div>
             </header>
 <main id="main-content" tabindex="-1">
-  <section class="products-hero hero-sec" id="top" aria-labelledby="products-hero-title">
+  <section class="products-hero hero-sec subpage-banner" id="top" aria-labelledby="products-hero-title">
     <img class="products-hero__image" src="../img/figma/hero-casting.png" alt="" fetchpriority="high" />
-    <div class="products-shell products-hero__content">
-      <p class="products-hero__eyebrow">PRODUCT / WONKANG METAL</p>
-      <h1 id="products-hero-title">산업의 기반을 이루는<br />정밀한 금속 부품</h1>
-      <p class="products-hero__description">주강 · 특수합금강 · 스테인리스 주강 기술을 바탕으로<br />다양한 산업 분야에 필요한 제품을 소개합니다.</p>
+    <div class="products-shell products-hero__content subpage-banner__content">
+        <h1 id="products-hero-title">전체 제품</h1>
+        <nav class="subpage-depth" aria-label="현재 위치 및 제품소개 하위 메뉴">
+            <ol><li><a href="../index.html" aria-label="홈">HOME</a></li><li><span>제품소개</span></li><li><details class="subpage-depth__dropdown"><summary>전체 제품 <span aria-hidden="true" class="subpage-depth__chevron"></span></summary><ul><li><a href="index.html" aria-current="page">전체 제품</a></li><li><a href="general.html">일반 펌프부품</a></li><li><a href="pressure.html">고압 펌프부품</a></li><li><a href="valve.html">밸브부품</a></li><li><a href="machinery.html">산업기계부품</a></li></ul></details></li></ol>
+        </nav>
     </div>
-    <div class="products-hero__bottom" aria-hidden="true"><span>ENGINEERING THE FOUNDATION</span><span>PRODUCT</span></div>
-  </section>
-  <nav class="products-breadcrumb" aria-label="현재 위치">
-    <ol class="products-shell"><li><a href="../index.html">HOME</a></li><li>제품소개</li><li><span aria-current="page">전체 제품</span></li></ol>
-  </nav>
-  <nav class="depth-nav" aria-label="제품소개 하위 메뉴"><div class="products-shell depth-nav__inner"><strong class="depth-nav__heading">제품소개</strong><div class="depth-nav__links"><a href="index.html" aria-current="page">전체 제품</a><a href="general.html">일반 펌프부품</a><a href="pressure.html">고압 펌프부품</a><a href="valve.html">밸브부품</a><a href="machinery.html">산업기계부품</a></div></div></nav>
+</section>
+  
+  
   <section class="products-catalog" id="products-catalog" aria-labelledby="products-catalog-title">
     <div class="products-shell">
       <div class="products-catalog__heading">
-        <div><p class="products-kicker">PRODUCT LINEUP</p><h2 id="products-catalog-title">필요한 제품을<br />찾아보세요.</h2></div>
+        <div><p class="products-kicker">PRODUCT LINEUP</p><h2 id="products-catalog-title">필요한 제품을<br />찾아보세요.</h2><p class="subpage-intro-copy">주강 · 특수합금강 · 스테인리스 주강 기술을 바탕으로<br />다양한 산업 분야에 필요한 제품을 소개합니다.</p></div>
         <p>원강금속의 제품을 분야별로 확인할 수 있습니다.<br />분류를 선택하면 해당 제품과 상세 안내가 표시됩니다.</p>
       </div>
       <div class="products-deep-links" aria-hidden="true"><span id="general"></span><span id="pressure"></span><span id="valve"></span><span id="machinery"></span></div>

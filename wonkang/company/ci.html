@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="ci.css?v=20261103-nav-stability">
   <script src="../js/reveal.js?v=20261104-interaction-review" defer></script>
 <script src="../js/subpage.js?v=20261104-interaction-review" defer></script>
+<link rel="stylesheet" href="../css/subpage-layout.css?v=20261126-compact" />
+<script src="../js/subpage-layout.js?v=20261126-compact" defer></script>
 </head>
 <body class="detail-page ci-page">
   <a class="skip-link" href="#main-content">본문 바로가기</a>
@@ -99,26 +101,22 @@
                 </div>
             </header>
     <main id="main-content" tabindex="-1">
-      <section class="detail-hero hero-sec" id="top" aria-labelledby="ci-title">
-        <img class="detail-hero__image" src="../img/figma/hero-casting.png" alt="" fetchpriority="high">
-        <div class="detail-shell detail-hero__content">
-          <p class="detail-hero__eyebrow">BRAND IDENTITY / WONKANG METAL</p>
-          <h1 id="ci-title">기업의 가치를 담은<br>원강금속의 이름.</h1>
-          <p class="detail-hero__description">원강금속 리뉴얼 웹사이트에 적용한 로고와 컬러를 소개합니다.</p>
-        </div>
-        <div class="detail-hero__bottom" aria-hidden="true"><span>WONKANG METAL</span><span>BRAND IDENTITY</span></div>
-      </section>
-      <nav class="detail-breadcrumb" aria-label="현재 위치"><ol class="detail-shell">
-        <li><a href="../index.html">HOME</a></li><li>회사소개</li><li aria-current="page">CI 소개</li>
-      </ol></nav>
-      <nav class="detail-siblings" aria-label="회사소개 하위 메뉴"><div class="detail-shell detail-siblings__list"><strong class="detail-siblings__heading" aria-hidden="true">회사소개</strong><div class="detail-siblings__links"><a href="about.html">회사개요</a><a href="achievements.html">주요 실적</a>
-          <a href="partners.html">비즈니스 파트너</a><a href="certifications.html">주요 성과·인증</a>
-          <a href="directions.html">오시는 길</a><a href="ci.html" aria-current="page">CI 소개</a></div></div></nav>
+      <section class="detail-hero hero-sec subpage-banner" id="top" aria-labelledby="ci-title">
+    <img class="detail-hero__image" src="../img/figma/hero-casting.png" alt="" fetchpriority="high">
+    <div class="detail-shell detail-hero__content subpage-banner__content">
+        <h1 id="ci-title">CI 소개</h1>
+        <nav class="subpage-depth" aria-label="현재 위치 및 회사소개 하위 메뉴">
+            <ol><li><a href="../index.html" aria-label="홈">HOME</a></li><li><span>회사소개</span></li><li><details class="subpage-depth__dropdown"><summary>CI 소개 <span aria-hidden="true" class="subpage-depth__chevron"></span></summary><ul><li><a href="about.html">회사개요</a></li><li><a href="achievements.html">주요 실적</a></li><li><a href="partners.html">비즈니스 파트너</a></li><li><a href="certifications.html">주요 성과·인증</a></li><li><a href="directions.html">오시는 길</a></li><li><a href="ci.html" aria-current="page">CI 소개</a></li></ul></details></li></ol>
+        </nav>
+    </div>
+</section>
+      
+      
       <section class="detail-section" aria-labelledby="ci-logo-title">
         <div class="detail-shell">
           <div class="detail-section__heading">
             <p class="detail-kicker">LOGOTYPE</p>
-            <h2 id="ci-logo-title">원강금속 로고</h2>
+            <h2 id="ci-logo-title">원강금속 로고</h2><p class="subpage-intro-copy">원강금속 리뉴얼 웹사이트에 적용한 로고와 컬러를 소개합니다.</p>
             <p>원강금속 로고를 소개합니다.</p>
           </div>
           <div class="ci-logo-grid">
