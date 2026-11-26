@@ -151,8 +151,8 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         );
         assert.equal(await panel.locator('button,a').count(), 3, 'every CTA has detail, contact and catalog');
         assert.equal(await panel.locator('a.product-panel__detail').isVisible(), true);
-        assert.equal(await panel.locator('a[href="#contact"]').isVisible(), true);
-        assert.equal(await panel.locator('[data-info="catalog"]').isVisible(), true);
+        assert.equal(await panel.locator('a[href^="customer/contact.html"]').isVisible(), true);
+        assert.equal(await panel.locator('a[href^="customer/catalog.html"]').isVisible(), true);
     }
     await page.mouse.move(5, 5);
     await page.waitForFunction(() =>
@@ -311,9 +311,9 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
         'sticky',
         'mobile CTA remains a normal vertical list'
     );
-    await touch.locator('[data-info="catalog"]').nth(2).click();
-    assert.equal(await touch.locator('dialog').evaluate((el) => el.open), true);
-    await touch.locator('.dialog-close').click();
+    await touch.locator('a[href^="customer/catalog.html"]').nth(2).click();
+    assert.match(touch.url(), /customer\/catalog\.html#pressure$/);
+    assert.equal(await touch.locator('#pressure').count(), 1);
 
     const reduced = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
     await reduced.goto(baseUrl, { waitUntil: 'networkidle' });

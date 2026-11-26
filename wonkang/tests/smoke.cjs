@@ -124,10 +124,11 @@ const root = path.resolve(__dirname, '../..');
             }
             results.interactions.push('4 product links lead to existing detail pages');
             await page.locator('.product-panel').first().hover();
-            await page.locator('[data-info="catalog"]').first().click();
-            assert.match(await page.locator('#dialog-body').innerText(), /현재 제공되지/);
-            await page.locator('.dialog-close').click();
-            results.interactions.push('Catalog request information / close');
+            await page.locator('a[href^="customer/catalog.html"]').first().click();
+            assert.match(page.url(), /customer\/catalog\.html#machinery$/);
+            assert.equal(await page.locator('#machinery').count(), 1);
+            await page.goBack({waitUntil:'networkidle'});
+            results.interactions.push('Catalog CTA opens selected product group');
             const first = page.locator('.certificate-card').first();
             await first.hover();
             assert.equal(await first.getAttribute('aria-pressed'), 'true', 'certificate opens on hover');

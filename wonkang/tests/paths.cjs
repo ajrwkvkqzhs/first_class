@@ -9,14 +9,14 @@ const docs = [
  'company/certifications.html','company/directions.html','company/ci.html',
  'factory/locations.html','factory/process.html','factory/technology.html',
  'factory/equipment.html','factory/certifications.html','products/index.html',
- 'products/general.html','products/pressure.html','products/valve.html','products/machinery.html'
+ 'products/general.html','products/pressure.html','products/valve.html','products/machinery.html','customer/contact.html','customer/catalog.html'
 ].map(name=>'wonkang/'+name);
-const subpages=docs.filter(name=>/wonkang\/(?:company\/(?!about)|factory\/|products\/(?!index))/.test(name));
+const subpages=docs.filter(name=>/wonkang\/(?:customer\/|company\/(?!about)|factory\/|products\/(?!index))/.test(name));
 const cssFiles=[
- 'wonkang/css/main.css','wonkang/css/subpage.css','wonkang/company/about.css',
+ 'wonkang/css/main.css','wonkang/css/subpage.css','wonkang/customer/customer.css','wonkang/company/about.css',
  'wonkang/company/ci.css','wonkang/products/products.css','CSS/default.css','font/default/css/notosanskr.css'
 ];
-const jsFiles=['wonkang/js/main.js','wonkang/js/subpage.js','wonkang/company/about.js','wonkang/products/products.js'];
+const jsFiles=['wonkang/js/main.js','wonkang/js/subpage.js','wonkang/customer/customer.js','wonkang/company/about.js','wonkang/products/products.js'];
 const errors=[];
 let localReferences=0,cssAssets=0,anchors=0;
 const exists=rel=>fs.existsSync(path.join(root,rel));
