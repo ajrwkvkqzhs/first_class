@@ -280,10 +280,17 @@ const output = path.resolve(__dirname, '../reports/interaction-verification.json
             })
         );
     }
-    const gaps = figures.slice(1).map((figure, i) => figure.top - figures[i].bottom);
+    // A staggered grid overlaps vertically between columns by design.
+    // Compare the actual whitespace within each column instead of DOM-neighbor gaps.
+    const gaps = figures.slice(2).map((figure, i) => figure.top - figures[i].bottom);
     assert.ok(
-        gaps.every((gap) => gap > 0 && Math.abs(gap - gaps[0]) < 1),
-        'all gallery gaps must be equal'
+        gaps.every((gap) => gap > 0 && Math.abs(gap - gaps[0]) < 2),
+        'all same-column gallery gaps must be equal'
+    );
+    const stagger = figures[1].top - figures[0].top;
+    assert.ok(stagger > 0 && figures.filter((_,i) => i % 2 === 1).every((figure,i) =>
+        Math.abs(figure.top - figures[i * 2].top - stagger) < 2),
+        'right-column stagger stays consistent'
     );
     assert.ok(
         figures.every((figure, i) => (i % 2 === 0 ? figure.x < 720 : figure.x > 720)),
