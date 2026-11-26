@@ -2014,3 +2014,10 @@ main .page-reveal-pending.page-reveal-visible {
     .site-nav__submenu a { font-size:14px; padding-inline:4px; word-break:keep-all; }
     .site-nav__item { font-size:16px; }
 }
+
+/* Simple link from the certificate preview to the complete document library. */
+.certifications__actions { display:flex; justify-content:center; margin-top:32px; }
+.certifications__link { display:inline-flex; align-items:center; justify-content:center; gap:24px; min-height:48px; padding:10px 24px; border:1px solid var(--text-primary); color:var(--text-primary); font-size:16px; font-weight:500; transition:background .2s,color .2s,border-color .2s; }
+.certifications__link:hover { background:var(--text-primary); color:#fff; }
+.certifications__link:focus-visible { outline:2px solid var(--primary-default); outline-offset:4px; }
+@media(max-width:600px){.certifications__actions{margin-top:20px}.certifications__link{font-size:14px;min-height:44px}}
