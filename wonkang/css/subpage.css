@@ -279,3 +279,35 @@
 .detail-page .factory-overview__links { display:flex; flex-wrap:wrap; gap:8px 28px; }
 .detail-page .factory-overview__links .detail-link { margin-top:16px; }
 @media (max-width:600px) { .detail-page .factory-overview__facts > div { grid-template-columns:minmax(100px, 0.9fr) minmax(0, 1.3fr); gap:10px; font-size:14px; } }
+
+/* Production site: image, registered metrics, manufacturing capabilities. */
+.detail-page .factory-overview__photo { margin:clamp(32px,4.2vw,70px) 0 0; overflow:hidden; }
+.detail-page .factory-overview__photo img { display:block; width:100%; height:auto; aspect-ratio:2.45; object-fit:cover; background:var(--brand-neutral-200); }
+.detail-page .factory-overview__metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,3vw,48px); margin:clamp(32px,4vw,64px) 0 0; }
+.detail-page .factory-overview__metrics > div { min-width:0; border-top:2px solid var(--primary-default); padding:24px 0 26px; }
+.detail-page .factory-overview__metrics dt { color:var(--text-muted); font-size:clamp(14px,1.2vw,18px); font-weight:600; }
+.detail-page .factory-overview__metrics dd { margin:12px 0 0; font-size:clamp(32px,4.2vw,72px); font-weight:700; line-height:1.2; letter-spacing:-.045em; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.detail-page .factory-overview__metrics dd span { font-size:clamp(15px,1.65vw,28px); font-weight:500; letter-spacing:-.03em; }
+.detail-page .factory-overview__facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:clamp(24px,4vw,64px); margin:22px 0 0; border-top:0; }
+.detail-page .factory-overview__facts > div { display:grid; grid-template-columns:minmax(92px,.65fr) minmax(0,1.35fr); gap:16px; padding:17px 0; border-bottom:1px solid var(--border-default); font-size:16px; line-height:1.65; }
+.detail-page .factory-capabilities__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(16px,2vw,28px); margin-top:clamp(30px,4vw,64px); }
+.detail-page .factory-capabilities__item { min-width:0; }
+.detail-page .factory-capabilities__item img { display:block; width:100%; aspect-ratio:1.55; object-fit:cover; background:var(--brand-neutral-200); }
+.detail-page .factory-capabilities__item h3 { font-size:clamp(22px,2vw,32px); font-weight:700; margin-top:20px; line-height:1.35; }
+.detail-page .factory-capabilities__item p { font-size:16px; line-height:1.8; margin-top:10px; color:var(--text-muted); word-break:keep-all; }
+.detail-page .factory-overview__links { display:flex; flex-wrap:wrap; gap:8px 32px; }
+.detail-page .factory-overview__links .detail-link { margin-top:clamp(24px,3vw,44px); }
+@media (max-width:900px) {
+    .detail-page .factory-overview__metrics dd { font-size:clamp(28px,4.6vw,48px); }
+    .detail-page .factory-overview__facts { grid-template-columns:1fr; }
+    .detail-page .factory-capabilities__grid { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:34px; }
+}
+@media (max-width:600px) {
+    .detail-page .factory-overview__photo img { aspect-ratio:1.45; }
+    .detail-page .factory-overview__metrics { grid-template-columns:1fr; gap:0; }
+    .detail-page .factory-overview__metrics > div { display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:20px 0; }
+    .detail-page .factory-overview__metrics dd { margin:0; font-size:clamp(28px,7.5vw,44px); }
+    .detail-page .factory-overview__facts { margin-top:10px; }
+    .detail-page .factory-overview__facts > div { grid-template-columns:95px minmax(0,1fr); gap:10px; font-size:14px; padding:14px 0; }
+    .detail-page .factory-capabilities__grid { grid-template-columns:1fr; }
+}
