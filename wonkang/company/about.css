@@ -247,3 +247,11 @@
 .about-page .about-overview .about-section__head { text-align:center; }
 .about-page .about-overview__intro { margin:24px auto 0; max-width:760px; color:var(--text-muted); font-size:clamp(16px,1.2vw,20px); line-height:1.8; }
 @media(max-width:600px){.about-page .about-overview__intro{margin-top:16px;}}
+
+.about-page .about-contact__primary { font-weight:400; }
+.about-page .about-proof__cert,.about-page .about-proof__partners { border-radius:var(--content-radius); }
+@media(min-width:851px) {
+    .about-page :is(.about-overview,.about-process,.about-proof,.about-belief,.about-history) {
+        padding-block:var(--section-padding);
+    }
+}
