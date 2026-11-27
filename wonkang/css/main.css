@@ -2109,3 +2109,60 @@ body.customer-page .customer-secondary {
 @media(max-width:600px) {
     .product-panel__actions > a .wk-button-arrow { width:16px; height:16px; }
 }
+
+/* Final CTA roles: no inverse-color flash for monochrome buttons. */
+:root { --button-gap:12px; --button-padding-x:24px; --button-padding-y:12px; }
+.product-panel__detail {
+    border:1px solid #fff;
+    border-radius:var(--button-radius);
+    background:#fff;
+    color:var(--text-primary);
+    height:auto;
+    min-height:44px;
+    padding:var(--button-padding-y) var(--button-padding-x);
+    gap:var(--button-gap);
+}
+.product-panel__detail:hover,.product-panel__detail:focus-visible { background:#fff;color:var(--text-primary); }
+.product-panel__actions > a { height:auto; min-height:44px; padding-block:12px; border:1px solid #fff; background:#fff; color:var(--text-primary); transition:background-color .2s,border-color .2s; }
+.product-panel__actions > a[href*="customer/contact"] { background:var(--primary-default);border-color:var(--primary-default);color:#fff; }
+.product-panel__actions > a[href*="customer/contact"]:hover { background:var(--primary-hover);border-color:var(--primary-hover); }
+.dialog-contact a { background:var(--primary-default);color:#fff;transition:background-color .2s; }
+.dialog-contact a:hover { background:var(--primary-hover); }
+/* Legacy text links are action buttons, not inline prose links. */
+body.detail-page .detail-link,
+body.about-page .about-text-link,
+body.products-page :is(.products-detail__cta,.products-contact__link,.products-card__action) {
+    display:inline-flex; align-items:center; justify-content:space-between;
+    gap:var(--button-gap); min-height:44px; height:auto; max-width:100%; width:fit-content;
+    padding:var(--button-padding-y) var(--button-padding-x);
+    border:1px solid var(--text-primary); border-radius:var(--button-radius);
+    background:#fff; color:var(--text-primary); font-weight:400;
+    text-decoration:none; line-height:1.5; box-sizing:border-box;
+    transition:background-color .2s,border-color .2s;
+}
+body.detail-page .detail-link:hover,
+body.about-page .about-text-link:hover,
+body.about-page .about-text-link:focus-visible,
+body.products-page :is(.products-detail__cta,.products-contact__link):hover,
+body.products-page .products-card__link:hover .products-card__action,
+body.products-page .products-card__link:focus-visible .products-card__action {
+    color:var(--text-primary); background:#fff; gap:var(--button-gap);
+}
+body.products-page .products-card__action { margin-top:24px; background:var(--text-primary); color:#fff; }
+body.products-page .products-card__link:hover .products-card__action,
+body.products-page .products-card__link:focus-visible .products-card__action { background:var(--text-primary);color:#fff; }
+body.detail-page .detail-link[href*="customer/contact.html"],
+body.products-page :is(.products-detail__cta,.products-contact__link)[href*="customer/contact.html"],
+body.customer-page .detail-link[href^="contact.html"] {
+    background:var(--primary-default);border-color:var(--primary-default);color:#fff;
+}
+body.detail-page .detail-link[href*="customer/contact.html"]:hover,
+body.products-page :is(.products-detail__cta,.products-contact__link)[href*="customer/contact.html"]:hover,
+body.customer-page .detail-link[href^="contact.html"]:hover {
+    background:var(--primary-hover);border-color:var(--primary-hover);color:#fff;
+}
+@media(max-width:600px) {
+    body.detail-page .detail-link,body.about-page .about-text-link,
+    body.products-page :is(.products-detail__cta,.products-contact__link,.products-card__action) { padding:10px 18px; }
+    .product-panel__detail { padding:10px 18px; }
+}
