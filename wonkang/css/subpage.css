@@ -311,3 +311,12 @@
     .detail-page .factory-overview__facts > div { grid-template-columns:95px minmax(0,1fr); gap:10px; font-size:14px; padding:14px 0; }
     .detail-page .factory-capabilities__grid { grid-template-columns:1fr; }
 }
+
+.detail-page .factory-overview__photo img,
+.detail-page .factory-capabilities__item img { border-radius:var(--content-radius); }
+.directions-locations__tab {
+    border:0;
+    border-bottom:2px solid var(--border-default);
+    border-radius:0;
+}
+.directions-locations__tab:hover { color:var(--primary-default); }
