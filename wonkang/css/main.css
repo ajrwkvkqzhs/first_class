@@ -2123,9 +2123,19 @@ body.customer-page .customer-secondary {
     gap:var(--button-gap);
 }
 .product-panel__detail:hover,.product-panel__detail:focus-visible { background:#fff;color:var(--text-primary); }
-.product-panel__actions > a { height:auto; min-height:44px; padding-block:12px; border:1px solid #fff; background:#fff; color:var(--text-primary); transition:background-color .2s,border-color .2s; }
-.product-panel__actions > a[href*="customer/contact"] { background:var(--primary-default);border-color:var(--primary-default);color:#fff; }
-.product-panel__actions > a[href*="customer/contact"]:hover { background:var(--primary-hover);border-color:var(--primary-hover); }
+.product-panel__actions > a {
+    height:auto;
+    min-height:44px;
+    padding-block:12px;
+    border:0;
+    background:rgba(255,255,255,.2);
+    color:#fff;
+}
+.product-panel__actions > a:hover,
+.product-panel__actions > a:focus-visible {
+    background:rgba(255,255,255,.2);
+    color:#fff;
+}
 .dialog-contact a { background:var(--primary-default);color:#fff;transition:background-color .2s; }
 .dialog-contact a:hover { background:var(--primary-hover); }
 /* Legacy text links are action buttons, not inline prose links. */
@@ -2167,10 +2177,5 @@ body.customer-page .detail-link[href^="contact.html"]:hover {
     .product-panel__detail { padding:10px 18px; }
 }
 
-/* Preserve product-specific pictograms; white source icon needs dark ink on the white catalog CTA. */
-.product-panel__actions > a[href*="customer/catalog"] img {
-    filter:brightness(0);
-}
-.product-panel__actions > a[href*="customer/contact"] img {
-    filter:none;
-}
+/* Both original product pictograms remain white. */
+.product-panel__actions > a img { filter:none; }
