@@ -2193,3 +2193,57 @@ body.customer-page .detail-link[href^="contact.html"]:hover {
         transform:none !important;
     }
 }
+
+/* Shared rounded surfaces; preserve full-width section backgrounds. */
+:root { --control-radius: var(--content-radius); }
+.hero-thumb,
+.hero-sec .swiper-controls .swiper-pagination-bullet,
+.steel-service__image,
+.company-achievements__frame,
+.product-panel,
+.product-panel__image,
+.process-item__media,
+.certificate-card,
+.partner-list li,
+.footer-panel,
+.detail-dialog { border-radius: var(--content-radius); }
+.hero-thumb img,
+.process-item__media img { border-radius: inherit; }
+.hero-sec .swiper-scrollbar.swiper-scrollbar-horizontal,
+.hero-sec .swiper-scrollbar-drag { border-radius: var(--button-radius); }
+.subpage-depth__dropdown ul,
+.subpage-depth__dropdown ul a { border-radius: var(--content-radius); }
+.detail-page :is(.detail-certificate-dialog,.detail-certificate-dialog__image,
+    .detail-split__media img,.detail-product-feature img,.detail-step img,
+    .detail-logo-grid li,.detail-certificate,.detail-info-card,
+    .detail-rule-card,.detail-placeholder,.factory-overview__photo,
+    .factory-overview__photo img,.factory-capabilities__item img) {
+    border-radius: var(--content-radius);
+}
+.detail-page .directions-locations__map {
+    border-radius: var(--content-radius);
+    overflow: hidden;
+}
+.detail-page .directions-locations__tab,
+.products-page .products-tab { border-radius: var(--control-radius); }
+.detail-page .detail-certificate-dialog__close { border-radius: var(--button-radius); }
+.about-page :is(.about-overview__image img,.about-process__media,
+    .about-process__note,.about-proof__cert,.about-proof__partners,
+    .about-proof__certificates figure,.about-proof__logos li) {
+    border-radius: var(--content-radius);
+}
+.ci-page :is(.ci-logo-card,.ci-color) {
+    border-radius: var(--content-radius);
+    overflow: hidden;
+}
+.ci-page .ci-color__swatch {
+    border-radius: var(--content-radius) var(--content-radius) 0 0;
+}
+.products-page :is(.products-card,.products-card__media,
+    .products-detail__media img,.products-placeholder) {
+    border-radius: var(--content-radius);
+}
+body.customer-page .customer-form :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea),
+.customer-page :is(.customer-demo,#inquiry-result,.customer-catalog-item figure,.customer-catalog-item img) {
+    border-radius: var(--control-radius);
+}
