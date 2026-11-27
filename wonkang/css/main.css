@@ -2166,3 +2166,11 @@ body.customer-page .detail-link[href^="contact.html"]:hover {
     body.products-page :is(.products-detail__cta,.products-contact__link,.products-card__action) { padding:10px 18px; }
     .product-panel__detail { padding:10px 18px; }
 }
+
+/* Preserve product-specific pictograms; white source icon needs dark ink on the white catalog CTA. */
+.product-panel__actions > a[href*="customer/catalog"] img {
+    filter:brightness(0);
+}
+.product-panel__actions > a[href*="customer/contact"] img {
+    filter:none;
+}
