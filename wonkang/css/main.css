@@ -2099,7 +2099,7 @@ body.customer-page .customer-secondary {
 .product-panel__detail,
 .dialog-contact a { font-weight:400; }
 .product-panel__actions > a {
-    background: rgba(255,255,255,.2);
+    background: transparent;
     border-radius: var(--button-radius);
     gap: 8px;
 }
@@ -2115,25 +2115,25 @@ body.customer-page .customer-secondary {
 .product-panel__detail {
     border:1px solid #fff;
     border-radius:var(--button-radius);
-    background:#fff;
-    color:var(--text-primary);
+    background:transparent;
+    color:#fff;
     height:auto;
     min-height:44px;
     padding:var(--button-padding-y) var(--button-padding-x);
     gap:var(--button-gap);
 }
-.product-panel__detail:hover,.product-panel__detail:focus-visible { background:#fff;color:var(--text-primary); }
+.product-panel__detail:hover,.product-panel__detail:focus-visible { background:transparent;color:#fff; }
 .product-panel__actions > a {
     height:auto;
     min-height:44px;
     padding-block:12px;
     border:0;
-    background:rgba(255,255,255,.2);
+    background:transparent;
     color:#fff;
 }
 .product-panel__actions > a:hover,
 .product-panel__actions > a:focus-visible {
-    background:rgba(255,255,255,.2);
+    background:transparent;
     color:#fff;
 }
 .dialog-contact a { background:var(--primary-default);color:#fff;transition:background-color .2s; }
@@ -2178,4 +2178,18 @@ body.customer-page .detail-link[href^="contact.html"]:hover {
 }
 
 /* Both original product pictograms remain white. */
-.product-panel__actions > a img { filter:none; }
+.product-panel__actions > a img {
+    filter:none;
+    transform:translateY(0);
+    transition:transform 250ms ease;
+}
+@media (hover:hover) {
+    .product-panel__actions > a:hover img { transform:translateY(-4px); }
+}
+.product-panel__actions > a:focus-visible img { transform:translateY(-4px); }
+@media (prefers-reduced-motion:reduce) {
+    .product-panel__actions > a img {
+        transition:none;
+        transform:none !important;
+    }
+}
