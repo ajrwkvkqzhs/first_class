@@ -270,3 +270,12 @@
     display: grid;
     margin-top: clamp(32px, 4vw, 64px);
 }
+
+/* Hongseong factory overview: compact key-value rows. */
+.detail-page .factory-overview__facts { margin-top:28px; border-top:1px solid var(--border-default); }
+.detail-page .factory-overview__facts > div { display:grid; grid-template-columns:minmax(112px, 0.85fr) minmax(0, 1.3fr); gap:16px; padding:12px 0; border-bottom:1px solid var(--border-default); font-size:15px; line-height:1.65; }
+.detail-page .factory-overview__facts dt { color:var(--text-muted); font-weight:600; word-break:keep-all; }
+.detail-page .factory-overview__facts dd { margin:0; font-weight:500; overflow-wrap:anywhere; }
+.detail-page .factory-overview__links { display:flex; flex-wrap:wrap; gap:8px 28px; }
+.detail-page .factory-overview__links .detail-link { margin-top:16px; }
+@media (max-width:600px) { .detail-page .factory-overview__facts > div { grid-template-columns:minmax(100px, 0.9fr) minmax(0, 1.3fr); gap:10px; font-size:14px; } }
