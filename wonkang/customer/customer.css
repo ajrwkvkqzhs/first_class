@@ -18,10 +18,10 @@
 .customer-page :is(input,select,textarea,button,a):focus-visible{outline:2px solid var(--primary-default);outline-offset:3px}
 .customer-primary,.customer-secondary{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:50px;padding:12px 22px;font-size:15px;font-weight:600;border:1px solid var(--primary-default);text-align:left;transition:background .18s,color .18s}
 .customer-primary{background:var(--primary-default);color:#fff}
-.customer-primary:hover{background:var(--text-primary);border-color:var(--text-primary)}
+.customer-primary:not(:disabled):hover{background:var(--primary-hover);border-color:var(--primary-hover)}
 .customer-primary:disabled{opacity:.55;cursor:not-allowed}
 .customer-secondary{background:#fff;color:var(--text-primary);border-color:var(--border-default)}
-.customer-secondary:hover{border-color:var(--primary-default);color:var(--primary-default)}
+.customer-secondary:hover{border-color:var(--border-default);color:var(--text-primary);background:#fff}
 .customer-feedback{font-size:14px;color:var(--text-muted)}
 #inquiry-result{background:var(--background-default);padding:24px;min-width:0}
 #inquiry-result pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.7;margin:16px 0}
@@ -41,3 +41,7 @@
 @media(max-width:850px){.customer-contact-layout,.customer-catalog-item{grid-template-columns:1fr}.customer-catalog-item img{height:clamp(220px,55vw,360px)}}
 @media(max-width:520px){.customer-fields{grid-template-columns:1fr}.customer-catalog-heading{align-items:start;flex-direction:column}.customer-catalog-actions>*{flex:1}}
 @media print{.customer-page .site-header,.customer-page .site-footer,.customer-page .detail-hero,.customer-page .detail-breadcrumb,.customer-page .detail-siblings,.customer-page .detail-cta,.customer-catalog-actions,#print-catalog,.skip-link{display:none!important}.customer-page .detail-shell{width:100%}.customer-page .detail-section{padding:0}.customer-catalog-item{break-inside:avoid;padding-block:16px;grid-template-columns:1fr 1fr;gap:20px}.customer-catalog-item img{height:150px}.customer-catalog-copy h3{font-size:23px}}
+
+.customer-page .customer-primary,.customer-page .customer-secondary { font-weight:400; }
+.customer-page .customer-catalog-item figure { border-radius:var(--content-radius);overflow:hidden; }
+.customer-page .customer-catalog-item img { border-radius:var(--content-radius); }
