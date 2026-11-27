@@ -264,3 +264,9 @@
     .directions-locations__map { height: 300px; }
     .directions-locations__tab { min-height: 52px; }
 }
+
+/* Single production site: reuse map panel without location tabs. */
+.detail-page .directions-locations__panel--single {
+    display: grid;
+    margin-top: clamp(32px, 4vw, 64px);
+}
