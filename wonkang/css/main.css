@@ -360,7 +360,7 @@ figure,
     white-space: nowrap;
 }
 .hero-solution-link:hover {
-    background: #e9ebee;
+    background: #fff;
 }
 .hero-sec .swiper-scrollbar.swiper-scrollbar-horizontal {
     position: absolute;
@@ -2014,7 +2014,7 @@ main .page-reveal-pending.page-reveal-visible {
 /* Simple link from the certificate preview to the complete document library. */
 .certifications__actions { display:flex; justify-content:center; margin-top:32px; }
 .certifications__link { display:inline-flex; align-items:center; justify-content:center; gap:24px; min-height:48px; padding:10px 24px; border:1px solid var(--text-primary); color:var(--text-primary); font-size:16px; font-weight:500; transition:background .2s,color .2s,border-color .2s; }
-.certifications__link:hover { background:var(--text-primary); color:#fff; }
+.certifications__link:hover { background:#fff; color:var(--text-primary); }
 .certifications__link:focus-visible { outline:2px solid var(--primary-default); outline-offset:4px; }
 @media(max-width:600px){.certifications__actions{margin-top:20px}.certifications__link{font-size:14px;min-height:44px}}
 
@@ -2086,4 +2086,26 @@ body.customer-page .customer-secondary {
         transition: none;
         transform: none !important;
     }
+}
+
+/* Confirmed button and media rules. */
+:root {
+    --content-radius: 12px;
+    --section-padding: clamp(95px, 9vw, 165px);
+}
+.hero-solution-link,
+.certifications__link,
+.product-panel__actions > a,
+.product-panel__detail,
+.dialog-contact a { font-weight:400; }
+.product-panel__actions > a {
+    background: rgba(255,255,255,.2);
+    border-radius: var(--button-radius);
+    gap: 8px;
+}
+.product-panel__actions > a .wk-button-arrow { width:20px; height:20px; }
+.product-panel__image,
+.detail-dialog__body > img { border-radius:var(--content-radius); }
+@media(max-width:600px) {
+    .product-panel__actions > a .wk-button-arrow { width:16px; height:16px; }
 }
